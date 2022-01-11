@@ -37,12 +37,25 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
+      
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      	<button onclick="myFunction()">Capstone Council</button>
       </li>    
     </ul>
   </div>  
 </nav>
+
+<script type="text/javascript">
+
+function myFunction() {
+	  document.getElementById("demo").innerHTML = "Hello World";
+	  goToCapstoneCouncil();
+	}
+        
+        function goToCapstoneCouncil(){
+            window.location = '/capstone_council.jsp';
+        }
+</script>
 
 <div class="container" style="margin-top:30px">
   <div class="row">
@@ -90,4 +103,7 @@
 </div>
 
 </body>
+
+
+
 </html>
