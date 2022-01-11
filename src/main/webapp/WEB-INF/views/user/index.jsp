@@ -37,7 +37,6 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
-      
       <li class="nav-item">
       	<button onclick="myFunction()">Capstone Council</button>
       </li>    
