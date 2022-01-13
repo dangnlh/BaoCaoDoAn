@@ -7,7 +7,7 @@ public class Account {
 	private String password ;
 	private String mail ;
 	private int phone ;
-	private int role ;
+	private String role ;
 	private int group_id ;
 	private boolean isLeader ;
 	public int getId() {
@@ -40,10 +40,10 @@ public class Account {
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
-	public int getRole() {
+	public String getRole() {
 		return role;
 	}
-	public void setRole(int role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 	public int getGroup_id() {
@@ -58,10 +58,7 @@ public class Account {
 	public void setLeader(boolean isLeader) {
 		this.isLeader = isLeader;
 	}
-	public Account() {
-		super();
-	}
-	public Account(int id, String name, String password, String mail, int phone, int role, int group_id,
+	public Account(int id, String name, String password, String mail, int phone, String role, int group_id,
 			boolean isLeader) {
 		super();
 		this.id = id;
@@ -73,6 +70,10 @@ public class Account {
 		this.group_id = group_id;
 		this.isLeader = isLeader;
 	}
+	public Account() {
+		super();
+	}
+	
 	
 
 	
