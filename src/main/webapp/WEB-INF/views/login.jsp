@@ -11,23 +11,23 @@
 
 </head>
 <body>
-	<c:forEach var="item" items="${ login }">
-		<h1>${ item.mail }</h1>
-		<h1>${ item.password }</h1>
-	</c:forEach>
+<h1>Login Page</h1>
+<h2> ${status}</h2>
+<c:if test="${ not empty inforAccount }">
+	<h1>${ inforAccount.name }</h1>
+	<h1>${ inforAccount.phone }</h1>
+</c:if>
+	<form:form method="POST" action="/BaoCaoDoAn/dang-nhap" modelAttribute="account">
+		<form:input path="mail" type="text" />
 
-<h1>${ message }</h1>
-<h1>${ message2 }</h1>
-<form  method="POST" action="doLogin" >
-			<input type="text" name="mail"/>
-			<br>
-			<input type="password" name="password" />
-			<input type="submit" value="Submit" />
-		<div style="color: red">${error}</div>
+		<br>
+		<form:input path="password" type="password" />
+
+		<input type="submit" value="Submit" />
 
 
-	</form>
-	
+
+	</form:form>
 </body>
 </html>
 

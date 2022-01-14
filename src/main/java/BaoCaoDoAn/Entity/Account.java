@@ -73,6 +73,9 @@ public class Account {
 	public Account() {
 		super();
 	}
+	public String displayName() {
+		return "Account [name=" + name + "]";
+	}
 	
 	
 
