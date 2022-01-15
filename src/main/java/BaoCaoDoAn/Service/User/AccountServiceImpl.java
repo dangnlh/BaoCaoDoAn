@@ -1,8 +1,10 @@
 package BaoCaoDoAn.Service.User;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import BaoCaoDoAn.Dao.AccountDAO;
@@ -17,18 +19,15 @@ public class AccountServiceImpl implements IAccountService{
 	
 	
 	public Account CheckAccount(Account account) {
-
-		account = accountDao.GetUserByAccount(account) ;
-		
-		if(account == null) {
-		
-			return null ;
-		}
-		return account;
-	}
-
-
+		account = accountDao.GetUserByAccount(account) ;	
 	
+			if(account == null) {
+				
+				return null ;
+			}
+		
+		return account;
+				}
 
 
 }

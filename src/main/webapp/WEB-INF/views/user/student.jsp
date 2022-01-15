@@ -170,13 +170,14 @@ body {
 			<div class="section_heading text-center wow fadeInUp"
 				data-wow-delay="0.2s"
 				style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+				<h1>${ status }</h1>
 				<c:if test="${ not empty inforAccount }">
 					<h1>${ inforAccount.id }</h1>
 					<h1>${ inforAccount.name }</h1>
 					<h1>${ inforAccount.mail }</h1>
 					<h1>${ inforAccount.role }</h1>
-					<h1>Group_id :${ inforAccount.group_id }</h1>
-				
+					<h1>Group_id :${ inforAccount.group_id } </h1>
+					<h1 style="color: red"><a href='<c:url value="dang-nhap/${ inforAccount.group_id }"></c:url>'>Your Project</a></h1>
 				</c:if>
 
 				<p>Appland is completely creative, lightweight, clean &amp;
