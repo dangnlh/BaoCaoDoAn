@@ -4,12 +4,12 @@ public class Account {
 	
 	private int id ;
 	private String name ;
-	private String password ;
 	private String mail ;
+	private String password ;
+	private int group_id ;
 	private int phone ;
 	private String role ;
-	private int group_id ;
-	private boolean isLeader ;
+	private Boolean isLeader ;
 	public int getId() {
 		return id;
 	}
@@ -22,17 +22,23 @@ public class Account {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public String getMail() {
 		return mail;
 	}
-	public void setMail(String mail) {
-		this.mail = mail;
+	public String setMail(String mail) {
+		return this.mail = mail;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public String setPassword(String password) {
+		return this.password = password;
+	}
+	public int getGroup_id() {
+		return group_id;
+	}
+	public void setGroup_id(int group_id) {
+		this.group_id = group_id;
 	}
 	public int getPhone() {
 		return phone;
@@ -46,35 +52,11 @@ public class Account {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public int getGroup_id() {
-		return group_id;
-	}
-	public void setGroup_id(int group_id) {
-		this.group_id = group_id;
-	}
-	public boolean isLeader() {
+	public Boolean getIsLeader() {
 		return isLeader;
 	}
-	public void setLeader(boolean isLeader) {
+	public void setIsLeader(Boolean isLeader) {
 		this.isLeader = isLeader;
-	}
-	public Account(int id, String name, String password, String mail, int phone, String role, int group_id,
-			boolean isLeader) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.password = password;
-		this.mail = mail;
-		this.phone = phone;
-		this.role = role;
-		this.group_id = group_id;
-		this.isLeader = isLeader;
-	}
-	public Account() {
-		super();
-	}
-	public String displayName() {
-		return "Account [name=" + name + "]";
 	}
 	
 	

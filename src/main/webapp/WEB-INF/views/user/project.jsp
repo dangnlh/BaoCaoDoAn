@@ -9,7 +9,10 @@
 </head>
 <body>
 
+
 	<c:forEach var="item" items="${ getProject }">
+		
+			<h1>ID: ${ item.id }</h1>
 			<h1>Group: ${ item.group_id }</h1>
 			<h1>Project Name : ${ item.name }</h1>
 			<h1>Created Time : ${ item.createTime }</h1>

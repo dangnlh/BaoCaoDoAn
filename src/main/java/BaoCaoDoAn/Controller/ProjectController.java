@@ -14,7 +14,7 @@ public class ProjectController {
 	private ProjectServiceImpl projectService ;
 	
 	private ModelAndView mv = new ModelAndView() ;
-	@RequestMapping(value = {"dang-nhap/{id}"})
+	@RequestMapping(value = {"dang-nhap/project/byGroupID/{id}"})
 	public ModelAndView project (@PathVariable String id) {
 		mv.setViewName("user/project");
 		mv.addObject("getProject" , projectService.getProject(Integer.parseInt(id))) ;
