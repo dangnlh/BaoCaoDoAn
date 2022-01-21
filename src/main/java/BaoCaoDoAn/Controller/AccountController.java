@@ -1,16 +1,14 @@
 package BaoCaoDoAn.Controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
-import javax.servlet.http.HttpSession;
-import BaoCaoDoAn.Dao.AccountDAO;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Service.User.AccountServiceImpl;
 
@@ -33,15 +31,29 @@ public class AccountController {
 	
 		account  = accountService.CheckAccount(account) ;
 		System.out.println(account);
+		System.out.println(account.getId());
 		if(account != null ) {
+			
 			mv.addObject("status" , "login thanh cong") ;
-			session.setAttribute("inforAccount", account);
+	
+			if(account.getRole().equals("student")) {
+			
+				session.setAttribute("inforAccount", account);		
+				session.setAttribute("id", account.getId());
+				return "/user/student" ;
+			}
+			
+			if(account.getRole().equals("admin")) {
 				
-		}else {
-			mv.addObject("status" , "login that bai") ;
+				session.setAttribute("inforAccount", account);						
+				
+				return "/admin/admin2" ;
+			}
+			else {
+				session.setAttribute("inforAccount", account);
+				return "/user/teacher" ;
+			}
 		}
-		
-//		System.out.println(account.getMail() +  "-" + account.getGroup_id());
 		return "/user/student" ;
 	}
 	

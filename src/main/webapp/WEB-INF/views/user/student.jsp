@@ -171,12 +171,30 @@ body {
 				data-wow-delay="0.2s"
 				style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
 				<c:if test="${ not empty inforAccount }">
-					<h1>${ inforAccount.id }</h1>
-					<h1>${ inforAccount.name }</h1>
-					<h1>${ inforAccount.mail }</h1>
-					<h1>${ inforAccount.role }</h1>
-					<h1>Group_id :${ inforAccount.group_id }</h1>
-				
+					<div align="center">
+					<table border="1"  cellpadding="7">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>Mail</th>
+								<th>Role</th>
+								<th>Group_ID</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>${ inforAccount.id }</td>
+								<td>${ inforAccount.name }</td>
+								<td>${ inforAccount.mail }</td>
+								<td>${ inforAccount.role }</td>
+								<td>${ inforAccount.group_id }</td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+					<a href='<c:url value="group/${ inforAccount.group_id }"></c:url>'>Group</a>
+					<a href="report">REPORTS</a>
 				</c:if>
 
 				<p>Appland is completely creative, lightweight, clean &amp;
