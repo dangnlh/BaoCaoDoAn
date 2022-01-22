@@ -58,7 +58,7 @@ public class AccountController {
 			mv.addObject("statusLogin" , "login thanh cong");
 
 		}if(acc != null && acc.getRole().equals("admin")) {			
-			mv.setViewName("/admin/admin");					
+			mv.setViewName("/admin/admin2");					
 			mv.addObject("statusLogin" , "login thanh cong");
 
 		}
@@ -83,9 +83,9 @@ public class AccountController {
 		System.out.println(count);
 		
 		if(count == 1   ) {
-			mv.addObject("statusRegister" , "Đăng Kí thành Công") ;
+			mv.addObject("statusRegister" , "Ä�Äƒng KÃ­ thÃ nh CÃ´ng") ;
 		}else if(count == 2 ) {
-			mv.addObject("statusRegister" , "Đăng Kí thất bại") ;
+			mv.addObject("statusRegister" , "Ä�Äƒng KÃ­ tháº¥t báº¡i") ;
 		}
 		System.out.println("thanhcong");
 		mv.setViewName("/registrationpage");
