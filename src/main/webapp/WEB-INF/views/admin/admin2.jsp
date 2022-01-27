@@ -141,16 +141,24 @@
 			<li class="nav-item">
 			<li class="nav-item"><a class="nav-link" href="/posts"> <i
 					class="fas fa-fw fa-table"></i> <span>Student</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="tags"> <i
-					class="fas fa-fw fa-table"></i> <span>Group</span></a></li>
-			<li class="nav-item"><a class="nav-link"
-				href='<c:url value="/ScheduleReport"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Schedule Report</span></a>
+			
+			<li class="nav-item">
+			
+			<a class="nav-link" href='<c:url value="/ScheduleReport"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Schedule Report</span></a>
+	
 			</li>
 			
 			<li class="nav-item"><a class="nav-link"
 				href='<c:url value="/Project"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Project</span></a>
-			</li>
 
+	</li>
+
+
+				<li class="nav-item">
+				<a class="nav-link" href='<c:url value="/ListGroup"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Group</span></a>
+
+	</li>
+			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
@@ -396,14 +404,10 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div style="text-decoration: none; font-size: 25px;"
-												class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-												Group</div>
+												class="text-xs font-weight-bold text-primary text-uppercase mb-1"><a href="ListGroup">Group</a>
+												</div>
 											<div class="h5 mb-0 font-weight-bold text-gray-800">
-												<c:forEach var="item" items="${ group }" varStatus="counter">
-													<c:if test="${not empty item }" />
-													
-													<a style="text-decoration: none;font-size: 15px; color: black;"  href='<c:url value="group/${ item.id }"></c:url>'>${item.name}</a>
-												</c:forEach>
+												
 
 											</div>
 										</div>
@@ -417,14 +421,16 @@
 
 						<!-- Earnings (Monthly) Card Example -->
 						<div class="col-xl-3 col-md-6 mb-4">
-							<div class="card border-left-success shadow h-100 py-2">
+							<div class="card border-left-success shadow h-100 py-2">zz
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div
 												class="text-xs font-weight-bold text-success text-uppercase mb-1">
-												Earnings (Annual)</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+												ADD STUDENT</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800">
+											
+											</div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

@@ -18,10 +18,11 @@
     </ul>
   </c:if> -->
    <h1>Group ne</h1>
-   <h1>${ groups.size() }</h1>
-  <c:forEach var="item" items="${ groups }" varStatus="counter" >
+   <h1>${ Group2.size() }</h1>
+  <c:forEach var="item" items="${ Group2 }" varStatus="counter" >
   			<c:if test="${not empty item }"/>
   			<div align="center">
+  			
   			<table border="2"  cellpadding="7">
   				<thead>
   					<tr>
@@ -43,15 +44,13 @@
   						<td>${ item.role }</td>
   						<td>${ item.group_id }</td>
   						
-  						<td><a href='<c:url value="/group/${ item.group_id }/delete/${item.id}"></c:url>'>Delete</a></td>
-  						
-  						
+  						<td><a href='<c:url value="/editAccount?id=${item.id}"></c:url>'>Edit</a></td>
   					</tr>
   				</tbody>
   			</table>
   			</div>
   </c:forEach>
+ 
   
-  <h1 style="color: red">${ statusDeleme }</h1>
 </body>
 </html>
