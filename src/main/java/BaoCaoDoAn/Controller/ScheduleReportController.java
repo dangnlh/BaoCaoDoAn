@@ -34,7 +34,7 @@ public class ScheduleReportController {
 	@Autowired 
 	private ScheduleReportDAO scheduleReportDAO ;
 	
-	
+
 	@RequestMapping(value = {"/ScheduleReport"})
 	public ModelAndView AllScheduleReport (Model model) {
 	
