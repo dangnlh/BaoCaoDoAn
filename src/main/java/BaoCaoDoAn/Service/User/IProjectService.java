@@ -12,4 +12,7 @@ import BaoCaoDoAn.Entity.Project;
 public interface IProjectService {
 	@Autowired
 	public List<Project> getProject(int id) ;
+	
+	@Autowired
+	public List<Project> getAllProject() ;
 }

@@ -20,5 +20,13 @@ public class ReportServiceImpl implements IReportService{
 		
 		return reportDao.getAllReport();
 	}
+	public int addReport(Report report) {
+		
+		return reportDao.addReport(report);
+	}
+	public int editReport(int id) {
+		
+		return reportDao.editReport(id);
+	}
 
 }

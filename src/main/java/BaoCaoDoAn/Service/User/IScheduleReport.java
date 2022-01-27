@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-
+import BaoCaoDoAn.Entity.Report;
 import BaoCaoDoAn.Entity.ScheduleReport;
 
 @Service
@@ -18,7 +18,9 @@ public interface IScheduleReport {
 	@Autowired
 	public List<ScheduleReport> getAllScheduleReport()  ;
 		
-	@Autowired
-	public ScheduleReport AddScheduleReport(int id , Date timeReport , int account_id , int report_id)  ;
+
 	
+	
+	@Autowired
+	public int addScheduleReport(ScheduleReport scheduleReport);
 }

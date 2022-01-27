@@ -19,4 +19,12 @@ public class ProjectServiceImpl implements IProjectService{
 		return projectDao.getProject(id) ;
 	}
 
+	public List<Project> getAllProject() {
+		
+		return projectDao.getAllProject();
+	}
+	
+
+
+
 }

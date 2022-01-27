@@ -25,5 +25,11 @@ public class ProjectDAO {
 		
 	
 	}
+	public List<Project> getAllProject() {
+		List<Project> list = new ArrayList<Project>();
+		String sql = "Select * from project  " ;
+		list =  jdbcTemplate.query(sql, new MapperProject()) ;
+		return list;
+	}
 
 }

@@ -17,4 +17,10 @@ public interface IReportService {
 	@Autowired
 	public List<Report> getAllReport() ;
 	
+	@Autowired
+	public int addReport(Report report);
+	
+	@Autowired
+	public int editReport(int id);
+	
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 
 import BaoCaoDoAn.Entity.MapperScheduleReport;
-
+import BaoCaoDoAn.Entity.Report;
 import BaoCaoDoAn.Entity.ScheduleReport;
 
 @Repository
@@ -37,13 +37,21 @@ public class ScheduleReportDAO {
 		return list ;
 	}
 	
-	public ScheduleReport AddScheduleReport( int id , Date timeReport , int account_id , int report_id) {
-		ScheduleReport scheduleReport = new ScheduleReport();
-		String sql = "INSERT INTO schedulereport (id , timeReport, account_id , report_id) " + 
-				" VALUES ("+id+", "+timeReport+", "+account_id+", "+report_id+");" ;
-		scheduleReport =  jdbcTemplate.queryForObject(sql, new MapperScheduleReport()) ;
+	public int addScheduleReport(ScheduleReport scheduleReport ) {
+		StringBuffer sql = new StringBuffer();	
+		sql.append("INSERT INTO schedulereport (timeReport, report_id) " + 
+				" VALUES ('"+scheduleReport.getTimeReport()+"', "+scheduleReport.getReport_id()+");") ;
+		int insert =  jdbcTemplate.update(sql.toString()) ; 		
 		 
-		return scheduleReport ;
+		return insert ;
 	}
 	
+
+	public int DeleteScheduleReport( String id) {
+			
+		String sql = "DELETE FROM schedulereport WHERE id = "+id+" " ;
+		int result = jdbcTemplate.update(sql); 
+		return result;
+		
+	}
 }

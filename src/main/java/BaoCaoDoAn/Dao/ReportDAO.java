@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-
+import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.MapperReport;
 
 import BaoCaoDoAn.Entity.Report;
@@ -18,7 +18,7 @@ public class ReportDAO {
 	JdbcTemplate jdbcTemplate ;
 	public List<Report> getReport(int id) {
 		List<Report> list = new ArrayList<Report>();
-		String sql = "Select * from project where project_id = " + id ;
+		String sql = "Select * from report where id = " + id ;
 		 list =  jdbcTemplate.query(sql, new MapperReport()) ;
 		return list ;
 		
@@ -32,5 +32,31 @@ public class ReportDAO {
 		return list ;
 		
 	
+	}
+
+	public int addReport(Report report) {
+		StringBuffer sql = new StringBuffer();	
+		sql.append("INSERT INTO report (name, timeCreate,timeSubmit,urlReport,project_id) "
+				+ "VALUES ('"+report.getName()+"', '"+report.getTimeCreate()+"' "
+				+ ",'"+report.getTimeSubmit()+"', '"+report.getUrlReport()+"'"
+				+ " ,"+report.getProject_id()+");");	
+		int insert = jdbcTemplate.update(sql.toString()) ; 					
+		return insert;
+	}
+	
+	public int DeleteReport( String id) {
+		
+		String sql = "DELETE FROM report WHERE id = "+id+" " ;
+		int result = jdbcTemplate.update(sql); 
+		return result;
+		
+	}
+
+	public int editReport(int id) {
+		Report report = new Report();
+		String sql = "UPDATE report SET name='"+report.getName()+"', timeCreate='"+report.getTimeCreate()+"'"
+				+ ", timeSubmit='"+report.getTimeSubmit()+"' , project_id= "+report.getProject_id()+" WHERE id= " + id ; 
+		int result = jdbcTemplate.update(sql);
+		return result;
 	}
 }
