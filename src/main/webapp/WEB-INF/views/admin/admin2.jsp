@@ -14,13 +14,13 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Department</title>
+<title>Admin Page</title>
 <!-- Custom fonts for this template-->
 <link
 	href="<c:url value="/assets/vendor/fontawesome-free/css/all.min.css" /> "
 	rel="stylesheet" />
 
-type="text/css">
+
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
@@ -142,9 +142,22 @@ type="text/css">
 			<li class="nav-item"><a class="nav-link" href="/posts"> <i
 					class="fas fa-fw fa-table"></i> <span>Student</span></a></li>
 			
-			<li class="nav-item"><a class="nav-link"
-				href='<c:url value="/ListGroup"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Group</span></a>
+			<li class="nav-item">
+			
+			<a class="nav-link" href='<c:url value="/ScheduleReport"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Schedule Report</span></a>
+	
 			</li>
+			
+			<li class="nav-item"><a class="nav-link"
+				href='<c:url value="/Project"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Project</span></a>
+
+	</li>
+
+
+				<li class="nav-item">
+				<a class="nav-link" href='<c:url value="/ListGroup"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Group</span></a>
+
+	</li>
 			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">

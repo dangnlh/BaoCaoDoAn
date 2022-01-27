@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Service.User.ProjectServiceImpl;
 
 @Controller
@@ -14,14 +15,22 @@ public class ProjectController {
 	private ProjectServiceImpl projectService ;
 	
 	private ModelAndView mv = new ModelAndView() ;
-	@RequestMapping(value = {"dang-nhap/project/byGroupID/{id}"})
-	public ModelAndView project (@PathVariable String id) {
+//	@RequestMapping(value = {"dang-nhap/project/byGroupID/{id}"})
+//	public ModelAndView project (@PathVariable String id) {
+//		mv.setViewName("user/project");
+//		mv.addObject("getProject" , projectService.getProject(Integer.parseInt(id))) ;
+//		return mv;
+//		
+//	}
+	
+	
+	@RequestMapping(value = {"/Project"})
+	public ModelAndView getAllProject (Project project ) {
+		
+		mv.addObject("getAllProject" , projectService.getAllProject()) ;
 		mv.setViewName("user/project");
-		mv.addObject("getProject" , projectService.getProject(Integer.parseInt(id))) ;
 		return mv;
 		
 	}
-	
-	
 	
 }
