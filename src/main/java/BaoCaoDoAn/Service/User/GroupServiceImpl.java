@@ -18,9 +18,7 @@ public class GroupServiceImpl implements IGroupService {
 		return groupdao.getGroupAdmin();
 	}
 
-	public void deleteStudentInGroup(int id) {
-		 groupdao.delete(id);
-	}
+
 
 	public Account getGroupID(int accountId) {
 		return groupdao.get(accountId);
@@ -33,5 +31,37 @@ public class GroupServiceImpl implements IGroupService {
 			return null;
 		}
 		return list;
+	}
+
+	public int updateAccountInGroup(Account account) {
+		return groupdao.updateGroupInAccount(account);
+	}
+
+	public int addGroup(Group group) {
+		return groupdao.addAccountInGroup(group);
+	}
+
+	
+
+	public List<Account> getStudent() {
+		return groupdao.getStudent();
+	}
+
+
+
+	public void deleteGroup(int id) {
+		groupdao.delete(id);
+	}
+
+
+
+	public Group findGroupById(int id) {
+		return groupdao.FindGroupID(id);
+	}
+
+
+
+	public int updateGroup(Group group) {
+		return groupdao.updateGroup(group);
 	}
 }

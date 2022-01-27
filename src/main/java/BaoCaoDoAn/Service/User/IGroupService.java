@@ -11,13 +11,21 @@ import BaoCaoDoAn.Entity.Group;
 public interface IGroupService {
 	@Autowired
 	public List<Group> getGroupAdmin();
-	
-	@Autowired
-	public void deleteStudentInGroup(int id);
-	
 	@Autowired
 	public Account getGroupID(int accountId);
 	
 	@Autowired
 	public List<Account> GetDataGroup(int id);
+	@Autowired
+	public int updateAccountInGroup(Account account);
+	@Autowired
+	public int addGroup(Group group);
+	@Autowired
+	public void deleteGroup(int id);
+	@Autowired
+	public List<Account> getStudent();
+	@Autowired
+	public Group findGroupById(int id);
+	@Autowired
+	public int updateGroup(Group group);
 }
