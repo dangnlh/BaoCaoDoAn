@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
+import BaoCaoDoAn.Entity.Project;
 @Service
 public interface IGroupService {
 	@Autowired
@@ -28,4 +29,6 @@ public interface IGroupService {
 	public Group findGroupById(int id);
 	@Autowired
 	public int updateGroup(Group group);
+	@Autowired
+	public List<Project> GetProjectByGroupID(int id);
 }

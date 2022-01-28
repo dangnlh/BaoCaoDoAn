@@ -11,7 +11,9 @@ import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.MapperAccount;
 import BaoCaoDoAn.Entity.MapperGroup;
+import BaoCaoDoAn.Entity.MapperProject;
 import BaoCaoDoAn.Entity.MapperScheduleMeeting;
+import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
 
 @Repository
@@ -70,5 +72,11 @@ public class GroupDAO {
 	public void delete(int id) {
 	    String sql = "DELETE FROM `group` WHERE id=?";
 	    _jdbcTemplate.update(sql, id);
+	}
+	public List<Project> getProjectByGroupId(int id){
+		List<Project> list = new ArrayList<Project>();
+		String sql = "SELECT * FROM project where group_id = " + id;
+		list = _jdbcTemplate.query(sql, new MapperProject());
+		return list;
 	}
 }

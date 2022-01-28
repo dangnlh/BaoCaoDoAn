@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import BaoCaoDoAn.Dao.GroupDAO;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
+import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
 import BaoCaoDoAn.Service.User.GroupServiceImpl;
 
@@ -58,7 +59,21 @@ public class GroupController {
 
 		return mv;
 	}
+	@RequestMapping(value = "/Project/{id}")
+	public ModelAndView group(@PathVariable int id, Project project) {
+		List<Project> list = new ArrayList<Project>();
+		list = groupServiceImpl.GetProjectByGroupID(id);
 
+		if (list != null) {
+			mv.setViewName("/user/project");
+			mv.addObject("getAllProject", groupServiceImpl.GetProjectByGroupID(id));
+		} else {
+			mv.addObject("getAllProject", "that bai");
+			
+		}
+
+		return mv;
+	}
 	@RequestMapping(value = "/tags")
 	public ModelAndView group() {
 		List<Group> list1 = new ArrayList<Group>();

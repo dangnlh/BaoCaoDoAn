@@ -19,7 +19,8 @@
 					<th>.NO</th>
 					<th>ID</th>
 					<th>Name</th>
-					<th>Views</th>
+					<th>ViewProject</th>
+					<th>ViewStudent</th>
 					<th>DELETE</th>
 					<th>Edit</th>
 					
@@ -30,7 +31,8 @@
 					<td>${counter.index + 1 }</td>
 					<td>${ items.id }</td>
 					<td>${ items.name }</td>
-					<td><a href='<c:url value="group/${ items.id }"></c:url>'>Views</a></td>
+					<td><a href='<c:url value="Project/${ items.id }"></c:url>'>ViewProject</a></td>
+					<td><a href='<c:url value="group/${ items.id }"></c:url>'>ViewStudent</a></td>
 					<td><a href='<c:url value="/deleteGroup?id=${items.id}"></c:url>'>DELETE</a></td>
 					<td><a href='<c:url value="/editgroup?id=${items.id}"></c:url>'>Edit</a></td>
 				</tr>
