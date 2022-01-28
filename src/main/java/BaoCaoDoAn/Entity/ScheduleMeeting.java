@@ -1,32 +1,20 @@
 package BaoCaoDoAn.Entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ScheduleMeeting {
-	private Integer id;
+	private int id;
 	
 	private Date timeMeeting;
 	private int project_id;
 	
 	private int account_id;
 
-	public ScheduleMeeting() {
-		super();
-	}
-
-	public ScheduleMeeting(Integer id, Date timeMeeting, int project_id, int account_id) {
-		super();
-		this.id = id;
-		this.timeMeeting = timeMeeting;
-		this.project_id = project_id;
-		this.account_id = account_id;
-	}
-
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -52,6 +40,18 @@ public class ScheduleMeeting {
 
 	public void setAccount_id(int account_id) {
 		this.account_id = account_id;
+	}
+
+	public ScheduleMeeting(int id, Date timeMeeting, int project_id, int account_id) {
+		super();
+		this.id = id;
+		this.timeMeeting = timeMeeting;
+		this.project_id = project_id;
+		this.account_id = account_id;
+	}
+
+	public ScheduleMeeting() {
+		super();
 	}
 
 }

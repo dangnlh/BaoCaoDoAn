@@ -147,6 +147,11 @@
 			<a class="nav-link" href='<c:url value="/ScheduleReport"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Schedule Report</span></a>
 	
 			</li>
+			<li class="nav-item">
+			
+			<a class="nav-link" href='<c:url value="/ScheduleMeeting"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Schedule Meeting</span></a>
+	
+			</li>
 			
 			<li class="nav-item"><a class="nav-link"
 				href='<c:url value="/Project"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Project</span></a>
