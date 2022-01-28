@@ -19,8 +19,6 @@ public interface IScheduleReport {
 	public List<ScheduleReport> getAllScheduleReport()  ;
 		
 
-	
-	
 	@Autowired
 	public int addScheduleReport(ScheduleReport scheduleReport);
 }

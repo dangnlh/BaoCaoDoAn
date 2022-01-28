@@ -42,7 +42,7 @@ public class ReportController {
 		return "redirect:/ScheduleReport";
 		
 	}
-
+	
 	@RequestMapping(value = {"/deleteReport/{id}"})
 	public String DeleteReport (@PathVariable String id) {
 		int result = reportDAO.DeleteReport(id);

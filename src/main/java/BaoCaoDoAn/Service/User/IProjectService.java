@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 import BaoCaoDoAn.Entity.Project;
+import BaoCaoDoAn.Entity.Report;
 
 @Service
 public interface IProjectService {
@@ -15,4 +16,16 @@ public interface IProjectService {
 	
 	@Autowired
 	public List<Project> getAllProject() ;
+	
+	@Autowired
+	public List<Project> getProjectById(int id) ;
+	
+	@Autowired
+	public int addProject(Project project);
+	
+	@Autowired
+	public int deleteProject(int id);
+	
+	@Autowired
+	public int editProject(int id) ;
 }
