@@ -27,7 +27,8 @@ import BaoCaoDoAn.Service.User.ScheduleReportServiceImpl;
 public class AccountController {
 	@Autowired
 	AccountServiceImpl accountService ;
-	
+	@Autowired
+	AccountDAO accountDao  ;
 	@Autowired 
 	private ScheduleReportDAO scheduleReportDAO ;
 	
@@ -47,15 +48,18 @@ public class AccountController {
 	public ModelAndView Login(@ModelAttribute("account") Account account ,  HttpSession session) {
 		
 		Account acc = accountService.CheckAccount(account) ;
-	
+		
 
 		if(acc != null && acc.getRole().equals("student")) {	
 		    mv.setViewName("/user/student");
 			mv.addObject("statusLogin" , "login thanh cong");
 		
 		}if(acc != null && acc.getRole().equals("teacher")) {			
-			mv.setViewName("/user/teacher");					
+			mv.setViewName("/user/teacher");	
+			
+			mv.addObject("InforAccount" ,accountDao.GetUserByAccount(account) );
 			mv.addObject("statusLogin" , "login thanh cong");
+		
 
 		}if(acc != null && acc.getRole().equals("admin")) {			
 			mv.setViewName("/admin/admin2");					
