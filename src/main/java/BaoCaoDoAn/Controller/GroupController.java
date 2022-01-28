@@ -35,7 +35,13 @@ public class GroupController {
 //		mv.setViewName("/group");
 //		return mv ;
 //	}
-
+	@RequestMapping(value="/teacherGroup")
+	public String TeacherGroup() {
+	
+		return "user/teacherGroup" ;
+	
+	}
+	
 	@RequestMapping(value = "/group/{id}")
 	public ModelAndView group(@PathVariable int id, Account account) {
 		List<Account> list = new ArrayList<Account>();
