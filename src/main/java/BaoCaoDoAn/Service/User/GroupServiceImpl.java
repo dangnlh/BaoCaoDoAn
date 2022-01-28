@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import BaoCaoDoAn.Dao.GroupDAO;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
+import BaoCaoDoAn.Entity.Project;
 @Service
 public class GroupServiceImpl implements IGroupService {
 	@Autowired
@@ -63,5 +64,11 @@ public class GroupServiceImpl implements IGroupService {
 
 	public int updateGroup(Group group) {
 		return groupdao.updateGroup(group);
+	}
+
+
+
+	public List<Project> GetProjectByGroupID(int id) {
+		return groupdao.getProjectByGroupId(id);
 	}
 }

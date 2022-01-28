@@ -19,9 +19,10 @@
 	<div align="center">
 		<h1>NEW / EDIT SCHEDULE</h1>
 	
-	<form:form action="addAdmin" method="POST"  modelAttribute="admin2">
+	<form:form action="addScheduleMeeting" method="POST"  modelAttribute="ScheduleMeeting2">
 		<form:hidden path="id" /> 
-		timeMeeting: <form:input path="timeMeeting"/> <form:errors path="timeMeeting" cssClass="error"/> <br/><br/>
+		timeMeeting	<form:input path="timeMeeting" type="date" class="form-control mb-2 mr-sm-2" value="2022-06-01" />
+	<br/><br/>
 		Project_ID: <form:input path="project_id"/> <form:errors path="project_id" cssClass="error"/> <br/><br/>
 		Account_id: <form:input path="account_id"/> <form:errors path="account_id" cssClass="error"/> <br/><br/>
  		<button type="submit">Submit</button>		
