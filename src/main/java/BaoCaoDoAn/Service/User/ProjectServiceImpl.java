@@ -16,13 +16,35 @@ public class ProjectServiceImpl implements IProjectService{
 
 	public List<Project> getProject(int id) {
 		
-		return projectDao.getProject(id) ;
+		return projectDao.getProjectByGroup_id(id) ;
 	}
 
 	public List<Project> getAllProject() {
 		
 		return projectDao.getAllProject();
 	}
+
+	public int addProject(Project project) {
+		
+	 return projectDao.addProject(project);
+	}
+
+	public int deleteProject(int id) {
+		
+		return projectDao.deleteProject(id);
+	}
+
+	public List<Project> getProjectById(int id) {
+		
+		return projectDao.getProjectByid(id);
+	}
+
+	public int editProject(int id) {
+		
+		return projectDao.editProject(id);
+	}
+
+	
 	
 
 
