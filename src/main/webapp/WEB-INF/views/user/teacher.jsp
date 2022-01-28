@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <title>Bootstrap 4 Website Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +20,8 @@
   </style>
 </head>
 <body>
+<h1>${ statusLogin }</h1>
+
 
 <div class="jumbotron text-center" style="margin-bottom:0">
   <h1>Teacher Page</h1>
@@ -48,24 +51,22 @@
 <div class="container" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-4">
-      <h2>About Me</h2>
+      <h2>About Me ${ InforAccount.id }</h2>
+      <h5>${ InforAccount.name }</h5>
       <h5>Photo of me:</h5>
-      <div class="fakeimg">Fake Image</div>
-      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-      <h3>Some Links</h3>
-      <p>Lorem ipsum dolor sit ame.</p>
+      
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
        
          
        
-        <a class="nav-link" href='<c:url value="/teacherGroup"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Group</span></a>
+        <a class="nav-link" href='<c:url value="/teacherGroup/${ InforAccount.group_id }"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Group</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#">Schedule Meeting</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#">Schedule Report</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>

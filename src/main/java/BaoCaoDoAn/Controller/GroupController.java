@@ -35,11 +35,12 @@ public class GroupController {
 //		mv.setViewName("/group");
 //		return mv ;
 //	}
-	@RequestMapping(value="/teacherGroup")
-	public String TeacherGroup() {
-	
-		return "user/teacherGroup" ;
-	
+	@RequestMapping(value="/teacherGroup/{id}")
+	public ModelAndView TeacherGroup(@PathVariable int id ) {
+		
+		mv.setViewName("user/teacherGroup");
+		mv.addObject("TeacherGroup" , groupDAO.FindGroupID(id));
+		return mv ;
 	}
 	
 	@RequestMapping(value = "/group/{id}")
