@@ -97,7 +97,7 @@ public class GroupController {
 		if (list1 != null) {
 			List<Account> list = new ArrayList<Account>();
 			list = groupServiceImpl.getStudent();
-			mv.setViewName("/user/ListGroup");
+			mv.setViewName("/admin/admingroup");
 			mv.addObject("group4", groupServiceImpl.getGroupAdmin());
 			mv.addObject("group3",groupServiceImpl.getStudent());
 		} else {

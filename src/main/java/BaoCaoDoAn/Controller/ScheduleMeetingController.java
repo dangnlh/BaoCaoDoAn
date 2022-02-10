@@ -37,7 +37,7 @@ public class ScheduleMeetingController {
 		list = scheduleMeetingServiceImpl.GetDataAdmin();
 
 		if (list != null) {
-			mv.setViewName("/user/ScheduleMeeting");
+			mv.setViewName("/admin/adminschedulemeeting");
 			mv.addObject("ScheduleMeeting", scheduleMeetingServiceImpl.GetDataAdmin());
 
 		} else {

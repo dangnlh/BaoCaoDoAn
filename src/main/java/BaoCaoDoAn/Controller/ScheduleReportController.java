@@ -39,7 +39,7 @@ public class ScheduleReportController {
 	public ModelAndView AllScheduleReport (Model model) {
 	
 		
-		mv.setViewName("user/ScheduleReport");
+		mv.setViewName("admin/adminschedulereport");
 		mv.addObject("schedule" , new ScheduleReport()) ;
 		mv.addObject("report", new Report());
 		mv.addObject("getAllReport" , reportService.getAllReport() ) ;
