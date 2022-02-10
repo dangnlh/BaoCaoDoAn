@@ -26,7 +26,7 @@ public class ProjectController {
 	
 		mv.addObject("getAllProject" , projectService.getAllProject()) ;
 		mv.addObject("project", new Project());
-		mv.setViewName("user/project");
+		mv.setViewName("admin/adminproject");
 		return mv;		
 	}
 	
