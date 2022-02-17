@@ -192,64 +192,12 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">Schedule Meeting</h1>
-						<!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-
-					</div>
-
-					<!-- Content Row -->
-<!-- 					<div class="row"> -->
-
-						
-
-						
-
-						
-<div class="container">
-			
-	
-		<div class="modal" id="myModal" style="text-align: center">
-			<div class="modal-dialog">
-				<div class="modal-content">
-
 					
-					<div class="modal-header">
-						<h4 class="modal-title">Add New Schedule Report</h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 
-				
-					<div class="modal-body">
-					
-							<form:form method="POST" action="addSchedule" modelAttribute="schedule" >
-							<label for="email2" class="mb-2 mr-sm-2">Time Create</label> <br>
-							 <form:input path="timeReport" type="date" class="form-control mb-2 mr-sm-2" value="2022-06-01" />
-								 <br> <br>
-								
-								 
-								 <label for="email2" class="mb-2 mr-sm-2">Schedule for Report</label> <br>
-								  <form:input path="report_id" type="text" class="form-control mb-2 mr-sm-2"/>
-							 <br> <br>
-								
-								<button type="submit" class="btn btn-primary mb-2">Submit</button>
-
-						</form:form>
-
-					</div>
-
-				
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
 
 
 
-
-	</div>
 
 
 	<div class="container">

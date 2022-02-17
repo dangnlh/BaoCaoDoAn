@@ -1,6 +1,9 @@
+
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
@@ -80,6 +83,48 @@
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>
 			</div>
 		</ul>		
+	
+			<div style="margin: 0 auto;" >
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					
+					<div class="modal-header">
+						<h4 class="modal-title">Add New Schedule Report</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+
+				
+					<div class="modal-body">
+					
+							<form:form method="POST" action="addSchedule" modelAttribute="schedule" >
+							<label for="email2" class="mb-2 mr-sm-2">Time Create</label> <br>
+							 <form:input path="timeReport" type="date" class="form-control mb-2 mr-sm-2" value="2022-06-01" />
+								 <br> <br>
+								
+								 
+								 <label for="email2" class="mb-2 mr-sm-2">Schedule for Report</label> <br>
+								  <form:input path="report_id" type="text" class="form-control mb-2 mr-sm-2"/>
+							 <br> <br>
+								
+								<button type="submit" class="btn btn-primary mb-2">Save</button>
+
+						</form:form>
+
+					</div>
+
+				
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	
+	
+	
 	
 		</div>
 	

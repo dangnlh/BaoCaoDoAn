@@ -48,12 +48,12 @@ public class ScheduleReportController {
 		
 	}
 
-	@RequestMapping(value = "/addSchedule", method = RequestMethod.POST)
+	@RequestMapping(value = "/new")
 	
-	public String addScheduleReport( @ModelAttribute("schedule") ScheduleReport scheduleReport ) {		
-		
-			mv.addObject("addSchedule" , scheduleReportDAO.addScheduleReport(scheduleReport) ) ;		
-		return "redirect:/ScheduleReport";
+	public ModelAndView addScheduleReport( @ModelAttribute("schedule") ScheduleReport scheduleReport ) {		
+			mv.setViewName("admin/adminAddScheduleReport");
+//			mv.addObject("addSchedule" , scheduleReportDAO.addScheduleReport(scheduleReport) ) ;		
+		return mv;
 		
 	}
 	

@@ -55,47 +55,41 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="/admin">
-					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
+			<li class="nav-item"><a class="nav-link" href="/admin"> <i
+					class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 			</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			
+
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Website-Manager</div>
 
-			
+
 			<!-- Nav Item - Tables -->
 
 			<li class="nav-item">
 			<li class="nav-item"><a class="nav-link" href="/posts"> <i
 					class="fas fa-fw fa-table"></i> <span>Student</span></a></li>
-			
-			<li class="nav-item active">
-			
-			<a class="nav-link" href='<c:url value="/ScheduleReport"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Schedule Report</span></a>
-	
-			</li>
-			<li class="nav-item">
-			
-			<a class="nav-link" href='<c:url value="/ScheduleMeeting"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Schedule Meeting</span></a>
-	
-			</li>
-			
+
+			<li class="nav-item active"><a class="nav-link"
+				href='<c:url value="/ScheduleReport"></c:url>'> <i
+					class="fas fa-fw fa-table"></i> <span>Schedule Report</span></a></li>
 			<li class="nav-item"><a class="nav-link"
-				href='<c:url value="/Project"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Project</span></a>
+				href='<c:url value="/ScheduleMeeting"></c:url>'> <i
+					class="fas fa-fw fa-table"></i> <span>Schedule Meeting</span></a></li>
 
-	</li>
+			<li class="nav-item"><a class="nav-link"
+				href='<c:url value="/Project"></c:url>'> <i
+					class="fas fa-fw fa-table"></i> <span>Project</span></a></li>
 
 
-				<li class="nav-item">
-				<a class="nav-link" href='<c:url value="/ListGroup"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Group</span></a>
+			<li class="nav-item"><a class="nav-link"
+				href='<c:url value="/ListGroup"></c:url>'> <i
+					class="fas fa-fw fa-table"></i> <span>Group</span></a></li>
 
-	</li>
-			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
@@ -104,7 +98,7 @@
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>
 			</div>
 
-			
+
 
 		</ul>
 		<!-- End of Sidebar -->
@@ -126,7 +120,7 @@
 						<i class="fa fa-bars"></i>
 					</button>
 
-					
+
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
@@ -155,7 +149,7 @@
 								</form>
 							</div></li>
 
-						
+
 
 						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow"><a
@@ -183,372 +177,245 @@
 					</ul>
 
 				</nav>
-				<!-- End of Topbar -->
 
-				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<!-- Page Heading -->
-					<div
-						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Scheule Report</h1>
-						<!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-
-					</div>
-
-					<!-- Content Row -->
-<!-- 					<div class="row"> -->
-
-						
-
-						
-
-						
-<div class="container">
-		<h2>Schedule Report</h2>
-
-		<table class="table table-striped" border="1">
 
 
-			<thead>
-				<tr>
-					<th>Code</th>
-					<th>Time Create</th>
-					<th>Code Report</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="item" items="${ getAllScheduleReport }">
-					<tr>
-						<td>${ item.id }</td>
 
-						<td>${ item.timeReport }</td>
-						<td>${ item.report_id }</td>
-						<td>
-							<button type="button" class="btn btn-success">Edit</button> 
-							<a href='<c:url value="/deleteScheduleReport/${ item.id }"/>' class="btn btn-danger">Delete</a>
 
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
 
-		</table>
-		<button type="button" class="btn btn-primary" data-toggle="modal"
-			data-target="#myModal">Add</button>
-			
-	
-		<div class="modal" id="myModal" style="text-align: center">
-			<div class="modal-dialog">
-				<div class="modal-content">
+					<div class="container">
+						<h2>Schedule Report</h2>
 
+						<table class="table table-striped" border="1">
+
+
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Time Create</th>
+									<th>Code Report</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="item" items="${ getAllScheduleReport }">
+									<tr>
+										<td>${ item.id }</td>
+
+										<td>${ item.timeReport }</td>
+										<td>${ item.report_id }</td>
+										<td>
+											<button type="button" class="btn btn-success">Edit</button> <a
+											href='<c:url value="/deleteScheduleReport/${ item.id }"/>'
+											class="btn btn-danger">Delete</a>
+
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+
+						</table>
+						 <h3><a class="btn btn-primary"  href='<c:url value="/new"/>'>New Customer</a></h3>
 					
-					<div class="modal-header">
-						<h4 class="modal-title">Add New Schedule Report</h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-
-				
-					<div class="modal-body">
 					
-							<form:form method="POST" action="addSchedule" modelAttribute="schedule" >
-							<label for="email2" class="mb-2 mr-sm-2">Time Create</label> <br>
-							 <form:input path="timeReport" type="date" class="form-control mb-2 mr-sm-2" value="2022-06-01" />
-								 <br> <br>
-								
-								 
-								 <label for="email2" class="mb-2 mr-sm-2">Schedule for Report</label> <br>
-								  <form:input path="report_id" type="text" class="form-control mb-2 mr-sm-2"/>
-							 <br> <br>
-								
-								<button type="submit" class="btn btn-primary mb-2">Submit</button>
 
-						</form:form>
-
-					</div>
-
-				
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-
-
-
-	</div>
-
-
-	<div class="container">
-		<h2>Report</h2>
-
-		<table class="table table-striped" border="1">
-
-
-			<thead>
-				<tr>
-					<th>Code</th>
-					<th>Name</th>
-					<th>Point</th>
-					<th>Comment</th>
-					<th>Time Create</th>
-					<th>Time Submit</th>
-					<th>Code Project</th>
-					<th></th>
-
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="item" items="${ getAllReport }">
-					<tr>
-						<td>${ item.id }</td>
-						<td>${ item.name }</td>
-						<td></td>
-						<td></td>
-						<td>${ item.timeCreate }</td>
-						<td>${ item.timeSubmit }</td>
-						<td>${ item.project_id  }</td>
-						<td>
-						<a class="btn btn-success" href='<c:url value="/editReport/${ item.id }"></c:url>'>Edit</a>
-						
-				
-
-				
-							
-						
-							<a href='<c:url value="/deleteReport/${ item.id }"/>' class="btn btn-danger">Delete</a>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-
-		</table>
-		<a class="btn btn-primary" data-toggle="modal"
-			data-target="#myModal2">Add Report</a>
 		
-		
-		<div class="modal" id="myModal2" >
-			<div class="modal-dialog">
-				<div class="modal-content">
 
-					
-					<div class="modal-header">
-						<h4 class="modal-title">Add New Report</h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 
-				
-					<div class="modal-body">
-							<form:form method="POST" action="addreport" modelAttribute="report" >
-							
-							<label for="email2" class="mb-2 mr-sm-2">Name Report</label> <br>
-							<form:input path="name" type="text" class="form-control mb-2 mr-sm-2" placeholder="Name Report" />
-							 <br><br> 
-								
-								<label for="pwd2" class="mb-2 mr-sm-2">Time Create</label> <br>
-								<form:input path="timeCreate" type="date" class="form-control mb-2 mr-sm-2" value="2022-06-01" />
-								 <br> <br>
-								 
-								 <label for="pwd2" class="mb-2 mr-sm-2">Time Submit</label> <br>
-								 <form:input path="timeSubmit" type="date" class="form-control mb-2 mr-sm-2" value="2022-06-01" />
-								 <br> <br>
-								 
-								 <label for="email2" class="mb-2 mr-sm-2">URL Report</label> <br>
-								 <form:input path="urlReport" type="text" class="form-control mb-2 mr-sm-2" placeholder="Content Report" />
-								 <br> <br> 
-								
-								 <label for="email2" class="mb-2 mr-sm-2">Project</label> <br>
-								 <form:input path="project_id" type="text" class="form-control mb-2 mr-sm-2" placeholder="For Project" />
-								 <br> <br> 
-								
-									
-								<button type="submit" class="btn btn-primary mb-2">Submit</button>
-								
 
-						
-						</form:form>
-					</div>
+					<div class="container">
+						<h2>Report</h2>
 
-				
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					</div>
+						<table class="table table-striped" border="1">
 
-				</div>
-			</div>
-		</div>
 
-	</div>
-					<!-- Content Row -->
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Name</th>
+									<th>Point</th>
+									<th>Comment</th>
+									<th>Time Create</th>
+									<th>Time Submit</th>
+									<th>Code Project</th>
+									<th></th>
 
-					<div class="row">
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="item" items="${ getAllReport }">
+									<tr>
+										<td>${ item.id }</td>
+										<td>${ item.name }</td>
+										<td></td>
+										<td></td>
+										<td>${ item.timeCreate }</td>
+										<td>${ item.timeSubmit }</td>
+										<td>${ item.project_id  }</td>
+										<td><a class="btn btn-success"
+											href='<c:url value="/editReport/${ item.id }"></c:url>'>Edit</a>
 
-						<!-- Area Chart -->
-						<!-- <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                Card Header - Dropdown
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div> -->
-						<!-- Card Body -->
-						<!-- <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
 
-						<!-- Pie Chart -->
-						<!-- <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                Card Header - Dropdown
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div> -->
-						<!-- Card Body -->
-						<!-- <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
-						<!-- Content Row -->
-<!-- 						<div class="row"> -->
 
-							
 
-								
 
-							</div>
+											<a href='<c:url value="/deleteReport/${ item.id }"/>'
+											class="btn btn-danger">Delete</a></td>
+									</tr>
+								</c:forEach>
+							</tbody>
 
-							<div class="col-lg-6 mb-4">
+						</table>
+						<a class="btn btn-primary" data-toggle="modal"
+							data-target="#myModal2">Add Report</a>
 
-								
 
-								<!-- Approach -->
-								<!-- <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
-                                </div>
-                            </div> -->
+						<div class="modal" id="myModal2">
+							<div class="modal-dialog">
+								<div class="modal-content">
 
+
+									<div class="modal-header">
+										<h4 class="modal-title">Add New Report</h4>
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+									</div>
+
+
+									<div class="modal-body">
+										<form:form method="POST" action="addreport"
+											modelAttribute="report">
+
+											<label for="email2" class="mb-2 mr-sm-2">Name Report</label>
+											<br>
+											<form:input path="name" type="text"
+												class="form-control mb-2 mr-sm-2" placeholder="Name Report" />
+											<br>
+											<br>
+
+											<label for="pwd2" class="mb-2 mr-sm-2">Time Create</label>
+											<br>
+											<form:input path="timeCreate" type="date"
+												class="form-control mb-2 mr-sm-2" value="2022-06-01" />
+											<br>
+											<br>
+
+											<label for="pwd2" class="mb-2 mr-sm-2">Time Submit</label>
+											<br>
+											<form:input path="timeSubmit" type="date"
+												class="form-control mb-2 mr-sm-2" value="2022-06-01" />
+											<br>
+											<br>
+
+											<label for="email2" class="mb-2 mr-sm-2">URL Report</label>
+											<br>
+											<form:input path="urlReport" type="text"
+												class="form-control mb-2 mr-sm-2"
+												placeholder="Content Report" />
+											<br>
+											<br>
+
+											<label for="email2" class="mb-2 mr-sm-2">Project</label>
+											<br>
+											<form:input path="project_id" type="text"
+												class="form-control mb-2 mr-sm-2" placeholder="For Project" />
+											<br>
+											<br>
+
+
+											<button type="submit" class="btn btn-primary mb-2">Submit</button>
+
+
+
+										</form:form>
+									</div>
+
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger"
+											data-dismiss="modal">Close</button>
+									</div>
+
+								</div>
 							</div>
 						</div>
 
 					</div>
-					<!-- /.container-fluid -->
+					<!-- Content Row -->
 
-				</div>
-				<!-- End of Main Content -->
+					<div class="row">
 
-			</div>
-			<!-- End of Content Wrapper -->
 
-		</div>
-		<!-- End of Page Wrapper -->
 
-		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded" href="#page-top"> <i
-			class="fas fa-angle-up"></i>
-		</a>
-
-		<!-- Logout Modal-->
-		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Ready to
-							Leave?</h5>
-						<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">Ã</span>
-						</button>
 					</div>
-					<div class="modal-body">Select "Logout" below if you are
-						ready to end your current session.</div>
-					<div class="modal-footer">
-						<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">Cancel</button>
-						<a class="btn btn-primary" href="login.html">Logout</a>
+
+					<div class="col-lg-6 mb-4">
+
+
+
+
 					</div>
 				</div>
+
+			</div>
+	
+
+		</div>
+	
+
+	</div>
+
+
+	</div>
+
+
+	
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">Ã</span>
+					</button>
+				</div>
+				<div class="modal-body">Select "Logout" below if you are ready
+					to end your current session.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					<a class="btn btn-primary" href="login.html">Logout</a>
+				</div>
 			</div>
 		</div>
+	</div>
 
-		<!-- Bootstrap core JavaScript-->
-		<script src="/assets/vendor/jquery/jquery.min.js"></script>
-		<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Bootstrap core JavaScript-->
+	<script src="/assets/vendor/jquery/jquery.min.js"></script>
+	<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-		<!-- Core plugin JavaScript-->
-		<script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-		<!-- Custom scripts for all pages-->
-		<script src="/assets/js/sb-admin-2.min.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="/assets/js/sb-admin-2.min.js"></script>
 
-		<!-- Page level plugins -->
-		<script src="/assets/vendor/chart.js/Chart.min.js"></script>
+	<!-- Page level plugins -->
+	<script src="/assets/vendor/chart.js/Chart.min.js"></script>
 
-		<!-- Page level custom scripts -->
-		<script src="/assets/js/demo/chart-area-demo.js"></script>
-		<script src="/assets/js/demo/chart-pie-demo.js"></script>
+	<!-- Page level custom scripts -->
+	<script src="/assets/js/demo/chart-area-demo.js"></script>
+	<script src="/assets/js/demo/chart-pie-demo.js"></script>
 </body>
 
 </html>

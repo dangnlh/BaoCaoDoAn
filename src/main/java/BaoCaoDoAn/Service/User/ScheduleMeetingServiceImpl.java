@@ -18,7 +18,10 @@ public class ScheduleMeetingServiceImpl implements IScheduleMeetingService {
 	}
 
 	
-
+	public List<ScheduleMeeting> GetScheduleMeetingByProjectId(int id) {
+		return scheduleMeetingDAO.GetScheduleMeetingByProjectId(id);
+	}
+	
 	public void updateADMIN(ScheduleMeeting admin) {
 		 scheduleMeetingDAO.updateAndSave(admin);
 	}

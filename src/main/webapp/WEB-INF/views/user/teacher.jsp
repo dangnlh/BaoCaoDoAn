@@ -1,98 +1,106 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="en">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <head>
-
-  <title>Bootstrap 4 Website Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-  <style>
-  .fakeimg {
-    height: 200px;
-    background: #aaa;
-  }
-  </style>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
-<h1>${ statusLogin }</h1>
+<style>
+.nav-tabs {
+    border-bottom: 5px solid #00b3a1!important;
+}
 
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>Teacher Page</h1>
- 
+.content h4{
+color :#06c ;
+}
+.content span{
+color :black ;
+}
+
+.tab-content h2{
+	border-color: #00b3a1;
+    background-color: #06c;
+    
+ color: white;
+    }
+</style>
+<div class="container-fluid" style="background-color:  #00796b; color: white">		
+				<h2>Quan Ly Do An - FPT University HCM</h2>
 </div>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>    
-    </ul>
-  </div>  
-</nav>
+<div class="container-fluid" style="margin: 5px 30px">
 
-<div class="container" style="margin-top:30px">
-  <div class="row">
-    <div class="col-sm-4">
-      <h2>About Me ${ InforAccount.id }</h2>
-      <h5>${ InforAccount.name }</h5>
-      <h5>Photo of me:</h5>
-      
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-       
-         
-       
-        <a class="nav-link" href='<c:url value="/teacherGroup/${ InforAccount.group_id }"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Group</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Schedule Meeting</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Schedule Report</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-      </ul>
-      <hr class="d-sm-none">
-    </div>
-    <div class="col-sm-8">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Dec 7, 2017</h5>
-      <div class="fakeimg">Fake Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-      <br>
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <div class="fakeimg">Fake Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-  </div>
+	<ul class="nav nav-tabs">
+		<li class="active"><a
+			href='<c:url value="/teacher_getProject/${ InforAccount.group_id }"/>'>Project</a>
+		</li>
+
+
+
+		<li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+		<li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="home" class="tab-pane fade in active">
+
+		<c:forEach var="item" items="${ projectById }">
+			
+			<div class="content">
+				<h2>Your Project :</h2>
+
+				<h4>Name : <span>${ item.name }</span></h4>
+				<h4>Time Create : <span>${ item.createTime }</span></h4>
+				<h4>
+					
+					<a href='<c:url value="/teacher_getScheduleMeeting/${ item.id }"/>'> Schedule
+						Meeting <span>(xem lich hop) :${ item.name }</span> </a>
+				</h4>
+			</div>		
+					
+			
+			</c:forEach>
+		
+				<c:forEach var="item" items="${ ScheduleMeetingByProjectId }">
+				<div class="content">
+				<h2>Your Schedule Meeting :</h2>
+				<h4>Id : <span>${ item.id }</span></h4>
+				<h4>Name : <span>${ item.name }</span></h4>
+				<h4>Time Meeting : <span>${ item.timeMeeting }</span></h4>
+				<h4>Link Meeting : <button style="background-color: #777; color: white"><a href="${ item.link_meeting }">Meet URL</a></button> </h4>
+				<h4>Content : <span>${ item.content }</span></h4>
+			</div>	
+				
+			</c:forEach>
+		</div>
+
+		<div id="menu1" class="tab-pane fade"></div>
+		<div id="menu2" class="tab-pane fade">
+			<h1>haha</h1>
+		</div>
+		<div id="menu3" class="tab-pane fade">
+			<h3>Menu 3</h3>
+			<p>Eaque ipsa quae ab illo inventore veritatis et quasi
+				architecto beatae vitae dicta sunt explicabo.</p>
+		</div>
+	</div>
 </div>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <p>Footer</p>
+
+
+
+
+
+<div class="jumbotron text-center" style="margin-bottom: 0">
+	<p>Footer</p>
 </div>
 
-</body>
-</html>
+
+
