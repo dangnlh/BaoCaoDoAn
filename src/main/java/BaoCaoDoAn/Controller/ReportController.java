@@ -13,8 +13,8 @@ import BaoCaoDoAn.Dao.ReportDAO;
 import BaoCaoDoAn.Entity.Report;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
 import BaoCaoDoAn.Entity.ScheduleReport;
-import BaoCaoDoAn.Service.User.ReportServiceImpl;
-import BaoCaoDoAn.Service.User.ScheduleReportServiceImpl;
+import BaoCaoDoAn.Service.User.Impl.ReportServiceImpl;
+import BaoCaoDoAn.Service.User.Impl.ScheduleReportServiceImpl;
 @Controller
 public class ReportController {
 	@Autowired

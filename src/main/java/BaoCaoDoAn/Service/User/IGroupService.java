@@ -29,6 +29,4 @@ public interface IGroupService {
 	public Group findGroupById(int id);
 	@Autowired
 	public int updateGroup(Group group);
-	@Autowired
-	public List<Project> GetProjectByGroupID(int id);
 }

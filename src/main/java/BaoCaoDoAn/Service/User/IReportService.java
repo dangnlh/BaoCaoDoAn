@@ -12,7 +12,7 @@ import BaoCaoDoAn.Entity.Report;
 public interface IReportService {
 	
 	@Autowired
-	public List<Report> getReport(int id) ;
+	public Report getReport(int id) ;
 	
 	@Autowired
 	public List<Report> getAllReport() ;

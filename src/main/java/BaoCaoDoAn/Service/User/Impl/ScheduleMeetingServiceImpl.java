@@ -1,4 +1,4 @@
-package BaoCaoDoAn.Service.User;
+package BaoCaoDoAn.Service.User.Impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import BaoCaoDoAn.Dao.ScheduleMeetingDAO;
 import BaoCaoDoAn.Entity.Meeting;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
+import BaoCaoDoAn.Service.User.IScheduleMeetingService;
 @Service
 public class ScheduleMeetingServiceImpl implements IScheduleMeetingService {
 	@Autowired

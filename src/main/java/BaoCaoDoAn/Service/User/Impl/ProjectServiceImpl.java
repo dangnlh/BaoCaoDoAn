@@ -1,4 +1,4 @@
-package BaoCaoDoAn.Service.User;
+package BaoCaoDoAn.Service.User.Impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import BaoCaoDoAn.Dao.ProjectDAO;
 import BaoCaoDoAn.Entity.Project;
+import BaoCaoDoAn.Service.User.IProjectService;
 
 @Service
 public class ProjectServiceImpl implements IProjectService{
@@ -43,7 +44,9 @@ public class ProjectServiceImpl implements IProjectService{
 		
 		return projectDao.editProject(id);
 	}
-
+public List<Project> getProjectByTeacherId(int teacherId) {
+		return projectDao.getProjectByTeacherId(teacherId);
+	}
 	
 	
 

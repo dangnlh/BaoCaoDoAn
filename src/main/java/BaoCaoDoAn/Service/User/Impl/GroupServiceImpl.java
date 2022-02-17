@@ -1,4 +1,4 @@
-package BaoCaoDoAn.Service.User;
+package BaoCaoDoAn.Service.User.Impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,7 @@ import BaoCaoDoAn.Dao.GroupDAO;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.Project;
+import BaoCaoDoAn.Service.User.IGroupService;
 @Service
 public class GroupServiceImpl implements IGroupService {
 	@Autowired
@@ -20,7 +21,7 @@ public class GroupServiceImpl implements IGroupService {
 	}
 
 
-
+	
 	public Account getGroupID(int accountId) {
 		return groupdao.get(accountId);
 	}
@@ -71,4 +72,8 @@ public class GroupServiceImpl implements IGroupService {
 	public List<Project> GetProjectByGroupID(int id) {
 		return groupdao.getProjectByGroupId(id);
 	}
+	public Group getGroupByProjectId(int projectId) {
+		return groupdao.getGroupByProjectId(projectId);
+	}
+	
 }

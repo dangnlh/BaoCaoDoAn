@@ -21,7 +21,7 @@ import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Meeting;
 import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
-import BaoCaoDoAn.Service.User.ScheduleMeetingServiceImpl;
+import BaoCaoDoAn.Service.User.Impl.ScheduleMeetingServiceImpl;
 
 @Controller
 public class ScheduleMeetingController {
@@ -33,10 +33,10 @@ public class ScheduleMeetingController {
 
 	@RequestMapping(value = {"/teacher_getScheduleMeeting/{id}"})
 	public ModelAndView teacherGetScheduleMeetingByProjectId (@PathVariable int id) {
+		
 		List<ScheduleMeeting> result = scheduleMeetingServiceImpl.GetScheduleMeetingByProjectId(id) ;
 		if(!result.isEmpty()) {
-			mv.addObject("ScheduleMeetingByProjectId" , result) ;	
-	
+			mv.addObject("ScheduleMeetingByProjectId" , result) ;		
 			mv.setViewName("user/teacher");
 		}			
 		return mv ;	

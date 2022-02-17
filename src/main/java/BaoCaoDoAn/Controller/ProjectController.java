@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import BaoCaoDoAn.Dao.ProjectDAO;
 import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.Report;
-import BaoCaoDoAn.Service.User.ProjectServiceImpl;
+import BaoCaoDoAn.Service.User.Impl.ProjectServiceImpl;
 
 @Controller
 public class ProjectController {
@@ -28,7 +28,6 @@ public class ProjectController {
 		List<Project> result = projectService.getProject(id) ;
 		if(!result.isEmpty()) {
 			mv.addObject("projectById" , result) ;	
-	
 			mv.setViewName("user/teacher");
 		}			
 		return mv ;	

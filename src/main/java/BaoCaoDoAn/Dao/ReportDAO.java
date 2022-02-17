@@ -16,11 +16,16 @@ import BaoCaoDoAn.Entity.Report;
 public class ReportDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate ;
-	public List<Report> getReport(int id) {
+	
+	public Report getReport(int id) {
+		Report result = null;
 		List<Report> list = new ArrayList<Report>();
 		String sql = "Select * from report where id = " + id ;
 		 list =  jdbcTemplate.query(sql, new MapperReport()) ;
-		return list ;
+		 if(!list.isEmpty()) {
+			 result = list.get(0);
+		 }
+		return result;
 		
 	
 	}

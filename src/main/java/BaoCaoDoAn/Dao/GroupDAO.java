@@ -79,4 +79,12 @@ public class GroupDAO {
 		list = _jdbcTemplate.query(sql, new MapperProject());
 		return list;
 	}
+	public Group getGroupByProjectId(int projectId){
+		 String sql = "SELECT g.id,g.name\r\n"
+		 		+ "FROM `group` as g,project as p \r\n"
+		 		+ "WHERE  g.id=p.group_id AND p.id="+projectId;
+		  Group result =  _jdbcTemplate.queryForObject(sql, new MapperGroup()) ;
+			return result ;
+	}
+	
 }

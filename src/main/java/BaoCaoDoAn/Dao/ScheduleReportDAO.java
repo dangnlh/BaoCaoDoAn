@@ -36,7 +36,12 @@ public class ScheduleReportDAO {
 		 
 		return list ;
 	}
-	
+	public List<ScheduleReport> getScheduleReportByReportId(int i) {
+		List<ScheduleReport> list = new ArrayList<ScheduleReport>();
+		String sql = "Select * from schedulereport WHERE report_id="+i ;
+		 list =  jdbcTemplate.query(sql, new MapperScheduleReport()) ;
+		return list ;
+	}
 	public int addScheduleReport(ScheduleReport scheduleReport ) {
 		StringBuffer sql = new StringBuffer();	
 		sql.append("INSERT INTO schedulereport (timeReport, report_id) " + 
@@ -53,5 +58,11 @@ public class ScheduleReportDAO {
 		int result = jdbcTemplate.update(sql); 
 		return result;
 		
+	}
+	public List<ScheduleReport> getScheduleReportByAccountId(int accountId) {
+		List<ScheduleReport> list = new ArrayList<ScheduleReport>();
+		String sql = "Select * from schedulereport WHERE account_id="+accountId ;
+		 list =  jdbcTemplate.query(sql, new MapperScheduleReport()) ;
+		return list ;
 	}
 }
