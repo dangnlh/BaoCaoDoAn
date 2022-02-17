@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import BaoCaoDoAn.Dao.ScheduleMeetingDAO;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Meeting;
+import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
 import BaoCaoDoAn.Service.User.ScheduleMeetingServiceImpl;
 
@@ -30,6 +31,17 @@ public class ScheduleMeetingController {
 	ScheduleMeetingDAO scheduleMeetingDAO;
 	private ModelAndView mv = new ModelAndView();
 
+	@RequestMapping(value = {"/teacher_getScheduleMeeting/{id}"})
+	public ModelAndView teacherGetScheduleMeetingByProjectId (@PathVariable int id) {
+		List<ScheduleMeeting> result = scheduleMeetingServiceImpl.GetScheduleMeetingByProjectId(id) ;
+		if(!result.isEmpty()) {
+			mv.addObject("ScheduleMeetingByProjectId" , result) ;	
+	
+			mv.setViewName("user/teacher");
+		}			
+		return mv ;	
+	}
+	
 	@RequestMapping(value = "/ScheduleMeeting")
 	public ModelAndView admin(Model model) {
 

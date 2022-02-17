@@ -17,6 +17,13 @@ public class ScheduleMeetingDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate ;
 	
+	public List<ScheduleMeeting> GetScheduleMeetingByProjectId(int id){
+		List<ScheduleMeeting> list = new ArrayList<ScheduleMeeting>();
+		String sql = "SELECT * FROM schedulemeeting WHERE project_id = " +id;
+		list = jdbcTemplate.query(sql, new MapperScheduleMeeting());
+		return list;
+	}
+	
 	public List<ScheduleMeeting> GetDataAmin(){
 		List<ScheduleMeeting> list = new ArrayList<ScheduleMeeting>();
 		String sql = "SELECT * FROM schedulemeeting";

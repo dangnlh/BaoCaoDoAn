@@ -56,7 +56,7 @@ public class AccountController {
 		
 		}if(acc != null && acc.getRole().equals("teacher")) {			
 			mv.setViewName("/user/teacher");	
-			
+			session.setAttribute("InforAccount", accountDao.GetUserByAccount(account));
 			mv.addObject("InforAccount" ,accountDao.GetUserByAccount(account) );
 			mv.addObject("statusLogin" , "login thanh cong");
 		

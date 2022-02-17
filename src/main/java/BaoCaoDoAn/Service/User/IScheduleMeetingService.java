@@ -13,6 +13,9 @@ public interface IScheduleMeetingService {
 	public List<ScheduleMeeting> GetDataAdmin();
 	
 	@Autowired
+	public List<ScheduleMeeting> GetScheduleMeetingByProjectId(int id);
+	
+	@Autowired
 	public void updateADMIN(ScheduleMeeting admin);
 
 	
