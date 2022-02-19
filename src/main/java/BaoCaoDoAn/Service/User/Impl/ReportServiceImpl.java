@@ -28,5 +28,8 @@ public class ReportServiceImpl implements IReportService{
 		
 		return reportDao.editReport(id);
 	}
-
+public List<Report> getAllReportByProjecId(int reportId) {
+		// TODO Auto-generated method stub
+		return reportDao.getReportByProjectId(reportId);
+	}
 }

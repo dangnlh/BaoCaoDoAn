@@ -77,22 +77,18 @@ public class ScheduleReportController {
 	@RequestMapping(value = "/teacher_viewReportSchedule")
 	public ModelAndView viewReportSchedule(HttpSession session) {
 		System.out.println("In View Report");
-		Account teacher =(Account) session.getAttribute("InforAccount");
-		
-		System.out.println(teacher.getId());
+		Account teacher =(Account) session.getAttribute("InforAccount");				
 		ModelAndView mv = new ModelAndView();
-		List<Project> teachingProjects = projectService.getProjectByTeacherId(teacher.getId());
-		
-		System.out.println(teachingProjects.size());
-		List<Group> groups = new ArrayList<Group>();
-		for(Project tempProject:teachingProjects) {
-			Group group = groupService.getGroupByProjectId(tempProject.getId());
-			if(group!=null) {
-				groups.add(group);
-			}
+		List<ScheduleReport> scheduleReportList = scheduleReportService.getAllScheduleReportByTeacherId(teacher.getId());
+		for(ScheduleReport sch:scheduleReportList) {
+			// get group based on report schedule
+			Group groupOfReport = groupService.getGroupByAccountId(sch.getAccount_id());
+			sch.setGroup(groupOfReport);
+			//get report name based report schedule
+			Report reportOfSchedule = reportService.getReport(sch.getReport_id());
+			sch.setReport(reportOfSchedule);
 		}
-		mv.addObject("groupList",groups);
-		mv.addObject("projectList",teachingProjects);
+		mv.addObject("scheduleReports",scheduleReportList);
 		mv.setViewName("user/teacher");
 		return mv;
 	}

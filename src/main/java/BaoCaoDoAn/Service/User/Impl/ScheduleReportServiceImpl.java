@@ -39,9 +39,9 @@ public List<ScheduleReport> getAllScheduleReportByReportId() {
 	// TODO Auto-generated method stub
 	return null;
 }
-public List<ScheduleReport> getAllScheduleReportByTeacherId(int accountId) {
+public List<ScheduleReport> getAllScheduleReportByTeacherId(int teacherId) {
 	// TODO Auto-generated method stub
-	return scheduleReportDAO.getScheduleReportByAccountId(accountId);
+	return scheduleReportDAO.getScheduleReportByTeacherId(teacherId);
 }
 
 }

@@ -15,53 +15,59 @@ import BaoCaoDoAn.Entity.Report;
 @Repository
 public class ReportDAO {
 	@Autowired
-	JdbcTemplate jdbcTemplate ;
-	
+	JdbcTemplate jdbcTemplate;
+
 	public Report getReport(int id) {
 		Report result = null;
 		List<Report> list = new ArrayList<Report>();
-		String sql = "Select * from report where id = " + id ;
-		 list =  jdbcTemplate.query(sql, new MapperReport()) ;
-		 if(!list.isEmpty()) {
-			 result = list.get(0);
-		 }
+		String sql = "Select * from report where id = " + id;
+		list = jdbcTemplate.query(sql, new MapperReport());
+		if (!list.isEmpty()) {
+			result = list.get(0);
+		}
 		return result;
-		
-	
+
 	}
-	
+
 	public List<Report> getAllReport() {
 		List<Report> list = new ArrayList<Report>();
-		String sql = "Select * from report "  ;
-		 list =  jdbcTemplate.query(sql, new MapperReport()) ;
-		return list ;
-		
-	
+		String sql = "Select * from report ";
+		list = jdbcTemplate.query(sql, new MapperReport());
+		return list;
+
 	}
 
 	public int addReport(Report report) {
-		StringBuffer sql = new StringBuffer();	
-		sql.append("INSERT INTO report (name, timeCreate,timeSubmit,urlReport,project_id) "
-				+ "VALUES ('"+report.getName()+"', '"+report.getTimeCreate()+"' "
-				+ ",'"+report.getTimeSubmit()+"', '"+report.getUrlReport()+"'"
-				+ " ,"+report.getProject_id()+");");	
-		int insert = jdbcTemplate.update(sql.toString()) ; 					
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO report (name, timeCreate,timeSubmit,urlReport,project_id) " + "VALUES ('"
+				+ report.getName() + "', '" + report.getTimeCreate() + "' " + ",'" + report.getTimeSubmit() + "', '"
+				+ report.getUrlReport() + "'" + " ," + report.getProject_id() + ");");
+		int insert = jdbcTemplate.update(sql.toString());
 		return insert;
 	}
-	
-	public int DeleteReport( String id) {
-		
-		String sql = "DELETE FROM report WHERE id = "+id+" " ;
-		int result = jdbcTemplate.update(sql); 
+
+	public int DeleteReport(String id) {
+
+		String sql = "DELETE FROM report WHERE id = " + id + " ";
+		int result = jdbcTemplate.update(sql);
 		return result;
-		
+
 	}
 
 	public int editReport(int id) {
 		Report report = new Report();
-		String sql = "UPDATE report SET name='"+report.getName()+"', timeCreate='"+report.getTimeCreate()+"'"
-				+ ", timeSubmit='"+report.getTimeSubmit()+"' , project_id= "+report.getProject_id()+" WHERE id= " + id ; 
+		String sql = "UPDATE report SET name='" + report.getName() + "', timeCreate='" + report.getTimeCreate() + "'"
+				+ ", timeSubmit='" + report.getTimeSubmit() + "' , project_id= " + report.getProject_id()
+				+ " WHERE id= " + id;
 		int result = jdbcTemplate.update(sql);
 		return result;
+	}
+
+	public List<Report> getReportByProjectId(int projectId) {
+		List<Report> list = new ArrayList<Report>();
+		String sql = "SELECT * FROM baocaodoan.report where project_id  =" + projectId;
+		list = jdbcTemplate.query(sql, new MapperReport());
+		return list;
+
 	}
 }

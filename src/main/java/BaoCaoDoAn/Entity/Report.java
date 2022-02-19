@@ -11,8 +11,8 @@ public class Report {
 	private Date timeSubmit;
 	private String urlReport;
 	private int project_id;
-	
-	
+	private int status;
+	private String convertedStatus;
 	
 	public Report() {
 		super();
@@ -77,7 +77,24 @@ public class Report {
 	public void setProject_id(int project_id) {
 		this.project_id = project_id;
 	}
-
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public String getConvertedStatus() {
+		if(getStatus()==1) {
+			convertedStatus = "Submitted";
+		}else {
+			convertedStatus = "Not Yet";
+		}
+		return convertedStatus;
+	}
+	public void setConvertedStatus(String convertedStatus) {
+		this.convertedStatus = convertedStatus;
+	}
+	
 	
 	
 }

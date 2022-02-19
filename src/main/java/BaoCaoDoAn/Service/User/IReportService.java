@@ -23,4 +23,6 @@ public interface IReportService {
 	@Autowired
 	public int editReport(int id);
 	
+	public List<Report> getAllReportByProjecId(int reportId) ;
+	
 }
