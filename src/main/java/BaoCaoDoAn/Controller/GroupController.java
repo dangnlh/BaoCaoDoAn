@@ -21,7 +21,7 @@ import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
-import BaoCaoDoAn.Service.User.GroupServiceImpl;
+import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
 
 @Controller
 public class GroupController {

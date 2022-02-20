@@ -21,19 +21,20 @@ public class GroupDAO {
 	@Autowired
 	JdbcTemplate _jdbcTemplate;
 
-	public List<Account> getStudent(){
+	public List<Account> getStudent() {
 		List<Account> list = new ArrayList<Account>();
 		String sql = "SELECT * FROM account Where role = 'student' ORDER BY group_id";
 		list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
+
 	public List<Account> GetGroup(int id) {
 		List<Account> list = new ArrayList<Account>();
 		String sql = "SELECT * FROM account where group_id = " + id;
 		list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
-	
+
 	public List<Group> getGroupAdmin() {
 		List<Group> listGroup = new ArrayList<Group>();
 		String sql = "SELECT * FROM `group` ";
@@ -43,40 +44,59 @@ public class GroupDAO {
 
 	public int addAccountInGroup(Group group) {
 		String sql = "INSERT INTO `group` (`id`, `name`) VALUES (?,?)";
-		int count = _jdbcTemplate.update(sql, new Object[] { group.getId(), group.getName()});
+		int count = _jdbcTemplate.update(sql, new Object[] { group.getId(), group.getName() });
 		return count;
 	}
+
 	public int updateGroup(Group group) {
 		String sql = "UPDATE `group` SET `name`=? WHERE id=?";
-		int count = _jdbcTemplate.update(sql,group.getName(),group.getId());
+		int count = _jdbcTemplate.update(sql, group.getName(), group.getId());
 		return count;
 	}
-	
+
 	public int updateGroupInAccount(Account accout_group) {
 		String sql = "UPDATE account SET group_id=? WHERE id=?";
-		int count = _jdbcTemplate.update(sql, accout_group.getGroup_id(),accout_group.getId());
+		int count = _jdbcTemplate.update(sql, accout_group.getGroup_id(), accout_group.getId());
 		return count;
 	}
 
 	public Account get(int accountId) {
-	    String sql = "SELECT * FROM account WHERE id=" + accountId;
-	    Account result =  _jdbcTemplate.queryForObject(sql, new MapperAccount()) ;
-		return result ;
+		String sql = "SELECT * FROM account WHERE id=" + accountId;
+		Account result = _jdbcTemplate.queryForObject(sql, new MapperAccount());
+		return result;
 	}
+
 	public Group FindGroupID(int groupID) {
-	    String sql = "SELECT * FROM `group` WHERE id = " + groupID;
-	    Group result =  _jdbcTemplate.queryForObject(sql, new MapperGroup()) ;
-		return result ;
+		String sql = "SELECT * FROM `group` WHERE id = " + groupID;
+		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
+		return result;
 	}
-	//delete
+
+	// delete
 	public void delete(int id) {
-	    String sql = "DELETE FROM `group` WHERE id=?";
-	    _jdbcTemplate.update(sql, id);
+		String sql = "DELETE FROM `group` WHERE id=?";
+		_jdbcTemplate.update(sql, id);
 	}
-	public List<Project> getProjectByGroupId(int id){
+
+	public List<Project> getProjectByGroupId(int id) {
 		List<Project> list = new ArrayList<Project>();
 		String sql = "SELECT * FROM project where group_id = " + id;
 		list = _jdbcTemplate.query(sql, new MapperProject());
 		return list;
 	}
+
+	public Group getGroupByProjectId(int projectId) {
+		String sql = "SELECT g.id,g.name\r\n" + "FROM `group` as g,project as p \r\n"
+				+ "WHERE  g.id=p.group_id AND p.id=" + projectId;
+		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
+		return result;
+	}
+
+	public Group getGroupByAccountId(int accountId) {
+		String sql = "SELECT g.* \r\n" + "FROM baocaodoan.account as a, baocaodoan.group as g\r\n" + "WHERE a.id ="
+				+ accountId + " and a.group_id = g.id;";
+		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
+		return result;
+	}
+
 }

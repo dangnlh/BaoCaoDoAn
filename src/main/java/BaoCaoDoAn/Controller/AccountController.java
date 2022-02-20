@@ -13,15 +13,18 @@ import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import BaoCaoDoAn.Dao.AccountDAO;
 import BaoCaoDoAn.Dao.ScheduleReportDAO;
 import BaoCaoDoAn.Entity.Account;
+import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.ScheduleReport;
-import BaoCaoDoAn.Service.User.AccountServiceImpl;
-import BaoCaoDoAn.Service.User.ReportServiceImpl;
-import BaoCaoDoAn.Service.User.ScheduleReportServiceImpl;
+import BaoCaoDoAn.Service.User.IProjectService;
+import BaoCaoDoAn.Service.User.Impl.AccountServiceImpl;
+import BaoCaoDoAn.Service.User.Impl.ReportServiceImpl;
+import BaoCaoDoAn.Service.User.Impl.ScheduleReportServiceImpl;
 
 @Controller
 public class AccountController {
@@ -31,6 +34,8 @@ public class AccountController {
 	AccountDAO accountDao  ;
 	@Autowired 
 	private ScheduleReportDAO scheduleReportDAO ;
+	@Autowired
+	private IProjectService projectService;
 	
 	private ModelAndView mv = new ModelAndView() ;
 	
@@ -45,11 +50,8 @@ public class AccountController {
 	
 	@SuppressWarnings("unused")
 	@RequestMapping(value =  "/dang-nhap", method = RequestMethod.POST)
-	public ModelAndView Login(@ModelAttribute("account") Account account ,  HttpSession session) {
-		
+	public ModelAndView Login(@ModelAttribute("account") Account account ,  HttpSession session) {		
 		Account acc = accountService.CheckAccount(account) ;
-		
-
 		if(acc != null && acc.getRole().equals("student")) {	
 		    mv.setViewName("/user/student");
 			mv.addObject("statusLogin" , "login thanh cong");
@@ -59,7 +61,6 @@ public class AccountController {
 			session.setAttribute("InforAccount", accountDao.GetUserByAccount(account));
 			mv.addObject("InforAccount" ,accountDao.GetUserByAccount(account) );
 			mv.addObject("statusLogin" , "login thanh cong");
-		
 
 		}if(acc != null && acc.getRole().equals("admin")) {			
 			mv.setViewName("/admin/admin2");					

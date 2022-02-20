@@ -2,6 +2,9 @@ package BaoCaoDoAn.Entity;
 
 import java.sql.Date;
 
+import BaoCaoDoAn.Dao.GroupDAO;
+import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
+
 public class Project {
 	private int id ;
 	private String name ;
@@ -51,6 +54,9 @@ public class Project {
 	public void setGroup_id(int group_id) {
 		this.group_id = group_id;
 	}
-	
+	public Group getGroup() {
+		GroupServiceImpl group = new GroupServiceImpl();
+		return group.findGroupById(group_id);
+	}
 	
 }

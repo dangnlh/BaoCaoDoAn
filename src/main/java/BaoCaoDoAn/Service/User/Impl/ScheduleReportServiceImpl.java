@@ -1,4 +1,4 @@
-package BaoCaoDoAn.Service.User;
+package BaoCaoDoAn.Service.User.Impl;
 
 
 
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import BaoCaoDoAn.Dao.ScheduleReportDAO;
 
 import BaoCaoDoAn.Entity.ScheduleReport;
+import BaoCaoDoAn.Service.User.IScheduleReport;
 
 
 @Service
@@ -27,10 +28,20 @@ public List<ScheduleReport> getAllScheduleReport() {
 
 
 public int addScheduleReport(ScheduleReport scheduleReport) {
-	
 	return scheduleReportDAO.addScheduleReport(scheduleReport);
 }
-
-
+public List<ScheduleReport> getAllScheduleReportByReportId(int reportId) {
+	// TODO Auto-generated method stub
+	
+	return null;
+}
+public List<ScheduleReport> getAllScheduleReportByReportId() {
+	// TODO Auto-generated method stub
+	return null;
+}
+public List<ScheduleReport> getAllScheduleReportByTeacherId(int teacherId) {
+	// TODO Auto-generated method stub
+	return scheduleReportDAO.getScheduleReportByTeacherId(teacherId);
+}
 
 }

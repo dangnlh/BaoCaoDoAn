@@ -1,4 +1,4 @@
-package BaoCaoDoAn.Service.User;
+package BaoCaoDoAn.Service.User.Impl;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import BaoCaoDoAn.Dao.AccountDAO;
 import BaoCaoDoAn.Entity.Account;
+import BaoCaoDoAn.Service.User.IAccountService;
 
 @Service
 public class AccountServiceImpl implements IAccountService {
