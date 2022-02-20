@@ -104,9 +104,11 @@
 		</div>
 
 		<div id="menu1" class="tab-pane fade"></div>
-		<div id="menu2" class="tab-pane fade in active">
-			<h2>Schedule Report Of Managed Group :</h2>
-			<!--  
+		<c:set var="scheduleReports" value="${scheduleReports}" />
+		<c:if test="${scheduleReports!=null}">
+			<div id="menu2" class="tab-pane fade in active">
+				<h2>Schedule Report Of Managed Group :</h2>
+				<!--  
 			<c:forEach var="group" items="${groupList}">
 			
 			<div class="content">
@@ -116,64 +118,68 @@
 			</div>		
 			</c:forEach>
 		-->
-			<c:forEach var="scheduleReport" items="${scheduleReports}">
-				<c:set var="report" value="${scheduleReport.report}" />
-				<c:set var="group" value="${scheduleReport.group}" />
-				<h4>Time Report:${scheduleReport.timeReport }</h4>
-				<h4>Report Name:${report.name}</h4>
-				<h4>Group Name:${group.name}</h4>
-				<hr>
-			</c:forEach>
-		</div>
+				<c:forEach var="scheduleReport" items="${scheduleReports}">
+					<c:set var="report" value="${scheduleReport.report}" />
+					<c:set var="group" value="${scheduleReport.group}" />
+					<h4>Time Report:${scheduleReport.timeReport }</h4>
+					<h4>Report Name:${report.name}</h4>
+					<h4>Group Name:${group.name}</h4>
+					<hr>
+				</c:forEach>
+			</div>
+		</c:if>
 		<div id="menu3" class="tab-pane fade">
 			<h3>Menu 3</h3>
 			<p>Eaque ipsa quae ab illo inventore veritatis et quasi
 				architecto beatae vitae dicta sunt explicabo.</p>
 		</div>
-		<div id="menu4" class="tab-pane fade in active">
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>Report Name</th>
-					
-						<th>Time Submit</th>
-						<th>Download</th>
-						<th>Point</th>
-						<th>Group Name</th>
-						<th>Status</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="report" items="${reportList}">
+		<c:set var="reportList" value="${reportList}" />
+		<c:if test="${reportList != null }">
+			<div id="menu4" class="tab-pane fade in active">
+				<table class="table table-bordered">
+					<thead>
 						<tr>
-							<td>${report.name }</td>
-							
-							<td>${report.timeSubmit}</td>
-							<td><a>Download Report</a></td>
-							<th>${report.point}</th>
-							<td>Group Name</td>
-							<td>${report.convertedStatus}</td>
-							<td>
-								<!--khi da summit thi doi background khac  --> <c:if
-									test="${report.status > 0}">
+							<th>Report Name</th>
 
-									<button>
-										<a href="#">Grade</a>
-									</button>
-								</c:if> <!--khi chua summit thi doi background khac  --> <c:if
-									test="${report.status < 1}">
-									<button disabled="disabled">
-										<a href="#">Grade</a>
-									</button>
-								</c:if>
-							</td>
+							<th>Time Submit</th>
+							<th>Download</th>
+							<th>Point</th>
+							<th>Group Name</th>
+							<th>Status</th>
+							<th>Action</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:forEach var="report" items="${reportList}">
+							<tr>
+								<td>${report.name }</td>
 
-		</div>
+								<td>${report.timeSubmit}</td>
+								<td><a>Download Report</a></td>
+								<th>${report.point}</th>
+								<td>Group Name</td>
+								<td>${report.convertedStatus}</td>
+								<td>
+									<!--khi da summit thi doi background khac  --> <c:if
+										test="${report.status > 0}">
+
+										<button>
+											<a href='<c:url value="/teacher_grade/${report.id}"/>'>Grade</a>
+										</button>
+									</c:if> <!--khi chua summit thi doi background khac  --> <c:if
+										test="${report.status < 1}">
+										<button disabled="disabled">
+											<a href="">Grade</a>
+										</button>
+									</c:if>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+
+			</div>
+		</c:if>
 	</div>
 </div>
 <div class="jumbotron text-center" style="margin-bottom: 0">
