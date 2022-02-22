@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import BaoCaoDoAn.Dao.ScheduleMeetingDAO;
+import BaoCaoDoAn.Dto.project_scheduleMeeting;
 import BaoCaoDoAn.Entity.Meeting;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
 import BaoCaoDoAn.Service.User.IScheduleMeetingService;
@@ -19,7 +20,7 @@ public class ScheduleMeetingServiceImpl implements IScheduleMeetingService {
 	}
 
 	
-	public List<ScheduleMeeting> GetScheduleMeetingByProjectId(int id) {
+	public List<project_scheduleMeeting> GetScheduleMeetingByProjectId(int id) {
 		return scheduleMeetingDAO.GetScheduleMeetingByProjectId(id);
 	}
 	

@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import BaoCaoDoAn.Entity.ScheduleMeeting;
+import BaoCaoDoAn.Dto.MapperProjectScheduleMeeting;
+import BaoCaoDoAn.Dto.project_scheduleMeeting;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.MapperAccount;
 import BaoCaoDoAn.Entity.MapperMeeting;
@@ -17,10 +19,18 @@ public class ScheduleMeetingDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate ;
 	
-	public List<ScheduleMeeting> GetScheduleMeetingByProjectId(int id){
-		List<ScheduleMeeting> list = new ArrayList<ScheduleMeeting>();
-		String sql = "SELECT * FROM schedulemeeting WHERE project_id = " +id;
-		list = jdbcTemplate.query(sql, new MapperScheduleMeeting());
+	public List<project_scheduleMeeting> GetScheduleMeetingByProjectId(int id){
+		List<project_scheduleMeeting> list = new ArrayList<project_scheduleMeeting>();
+		String sql = "SELECT project.name , schedulemeeting.id , schedulemeeting.timeMeeting , schedulemeeting.project_id \r\n" + 
+				", schedulemeeting.account_id , schedulemeeting.name_scheduleMeeting , schedulemeeting.link_meeting ,\r\n" + 
+				"schedulemeeting.content \r\n" + 
+				" FROM schedulemeeting \r\n" + 
+				"\r\n" + 
+				"INNER JOIN \r\n" + 
+				"project \r\n" + 
+				"ON\r\n" + 
+				"project .id = schedulemeeting.project_id  and project.teacher_id = "+id+" " ; 
+		list = jdbcTemplate.query(sql, new MapperProjectScheduleMeeting());
 		return list;
 	}
 	

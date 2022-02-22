@@ -25,10 +25,10 @@ public class ProjectController {
 	
 	@RequestMapping(value = {"/teacher_getProject/{id}"})
 	public ModelAndView teacherGetProjectById (@PathVariable int id) {
-		List<Project> result = projectService.getProject(id) ;
+		List<Project> result = projectService.getProjectByTeacherId(id) ;
 		if(!result.isEmpty()) {
 			mv.addObject("projectById" , result) ;	
-			mv.setViewName("user/teacher");
+			mv.setViewName("user/teacher/teacherProject");
 		}			
 		return mv ;	
 	}

@@ -47,7 +47,12 @@ public class AccountController {
 		mv.addObject("scheduleReportDAO" , scheduleReportDAO.getAllScheduleReport());
 		return mv ;
 	}
-	
+	@RequestMapping(value =  "/trang-chu-giaovien")
+	public ModelAndView HomeTeacher(@ModelAttribute("account") Account account ,  HttpSession session) {
+		mv.setViewName("/user/index");	
+		return mv;		
+		
+	}
 	@SuppressWarnings("unused")
 	@RequestMapping(value =  "/dang-nhap", method = RequestMethod.POST)
 	public ModelAndView Login(@ModelAttribute("account") Account account ,  HttpSession session) {		
@@ -57,7 +62,7 @@ public class AccountController {
 			mv.addObject("statusLogin" , "login thanh cong");
 		
 		}if(acc != null && acc.getRole().equals("teacher")) {			
-			mv.setViewName("/user/teacher");	
+			mv.setViewName("/user/index");	
 			session.setAttribute("InforAccount", accountDao.GetUserByAccount(account));
 			mv.addObject("InforAccount" ,accountDao.GetUserByAccount(account) );
 			mv.addObject("statusLogin" , "login thanh cong");

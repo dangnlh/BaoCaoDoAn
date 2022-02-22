@@ -49,9 +49,9 @@
 											</thead>
 											<tbody>
 												<c:if
-													test="${teacherGetScheduleMeetingByProjectId != null }">
+													test="${ScheduleMeetingByProjectId != null }">
 													<c:forEach var="item"
-														items="${ teacherGetScheduleMeetingByProjectId }">
+														items="${ ScheduleMeetingByProjectId }">
 														<tr>
 															<td>${ item.name_project }</td>
 															<td>${ item.timeMeeting }</td>
