@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import BaoCaoDoAn.Dao.ScheduleMeetingDAO;
+import BaoCaoDoAn.Dto.project_scheduleMeeting;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Meeting;
 import BaoCaoDoAn.Entity.Project;
@@ -31,13 +33,13 @@ public class ScheduleMeetingController {
 	ScheduleMeetingDAO scheduleMeetingDAO;
 	private ModelAndView mv = new ModelAndView();
 
-	@RequestMapping(value = {"/teacher_getScheduleMeeting/{id}"})
-	public ModelAndView teacherGetScheduleMeetingByProjectId (@PathVariable int id) {
-		
-		List<ScheduleMeeting> result = scheduleMeetingServiceImpl.GetScheduleMeetingByProjectId(id) ;
+	@RequestMapping(value = {"/teacher_viewScheduleMeeting"})
+	public ModelAndView teacherGetScheduleMeetingByProjectId (HttpSession session) {
+		Account teacher =(Account) session.getAttribute("InforAccount");	
+		List<project_scheduleMeeting> result = scheduleMeetingServiceImpl.GetScheduleMeetingByProjectId(teacher.getId()) ;
 		if(!result.isEmpty()) {
 			mv.addObject("ScheduleMeetingByProjectId" , result) ;		
-			mv.setViewName("user/teacher");
+			mv.setViewName("user/teacher/ScheduleMeeting");
 		}			
 		return mv ;	
 	}

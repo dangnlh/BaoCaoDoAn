@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import BaoCaoDoAn.Dto.project_scheduleMeeting;
 import BaoCaoDoAn.Entity.Meeting;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
 @Service
@@ -13,7 +14,7 @@ public interface IScheduleMeetingService {
 	public List<ScheduleMeeting> GetDataAdmin();
 	
 	@Autowired
-	public List<ScheduleMeeting> GetScheduleMeetingByProjectId(int id);
+	public List<project_scheduleMeeting> GetScheduleMeetingByProjectId(int id);
 	
 	@Autowired
 	public void updateADMIN(ScheduleMeeting admin);
