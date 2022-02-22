@@ -1,12 +1,24 @@
 package BaoCaoDoAn.Entity;
 
+import java.util.List;
+
 public class Group {
 	
 	private int id;
 	private String name;
+	private List<Account> account;
 	
 	
 	
+
+	public List<Account> getAccount() {
+		return account;
+	}
+
+	public void setAccount(List<Account> account) {
+		this.account = account;
+	}
+
 	public Group(int id, String name) {
 		super();
 		this.id = id;

@@ -1,9 +1,11 @@
 package BaoCaoDoAn.Controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,7 +47,7 @@ public class GroupController {
 	}
 	
 	@RequestMapping(value = "/group/{id}")
-	public ModelAndView group(@PathVariable int id, Account account) {
+	public ModelAndView group(@PathVariable int id  ) {
 		List<Account> list = new ArrayList<Account>();
 		list = groupServiceImpl.GetDataGroup(id);
 
@@ -54,11 +56,26 @@ public class GroupController {
 			mv.addObject("Group2", groupServiceImpl.GetDataGroup(id));
 		} else {
 			mv.addObject("Group2", "that bai");
-			groupServiceImpl.updateAccountInGroup(account);
 		}
 
 		return mv;
 	}
+	@RequestMapping(value= {"/teacherGroupByteacher_id"})
+	public ModelAndView TeacherGroupByTeacher_idInProject(HttpSession session) {
+		Account teacher =(Account) session.getAttribute("InforAccount");
+		List<Group> result = groupDAO.getGroupByProjectAndAccount(teacher.getId());
+		for (Group group2 : result) {
+			List<Account> list = groupDAO.getStudentInGroup(group2.getId());
+			group2.setAccount(list);
+			
+		}
+		mv.addObject("studentGroup",result);
+		
+	
+		mv.setViewName("user/teacher/teacherGroup");
+		return mv ;
+	}	
+	
 	@RequestMapping(value = "/Project/{id}")
 	public ModelAndView group(@PathVariable int id, Project project) {
 		List<Project> list = new ArrayList<Project>();

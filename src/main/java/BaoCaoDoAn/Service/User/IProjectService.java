@@ -28,4 +28,5 @@ public interface IProjectService {
 	
 	@Autowired
 	public int editProject(int id) ;
+
 }
