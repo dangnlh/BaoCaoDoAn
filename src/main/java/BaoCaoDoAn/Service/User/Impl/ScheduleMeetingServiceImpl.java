@@ -20,8 +20,8 @@ public class ScheduleMeetingServiceImpl implements IScheduleMeetingService {
 	}
 
 	
-	public List<project_scheduleMeeting> GetScheduleMeetingByProjectId(int id) {
-		return scheduleMeetingDAO.GetScheduleMeetingByProjectId(id);
+	public List<ScheduleMeeting> GetScheduleMeetingByProjectId(int project_id) {
+		return scheduleMeetingDAO.GetScheduleMeetingByProjectId(project_id);
 	}
 	
 	public void updateADMIN(ScheduleMeeting admin) {

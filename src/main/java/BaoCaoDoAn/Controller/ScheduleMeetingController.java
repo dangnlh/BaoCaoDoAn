@@ -23,10 +23,13 @@ import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Meeting;
 import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
+import BaoCaoDoAn.Service.User.Impl.ProjectServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ScheduleMeetingServiceImpl;
 
 @Controller
 public class ScheduleMeetingController {
+	@Autowired
+	private ProjectServiceImpl projectService ;
 	@Autowired
 	ScheduleMeetingServiceImpl scheduleMeetingServiceImpl;
 	@Autowired
@@ -35,12 +38,23 @@ public class ScheduleMeetingController {
 
 	@RequestMapping(value = {"/teacher_viewScheduleMeeting"})
 	public ModelAndView teacherGetScheduleMeetingByProjectId (HttpSession session) {
+		System.out.println("hello");
 		Account teacher =(Account) session.getAttribute("InforAccount");	
-		List<project_scheduleMeeting> result = scheduleMeetingServiceImpl.GetScheduleMeetingByProjectId(teacher.getId()) ;
-		if(!result.isEmpty()) {
-			mv.addObject("ScheduleMeetingByProjectId" , result) ;		
+//		List<project_scheduleMeeting> result = scheduleMeetingServiceImpl.GetScheduleMeetingByProjectId(teacher.getId()) ;
+		
+		List<Project> project = projectService.getProjectByTeacherId(teacher.getId()) ;
+		System.out.println("project" + project);
+		for (Project project2 : project) {
+			List<ScheduleMeeting> scheduleMeeting = scheduleMeetingServiceImpl.GetScheduleMeetingByProjectId(project2.getId()) ;
+			project2.setScheduleMeeting(scheduleMeeting);
+			
+		}
+			mv.addObject("projects" , project) ;
 			mv.setViewName("user/teacher/ScheduleMeeting");
-		}			
+//		if(!scheduleMeeting.isEmpty()) {
+//			mv.addObject("ScheduleMeetingByProjectId" , result) ;		
+//			mv.setViewName("user/teacher/ScheduleMeeting");
+//		}			
 		return mv ;	
 	}
 	

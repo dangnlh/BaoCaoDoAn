@@ -10,46 +10,44 @@ import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Service.User.IProjectService;
 
 @Service
-public class ProjectServiceImpl implements IProjectService{
-	
-@Autowired
-	private ProjectDAO projectDao ;
+public class ProjectServiceImpl implements IProjectService {
+
+	@Autowired
+	private ProjectDAO projectDao;
 
 	public List<Project> getProject(int id) {
-		
-		return projectDao.getProjectByGroup_id(id) ;
+
+		return projectDao.getProjectByGroup_id(id);
 	}
 
 	public List<Project> getAllProject() {
-		
+
 		return projectDao.getAllProject();
 	}
 
 	public int addProject(Project project) {
-		
-	 return projectDao.addProject(project);
+
+		return projectDao.addProject(project);
 	}
 
 	public int deleteProject(int id) {
-		
+
 		return projectDao.deleteProject(id);
 	}
 
 	public List<Project> getProjectById(int id) {
-		
+
 		return projectDao.getProjectByid(id);
 	}
 
 	public int editProject(int id) {
-		
+
 		return projectDao.editProject(id);
 	}
-public List<Project> getProjectByTeacherId(int teacherId) {
+
+	public List<Project> getProjectByTeacherId(int teacherId) {
 		return projectDao.getProjectByTeacherId(teacherId);
 	}
 	
-	
-
-
 
 }
