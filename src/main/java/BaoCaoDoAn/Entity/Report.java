@@ -2,10 +2,20 @@ package BaoCaoDoAn.Entity;
 
 import java.sql.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.lang.NonNull;
+
 public class Report {
 	private int id;
 	private String name;
-	private double point;
+	
+	@NotNull(message = "Not character, just number")
+	@Max(value = 10,message = "must be less than or equal 10")
+	@Min(value = 0,message = "must be equal or greater than 0")
+	private Double point;
 	private String comment;
 	private Date timeCreate;
 	private Date timeSubmit;
@@ -41,10 +51,10 @@ public class Report {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public double getPoint() {
+	public Double getPoint() {
 		return point;
 	}
-	public void setPoint(double point) {
+	public void setPoint(Double point) {
 		this.point = point;
 	}
 	public String getComment() {
