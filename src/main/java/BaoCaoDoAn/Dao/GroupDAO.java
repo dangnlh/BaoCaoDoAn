@@ -27,7 +27,24 @@ public class GroupDAO {
 		list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
-
+	public List<Account> getStudentInGroup(int id){
+		List<Account> list = new ArrayList<Account>();
+		String sql = "SELECT * FROM account where role = 'student' AND group_id =" + id;
+		list = _jdbcTemplate.query(sql, new MapperAccount());
+		return list; 
+	}
+	public List<Group> getGroupByProjectAndAccount(int id){
+		List<Group> list = new ArrayList<Group>();
+		String sql = "SELECT * FROM  baocaodoan.group AS grs ,account AS ac ,  project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.teacher_id  = " + id;
+		 list = _jdbcTemplate.query(sql, new MapperGroup());
+		return list;
+	}
+	public List<Account> getStudentInGroupCach2(int teacher_id){
+		List<Account> list = new ArrayList<Account>();
+		String sql = "SELECT * FROM account AS ac ,  baocaodoan.group AS grs , project AS pr WHERE grs.id = pr.group_id AND ac.group_id = pr.group_id AND pr.teacher_id  = " + teacher_id ;
+		 list = _jdbcTemplate.query(sql, new MapperAccount());
+		return list;
+	}
 	public List<Account> GetGroup(int id) {
 		List<Account> list = new ArrayList<Account>();
 		String sql = "SELECT * FROM account where group_id = " + id;

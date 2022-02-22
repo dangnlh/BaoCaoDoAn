@@ -19,21 +19,27 @@ public class ScheduleMeetingDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate ;
 	
-	public List<project_scheduleMeeting> GetScheduleMeetingByProjectId(int id){
-		List<project_scheduleMeeting> list = new ArrayList<project_scheduleMeeting>();
-		String sql = "SELECT project.name , schedulemeeting.id , schedulemeeting.timeMeeting , schedulemeeting.project_id \r\n" + 
-				", schedulemeeting.account_id , schedulemeeting.name_scheduleMeeting , schedulemeeting.link_meeting ,\r\n" + 
-				"schedulemeeting.content \r\n" + 
-				" FROM schedulemeeting \r\n" + 
-				"\r\n" + 
-				"INNER JOIN \r\n" + 
-				"project \r\n" + 
-				"ON\r\n" + 
-				"project .id = schedulemeeting.project_id  and project.teacher_id = "+id+" " ; 
-		list = jdbcTemplate.query(sql, new MapperProjectScheduleMeeting());
+//	public List<project_scheduleMeeting> GetScheduleMeetingByProjectId(int id){
+//		List<project_scheduleMeeting> list = new ArrayList<project_scheduleMeeting>();
+//		String sql = "SELECT project.name , schedulemeeting.id , schedulemeeting.timeMeeting , schedulemeeting.project_id \r\n" + 
+//				", schedulemeeting.account_id , schedulemeeting.name_scheduleMeeting , schedulemeeting.link_meeting ,\r\n" + 
+//				"schedulemeeting.content \r\n" + 
+//				" FROM schedulemeeting \r\n" + 
+//				"\r\n" + 
+//				"INNER JOIN \r\n" + 
+//				"project \r\n" + 
+//				"ON\r\n" + 
+//				"project .id = schedulemeeting.project_id  and project.teacher_id = "+id+" " ; 
+//		list = jdbcTemplate.query(sql, new MapperProjectScheduleMeeting());
+//		return list;
+//	}
+//	
+	public List<ScheduleMeeting> GetScheduleMeetingByProjectId(int project_id){
+		List<ScheduleMeeting> list = new ArrayList<ScheduleMeeting>();
+		String sql = "SELECT * FROM schedulemeeting where project_id = "+ project_id ;
+		list = jdbcTemplate.query(sql, new MapperScheduleMeeting());
 		return list;
 	}
-	
 	public List<ScheduleMeeting> GetDataAmin(){
 		List<ScheduleMeeting> list = new ArrayList<ScheduleMeeting>();
 		String sql = "SELECT * FROM schedulemeeting";
