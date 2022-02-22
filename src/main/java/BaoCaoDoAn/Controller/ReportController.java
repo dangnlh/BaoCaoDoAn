@@ -82,7 +82,7 @@ public class ReportController {
 			}
 		}
 		mv.addObject("reportList", reports);
-		mv.setViewName("user/teacher");
+		mv.setViewName("user/teacher/teacherReport");
 		return mv;
 	}
 
@@ -93,7 +93,7 @@ public class ReportController {
 		if (teacher != null) {
 			Report report = reportService.getReport(reportId);
 			mv.addObject("report", report);
-			mv.setViewName("user/grade");
+			mv.setViewName("user/teacher/grade");
 		} else {
 			// return error page, for later
 		}
