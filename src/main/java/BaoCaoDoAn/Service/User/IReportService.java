@@ -24,5 +24,5 @@ public interface IReportService {
 	public int editReport(int id);
 	
 	public List<Report> getAllReportByProjecId(int reportId) ;
-	
+	public int gradeReport(Double point, int reportId);
 }

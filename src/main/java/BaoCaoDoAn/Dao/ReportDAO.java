@@ -70,4 +70,11 @@ public class ReportDAO {
 		return list;
 
 	}
+
+	public int gradeReport(Double point, int reportId) {
+		String sql = "UPDATE `baocaodoan`.`report` SET `point` = " + point + " WHERE (`id` = " + reportId + ");";
+		int result = jdbcTemplate.update(sql);
+		return result;
+	}
+
 }

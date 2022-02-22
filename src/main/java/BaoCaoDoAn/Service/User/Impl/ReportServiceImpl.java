@@ -32,4 +32,8 @@ public List<Report> getAllReportByProjecId(int reportId) {
 		// TODO Auto-generated method stub
 		return reportDao.getReportByProjectId(reportId);
 	}
+public int gradeReport(Double point, int reportId) {
+		// TODO Auto-generated method stub
+		return reportDao.gradeReport(point, reportId);
+	}
 }

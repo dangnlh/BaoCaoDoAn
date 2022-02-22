@@ -32,7 +32,7 @@
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="#">
+           <a class="nav-link" href='<c:url value="/teacher_viewReport"/>'>
               <i class="typcn typcn-device-desktop menu-icon"></i>
               <span class="menu-title">Report</span>
            

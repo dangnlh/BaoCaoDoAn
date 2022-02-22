@@ -4,17 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import BaoCaoDoAn.Dao.ReportDAO;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Project;
@@ -37,7 +42,6 @@ public class ReportController {
 
 	@RequestMapping(value = { "/editReport/{id}" })
 	public ModelAndView report(@PathVariable String id) {
-
 		mv.setViewName("user/editReport");
 		mv.addObject("getReport", reportService.getReport(Integer.parseInt(id)));
 		return mv;
@@ -78,8 +82,40 @@ public class ReportController {
 			}
 		}
 		mv.addObject("reportList", reports);
-		mv.setViewName("user/teacher");
+		mv.setViewName("user/teacher/teacherReport");
 		return mv;
+	}
+
+	@RequestMapping(value = "/teacher_grade/{reportId}")
+	public ModelAndView getReportToGrade(@PathVariable int reportId, HttpSession session) {
+		Account teacher = (Account) session.getAttribute("InforAccount");
+		ModelAndView mv = new ModelAndView();
+		if (teacher != null) {
+			Report report = reportService.getReport(reportId);
+			mv.addObject("report", report);
+			mv.setViewName("user/teacher/grade");
+		} else {
+			// return error page, for later
+		}
+		return mv;
+	}
+
+	@PostMapping(value = "/processGrade")
+	public String processGrade(@Valid @ModelAttribute("report") Report report, BindingResult theBindingResult) {
+		if (theBindingResult.hasErrors()) {
+			System.out.println(theBindingResult);
+			return "user/grade";
+		} else {
+			// do some work here
+			reportService.gradeReport(report.getPoint(), report.getId());
+			return "redirect:/teacher_viewReport";
+		}
+	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}
 
 }
