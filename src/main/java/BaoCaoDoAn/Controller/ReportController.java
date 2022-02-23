@@ -104,7 +104,7 @@ public class ReportController {
 	public String processGrade(@Valid @ModelAttribute("report") Report report, BindingResult theBindingResult) {
 		if (theBindingResult.hasErrors()) {
 			System.out.println(theBindingResult);
-			return "user/grade";
+			return "user/teacher/grade";
 		} else {
 			// do some work here
 			reportService.gradeReport(report.getPoint(), report.getId());
