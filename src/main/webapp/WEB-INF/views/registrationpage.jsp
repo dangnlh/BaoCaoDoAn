@@ -76,12 +76,27 @@
                                    
                                     <label class="form-label" for="form1Example1">Email address</label>
                                 </div>
+                                
+                                <!-- MSSV input -->
+                                <div class="form-outline mb-4">
+                                
+                                  <form:input path="mssv" placeholder="Mã số sinh viên" type="email" class="form-control" />
+                                   
+                                    <label class="form-label" for="form1Example1">Mã số sinh viên</label>
+                                </div>
 
                                 <!-- Password input -->
                                 <div class="form-outline mb-4">
                                   <form:input path="password"  type="text"  class="form-control" />
                                   
                                     <label class="form-label" for="form1Example2">Password</label>
+                                </div>
+                                
+                                <!-- Confirm password input -->
+                                <div class="form-outline mb-4">
+                                  <form:input path="confirmpassword"  type="text" placeholder="Confirm password"  class="form-control" />
+                                  
+                                    <label class="form-label" for="form1Example2">Confirm password</label>
                                 </div>
 
                              
@@ -90,9 +105,8 @@
 
                                 <!-- phone number input -->
                                 <div class="form-outline mb-4">
-                                     <form:input path="phone"  type="text"  class="form-control"/>
-                                  
-                                     
+                                     <form:input path="phone"  type="text" placeholder="phone" class="form-control"/>
+                                  <label class="form-label" for="form1Example2">Phone</label>
                                 </div>
 
                                 <!-- Role input -->
