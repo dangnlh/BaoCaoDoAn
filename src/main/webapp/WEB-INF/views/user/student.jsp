@@ -1,66 +1,98 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Student Page</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Header Page</title>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+<link
+	href="<c:url value="/assets/css/style.css" /> "
+	rel="stylesheet" />
 </head>
+
 <body>
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand/logo -->
-  <a class="navbar-brand" href="#">
-    <img src="bird.jpg" alt="logo" style="width:40px;">
-  </a>
-  
-  <!-- Links -->
-  <ul class="navbar-nav">
-  
-    <li class="nav-item">
-      <a class="nav-link" href="#"> Group ${ inforAccount.group_id }</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 3</a>
-    </li>
-  </ul>
-</nav>
-<h1>Student Page</h1>
-<h1>Project</h1>
-
-	<div class="container">
-		<h5 style="color: red"><a href='<c:url value="dang-nhap/project/byGroupID/${ inforAccount.group_id }">
-		</c:url>'>My Project</a></h5>
+	<div class="header" th:fragment="headerfrag">
+		<div class="top-header">
 		
-		
-	</div>
-<h1>Report</h1>
-	<div class="container">
-		<h5 style="color: red"><a href='<c:url value="dang-nhap/reportSchedule/byAccountID/${ inforAccount.id }">
-		</c:url>'>Report Schedule</a></h5>
+		</div>
+		<div class="middle-header">
+			<a href="/" target="_top"><img
+				src="https://daihoc.fpt.edu.vn/media/2021/12/Logo-FU-01-200.png"
+				alt="FPT"
+				style="max-width: 160px; margin-top: -10px; margin-left: 50px; margin-top: 20px; margin-bottom: 20px;"></a>
+			<div class="search-container">
+				<input type="text" placeholder="Search.." name="search">
+				<button type="submit"
+					style="margin-left: -10px; margin-right: 20px;">
+					<i class="fa fa-search"></i>
+				</button>
+
+				<a href="https://www.facebook.com/freetuts/" target="_blank"><button
+						class="socialbtn">
+						<i class="fa fa-facebook"
+							style="color: white; background-color: #00687c;"></i>
+					</button></a> <a href="https://www.youtube.com/channel/UC0jGwW2AfbsGbuY_Z3jtkAg"
+					target="_blank"><button class="socialbtn">
+						<i class="fa fa-youtube"
+							style="color: white; background-color: #00687c;"></i>
+					</button></a> <a href="https://twitter.com/freetuts_net" target="_blank"><button
+						class="socialbtn">
+						<i class="fa fa-twitter"
+							style="color: white; background-color: #00687c;"></i>
+					</button></a>
+				<button class="socialbtn">
+					<i class="fa fa-skype"
+						style="color: white; background-color: #00687c;"></i>
+				</button>
+
+			</div>
+		</div>
+
+		<div class="menubar">
+			<div class="dropdown" style="margin-left: 50px;">
+				<a href="/" target="_top"><button class="dropbtn">
+						<i class="fa fa-home"></i>
+					</button></a>
+			</div>
+
+			<div class="dropdown">
+				<button class="dropbtn">Group</button>
+				<div class="dropdown-content">
+					<a th:href="@{'/detail/' + ${ inforAccount.group_id }}" href="#"/>
+				</div>
+			</div>
+
+			<div class="dropdown">
+				<button class="dropbtn">Report Schedule</button>
+				<div class="dropdown-content">
+					<a th:href="@{'dang-nhap/reportSchedule/byAccountID' + ${ inforAccount.id }}" href="#">View</a>
+				</div>
+			</div>
 			
-			<h4>Mark Report</h4>
-      
-</div>
-<h1>Profile</h1>
-<div class="container">
-		 <c:if test="${ not empty inforAccount }">					
-					<h5>${ inforAccount.name }</h5>		
-						<h5>${ inforAccount.mail }</h5>	
-					
-						
-		</c:if>
-      
-</div>
-
+			<div class="dropdown">
+				<button class="dropbtn">Project</button>
+				<div class="dropdown-content">
+					<a th:href="@{'dang-nhap/project/byGroupID/' + ${ inforAccount.group_id }}" href="#"/>
+				</div>
+			</div>
+			
+		
+			<div class="dropdown">
+				<button class="dropbtn">
+					<i class="fa fa-bars"></i>
+				</button>
+				<div class="dropdown-content">
+					<a href="#" th:href="@{'/detail/' + '18'}">Link 1</a>
+					<a href="#" th:href="@{'/detail/' + '41'}">Link 2</a> 
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

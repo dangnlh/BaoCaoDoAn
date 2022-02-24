@@ -80,7 +80,7 @@
                                 <!-- MSSV input -->
                                 <div class="form-outline mb-4">
                                 
-                                  <form:input path="mssv" placeholder="Mã số sinh viên" type="email" class="form-control" />
+                                  <input placeholder="Mã số sinh viên" type="email" class="form-control" /> <!-- chưa có path  -->
                                    
                                     <label class="form-label" for="form1Example1">Mã số sinh viên</label>
                                 </div>
@@ -94,18 +94,15 @@
                                 
                                 <!-- Confirm password input -->
                                 <div class="form-outline mb-4">
-                                  <form:input path="confirmpassword"  type="text" placeholder="Confirm password"  class="form-control" />
+                                  <input type="text" placeholder="Confirm password"  class="form-control" />
                                   
                                     <label class="form-label" for="form1Example2">Confirm password</label>
                                 </div>
-
-                             
-
-                               
+                                                 
 
                                 <!-- phone number input -->
                                 <div class="form-outline mb-4">
-                                     <form:input path="phone"  type="text" placeholder="phone" class="form-control"/>
+                                     <form:input path="phone"  type="text" placeholder="Phone" class="form-control"/>
                                   <label class="form-label" for="form1Example2">Phone</label>
                                 </div>
 
@@ -131,6 +128,7 @@
 
                                 <!-- Submit button -->
                                 <button type="submit" class="btn btn-primary btn-block">Đăng Kí</button>
+                                </br>
 
                                 <div class="col text-center">
                                     <!-- Simple link -->
