@@ -66,61 +66,61 @@
                                 <div class="form-outline mb-4">
                                    <form:input path="name" type="text" class="form-control"  />
                                    
-                                    <label class="form-label" for="form1Example1">Name</label>
+                                    <label class="form-label" for="form1Example1">Họ và tên</label>
                                 </div>
 
                                 <!-- Email input -->
                                 <div class="form-outline mb-4">
                                 
-                                  <form:input path="mail" placeholder="Enter your email" type="email" class="form-control" />
+                                  <form:input path="mail" placeholder="@fpt.edu.vn" type="email" class="form-control" />
                                    
-                                    <label class="form-label" for="form1Example1">Email address</label>
+                                    <label class="form-label" for="form1Example1">Email</label>
                                 </div>
                                 
                                 <!-- MSSV input -->
                                 <div class="form-outline mb-4">
                                 
-                                  <input placeholder="Mã số sinh viên" type="email" class="form-control" /> <!-- chưa có path  -->
+                                  <input type="email" class="form-control" /> <!-- chưa có path  -->
                                    
                                     <label class="form-label" for="form1Example1">Mã số sinh viên</label>
                                 </div>
 
                                 <!-- Password input -->
                                 <div class="form-outline mb-4">
-                                  <form:input path="password"  type="text"  class="form-control" />
+                                  <form:input path="password" type="text"  class="form-control" />
                                   
-                                    <label class="form-label" for="form1Example2">Password</label>
+                                    <label class="form-label" for="form1Example2">Mật khẩu</label>
                                 </div>
                                 
                                 <!-- Confirm password input -->
                                 <div class="form-outline mb-4">
-                                  <input type="text" placeholder="Confirm password"  class="form-control" />
+                                  <input type="text"  class="form-control" />
                                   
-                                    <label class="form-label" for="form1Example2">Confirm password</label>
+                                    <label class="form-label" for="form1Example2">Xác nhận mật khẩu</label>
                                 </div>
                                                  
 
-                                <!-- phone number input -->
+                                <!-- Phone number input -->
                                 <div class="form-outline mb-4">
-                                     <form:input path="phone"  type="text" placeholder="Phone" class="form-control"/>
-                                  <label class="form-label" for="form1Example2">Phone</label>
+                                     <form:input path="phone"  type="text" placeholder="+84" class="form-control"/>
+                                  <label class="form-label" for="form1Example2">Số điện thoại</label>
                                 </div>
 
                                 <!-- Role input -->
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="form1Example1">You Are</label>
+                                    <label class="form-label" for="form1Example1">Vai trò</label>
                                     
                                     <form:select path="role">
-                                  <option value="student"> student </option>
-                                  <option value="teacher"> teacher </option>
+                                  <option value="student"> Sinh viên </option>
+                                  <option value="teacher"> Giáo viên hướng dẫn </option>
                                 </form:select>
                                 </div>
                             
                                 <div class="form-outline mb-4">
-                                   <label class="form-label" for="form1Example1">Leader</label>
+                                   <label class="form-label" for="form1Example1">Trưởng nhóm</label>
                                 <form:select path="isLeader">
-                                  <option value="1"> true </option>
-                                        <option value="0"> false </option>
+                                  <option value="1"> Phải </option>
+                                        <option value="0"> Không phải </option>
                                 </form:select>
                                   	
                                    
