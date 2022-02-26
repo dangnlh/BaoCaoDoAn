@@ -41,6 +41,7 @@
                           </figure>
                         </div>
                         <div class="col-md-6">
+                        <h1>haha</h1>
                           <h3 class="text-white text-center text-md-left">${ InforAccount.name }</h3>
                           <p class="text-white text-center text-md-left">${ InforAccount.mail }</p>
                           <div class="d-flex align-items-center justify-content-between info pt-2">
