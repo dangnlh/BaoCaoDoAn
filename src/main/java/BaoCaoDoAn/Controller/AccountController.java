@@ -47,9 +47,9 @@ public class AccountController {
 		mv.addObject("scheduleReportDAO" , scheduleReportDAO.getAllScheduleReport());
 		return mv ;
 	}
-	@RequestMapping(value =  "/trang-chu-giaovien")
+	@RequestMapping(value =  "/trang-chu")
 	public ModelAndView HomeTeacher(@ModelAttribute("account") Account account ,  HttpSession session) {
-		mv.setViewName("/user/index");	
+		mv.setViewName("/user/teacher");	
 		return mv;		
 		
 	}
@@ -58,11 +58,13 @@ public class AccountController {
 	public ModelAndView Login(@ModelAttribute("account") Account account ,  HttpSession session) {		
 		Account acc = accountService.CheckAccount(account) ;
 		if(acc != null && acc.getRole().equals("student")) {	
+			session.setAttribute("InforAccount", accountDao.GetUserByAccount(account));
+			mv.addObject("InforAccount" ,accountDao.GetUserByAccount(account) );
 		    mv.setViewName("/user/student");
 			mv.addObject("statusLogin" , "login thanh cong");
 		
 		}if(acc != null && acc.getRole().equals("teacher")) {			
-			mv.setViewName("/user/index");	
+			mv.setViewName("/user/teacher");	
 			session.setAttribute("InforAccount", accountDao.GetUserByAccount(account));
 			mv.addObject("InforAccount" ,accountDao.GetUserByAccount(account) );
 			mv.addObject("statusLogin" , "login thanh cong");

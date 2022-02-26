@@ -26,12 +26,15 @@ import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.Report;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
 import BaoCaoDoAn.Entity.ScheduleReport;
+import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ProjectServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ReportServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ScheduleReportServiceImpl;
 
 @Controller
 public class ReportController {
+	@Autowired
+	GroupServiceImpl groupServiceImpl;
 	@Autowired
 	private ReportServiceImpl reportService;
 	@Autowired
@@ -74,11 +77,14 @@ public class ReportController {
 		Account teacher = (Account) session.getAttribute("InforAccount");
 		ModelAndView mv = new ModelAndView();
 		List<Project> managedProject = projectSerivce.getProjectByTeacherId(teacher.getId());
+		
 		List<Report> reports = new ArrayList<Report>();
 		for (Project project : managedProject) {
 			List<Report> reportsTemp = reportService.getAllReportByProjecId(project.getId());
 			for (Report reportInner : reportsTemp) {
+				reportInner.setGroup(groupServiceImpl.getGroupByProjectId(reportInner.getProject_id()));
 				reports.add(reportInner);
+				
 			}
 		}
 		mv.addObject("reportList", reports);

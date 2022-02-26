@@ -34,13 +34,13 @@
 								<div class="card-body">
 
 
-									<div class="table-responsive">
-
+									<div class="table table-striped project-orders-table">
+								<h4 style="text-transform: uppercase;padding:16px;">Your Group  </h4>
 
 
 										<c:forEach var="group" items="${studentGroup}">
 											<c:set var="account" value="${group.account}" />
-											<h2 style="text-align: center;text-transform: uppercase;margin:16px;">${group.name}</h2>
+											<h5 style="text-align: center; text-transform: uppercase;margin:16px;">${group.name}</h5>
 											<table class="table">
 												<thead>
 
@@ -72,6 +72,8 @@
 								</div>
 
 							</div>
+							
+								=
 						</div>
 
 					</div>

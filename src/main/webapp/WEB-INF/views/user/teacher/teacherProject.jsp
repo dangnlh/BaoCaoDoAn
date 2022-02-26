@@ -26,43 +26,37 @@
 
 
 
-					<div class="row">
+							<div class="row">
 
 
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
-								<div class="card-body">
-
-
-									<div class="table-responsive">
-
-										<table class="table">
-											<thead>
-
+								<div class="table-responsive pt-3">
+								<h4 style="text-transform: uppercase;padding:16px;">Your Project </h4>
+									<table class="table table-striped project-orders-table">
+										<thead>
+											<tr>
+												<th>Project</th>
+												<th>Group</th>
+												<th>Created</th>
+												<th>Url Project</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="item" items="${ projectById }">
 												<tr>
-													<th>Project</th>
-													<th>Group</th>
-													<th>Created</th>
-													<th>Status</th>
+													<td>${ item.name }</td>
+													<td>${ item.group_id }</td>
+													<td>${ item.createTime }</td>
+													<td>${ item.urlProject }</td>
 												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="item" items="${ projectById }">
-													<tr>
-														<td>${ item.name }</td>
-														<td>${ item.group_id }</td>
-														<td>${ item.createTime }</td>
-														<td><label class="badge badge-danger">Pending</label></td>
-													</tr>
-												</c:forEach>
-											</tbody>
+											</c:forEach>
 
-										</table>
-
-									</div>
+										</tbody>
+									</table>
 								</div>
-								
 							</div>
+
 						</div>
 
 					</div>

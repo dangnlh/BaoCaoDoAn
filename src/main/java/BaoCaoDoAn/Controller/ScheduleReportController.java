@@ -67,9 +67,7 @@ public class ScheduleReportController {
 		if (result > 0) {
 			System.out.println("thanh cong");
 			scheduleReportDAO.DeleteScheduleReport(id);
-
 		}
-
 		return "redirect:/ScheduleReport";
 
 	}
@@ -81,6 +79,7 @@ public class ScheduleReportController {
 		ModelAndView mv = new ModelAndView();
 		List<ScheduleReport> scheduleReportList = scheduleReportService.getAllScheduleReportByTeacherId(teacher.getId());
 		for(ScheduleReport sch:scheduleReportList) {
+			
 			// get group based on report schedule
 			Group groupOfReport = groupService.getGroupByAccountId(sch.getAccount_id());
 			sch.setGroup(groupOfReport);
@@ -89,7 +88,7 @@ public class ScheduleReportController {
 			sch.setReport(reportOfSchedule);
 		}
 		mv.addObject("scheduleReports",scheduleReportList);
-		mv.setViewName("user/teacher");
+		mv.setViewName("user/teacher/teacherScheduleReport");
 		return mv;
 	}
 

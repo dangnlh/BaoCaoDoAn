@@ -35,8 +35,9 @@
 
 
 									<div class="table-responsive">
+									<h4 style="text-transform: uppercase;padding:16px;">Your Report  </h4>
 
-										<table class="table">
+										<table class="table table-striped project-orders-table">
 											<thead>
 												<tr>
 													<th>Report Name</th>
@@ -51,13 +52,14 @@
 											</thead>
 											<tbody>
 												<c:forEach var="report" items="${reportList}">
+												<c:set var="group" value="${ report.group  }"/>
 													<tr>
 														<td>${report.name }</td>
 
 														<td>${report.timeSubmit}</td>
 														<td><a>Download Report</a></td>
 														<th>${report.point}</th>
-														<td>Group Name</td>
+														<td>${group.name}</td>
 														<td>${report.convertedStatus}</td>
 														<td>
 															<!--khi da summit thi doi background khac  --> <c:if

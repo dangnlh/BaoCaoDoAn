@@ -8,7 +8,8 @@
 					</a></li>
          
           <li class="nav-item">
-            <a class="nav-link" href= '<c:url value="/teacherGroupByteacher_id"/>'>
+          
+                 <a class="nav-link" href= '<c:url value="/studentGroup"/>'>
               <i class="typcn typcn-device-desktop menu-icon"></i>
               <span class="menu-title">Group</span>
            
@@ -16,7 +17,7 @@
           </li>
          
           <li class="nav-item">
-            <a class="nav-link" href='<c:url value="/teacher_getProject/${ InforAccount.id }"/>'>
+            <a class="nav-link" href='<c:url value=""/>'>
               <i class="typcn typcn-device-desktop menu-icon"></i>
               <span class="menu-title">Project</span>
            
@@ -24,7 +25,7 @@
           </li>
 
             <li class="nav-item">
-            <a class="nav-link" href='<c:url value="/teacher_viewScheduleMeeting"/>'>
+            <a class="nav-link" href='<c:url value=""/>'>
               <i class="typcn typcn-device-desktop menu-icon"></i>
               <span class="menu-title">Schedule Meeting</span>
            
@@ -32,7 +33,7 @@
           </li>
           
           <li class="nav-item">
-           <a class="nav-link" href='<c:url value="/teacher_viewReport"/>'>
+           <a class="nav-link" href='<c:url value=""/>'>
               <i class="typcn typcn-device-desktop menu-icon"></i>
               <span class="menu-title">Report</span>
            
@@ -41,7 +42,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href='<c:url value="/teacher_viewReportSchedule"/>'>
+            <a class="nav-link" href='<c:url value=""/>'>
               <i class="typcn typcn-device-desktop menu-icon"></i>
               <span class="menu-title">Schedule Report</span>
            

@@ -33,15 +33,18 @@
 							<div class="card">
 							
 								<div class="table-responsive pt-3">
+								<h4 style="text-transform: uppercase;padding:16px;">Your Schedule Meeting  </h4>
 									<c:forEach var="project" items="${ projects }">
+									
 										<c:set var="ScheduleMeeting" value="${ project.scheduleMeeting }" />
-										<h2 style="text-align: center;text-transform: uppercase;padding:16px;">${ project.name }</h2>
+										
+										<h5 style="text-align: center; text-transform: uppercase;padding:16px;">${ project.name }</h5>
 										<table class="table table-striped project-orders-table">
 											<thead>
 												<tr>
-													<th>Project</th>
-													<th>Time Meeting</th>
 													<th>Name Schedule</th>
+													<th>Time Meeting</th>
+													
 													<th>Link Meeting</th>
 													<th>Content</th>
 													
@@ -53,8 +56,8 @@
 														<tr>
 															<td>${ item.name }</td>
 															<td>${ item.timeMeeting }</td>
-															<td>${ item.project_id }</td>
-															<td>${item.link_meeting }</td>
+															
+															<td><a  href="${item.link_meeting }">Meet URL</a> </td>
 															<td>${item.content }</td>
 														</tr>
 													</c:forEach>
