@@ -10,14 +10,13 @@
   <div class="container-scroller" style="margin-top: -75px;">
 
 
-  <%@include file="/WEB-INF/views/user/student/newheader.jsp" %>
-
+  <%@include file="/WEB-INF/views/user/student/oldHeader.jsp" %>
 
 
     <div class="container-fluid page-body-wrapper">
     
 
-<%--         <%@include file="/WEB-INF/views/user/student/menubar.jsp" %> --%>
+        <%@include file="/WEB-INF/views/user/student/oldsidebar.jsp" %>
     
     
 
@@ -66,14 +65,13 @@
 
 				</div>
 
-         <%@include file="/WEB-INF/views/user/student/newfooter.jsp" %>
+         <%@include file="/WEB-INF/views/user/student/oldFooter.jsp" %>
       
       </div>
      
     </div>
     
   </div>
-  <h1>abc</h1>
 
  
 </body>

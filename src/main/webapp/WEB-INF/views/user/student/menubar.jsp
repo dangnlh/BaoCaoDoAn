@@ -5,7 +5,7 @@
 <!-- MENU BAR -->
 <div class="menubar">
 	<div class="dropdown" style="margin-left: 50px;">
-		<a href="/BaoCaoDoAn/dang-nhap#" target="_top"><button
+		<a href="<c:url value=""/>" target="_top"><button
 				class="dropbtn">
 				<i class="fa fa-home"></i>
 			</button></a>
@@ -14,14 +14,14 @@
 	<div class="dropdown">
 		<button class="dropbtn">Báo Cáo</button>
 		<div class="dropdown-content">
-			<a href="/addreport">Nộp báo cáo</a>
+			<a href="<c:url value=""/>">Nộp báo cáo</a>
 		</div>
 	</div>
 
 	<div class="dropdown">
 		<button class="dropbtn">Nhóm</button>
 		<div class="dropdown-content">
-			<a th:href="@{'/detail/' + ${ inforAccount.group_id }}" href="#">Thông
+			<a href="<c:url value="/studentGroup"/>">Thông
 				tin nhóm</a>
 		</div>
 	</div>
@@ -29,9 +29,7 @@
 	<div class="dropdown">
 		<button class="dropbtn">Lịch nộp báo cáo</button>
 		<div class="dropdown-content">
-			<a
-				th:href="@{'dang-nhap/reportSchedule/byAccountID' + ${ inforAccount.id }}"
-				href="#">Xem lịch</a>
+			<a href="<c:url value=""/>">Xem lịch</a>
 		</div>
 	</div>
 
@@ -39,17 +37,14 @@
 		<button class="dropbtn">Meeting</button>
 		<div class="dropdown-content">
 			<a
-				th:href="@{'dang-nhap/reportSchedule/byAccountID' + ${ inforAccount.id }}"
-				href="#">Xem lịch</a>
+				href="<c:url value=""/>">Xem lịch</a>
 		</div>
 	</div>
 
 	<div class="dropdown">
 		<button class="dropbtn">Đồ án</button>
 		<div class="dropdown-content">
-			<a
-				th:href="@{'dang-nhap/project/byGroupID/' + ${ inforAccount.group_id }}"
-				href="#">Link</a>
+			<a href="<c:url value=""/>">Thông tin đồ án</a>
 		</div>
 	</div>
 
