@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: nlhda
 Build-Jdk: 1.8.0_191
+=======
+Built-By: Sang
+Build-Jdk: 11.0.13
+>>>>>>> 389dc52da70d2bc2f8eb72210a454292051d8c68
 Created-By: Maven Integration for Eclipse
 
