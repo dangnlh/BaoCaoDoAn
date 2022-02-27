@@ -1,7 +1,8 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
   <%@include file="/WEB-INF/views/user/student/linkHeader.jsp" %>
 <body>
@@ -9,14 +10,14 @@
   <div class="container-scroller" style="margin-top: -75px;">
 
 
-  <%@include file="/WEB-INF/views/user/student/Header.jsp" %>
+  <%@include file="/WEB-INF/views/user/student/newheader.jsp" %>
 
 
 
     <div class="container-fluid page-body-wrapper">
     
 
-        <%@include file="/WEB-INF/views/user/student/sidebar.jsp" %>
+<%--         <%@include file="/WEB-INF/views/user/student/menubar.jsp" %> --%>
     
     
 
@@ -65,7 +66,7 @@
 
 				</div>
 
-         <%@include file="/WEB-INF/views/user/student/Footer.jsp" %>
+         <%@include file="/WEB-INF/views/user/student/newfooter.jsp" %>
       
       </div>
      

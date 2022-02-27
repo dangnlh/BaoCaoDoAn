@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/java/BaoCaoDoAn/Controller/AccountController.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/user/student.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/user/student/newfooter.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/user/student/newheader.jsp=UTF-8
