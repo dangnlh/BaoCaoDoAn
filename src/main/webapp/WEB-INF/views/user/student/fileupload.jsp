@@ -10,14 +10,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
 
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-<link
-	href="<c:url value="/assets/css/studentstyle.css" /> "
-	rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<!-- <link -->
+<%-- 	href="<c:url value="/assets/css/style.css" /> " --%>
+<!-- 	rel="stylesheet" /> -->
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 <div class="container center">
 	<div class="row">

@@ -439,8 +439,8 @@ height: 50px;
 }
 
 .top {
-	margin-left: -3px;
-	margin-right: 3px;
+	margin-left: -18px; 
+	margin-right: -18px;
 	background-color: gray;
 	color: white;
 	font-size: 18px;
@@ -461,8 +461,8 @@ height: 50px;
 }
 
 .bot {
-	margin-left: -3px;
-	margin-right: 3px;
+	margin-left: -18px;
+	margin-right: -18px;
 	border: solid black;
 	background-color: #373c43;
 	color: #8c8c8c;
@@ -528,7 +528,7 @@ height: 50px;
 .footer table {
 	border-collapse: collapse;
 	border-spacing: 0;
-	width: 98%;
+	width: 100%;
 	margin-left: 400px;
 }
 
