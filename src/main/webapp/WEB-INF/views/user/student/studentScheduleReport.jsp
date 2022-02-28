@@ -35,43 +35,49 @@
 	<!-- ---------------------CONTENT--------------------- -->
 	<!-- partial:index.partial.html -->
 	<div class="container ">
-		<c:forEach var="project" items="${ listReport }">
-
-			<c:set var="Report" value="${ project.report }" />
-
-			<h5
-				style="text-align: center; text-transform: uppercase; padding: 16px;">${ project.name }</h5>
-			<table class="table table-striped project-orders-table">
-				<thead>
-					<tr>
-						<th>Name Schedule</th>
-						<th>Point</th>
-						<th>Comment</th>
-						<th>Time Create</th>
-						<th>Time Submit</th>
-						<th>URL report</th>
-						<th>Action</th>
-
-					</tr>
-				</thead>
-				<tbody>
-
-					<c:forEach var="item" items="${ Report }">
-						<tr>
-							<td>${ item.name }</td>
-							<td>${ item.point }</td>
-							<td>${ item.comment }</td>
-							<td>${ item.timeCreate }</td>
-							<td>${ item.timeSubmit }</td>
-							<td>${ item.urlReport }</td>
-							<td><a href="<c:url value="/upload_report"/>" type="button" class="btn btn-primary">Primary</a></td>	
-						</tr>
-					</c:forEach>
+		
+<div class="row">
 
 
-				</tbody>
-			</table>
-		</c:forEach>
+						<div class="col-lg-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="table-responsive pt-3">
+									<h4 style="text-transform: uppercase; padding: 16px;">Your
+										Schedule Report</h4>
+									<table class="table table-striped project-orders-table">
+										<thead>
+											<tr>
+												
+												<th>Report Name</th>
+												<th>Time Report</th>
+											</tr>
+										</thead>
+										<tbody>
+									
+											<tr> 
+											
+										
+										
+										
+											<c:forEach var="scheduleReport" items="${ StudentScheduleReports }">
+													<c:set var="report" value="${scheduleReport.report}" />
+													
+												<tr> 
+													<td>${report.name}</td>
+													<td>${scheduleReport.timeReport}</td>
+												
+											
+												</tr>
+											</c:forEach>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
 
 
 	</div>
@@ -92,4 +98,6 @@
 	<!-- -----------------END OF FOOTER-------------------- -->
 </body>
 </html>
+
+
 

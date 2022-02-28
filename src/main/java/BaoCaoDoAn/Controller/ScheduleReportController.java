@@ -91,5 +91,20 @@ public class ScheduleReportController {
 		mv.setViewName("user/teacher/teacherScheduleReport");
 		return mv;
 	}
+	@RequestMapping(value = "/student_ViewScheduleReport")
+	public ModelAndView StudentviewReportSchedule(HttpSession session) {
+
+		Account student =(Account) session.getAttribute("InforAccount");				
+		ModelAndView mv = new ModelAndView();
+		List<ScheduleReport> scheduleReportList = scheduleReportService.getScheduleReportBygroupId(student.getGroup_id());
+		for(ScheduleReport sch:scheduleReportList) {
+			Report reportOfSchedule = reportService.getReport(sch.getReport_id());
+			sch.setReport(reportOfSchedule);
+		}
+		mv.addObject("StudentScheduleReports",scheduleReportList);
+		mv.setViewName("user/student/studentScheduleReport");
+		return mv;
+	}
+	
 
 }

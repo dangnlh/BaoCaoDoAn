@@ -41,6 +41,8 @@ public class ReportController {
 	private ProjectServiceImpl projectSerivce;
 	@Autowired
 	private ReportDAO reportDAO;
+	
+	
 	private ModelAndView mv = new ModelAndView();
 
 	@RequestMapping(value = { "/editReport/{id}" })
@@ -90,6 +92,28 @@ public class ReportController {
 		mv.addObject("reportList", reports);
 		mv.setViewName("user/teacher/teacherReport");
 		return mv;
+	}
+	
+	@GetMapping(value = "/student_ViewReport")
+	public ModelAndView studentViewReport(HttpSession session) {
+		Account account = (Account) session.getAttribute("InforAccount");
+		List<Project> project = projectSerivce.getProject(account.getGroup_id());
+	
+		
+		for (Project project2 : project) {
+			List<Report> reports  = reportService.getAllReportByProjecId(project2.getId());
+			project2.setReport(reports);
+		}
+		mv.addObject("listReport" , project) ;
+		mv.setViewName("user/student/studentreport");
+		return mv ;
+	} 
+	
+	@GetMapping(value = "/upload_report")
+	public ModelAndView studentViewReport() {
+		mv.setViewName("user/student/fileupload");
+		return mv;
+		
 	}
 
 	@RequestMapping(value = "/teacher_grade/{reportId}")
