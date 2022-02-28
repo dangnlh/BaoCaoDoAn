@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%@include file="/WEB-INF/views/user/teacher/linkHeader.jsp" %>
+  <%@include file="/WEB-INF/views/user/student/linkHeader.jsp" %>
 <body>
 
   <div class="container-scroller" style="margin-top: -75px;">
 
 
-  <%@include file="/WEB-INF/views/user/teacher/Header.jsp" %>
+  <%@include file="/WEB-INF/views/user/student/header.jsp" %>
 
 
 
