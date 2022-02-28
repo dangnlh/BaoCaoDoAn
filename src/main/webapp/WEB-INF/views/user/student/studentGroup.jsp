@@ -32,7 +32,7 @@
 	<!-- ---------------------END OF CONTENT--------------------- -->
 	
 	<!-- -----------------FOOTER-------------------- -->
-
+	<%@include file="/WEB-INF/views/user/student/footer.jsp"%>
 	<!-- -----------------END OF FOOTER-------------------- -->
 </body>
 
