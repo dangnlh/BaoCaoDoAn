@@ -35,36 +35,16 @@
 		<div class="content-wrapper">
 			<div class="row">
 				<div class="col-lg-12 grid-margin stretch-card">
-					<table class="table table-striped table-dark">
-						<thead>
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">Name Meeting</th>
-								<th scope="col">Date Meeting</th>
-								<th scope="col">Time Meeting</th>
-								<th scope="col">Link Meeting</th>
-								<th scope="col">Upload Content</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:set var="count" value="1" scope="page" />
-							<c:forEach var="scheduleMeeting" items="${scheduleMeetingList}">
-								<tr>
-									<th scope="row">${count}</th>
-									<td>${scheduleMeeting.name }</td>
-									<td>${scheduleMeeting.timeMeeting }</td>
-									<td>${scheduleMeeting.time }</td>
-									<td><a class="nav-link"
-										href="${scheduleMeeting.link_meeting}" target="_blank">Meeting
-											Url</a></td>
-									<td><a class="btn btn-primary"
-										href="${pageContext.request.contextPath}/uploadMeeting/${scheduleMeeting.id}"
-										role="button">Upload</a></td>
-								</tr>
-								<c:set var="count" value="${count + 1}" scope="page" />
-							</c:forEach>
-						</tbody>
-					</table>
+					<form action="${pageContext.request.contextPath}/savefile"
+						method="post" style="text-align: center;"
+						enctype="multipart/form-data">
+						<input type="hidden" name="scheduleMeetingId"
+							value="${scheduleId}" /> <input
+							style="line-height: 1 !important" class="form-control"
+							type="file" name="file" id="formFile">
+						<button style="margin-top: 3em;" type="submit"
+							class="btn btn-secondary btn-lg">Upload</button>
+					</form>
 				</div>
 			</div>
 		</div>

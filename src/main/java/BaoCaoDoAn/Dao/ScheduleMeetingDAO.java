@@ -1,4 +1,5 @@
 package BaoCaoDoAn.Dao;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +15,12 @@ import BaoCaoDoAn.Entity.MapperAccount;
 import BaoCaoDoAn.Entity.MapperMeeting;
 import BaoCaoDoAn.Entity.MapperScheduleMeeting;
 import BaoCaoDoAn.Entity.Meeting;
+
 @Repository
 public class ScheduleMeetingDAO {
 	@Autowired
-	JdbcTemplate jdbcTemplate ;
-	
+	JdbcTemplate jdbcTemplate;
+
 //	public List<project_scheduleMeeting> GetScheduleMeetingByProjectId(int id){
 //		List<project_scheduleMeeting> list = new ArrayList<project_scheduleMeeting>();
 //		String sql = "SELECT project.name , schedulemeeting.id , schedulemeeting.timeMeeting , schedulemeeting.project_id \r\n" + 
@@ -34,52 +36,62 @@ public class ScheduleMeetingDAO {
 //		return list;
 //	}
 //	
-	public List<ScheduleMeeting> GetScheduleMeetingByProjectId(int project_id){
+	public List<ScheduleMeeting> GetScheduleMeetingByProjectId(int project_id) {
 		List<ScheduleMeeting> list = new ArrayList<ScheduleMeeting>();
-		String sql = "SELECT * FROM schedulemeeting where project_id = "+ project_id ;
+		String sql = "SELECT * FROM schedulemeeting where project_id = " + project_id;
 		list = jdbcTemplate.query(sql, new MapperScheduleMeeting());
 		return list;
 	}
-	public List<ScheduleMeeting> GetDataAmin(){
+
+	public List<ScheduleMeeting> GetDataAmin() {
 		List<ScheduleMeeting> list = new ArrayList<ScheduleMeeting>();
 		String sql = "SELECT * FROM schedulemeeting";
 		list = jdbcTemplate.query(sql, new MapperScheduleMeeting());
 		return list;
 	}
-	//add
+
+	// add
 //	public int save(ScheduleMeeting admin) {
 //		String sql = "INSERT INTO schedulemeeting (timeMeeting,project_id,account_id) VALUES (?,?,?)";
 //		int count = jdbcTemplate.update(sql,new Object[] {admin.getTimeMeeting(),admin.getProject_id(),admin.getAccount_id()});
 //		return count;
 //	}
-	//delete
+	// delete
 	public void delete(int id) {
-	    String sql = "DELETE FROM schedulemeeting WHERE id=?";
-	    jdbcTemplate.update(sql, id);
+		String sql = "DELETE FROM schedulemeeting WHERE id=?";
+		jdbcTemplate.update(sql, id);
 	}
-	//Update
+
+	// Update
 	public void updateAndSave(ScheduleMeeting admin) {
-	        if(admin.getId()>0){
-	        String sql = "UPDATE schedulemeeting SET timeMeeting=?, project_id=?, account_id=? "
-	                    + "WHERE id=?";
-	        jdbcTemplate.update(sql, admin.getTimeMeeting(),admin.getProject_id(),admin.getAccount_id(),admin.getId());
-	        }else {
-	        	String sql = "INSERT INTO schedulemeeting (timeMeeting,project_id,account_id) VALUES (?,?,?)";
-	    		jdbcTemplate.update(sql,new Object[] {admin.getTimeMeeting(),admin.getProject_id(),admin.getAccount_id()});
-	    		
-	        }
-	        
+		if (admin.getId() > 0) {
+			String sql = "UPDATE schedulemeeting SET timeMeeting=?, project_id=?, account_id=? " + "WHERE id=?";
+			jdbcTemplate.update(sql, admin.getTimeMeeting(), admin.getProject_id(), admin.getAccount_id(),
+					admin.getId());
+		} else {
+			String sql = "INSERT INTO schedulemeeting (timeMeeting,project_id,account_id) VALUES (?,?,?)";
+			jdbcTemplate.update(sql,
+					new Object[] { admin.getTimeMeeting(), admin.getProject_id(), admin.getAccount_id() });
+
+		}
+
 	}
-	
+
 	public ScheduleMeeting get(int adminId) {
-	    String sql = "SELECT * FROM schedulemeeting WHERE id=" + adminId;
-	    ScheduleMeeting result =  jdbcTemplate.queryForObject(sql, new MapperScheduleMeeting()) ;
-		return result ;
+		String sql = "SELECT * FROM schedulemeeting WHERE id=" + adminId;
+		ScheduleMeeting result = jdbcTemplate.queryForObject(sql, new MapperScheduleMeeting());
+		return result;
 	}
+
 	public List<Meeting> GetMeetingByScheduleMeetingID(int id) {
 		List<Meeting> list = new ArrayList<Meeting>();
 		String sql = "SELECT * FROM meeting where scheduleMeeting_id = " + id;
 		list = jdbcTemplate.query(sql, new MapperMeeting());
 		return list;
+	}
+
+	public void saveFileMeetingContentFileName(String fileName, Integer schMeetingId) {
+		String sql = "UPDATE `baocaodoan`.`schedulemeeting` SET `content` = ? WHERE (`id` = ?);";
+		jdbcTemplate.update(sql, new Object[] { fileName, schMeetingId });
 	}
 }
