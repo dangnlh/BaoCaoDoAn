@@ -58,7 +58,7 @@
 														<td>${report.name }</td>
 
 														<td>${report.timeSubmit}</td>
-														<a href='<c:url value="${report.reportUrl}"/>' download>Download
+														<a href='<c:url value="${report.reportUrl} "/>' download>Download
 															Report</a>
 														<th>${report.point}</th>
 														<td>${group.name}</td>
