@@ -37,14 +37,14 @@
 		<button class="dropbtn">Meeting</button>
 		<div class="dropdown-content">
 			<a
-				href="<c:url value=""/>">Xem lịch</a>
+				href="<c:url value="/studentMeeting"/>">Xem lịch</a>
 		</div>
 	</div>
 
 	<div class="dropdown">
 		<button class="dropbtn">Đồ án</button>
 		<div class="dropdown-content">
-			<a href="<c:url value=""/>">Thông tin đồ án</a>
+			<a href="<c:url value="/studentProject"/>">Thông tin đồ án</a>
 		</div>
 	</div>
 

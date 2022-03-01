@@ -1,7 +1,10 @@
 package BaoCaoDoAn.Entity;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.springframework.jdbc.core.RowMapper;
 
@@ -11,12 +14,20 @@ public class MapperScheduleMeeting implements RowMapper<ScheduleMeeting> {
 		ScheduleMeeting admin = new ScheduleMeeting();
 		admin.setId(rs.getInt("id"));
 		admin.setName(rs.getString("name_scheduleMeeting"));
-		admin.setTimeMeeting(rs.getDate("timeMeeting"));
+		Date date = rs.getDate("timeMeeting");
+		admin.setTimeMeeting(date);
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(rs.getTime("timeMeeting").getTime());	
+		admin.setTime(new SimpleDateFormat("HH:mm").format(calendar.getTime()));
+		
+		
 		admin.setProject_id(rs.getInt("project_id"));
 		admin.setAccount_id(rs.getInt("account_id"));
 		admin.setLink_meeting(rs.getString("link_meeting"));
 		admin.setContent(rs.getString("content"));
 		return admin;
+		
 	}
 	
 }

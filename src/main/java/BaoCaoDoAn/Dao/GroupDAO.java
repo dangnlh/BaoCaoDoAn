@@ -95,13 +95,6 @@ public class GroupDAO {
 		_jdbcTemplate.update(sql, id);
 	}
 
-	public List<Project> getProjectByGroupId(int id) {
-		List<Project> list = new ArrayList<Project>();
-		String sql = "SELECT * FROM project where group_id = " + id;
-		list = _jdbcTemplate.query(sql, new MapperProject());
-		return list;
-	}
-
 	public Group getGroupByProjectId(int projectId) {
 		String sql = "SELECT g.id,g.name\r\n" + "FROM `group` as g,project as p \r\n"
 				+ "WHERE  g.id=p.group_id AND p.id=" + projectId;

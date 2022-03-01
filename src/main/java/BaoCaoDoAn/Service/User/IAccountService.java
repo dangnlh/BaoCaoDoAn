@@ -20,4 +20,7 @@ public interface IAccountService {
 		@Autowired
 		public int AddAccount(Account account);
 		
+		@Autowired
+		public Account getAccountById(int accId);
+		
 }

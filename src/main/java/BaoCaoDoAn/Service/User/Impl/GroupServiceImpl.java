@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import BaoCaoDoAn.Dao.GroupDAO;
+import BaoCaoDoAn.Dao.ProjectDAO;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.Project;
@@ -16,7 +17,8 @@ import BaoCaoDoAn.Service.User.IGroupService;
 public class GroupServiceImpl implements IGroupService {
 	@Autowired
 	private GroupDAO groupdao;
-
+	@Autowired
+	private ProjectDAO projectDao;
 	public List<Group> getGroupAdmin() {
 		return groupdao.getGroupAdmin();
 	}
@@ -59,8 +61,8 @@ public class GroupServiceImpl implements IGroupService {
 		return groupdao.updateGroup(group);
 	}
 
-	public List<Project> GetProjectByGroupID(int id) {
-		return groupdao.getProjectByGroupId(id);
+	public Project GetProjectByGroupID(int id) {
+		return projectDao.getProjectByGroupId(id);
 	}
 
 	public Group getGroupByProjectId(int projectId) {
