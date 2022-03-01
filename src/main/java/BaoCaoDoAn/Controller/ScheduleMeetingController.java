@@ -20,44 +20,49 @@ import org.springframework.web.servlet.ModelAndView;
 import BaoCaoDoAn.Dao.ScheduleMeetingDAO;
 import BaoCaoDoAn.Dto.project_scheduleMeeting;
 import BaoCaoDoAn.Entity.Account;
+import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.Meeting;
 import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
+import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ProjectServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ScheduleMeetingServiceImpl;
 
 @Controller
 public class ScheduleMeetingController {
 	@Autowired
-	private ProjectServiceImpl projectService ;
+	private ProjectServiceImpl projectService;
 	@Autowired
 	ScheduleMeetingServiceImpl scheduleMeetingServiceImpl;
 	@Autowired
 	ScheduleMeetingDAO scheduleMeetingDAO;
+	@Autowired
+	private GroupServiceImpl groupService;
 	private ModelAndView mv = new ModelAndView();
 
-	@RequestMapping(value = {"/teacher_viewScheduleMeeting"})
-	public ModelAndView teacherGetScheduleMeetingByProjectId (HttpSession session) {
+	@RequestMapping(value = { "/teacher_viewScheduleMeeting" })
+	public ModelAndView teacherGetScheduleMeetingByProjectId(HttpSession session) {
 		System.out.println("hello");
-		Account teacher =(Account) session.getAttribute("InforAccount");	
+		Account teacher = (Account) session.getAttribute("InforAccount");
 //		List<project_scheduleMeeting> result = scheduleMeetingServiceImpl.GetScheduleMeetingByProjectId(teacher.getId()) ;
-		
-		List<Project> project = projectService.getProjectByTeacherId(teacher.getId()) ;
+
+		List<Project> project = projectService.getProjectByTeacherId(teacher.getId());
 		System.out.println("project" + project);
 		for (Project project2 : project) {
-			List<ScheduleMeeting> scheduleMeeting = scheduleMeetingServiceImpl.GetScheduleMeetingByProjectId(project2.getId()) ;
+			List<ScheduleMeeting> scheduleMeeting = scheduleMeetingServiceImpl
+					.GetScheduleMeetingByProjectId(project2.getId());
 			project2.setScheduleMeeting(scheduleMeeting);
-			
+
 		}
-			mv.addObject("projects" , project) ;
-			mv.setViewName("user/teacher/ScheduleMeeting");
+		mv.addObject("projects", project);
+		mv.setViewName("user/teacher/ScheduleMeeting");
 //		if(!scheduleMeeting.isEmpty()) {
 //			mv.addObject("ScheduleMeetingByProjectId" , result) ;		
 //			mv.setViewName("user/teacher/ScheduleMeeting");
 //		}			
-		return mv ;	
+		return mv;
 	}
-	
+
 	@RequestMapping(value = "/ScheduleMeeting")
 	public ModelAndView admin(Model model) {
 
@@ -75,6 +80,7 @@ public class ScheduleMeetingController {
 		return mv;
 
 	}
+
 	@RequestMapping(value = "/ScheduleMeeting/{id}")
 	public ModelAndView group(@PathVariable int id, Meeting meeting) {
 		List<Meeting> list = new ArrayList<Meeting>();
@@ -85,11 +91,12 @@ public class ScheduleMeetingController {
 			mv.addObject("ScheduleMeeting3", scheduleMeetingServiceImpl.getMeetingByScheduleMeetingID(id));
 		} else {
 			mv.addObject("ScheduleMeeting3", "that bai");
-			
+
 		}
 
 		return mv;
 	}
+
 	@RequestMapping(value = "/addScheduleMeeting", method = RequestMethod.GET)
 	public String doGetAddUser(Model model) {
 		if (!model.containsAttribute("ScheduleMeeting2")) {
@@ -99,7 +106,7 @@ public class ScheduleMeetingController {
 	}
 
 	@RequestMapping(value = "/addScheduleMeeting", method = RequestMethod.POST)
-	public String doPostAddUser( @ModelAttribute("ScheduleMeeting2")  ScheduleMeeting admin, BindingResult result) {
+	public String doPostAddUser(@ModelAttribute("ScheduleMeeting2") ScheduleMeeting admin, BindingResult result) {
 		System.out.println("SUCCESS");
 		if (result.hasErrors()) {
 			return "/user/ScheduleMeetingFrom";
@@ -125,5 +132,22 @@ public class ScheduleMeetingController {
 		scheduleMeetingServiceImpl.deleteADMIN(id);
 
 		return new ModelAndView("redirect:/ScheduleMeeting");
+	}
+
+	@RequestMapping(value = "/studentMeeting")
+	public ModelAndView viewStudentMeeting(HttpSession session) {
+		Account student = (Account) session.getAttribute("InforAccount");		
+		Group group = groupService.getGroupByAccountId(student.getId());
+		Project projectOfGroup = projectService.getProjectByGroupId(group.getId());
+		List<ScheduleMeeting> listScheduleMeeting = scheduleMeetingServiceImpl
+				.GetScheduleMeetingByProjectId(projectOfGroup.getId());
+//		for(ScheduleMeeting s:listScheduleMeeting) {
+//			System.out.println(s.getId());
+//		}
+		if(listScheduleMeeting.size()!=0) {
+			mv.addObject("scheduleMeetingList",listScheduleMeeting);			
+		}
+		mv.setViewName("/user/student/studentMeeting");
+		return mv;
 	}
 }

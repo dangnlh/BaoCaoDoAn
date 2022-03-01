@@ -37,7 +37,8 @@ public class ScheduleMeetingServiceImpl implements IScheduleMeetingService {
 	public List<Meeting> getMeetingByScheduleMeetingID(int id) {
 		return scheduleMeetingDAO.GetMeetingByScheduleMeetingID(id);
 	}
-
+	
+	
 	
 	
 }

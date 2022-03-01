@@ -12,7 +12,7 @@ public class Project {
 	private String urlProject;
 	private Date createTime;
 	private int group_id;
-
+	private int teacherId;
 	private List<ScheduleMeeting> scheduleMeeting;
 	private List<Report> report ;
 	
@@ -36,13 +36,17 @@ public class Project {
 		super();
 	}
 
-	public Project(int id, String name, String urlProject, Date createTime, int group_id) {
+
+	public Project(int id, String name, String urlProject, Date createTime, int group_id, int teacherId,
+			List<ScheduleMeeting> scheduleMeeting) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.urlProject = urlProject;
 		this.createTime = createTime;
 		this.group_id = group_id;
+		this.teacherId = teacherId;
+		this.scheduleMeeting = scheduleMeeting;
 	}
 
 	public int getId() {
@@ -89,5 +93,14 @@ public class Project {
 		GroupServiceImpl group = new GroupServiceImpl();
 		return group.findGroupById(group_id);
 	}
+
+	public int getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(int teacherId) {
+		this.teacherId = teacherId;
+	}
+	
 
 }

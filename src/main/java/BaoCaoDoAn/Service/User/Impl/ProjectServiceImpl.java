@@ -48,6 +48,10 @@ public class ProjectServiceImpl implements IProjectService {
 	public List<Project> getProjectByTeacherId(int teacherId) {
 		return projectDao.getProjectByTeacherId(teacherId);
 	}
+	public Project getProjectByGroupId(int groupId) {
+		// TODO Auto-generated method stub
+		return projectDao.getProjectByGroupId(groupId);
+	}
 	
 
 }
