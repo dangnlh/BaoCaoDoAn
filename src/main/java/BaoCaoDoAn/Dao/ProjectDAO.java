@@ -72,5 +72,12 @@ public class ProjectDAO {
 		 list =  jdbcTemplate.query(sql, new MapperProject()) ;
 		return list ;
 	}
+	public Project getProjectByGroupId(int id) {
+		Project project;
+		String sql = "SELECT * FROM project where group_id = " + id;
+		project = jdbcTemplate.queryForObject(sql, new MapperProject());
+		return project;
+	}
+
 
 }

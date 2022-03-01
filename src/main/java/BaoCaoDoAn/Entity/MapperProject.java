@@ -14,6 +14,7 @@ public class MapperProject  implements RowMapper<Project> {
 		project.setUrlProject(rs.getString("urlProject"));
 		project.setCreateTime(rs.getDate("createTime"));
 		project.setGroup_id(rs.getInt("group_id"));
+		project.setTeacherId(rs.getInt("teacher_id"));
 		return project;
 	}
 

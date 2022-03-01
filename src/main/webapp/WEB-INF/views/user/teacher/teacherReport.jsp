@@ -35,7 +35,8 @@
 
 
 									<div class="table-responsive">
-									<h4 style="text-transform: uppercase;padding:16px;">Your Report  </h4>
+										<h4 style="text-transform: uppercase; padding: 16px;">Your
+											Report</h4>
 
 										<table class="table table-striped project-orders-table">
 											<thead>
@@ -52,12 +53,13 @@
 											</thead>
 											<tbody>
 												<c:forEach var="report" items="${reportList}">
-												<c:set var="group" value="${ report.group  }"/>
+													<c:set var="group" value="${ report.group  }" />
 													<tr>
 														<td>${report.name }</td>
 
 														<td>${report.timeSubmit}</td>
-														<td><a>Download Report</a></td>
+														<a href='<c:url value="${report.reportUrl}"/>' download>Download
+															Report</a>
 														<th>${report.point}</th>
 														<td>${group.name}</td>
 														<td>${report.convertedStatus}</td>
