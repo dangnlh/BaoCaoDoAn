@@ -158,6 +158,7 @@ public class ScheduleMeetingController {
 	@RequestMapping(value = "/savefile", method = RequestMethod.POST)
 	public String upload(@RequestParam CommonsMultipartFile file, HttpServletRequest request,
 			RedirectAttributes redirAttr, HttpSession session) {
+		String scheduleId = request.getParameter("scheduleMeetingId");
 		Account student = (Account) session.getAttribute("InforAccount");
 		boolean studentAuthority = student.getIsLeader();
 		String path = session.getServletContext().getRealPath("/meetingContent");
@@ -177,8 +178,7 @@ public class ScheduleMeetingController {
 					bout.flush();
 					bout.close();
 					redirAttr.addFlashAttribute("message",
-							"You successfully uploaded '" + file.getOriginalFilename() + "'");
-					String scheduleId = request.getParameter("scheduleMeetingId");
+							"You successfully uploaded '" + file.getOriginalFilename() + "'");					
 					System.out.println("Schedule ID:" + scheduleId);
 					// Save file in to DB
 					ScheduleMeeting scheduleToSave = new ScheduleMeeting();
@@ -199,7 +199,7 @@ public class ScheduleMeetingController {
 			System.out.println("Not author");
 		}
 
-		return "redirect:/uploadMeeting";
+		return "redirect:/uploadMeeting/"+scheduleId;
 	}
 
 	@RequestMapping("/uploadMeeting/{schedule_id}")
