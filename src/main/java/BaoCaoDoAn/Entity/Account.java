@@ -1,5 +1,7 @@
 package BaoCaoDoAn.Entity;
 
+import java.util.List;
+
 public class Account {
 	
 	private int id ;
@@ -10,6 +12,7 @@ public class Account {
 	private int phone ;
 	private String role ;
 	private Boolean isLeader ;
+	
 	public int getId() {
 		return id;
 	}

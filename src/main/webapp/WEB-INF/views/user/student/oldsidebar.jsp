@@ -9,7 +9,7 @@
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link"
-			href='<c:url value="/studentGroup"/>'> <i
+			href='<c:url value="/studentGroupByteacher_id"/>'> <i
 				class="typcn typcn-device-desktop menu-icon"></i> <span
 				class="menu-title">Group</span>
 
