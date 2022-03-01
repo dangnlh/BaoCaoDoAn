@@ -7,10 +7,18 @@ public class ScheduleMeeting {
 	private String name ; 
 	private Date timeMeeting;
 	private int project_id;
-	
 	private int account_id;
 	private String link_meeting ;
 	private String content ;
+	private String time;
+	
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+		System.out.println(time);
+	}
 	public int getId() {
 		return id;
 	}
@@ -23,7 +31,7 @@ public class ScheduleMeeting {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getTimeMeeting() {
+	public Date getTimeMeeting() {		
 		return timeMeeting;
 	}
 	public void setTimeMeeting(Date timeMeeting) {

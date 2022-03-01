@@ -55,8 +55,7 @@
 												</thead>
 												<tbody>
 												<c:forEach var="item" items="${account}">
-													<tr>
-														
+													<tr>														
 														<td>${ item.id }</td>
 														<td>${ item.name }</td>
 														<td>${ item.mail }</td>

@@ -21,4 +21,5 @@ public interface IScheduleReport {
 	
 	public List<ScheduleReport> getAllScheduleReportByReportId();
 	public List<ScheduleReport> getAllScheduleReportByTeacherId(int accountId);
+	public List<ScheduleReport> getScheduleReportBygroupId(int groupId) ;
 }

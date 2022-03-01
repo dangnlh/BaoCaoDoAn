@@ -12,9 +12,9 @@
 	</div>
 
 	<div class="dropdown">
-		<button class="dropbtn">Báo Cáo</button>
+		<button class="dropbtn">Report</button>
 		<div class="dropdown-content">
-			<a href="<c:url value=""/>">Nộp báo cáo</a>
+			<a href="<c:url value="/student_ViewReport"/>">View report</a>
 		</div>
 	</div>
 
@@ -27,9 +27,9 @@
 	</div>
 
 	<div class="dropdown">
-		<button class="dropbtn">Lịch nộp báo cáo</button>
+		<button class="dropbtn">Schedule Report</button>
 		<div class="dropdown-content">
-			<a href="<c:url value=""/>">Xem lịch</a>
+			<a href="<c:url value="/student_ViewScheduleReport"/>">Xem lịch</a>
 		</div>
 	</div>
 
@@ -37,14 +37,14 @@
 		<button class="dropbtn">Meeting</button>
 		<div class="dropdown-content">
 			<a
-				href="<c:url value=""/>">Xem lịch</a>
+				href="<c:url value="/studentMeeting"/>">Xem lịch</a>
 		</div>
 	</div>
 
 	<div class="dropdown">
 		<button class="dropbtn">Đồ án</button>
 		<div class="dropdown-content">
-			<a href="<c:url value=""/>">Thông tin đồ án</a>
+			<a href="<c:url value="/studentProject"/>">Thông tin đồ án</a>
 		</div>
 	</div>
 

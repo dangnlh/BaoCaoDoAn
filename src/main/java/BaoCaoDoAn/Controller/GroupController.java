@@ -1,7 +1,6 @@
 package BaoCaoDoAn.Controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +22,6 @@ import BaoCaoDoAn.Dto.group_Account;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.Project;
-import BaoCaoDoAn.Entity.ScheduleMeeting;
 import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
 
 @Controller
@@ -102,14 +100,13 @@ public class GroupController {
 	@RequestMapping(value = "/Project/{id}")
 	public ModelAndView group(@PathVariable int id, Project project) {
 		List<Project> list = new ArrayList<Project>();
-		list = groupServiceImpl.GetProjectByGroupID(id);
-
+		Project projectTemp = groupServiceImpl.GetProjectByGroupID(id);
+		list.add(projectTemp);
 		if (list != null) {
 			mv.setViewName("/user/project");
 			mv.addObject("getAllProject", groupServiceImpl.GetProjectByGroupID(id));
 		} else {
-			mv.addObject("getAllProject", "that bai");
-			
+			mv.addObject("getAllProject", "that bai");			
 		}
 
 		return mv;

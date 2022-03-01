@@ -66,11 +66,20 @@ public class ProjectDAO {
 		int insert = jdbcTemplate.update(sql.toString()) ; 		
 		return insert;
 	}
+	
 	public List<Project> getProjectByTeacherId(int teacherId) {
 		List<Project> list = new ArrayList<Project>();
 		String sql = "Select * from project where teacher_id = " + teacherId ;
 		 list =  jdbcTemplate.query(sql, new MapperProject()) ;
 		return list ;
 	}
+	public Project getProjectByGroupId(int id) {
+		Project project;
+		String sql = "SELECT * FROM project where group_id = " + id;
+		project = jdbcTemplate.queryForObject(sql, new MapperProject());
+		return project;
+	}
 
+
+	
 }
