@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import BaoCaoDoAn.Dao.GroupDAO;
+import BaoCaoDoAn.Dto.group_Account;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.Project;
@@ -76,12 +77,25 @@ public class GroupController {
 			group2.setAccount(list);
 			
 		}
-		mv.addObject("studentGroup",result);
+		mv.addObject("teacherGroup",result);
 		
 	
 		mv.setViewName("user/teacher/teacherGroup");
 		return mv ;
 	}	
+	@RequestMapping(value= {"/studentGroupByteacher_id"})
+	public ModelAndView StudentGroupByTeacher_idInProject(HttpSession session) {
+		Account student =(Account) session.getAttribute("InforAccount");
+		List<Account> list = groupDAO.getStudentInGroupCach2(student.getGroup_id());
+		List<Account> listaccount = groupDAO.GetGroup(student.getGroup_id());	
+		List<Group>  listgroup = groupDAO.getStudentInGroupCach3(student.getGroup_id());	
+		
+		mv.addObject("teacherNameInGroup",list);
+		mv.addObject("studentGroup",listaccount);
+		mv.addObject("getNameGroup",listgroup);
+		mv.setViewName("user/student/studentGroup");
+		return mv ;
+	}
 	
 	@RequestMapping(value = "/Project/{id}")
 	public ModelAndView group(@PathVariable int id, Project project) {

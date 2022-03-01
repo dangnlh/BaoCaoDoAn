@@ -38,7 +38,7 @@
 								<h4 style="text-transform: uppercase;padding:16px;">Your Group  </h4>
 
 
-										<c:forEach var="group" items="${studentGroup}">
+										<c:forEach var="group" items="${teacherGroup}">
 											<c:set var="account" value="${group.account}" />
 											<h5 style="text-align: center; text-transform: uppercase;margin:16px;">${group.name}</h5>
 											<table class="table">
@@ -72,7 +72,7 @@
 
 							</div>
 							
-								=
+								
 						</div>
 
 					</div>
