@@ -44,4 +44,11 @@ public List<ScheduleReport> getAllScheduleReportByTeacherId(int teacherId) {
 	return scheduleReportDAO.getScheduleReportByTeacherId(teacherId);
 }
 
+
+
+public List<ScheduleReport> getScheduleReportBygroupId(int groupId) {
+	// TODO Auto-generated method stub
+	return scheduleReportDAO.getScheduleReportBygroupId(groupId);
+}
+
 }

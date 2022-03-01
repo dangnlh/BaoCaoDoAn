@@ -77,4 +77,16 @@ public class ScheduleReportDAO {
 		list = jdbcTemplate.query(sql, new MapperScheduleReport());
 		return list;
 	}
+	
+	public List<ScheduleReport> getScheduleReportBygroupId(int groupId) {
+		List<ScheduleReport> list = new ArrayList<ScheduleReport>();
+		String sql = "SELECT * \r\n"
+				+ "FROM baocaodoan.schedulereport\r\n"
+				+ "WHERE report_id IN (SELECT r.id\r\n"
+				+ "FROM baocaodoan.project as p,baocaodoan.report as r \r\n"
+				+ "where p.group_id =" + groupId + "  and p.id = r.project_id)\r\n"
+				+ "order by timeReport;";
+		list = jdbcTemplate.query(sql, new MapperScheduleReport());
+		return list;
+	}
 }

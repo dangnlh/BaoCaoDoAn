@@ -21,7 +21,7 @@
 	<div class="main-panel">
 		<div class="content-wrapper">
 			<div class="row">
-				<div class="col-lg-10 grid-margin stretch-card">
+				<div class="col-lg-12 grid-margin stretch-card">
 					<div class="card profile-card bg-gradient-primary">
 						<div class="card-body">
 							<div class="row align-items-center h-100">
@@ -30,7 +30,9 @@
 										<img src="images/faces/face20.jpg">
 									</figure>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-8">
+								<h3 class="text-white text-center text-md-left">${ InforAccount.id }</h3>
+								<h3 class="text-white text-center text-md-left">${ InforAccount.group_id }</h3>
 									<h3 class="text-white text-center text-md-left">${ InforAccount.name }</h3>
 									<p class="text-white text-center text-md-left">${ InforAccount.mail }</p>
 									<div

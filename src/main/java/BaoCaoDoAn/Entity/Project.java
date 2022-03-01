@@ -14,6 +14,15 @@ public class Project {
 	private int group_id;
 	private int teacherId;
 	private List<ScheduleMeeting> scheduleMeeting;
+	private List<Report> report ;
+	
+	public List<Report> getReport() {
+		return report;
+	}
+
+	public void setReport(List<Report> report) {
+		this.report = report;
+	}
 
 	public List<ScheduleMeeting> getScheduleMeeting() {
 		return scheduleMeeting;

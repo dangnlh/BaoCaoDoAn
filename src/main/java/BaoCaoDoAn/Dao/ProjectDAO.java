@@ -66,6 +66,7 @@ public class ProjectDAO {
 		int insert = jdbcTemplate.update(sql.toString()) ; 		
 		return insert;
 	}
+	
 	public List<Project> getProjectByTeacherId(int teacherId) {
 		List<Project> list = new ArrayList<Project>();
 		String sql = "Select * from project where teacher_id = " + teacherId ;
@@ -80,4 +81,5 @@ public class ProjectDAO {
 	}
 
 
+	
 }
