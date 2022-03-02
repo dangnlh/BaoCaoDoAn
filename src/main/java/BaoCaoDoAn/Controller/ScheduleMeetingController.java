@@ -159,6 +159,7 @@ public class ScheduleMeetingController {
 	public String upload(@RequestParam CommonsMultipartFile file, HttpServletRequest request,
 			RedirectAttributes redirAttr, HttpSession session) {
 		String scheduleId = request.getParameter("scheduleMeetingId");
+		
 		Account student = (Account) session.getAttribute("InforAccount");
 		boolean studentAuthority = student.getIsLeader();
 		String path = session.getServletContext().getRealPath("/meetingContent");
