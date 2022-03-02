@@ -36,9 +36,7 @@
 	<!-- partial:index.partial.html -->
 	<div class="container ">
 		<c:forEach var="project" items="${ listReport }">
-
 			<c:set var="Report" value="${ project.report }" />
-
 			<h5
 				style="text-align: center; text-transform: uppercase; padding: 16px;">${ project.name }</h5>
 			<table class="table table-striped project-orders-table">
@@ -55,7 +53,6 @@
 					</tr>
 				</thead>
 				<tbody>
-
 					<c:forEach var="item" items="${ Report }">
 						<tr>
 							<td>${ item.name }</td>
@@ -70,8 +67,6 @@
 					
 						</tr>
 					</c:forEach>
-
-
 				</tbody>
 			</table>
 		</c:forEach>
@@ -91,7 +86,7 @@
 
 
 	<!-- -----------------FOOTER-------------------- -->
-
+	<%@include file="/WEB-INF/views/user/student/footer.jsp"%>
 	<!-- -----------------END OF FOOTER-------------------- -->
 </body>
 </html>

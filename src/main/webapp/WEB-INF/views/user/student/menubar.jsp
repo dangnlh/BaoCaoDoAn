@@ -21,7 +21,7 @@
 	<div class="dropdown">
 		<button class="dropbtn">Nhóm</button>
 		<div class="dropdown-content">
-			<a href="<c:url value="/studentGroup"/>">Thông
+			<a href="<c:url value="/studentGroupByteacher_id"/>">Thông
 				tin nhóm</a>
 		</div>
 	</div>
