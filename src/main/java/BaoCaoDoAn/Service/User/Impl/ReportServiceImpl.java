@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import BaoCaoDoAn.Dao.ReportDAO;
 import BaoCaoDoAn.Entity.Report;
+import BaoCaoDoAn.Entity.ScheduleMeeting;
 import BaoCaoDoAn.Service.User.IReportService;
 
 @Service
@@ -36,4 +37,9 @@ public int gradeReport(Double point, int reportId) {
 		// TODO Auto-generated method stub
 		return reportDao.gradeReport(point, reportId);
 	}
+
+public boolean WriteReportFile(Report report) {
+	reportDao.saveFileReportFile(report.getUrlReport(), report.getId());
+	return true;
+}
 }

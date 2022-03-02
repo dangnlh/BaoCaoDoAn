@@ -64,7 +64,10 @@
 							<td>${ item.timeCreate }</td>
 							<td>${ item.timeSubmit }</td>
 							<td>${ item.urlReport }</td>
-							<td><a href="<c:url value="/upload_report"/>" type="button" class="btn btn-primary">Primary</a></td>	
+							<td><a class=""
+										href="${pageContext.request.contextPath}/upload_report/${item.id}"
+										role="button">Upload</a></td>
+					
 						</tr>
 					</c:forEach>
 

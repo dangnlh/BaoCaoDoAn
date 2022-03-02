@@ -1,11 +1,15 @@
 package BaoCaoDoAn.Controller;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -19,7 +23,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import BaoCaoDoAn.Dao.ReportDAO;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Project;
@@ -147,5 +155,63 @@ public class ReportController {
 		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
 		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}
+	
+	@RequestMapping("/upload_report/{report_id}")
+	public ModelAndView showUploadPage(@PathVariable int report_id, @ModelAttribute("message") String message) {
 
+		mv.setViewName("/user/student/StudentUploadFile");
+		
+		mv.addObject("ReportId", report_id);
+		return mv;
+	}
+	
+	@RequestMapping(value = "/saveReportFile", method = RequestMethod.POST)
+	public String upload(@RequestParam CommonsMultipartFile file, HttpServletRequest request,
+			RedirectAttributes redirAttr, HttpSession session) {
+		String  reportId = request.getParameter("ReportId") ;
+		Account student = (Account) session.getAttribute("InforAccount");
+		boolean studentAuthority = student.getIsLeader();
+		String path = session.getServletContext().getRealPath("/ReportFile");
+		String filename = file.getOriginalFilename();
+		String extendtionOfFile = FilenameUtils.getExtension(filename);
+		System.out.println(path);
+		if (studentAuthority == true) {
+			if (extendtionOfFile.equals("doc") || extendtionOfFile.equals("docx") || extendtionOfFile.equals("txt")
+					|| extendtionOfFile.equals("wpd") || extendtionOfFile.equals("odt")
+					|| extendtionOfFile.equals("pdf")) {
+				System.out.println("VALID TYPE");
+				try {
+					byte barr[] = file.getBytes();
+					System.out.println("VALID TYPE");
+					BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(path + "/" + filename));
+					bout.write(barr);
+					bout.flush();
+					bout.close();
+					redirAttr.addFlashAttribute("message",
+							"You successfully uploaded '" + file.getOriginalFilename() + "'");					
+					System.out.println("report ID:" + reportId);
+					// Save file in to DB
+					Report reportToSave = new Report();
+					reportToSave.setId(Integer.parseInt(reportId));
+					reportToSave.setUrlReport(filename);
+					
+					reportService.WriteReportFile(reportToSave) ;
+					return "redirect:/student_ViewReport";
+				} catch (Exception e) {
+					System.out.println(e);
+				}
+
+			}
+			else {
+				redirAttr.addFlashAttribute("message", "File Type Not Valid");
+				System.out.println("Not valid");
+			}
+		} else {
+			redirAttr.addFlashAttribute("message", "You dont have authority to upload, just leader!");
+			System.out.println("Not author");
+		}
+
+		return "redirect:/upload_report/"+reportId;
+
+}
 }

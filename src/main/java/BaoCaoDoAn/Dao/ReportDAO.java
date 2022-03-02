@@ -76,5 +76,9 @@ public class ReportDAO {
 		int result = jdbcTemplate.update(sql);
 		return result;
 	}
+	public void saveFileReportFile(String fileName, Integer reportId) {
+		String sql = "UPDATE `baocaodoan`.`report` SET `urlReport` = ? WHERE (`id` = ?);";
+		jdbcTemplate.update(sql, new Object[] { fileName, reportId });
+	}
 
 }
