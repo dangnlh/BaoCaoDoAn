@@ -139,10 +139,12 @@ public class ScheduleMeetingController {
 
 	@RequestMapping(value = "/studentMeeting")
 	public ModelAndView viewStudentMeeting(@ModelAttribute("message") String message, HttpSession session) {
+		String path = session.getServletContext().getRealPath("/meetingContent");
+		System.out.println("REAL PATH:"+path);
 		Account student = (Account) session.getAttribute("InforAccount");
 		Group group = groupService.getGroupByAccountId(student.getId());
 		Project projectOfGroup = projectService.getProjectByGroupId(group.getId());
-
+		
 		List<ScheduleMeeting> listScheduleMeeting = scheduleMeetingServiceImpl
 				.GetScheduleMeetingByProjectId(projectOfGroup.getId());
 //		for(ScheduleMeeting s:listScheduleMeeting) {
@@ -206,6 +208,7 @@ public class ScheduleMeetingController {
 	@RequestMapping("/uploadMeeting/{schedule_id}")
 	public ModelAndView showUploadPage(@PathVariable int schedule_id, @ModelAttribute("message") String message) {
 		mv.setViewName("/user/student/uploadFile");
+		
 		mv.addObject("scheduleId", schedule_id);
 		return mv;
 	}

@@ -14,20 +14,25 @@ public class MapperScheduleMeeting implements RowMapper<ScheduleMeeting> {
 		ScheduleMeeting admin = new ScheduleMeeting();
 		admin.setId(rs.getInt("id"));
 		admin.setName(rs.getString("name_scheduleMeeting"));
+
 		Date date = rs.getDate("timeMeeting");
 		admin.setTimeMeeting(date);
-		
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(rs.getTime("timeMeeting").getTime());	
+		calendar.setTimeInMillis(rs.getTime("timeMeeting").getTime());
 		admin.setTime(new SimpleDateFormat("HH:mm").format(calendar.getTime()));
-		
-		
+
+		Date dateSubmit = rs.getDate("date_submit");
+		admin.setSubmitDate(dateSubmit);
+		Calendar calendarSubmit = Calendar.getInstance();
+		calendarSubmit.setTimeInMillis(rs.getTime("timeMeeting").getTime());
+		admin.setSubmitTime(new SimpleDateFormat("HH:mm").format(calendarSubmit.getTime()));
+
 		admin.setProject_id(rs.getInt("project_id"));
 		admin.setAccount_id(rs.getInt("account_id"));
 		admin.setLink_meeting(rs.getString("link_meeting"));
 		admin.setContent(rs.getString("content"));
 		return admin;
-		
+
 	}
-	
+
 }

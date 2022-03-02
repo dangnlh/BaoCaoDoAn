@@ -100,7 +100,7 @@ public class Report {
 	}
 
 	public String getUrlReport() {
-		return urlReport;
+		return urlReport.trim();
 	}
 
 	public void setUrlReport(String urlReport) {

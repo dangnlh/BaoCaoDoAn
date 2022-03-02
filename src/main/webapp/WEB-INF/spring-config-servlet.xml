@@ -39,7 +39,8 @@
 
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/assets/**" location="/assets/" />
-	<mvc:resources mapping="/storage/**" location="/WEB-INF/meetingContent/"/>
+	<mvc:resources mapping="/report_stogare/**" location="/ReportFile/" />
+	<mvc:resources mapping="/meeting_stogare/**" location="/meetingContent/" />
 	<!-- Load custom message resource -->
 
 	<bean id="messageSource"
