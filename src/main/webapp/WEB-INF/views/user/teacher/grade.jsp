@@ -10,13 +10,13 @@
 	<div class="container-scroller" style="margin-top: -75px;">
 
 
-		<%@include file="/WEB-INF/views/user/teacher/Header.jsp"%>
+		<%@include file="/WEB-INF/views/user/teacher/header.jsp"%>
 
 
 
 		<div class="container-fluid page-body-wrapper">
 
-			<%@include file="/WEB-INF/views/user/teacher/sidebar.jsp"%>
+			<%@include file="/WEB-INF/views/user/teacher/menubar.jsp"%>
 
 
 			<!-- partial -->
@@ -57,7 +57,7 @@
 
 				</div>
 
-				<%@include file="/WEB-INF/views/user/teacher/Footer.jsp"%>
+				<%@include file="/WEB-INF/views/user/teacher/footer.jsp"%>
 
 			</div>
 
