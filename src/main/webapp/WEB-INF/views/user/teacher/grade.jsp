@@ -7,16 +7,14 @@
 
 <body>
 
-	<div class="container-scroller" style="margin-top: -75px;">
-
-
+	<div class="header">
+		<!-- -----------------HEADER-------------------- -->
 		<%@include file="/WEB-INF/views/user/teacher/header.jsp"%>
-
-
-
-		<div class="container-fluid page-body-wrapper">
-
-			<%@include file="/WEB-INF/views/user/teacher/menubar.jsp"%>
+		<!-- -----------------END OF HEADER-------------------- -->
+		<!-- -----------------MENU BAR-------------------- -->
+		<%@include file="/WEB-INF/views/user/teacher/menubar.jsp"%>
+		<!-- -----------------END OF MENU BAR-------------------- -->
+	</div>
 
 
 			<!-- partial -->
@@ -61,10 +59,7 @@
 
 			</div>
 
-		</div>
-
-	</div>
-
+		
 
 </body>
 
