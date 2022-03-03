@@ -53,6 +53,7 @@
 															
 															<td><a  href="${item.link_meeting }">Meet URL</a> </td>
 															<td>${item.content }</td>
+								
 														</tr>
 													</c:forEach>
 										
