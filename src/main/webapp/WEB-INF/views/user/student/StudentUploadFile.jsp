@@ -68,8 +68,11 @@
 	<!-- ---------------------END OF CONTENT--------------------- -->
 
 	<!-- -----------------FOOTER-------------------- -->
-
+	<%@include file="/WEB-INF/views/user/student/footer.jsp"%>
 	<!-- -----------------END OF FOOTER-------------------- -->
+	
+	<!-- Script-->
+	<%@include file="/WEB-INF/views/user/student/studentscript.jsp"%>
 
 </body>
 
