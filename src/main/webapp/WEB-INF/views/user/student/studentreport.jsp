@@ -11,6 +11,7 @@
 </head>
 
 <body>
+	<c:set var="message" value="${message}" />
 
 	<div class="header" th:fragment="headerfrag">
 		<!-- -----------------HEADER-------------------- -->
@@ -25,10 +26,22 @@
 	<!-- ---------------------CONTENT--------------------- -->
 	<div class="main-panel">
 		<div class="content-wrapper">
+
 			<div class="row">
+				<div class="col-lg-4 grid-margin stretch-card ">
+					<h1 style="color: red;">${ statusuploadReport }</h1>
+				</div>
 				<div class="col-lg-12 grid-margin stretch-card">
 					<div class="card">
 						<div class="card-body">
+
+
+
+
+
+
+
+
 							<c:forEach var="project" items="${ listReport }">
 								<c:set var="Report" value="${ project.report }" />
 
@@ -38,10 +51,10 @@
 									<table class="table">
 										<thead>
 											<tr>
-												<th>Name Schedule</th>
+												<th>Name Report</th>
 												<th>Point</th>
 												<th>Comment</th>
-												<th>Time Create</th>
+												<!--<th>Time Create</th>  -->
 												<th>Time Submit</th>
 												<th>URL report</th>
 												<th>Action</th>
@@ -54,14 +67,16 @@
 													<td>${ item.name }</td>
 													<td>${ item.point }</td>
 													<td>${ item.comment }</td>
-													<td>${ item.timeCreate }</td>
+													<!--<td>${ item.timeCreate }</td>-->
 													<td>${ item.timeSubmit }</td>
+
 													<td>${ item.urlReport }</td>
 													<td><a class=""
 														href="${pageContext.request.contextPath}/upload_report/${item.id}"
 														role="button">Upload</a></td>
 
 												</tr>
+
 											</c:forEach>
 										</tbody>
 									</table>
