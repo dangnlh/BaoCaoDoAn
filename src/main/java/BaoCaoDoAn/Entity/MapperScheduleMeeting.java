@@ -23,10 +23,11 @@ public class MapperScheduleMeeting implements RowMapper<ScheduleMeeting> {
 
 		Date dateSubmit = rs.getDate("date_submit");
 		admin.setSubmitDate(dateSubmit);
-		Calendar calendarSubmit = Calendar.getInstance();
-		calendarSubmit.setTimeInMillis(rs.getTime("timeMeeting").getTime());
-		admin.setSubmitTime(new SimpleDateFormat("HH:mm").format(calendarSubmit.getTime()));
-
+		if (dateSubmit != null) {
+			Calendar calendarSubmit = Calendar.getInstance();
+			calendarSubmit.setTimeInMillis(rs.getTime("date_submit").getTime());
+			admin.setSubmitTime(new SimpleDateFormat("HH:mm").format(calendarSubmit.getTime()));
+		}
 		admin.setProject_id(rs.getInt("project_id"));
 		admin.setAccount_id(rs.getInt("account_id"));
 		admin.setLink_meeting(rs.getString("link_meeting"));

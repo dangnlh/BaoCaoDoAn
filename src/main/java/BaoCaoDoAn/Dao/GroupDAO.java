@@ -7,16 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import BaoCaoDoAn.Dto.group_Account;
-import BaoCaoDoAn.Dto.group_AccountMapper;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.MapperAccount;
 import BaoCaoDoAn.Entity.MapperGroup;
-import BaoCaoDoAn.Entity.MapperProject;
-import BaoCaoDoAn.Entity.MapperScheduleMeeting;
-import BaoCaoDoAn.Entity.Project;
-import BaoCaoDoAn.Entity.ScheduleMeeting;
 
 @Repository
 public class GroupDAO {

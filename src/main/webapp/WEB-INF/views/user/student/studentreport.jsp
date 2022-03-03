@@ -69,8 +69,9 @@
 													<td>${ item.comment }</td>
 													<!--<td>${ item.timeCreate }</td>-->
 													<td>${ item.timeSubmit }</td>
+													
 
-													<td>${ item.urlReport }</td>
+													<td><a  download href='<c:url value="/report_stogare/${ item.urlReport }"/>'>${ item.urlReport }</a></td>
 													<td><a class=""
 														href="${pageContext.request.contextPath}/upload_report/${item.id}"
 														role="button">Upload</a></td>

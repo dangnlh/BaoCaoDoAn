@@ -21,7 +21,7 @@ public interface IScheduleMeetingService {
 
 	
 	@Autowired
-	public List<Meeting> getMeetingByScheduleMeetingID(int id);
+	public ScheduleMeeting getScheduleMeetingByID(int id);
 	@Autowired
 	public void deleteADMIN(int id);
 }
