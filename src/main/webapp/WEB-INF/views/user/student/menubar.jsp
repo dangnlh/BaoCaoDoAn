@@ -5,7 +5,7 @@
 <!-- MENU BAR -->
 <div class="menubar">
 	<div class="dropdown" style="margin-left: 50px;">
-		<a href="<c:url value=""/>" target="_top"><button
+		<a href="<c:url value="/studenthome"/>" target="_top"><button
 				class="dropbtn">
 				<i class="fa fa-home"></i>
 			</button></a>
