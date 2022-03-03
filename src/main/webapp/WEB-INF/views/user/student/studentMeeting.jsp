@@ -57,9 +57,15 @@
 									<td><a class="nav-link"
 										href="${scheduleMeeting.link_meeting}" target="_blank">Meeting
 											Url</a></td>
-									<td><a class="btn btn-primary"
-										href="${pageContext.request.contextPath}/uploadMeeting/${scheduleMeeting.id}"
-										role="button">Upload</a></td>
+									<td><c:if test="${scheduleMeeting.up == 1}">
+											<a class="btn btn-primary"
+												href="${pageContext.request.contextPath}/uploadMeeting/${scheduleMeeting.id}"
+												role="button">Edit</a>
+										</c:if> <c:if test="${scheduleMeeting.up == 0}">
+											<a class="btn btn-primary"
+												href="${pageContext.request.contextPath}/uploadMeeting/${scheduleMeeting.id}"
+												role="button">Upload</a>
+										</c:if></td>
 								</tr>
 								<c:set var="count" value="${count + 1}" scope="page" />
 							</c:forEach>

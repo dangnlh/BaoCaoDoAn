@@ -1,9 +1,14 @@
 package BaoCaoDoAn.Controller;
 
+import java.awt.datatransfer.StringSelection;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,6 +36,7 @@ import BaoCaoDoAn.Entity.ScheduleMeeting;
 import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ProjectServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ScheduleMeetingServiceImpl;
+import jdk.internal.joptsimple.internal.Strings;
 
 @Controller
 public class ScheduleMeetingController {
@@ -140,11 +146,11 @@ public class ScheduleMeetingController {
 	@RequestMapping(value = "/studentMeeting")
 	public ModelAndView viewStudentMeeting(@ModelAttribute("message") String message, HttpSession session) {
 		String path = session.getServletContext().getRealPath("/meetingContent");
-		System.out.println("REAL PATH:"+path);
+		System.out.println("REAL PATH:" + path);
 		Account student = (Account) session.getAttribute("InforAccount");
 		Group group = groupService.getGroupByAccountId(student.getId());
 		Project projectOfGroup = projectService.getProjectByGroupId(group.getId());
-		
+
 		List<ScheduleMeeting> listScheduleMeeting = scheduleMeetingServiceImpl
 				.GetScheduleMeetingByProjectId(projectOfGroup.getId());
 //		for(ScheduleMeeting s:listScheduleMeeting) {
@@ -160,19 +166,43 @@ public class ScheduleMeetingController {
 	@RequestMapping(value = "/savefile", method = RequestMethod.POST)
 	public String upload(@RequestParam CommonsMultipartFile file, HttpServletRequest request,
 			RedirectAttributes redirAttr, HttpSession session) {
+		String message = "";
 		String scheduleId = request.getParameter("scheduleMeetingId");
-		
 		Account student = (Account) session.getAttribute("InforAccount");
 		boolean studentAuthority = student.getIsLeader();
 		String path = session.getServletContext().getRealPath("/meetingContent");
 		String filename = file.getOriginalFilename();
 		String extendtionOfFile = FilenameUtils.getExtension(filename);
 		System.out.println(path);
-		if (studentAuthority == true) {
+		ScheduleMeeting scheduleMeeting = scheduleMeetingServiceImpl
+				.getScheduleMeetingByID(Integer.parseInt(scheduleId));
+		boolean dateCheck = true;
+		if (scheduleMeeting.getUp() == 1) {
+			Date submitedDate = new Date(scheduleMeeting.getSubmitDate().getTime());
+			String[] timeLine = scheduleMeeting.getSubmitTime().split(":");
+			Calendar calendarT = Calendar.getInstance();
+			calendarT.setTime(submitedDate);
+			calendarT.add(Calendar.HOUR_OF_DAY, Integer.parseInt(timeLine[0]));
+			calendarT.add(Calendar.MINUTE, Integer.parseInt(timeLine[1]));
+			submitedDate = calendarT.getTime();
+			Date now = new Date();
+			int nowThanSubmitDate = now.compareTo(submitedDate);
+			if (nowThanSubmitDate > 0) {
+				long difference = now.getTime() - submitedDate.getTime();
+				long differenceInDay = TimeUnit.MILLISECONDS.toDays(difference);
+				long differenceInMinutes = TimeUnit.MILLISECONDS.toMinutes(difference);
+				if (differenceInMinutes > 15 || differenceInDay > 1) {
+					message = "Out of date to edit file";
+					dateCheck = false;
+				}
+			}
+
+		}
+
+		if (studentAuthority == true && dateCheck == true) {
 			if (extendtionOfFile.equals("doc") || extendtionOfFile.equals("docx") || extendtionOfFile.equals("txt")
 					|| extendtionOfFile.equals("wpd") || extendtionOfFile.equals("odt")
 					|| extendtionOfFile.equals("pdf")) {
-				System.out.println("VALID TYPE");
 				try {
 					byte barr[] = file.getBytes();
 					System.out.println("VALID TYPE");
@@ -180,8 +210,7 @@ public class ScheduleMeetingController {
 					bout.write(barr);
 					bout.flush();
 					bout.close();
-					redirAttr.addFlashAttribute("message",
-							"You successfully uploaded '" + file.getOriginalFilename() + "'");					
+					message = "You successfully uploaded '" + file.getOriginalFilename();
 					System.out.println("Schedule ID:" + scheduleId);
 					// Save file in to DB
 					ScheduleMeeting scheduleToSave = new ScheduleMeeting();
@@ -194,22 +223,72 @@ public class ScheduleMeetingController {
 				}
 
 			} else {
-				redirAttr.addFlashAttribute("message", "File Type Not Valid");
+				message = "File Type Not Valid";
 				System.out.println("Not valid");
 			}
-		} else {
-			redirAttr.addFlashAttribute("message", "You dont have authority to upload, just leader!");
+		} else if (studentAuthority == false) {
+			message = "You dont have authority to upload, just leader!";
 			System.out.println("Not author");
 		}
-
-		return "redirect:/uploadMeeting/"+scheduleId;
+		redirAttr.addFlashAttribute("message", message);
+		return "redirect:/uploadMeeting/" + scheduleId;
 	}
 
 	@RequestMapping("/uploadMeeting/{schedule_id}")
 	public ModelAndView showUploadPage(@PathVariable int schedule_id, @ModelAttribute("message") String message) {
 		mv.setViewName("/user/student/uploadFile");
-		
 		mv.addObject("scheduleId", schedule_id);
+		// check upload yet!
+		ScheduleMeeting scheduleMeeting = scheduleMeetingServiceImpl.getScheduleMeetingByID(schedule_id);
+		String uploadMessage = "";
+		Date now = new Date();
+		Date meetingDate = new Date(scheduleMeeting.getTimeMeeting().getTime());
+		String[] timeLineMeeting = scheduleMeeting.getTime().split(":");
+		Calendar calendarM = Calendar.getInstance();
+		calendarM.setTime(meetingDate);
+		calendarM.add(Calendar.HOUR_OF_DAY, Integer.parseInt(timeLineMeeting[0]));
+		calendarM.add(Calendar.MINUTE, Integer.parseInt(timeLineMeeting[1]));
+		meetingDate = calendarM.getTime();
+
+		int nowThanMeetingDate = now.compareTo(meetingDate);
+
+		if (nowThanMeetingDate < 0) {
+			uploadMessage = "Cannot upload file because date have not arrived!";
+		} else {
+			System.out.println("scheduleMeeting.getContent():" + scheduleMeeting.getContent());
+			String contentOfFile = scheduleMeeting.getContent();
+			contentOfFile = Optional.ofNullable(contentOfFile).orElse("");
+			if (!contentOfFile.isEmpty()) {
+				mv.addObject("filename", contentOfFile);
+				uploadMessage = "You submitted a file:";
+				// check for edit upload filed afer upload
+
+				Date submitedDate = new Date(scheduleMeeting.getSubmitDate().getTime());
+				String[] timeLine = scheduleMeeting.getSubmitTime().split(":");
+				Calendar calendarT = Calendar.getInstance();
+				calendarT.setTime(submitedDate);
+				calendarT.add(Calendar.HOUR_OF_DAY, Integer.parseInt(timeLine[0]));
+				calendarT.add(Calendar.MINUTE, Integer.parseInt(timeLine[1]));
+				submitedDate = calendarT.getTime();
+
+				// compare date for prepare to compare time
+
+				int nowThanSubmitDate = now.compareTo(submitedDate);
+				if (nowThanSubmitDate > 0) {
+					long difference = now.getTime() - submitedDate.getTime();
+					long differenceInDay = TimeUnit.MILLISECONDS.toDays(difference);
+					long differenceInMinutes = TimeUnit.MILLISECONDS.toMinutes(difference);
+					if (differenceInMinutes > 15 || differenceInDay > 1) {
+						uploadMessage = "Over to update the file:";
+					} else {
+						uploadMessage = "You upload a file:";
+					}
+				}
+
+			}
+		}
+		System.out.println("MESSAGE:" + uploadMessage);
+		mv.addObject("upload_message", uploadMessage);
 		return mv;
 	}
 }

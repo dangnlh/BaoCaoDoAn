@@ -40,5 +40,7 @@ public class ScheduleMeetingServiceImpl implements IScheduleMeetingService {
 		scheduleMeetingDAO.saveFileMeetingContentFileName(scheduleMeeting.getContent(), scheduleMeeting.getId());
 		return true;
 	}
-
+	public ScheduleMeeting getScheduleMeetingByID(int id) {
+		return scheduleMeetingDAO.GetScheduleMeetingByID(id);
+	}
 }

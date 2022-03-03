@@ -44,7 +44,9 @@
 							type="file" name="file" id="formFile">
 						<button style="margin-top: 3em;" type="submit"
 							class="btn btn-secondary btn-lg">Upload</button>
-						<p>You submitted a file</p>
+						<p>${upload_message}
+							<a href="<c:url value="/meeting_stogare/${filename}"/>" download>${filename}</a>
+						</p>
 					</form>
 				</div>
 			</div>
