@@ -35,10 +35,10 @@
 		<div class="content-wrapper">
 			<div class="row">
 				<div class="col-lg-12 grid-margin stretch-card">
-					<table class="table table-striped table-dark">
+					<table class="table table-striped ">
 						<thead>
 							<tr>
-								<th scope="col">#</th>
+								<!-- <th scope="col">#</th> -->
 								<th scope="col">Name Meeting</th>
 								<th scope="col">Date Meeting</th>
 								<th scope="col">Time Meeting</th>
@@ -50,7 +50,7 @@
 							<c:set var="count" value="1" scope="page" />
 							<c:forEach var="scheduleMeeting" items="${scheduleMeetingList}">
 								<tr>
-									<th scope="row">${count}</th>
+									<!--	<th scope="row">${count}</th>-->
 									<td>${scheduleMeeting.name }</td>
 									<td>${scheduleMeeting.timeMeeting }</td>
 									<td>${scheduleMeeting.time }</td>

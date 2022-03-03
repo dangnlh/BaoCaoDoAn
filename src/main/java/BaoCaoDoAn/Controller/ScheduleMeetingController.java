@@ -36,7 +36,7 @@ import BaoCaoDoAn.Entity.ScheduleMeeting;
 import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ProjectServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ScheduleMeetingServiceImpl;
-import jdk.internal.joptsimple.internal.Strings;
+
 
 @Controller
 public class ScheduleMeetingController {
@@ -285,6 +285,8 @@ public class ScheduleMeetingController {
 					}
 				}
 
+			}else {
+				mv.addObject("filename", "");
 			}
 		}
 		System.out.println("MESSAGE:" + uploadMessage);
