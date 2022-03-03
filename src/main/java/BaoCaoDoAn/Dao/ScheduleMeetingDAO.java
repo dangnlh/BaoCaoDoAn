@@ -1,6 +1,8 @@
 package BaoCaoDoAn.Dao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,7 +93,16 @@ public class ScheduleMeetingDAO {
 	}
 
 	public void saveFileMeetingContentFileName(String fileName, Integer schMeetingId) {
-		String sql = "UPDATE `baocaodoan`.`schedulemeeting` SET `content` = ? WHERE (`id` = ?);";
-		jdbcTemplate.update(sql, new Object[] { fileName, schMeetingId });
+		Date dateSubmit = new Date();
+		String formatSubmitDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(dateSubmit);
+		String sql = "UPDATE `baocaodoan`.`schedulemeeting` SET `content` = ?,`date_submit`= ?  WHERE (`id` = ?);";
+		jdbcTemplate.update(sql, new Object[] { fileName, formatSubmitDate, schMeetingId });
+	}
+
+	public ScheduleMeeting GetScheduleMeetingByID(int id) {
+
+		String sql = "SELECT * FROM schedulemeeting where id = " + id;
+		ScheduleMeeting result = jdbcTemplate.queryForObject(sql, new MapperScheduleMeeting());
+		return result;
 	}
 }

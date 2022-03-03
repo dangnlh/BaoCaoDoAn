@@ -2,6 +2,7 @@ package BaoCaoDoAn.Entity;
 
 import java.sql.Date;
 import java.time.LocalTime;
+import java.util.Optional;
 
 public class ScheduleMeeting {
 	private int id;
@@ -15,6 +16,7 @@ public class ScheduleMeeting {
 	private Date submitDate;
 	private String submitTime;
 	private String messageForSubmitting;
+	private int up;
 
 	public String getMessageForSubmitting() {
 		java.util.Date date = new java.util.Date();
@@ -116,6 +118,18 @@ public class ScheduleMeeting {
 
 	public ScheduleMeeting() {
 		super();
+	}
+
+	public int getUp() {
+		if (Optional.ofNullable(getContent()).orElse("").isEmpty()) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
+	public void setUp(int up) {
+		up = up;
 	}
 
 }
