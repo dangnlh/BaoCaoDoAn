@@ -37,4 +37,10 @@
 
 		</div>
 	</div>
+	<style>
+	.table thead th {
+ 
+    font-size: 1.3rem!important;
+}
+	</style>
 <!-- -----------------END OF HEADER-------------------- -->

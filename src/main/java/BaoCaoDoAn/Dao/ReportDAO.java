@@ -76,5 +76,18 @@ public class ReportDAO {
 		int result = jdbcTemplate.update(sql);
 		return result;
 	}
+	public void saveFileReportFile(String fileName, Integer reportId) {
+		String sql = "UPDATE `baocaodoan`.`report` SET `urlReport` = ? WHERE (`id` = ?);";
+		jdbcTemplate.update(sql, new Object[] { fileName, reportId });
+	}
+	
+	public List<Report> getTimeSubmitReport(int group_id , int porject_id) {
+		List<Report> list = new ArrayList<Report>();
+		String sql = "SELECT * FROM baocaodoan.project as p,"
+				+ "baocaodoan.report as r where p.group_id = "+group_id+" and p.id = "+porject_id+" ";
+	 list = jdbcTemplate.query(sql, new MapperReport());
+	 return list ;
+	}
+	
 
 }

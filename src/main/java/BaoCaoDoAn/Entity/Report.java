@@ -100,7 +100,7 @@ public class Report {
 	}
 
 	public String getUrlReport() {
-		return urlReport;
+		return urlReport.trim();
 	}
 
 	public void setUrlReport(String urlReport) {
@@ -135,5 +135,8 @@ public class Report {
 	public void setConvertedStatus(String convertedStatus) {
 		this.convertedStatus = convertedStatus;
 	}
+
+
+
 
 }

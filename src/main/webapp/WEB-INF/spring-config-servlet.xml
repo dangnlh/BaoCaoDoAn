@@ -27,8 +27,8 @@
 			value="com.mysql.jdbc.Driver"></property>
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/baocaodoan?zeroDateTimeBehavior=convertToNull"></property>
-		<property name="username" value="hbstudent"></property>
-		<property name="password" value="hbstudent"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
 	</bean>
 
 	<bean id="jdbcTemplate"
@@ -39,10 +39,14 @@
 
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/assets/**" location="/assets/" />
+	<mvc:resources mapping="/report_stogare/**" location="/ReportFile/" />
+	<mvc:resources mapping="/meeting_stogare/**" location="/meetingContent/" />
 	<!-- Load custom message resource -->
-	
+
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames" value="resources/messages" />
 	</bean>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 </beans>

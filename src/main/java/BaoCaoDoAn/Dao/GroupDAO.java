@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import BaoCaoDoAn.Dto.group_Account;
+import BaoCaoDoAn.Dto.group_AccountMapper;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.MapperAccount;
@@ -39,10 +41,16 @@ public class GroupDAO {
 		 list = _jdbcTemplate.query(sql, new MapperGroup());
 		return list;
 	}
-	public List<Account> getStudentInGroupCach2(int teacher_id){
+	public List<Account> getStudentInGroupCach2(int group_id){
 		List<Account> list = new ArrayList<Account>();
-		String sql = "SELECT * FROM account AS ac ,  baocaodoan.group AS grs , project AS pr WHERE grs.id = pr.group_id AND ac.group_id = pr.group_id AND pr.teacher_id  = " + teacher_id ;
+		String sql = "SELECT * FROM baocaodoan.group AS grs, account AS ac , project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.group_id ="+ group_id ;
 		 list = _jdbcTemplate.query(sql, new MapperAccount());
+		return list;
+	}
+	public List<Group> getStudentInGroupCach3(int group_id){
+		List<Group> list = new ArrayList<Group>();
+		String sql = "SELECT * FROM baocaodoan.group AS grs, account AS ac , project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.group_id ="+ group_id ;
+		 list = _jdbcTemplate.query(sql, new MapperGroup());
 		return list;
 	}
 	public List<Account> GetGroup(int id) {
@@ -96,7 +104,7 @@ public class GroupDAO {
 	}
 
 	public Group getGroupByProjectId(int projectId) {
-		String sql = "SELECT g.id,g.name\r\n" + "FROM `group` as g,project as p \r\n"
+		String sql = "SELECT g.id,g.group_name\r\n" + "FROM `group` as g,project as p \r\n"
 				+ "WHERE  g.id=p.group_id AND p.id=" + projectId;
 		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
 		return result;

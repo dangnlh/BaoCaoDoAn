@@ -99,6 +99,7 @@ public class ScheduleReportController {
 		List<ScheduleReport> scheduleReportList = scheduleReportService.getScheduleReportBygroupId(student.getGroup_id());
 		for(ScheduleReport sch:scheduleReportList) {
 			Report reportOfSchedule = reportService.getReport(sch.getReport_id());
+		
 			sch.setReport(reportOfSchedule);
 		}
 		mv.addObject("StudentScheduleReports",scheduleReportList);
@@ -106,5 +107,6 @@ public class ScheduleReportController {
 		return mv;
 	}
 	
+
 
 }

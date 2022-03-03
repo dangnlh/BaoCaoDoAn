@@ -58,8 +58,9 @@
 														<td>${report.name }</td>
 
 														<td>${report.timeSubmit}</td>
-														<a href='<c:url value="${report.reportUrl}"/>' download>Download
-															Report</a>
+														<td><a
+															href='<c:url value="/report_stogare/${report.urlReport}"/>'
+															download>Download Report</a></td>
 														<th>${report.point}</th>
 														<td>${group.name}</td>
 														<td>${report.convertedStatus}</td>
