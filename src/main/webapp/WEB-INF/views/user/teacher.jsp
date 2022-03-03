@@ -6,17 +6,16 @@
   <%@include file="/WEB-INF/views/user/student/linkHeader.jsp" %>
 <body>
 
-  <div class="container-scroller" style="margin-top: -75px;">
 
 
-  <%@include file="/WEB-INF/views/user/student/header.jsp" %>
-
-
-
-    <div class="container-fluid page-body-wrapper">
-    
-
-        <%@include file="/WEB-INF/views/user/teacher/sidebar.jsp" %>
+<div class="header">
+		<!-- -----------------HEADER-------------------- -->
+		<%@include file="/WEB-INF/views/user/teacher/header.jsp"%>
+		<!-- -----------------END OF HEADER-------------------- -->
+		<!-- -----------------MENU BAR-------------------- -->
+		<%@include file="/WEB-INF/views/user/teacher/menubar.jsp"%>
+		<!-- -----------------END OF MENU BAR-------------------- -->
+	</div>
     
     
 
@@ -65,14 +64,9 @@
 
 				</div>
 
-         <%@include file="/WEB-INF/views/user/teacher/Footer.jsp" %>
-      
+        
+      <%@include file="/WEB-INF/views/user/teacher/footer.jsp" %>
       </div>
-     
-    </div>
-    
-  </div>
-
  
 </body>
 
