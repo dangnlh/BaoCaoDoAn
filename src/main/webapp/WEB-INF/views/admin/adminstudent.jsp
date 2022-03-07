@@ -10,14 +10,12 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Schedule Report</title>
+<title>Project Page</title>
 <!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
-<!-- Custom styles for this template-->
 </head>
 
 <body id="page-top">
-
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -29,17 +27,18 @@
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
 			<div id="content">
-				<!-- Topbar -->
+
+				<!-- Header -->
 				<%@include file="/WEB-INF/views/admin/header.jsp"%>
-				<!-- End of Topbar -->
+				<!-- End of Header -->
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
+				<h1>KIET</h1>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Schedule
-								Report Detail</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Student List</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -47,32 +46,41 @@
 									cellspacing="0">
 									<thead>
 										<tr>
-											<th>Code</th>
-											<th>Time Created</th>
-											<th>Code Report</th>
+											<th>.NO</th>
+											<th>ID</th>
+											<th>Name</th>
+											<th>Mail</th>
+											<th>Role</th>
+											<th>GroupID</th>
 											<th>Action</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
-											<th>Code</th>
-											<th>Time Created</th>
-											<th>Code Report</th>
+											<th>.NO</th>
+											<th>ID</th>
+											<th>Name</th>
+											<th>Mail</th>
+											<th>Role</th>
+											<th>GroupID</th>
 											<th>Action</th>
 										</tr>
 									</tfoot>
 									<tbody>
-										<c:forEach var="item" items="${ getAllScheduleReport }">
+										<c:forEach var="item" items="${ group3 }" varStatus="counter">
+											<c:if test="${not empty item }" />
 											<tr>
+												<td>${counter.index + 1 }</td>
 												<td>${ item.id }</td>
-												<td>${ item.timeReport }</td>
-												<td>${ item.report_id }</td>
-												<td><a href='#'
-													class="btn btn-success btn-circle btn-sm"> <i
-														class="fas fa-check"></i>
-												</a> <a
-													href='<c:url value="/deleteScheduleReport/${ item.id }"/>'
-													class="btn btn-danger btn-circle btn-sm"> <i
+												<td>${ item.name }</td>
+												<td>${ item.mail }</td>
+												<td>${ item.role }</td>
+												<td>${ item.group_id }</td>
+												<td><a href=''
+													<c:url value="/editAccount?id=${item.id}"></c:url>'
+													class="btn btn-success btn-circle btn-sm">
+														<i class="fas fa-check"></i>
+												</a> <a href='' class="btn btn-danger btn-circle btn-sm"> <i
 														class="fas fa-trash"></i>
 												</a></td>
 											</tr>
@@ -85,78 +93,18 @@
 
 				</div>
 				<!-- /.container-fluid -->
-
-				<div class="container-fluid">
-					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Report Detail</h6>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<thead>
-										<tr>
-											<th>Code</th>
-											<th>Name</th>
-											<th>Point</th>
-											<th>Comment</th>
-											<th>Time Create</th>
-											<th>Time Submit</th>
-											<th>Code Project</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<th>Code</th>
-											<th>Name</th>
-											<th>Point</th>
-											<th>Comment</th>
-											<th>Time Create</th>
-											<th>Time Submit</th>
-											<th>Code Project</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
-									<tbody>
-										<c:forEach var="item" items="${ getAllReport }">
-											<tr>
-												<td>${ item.id }</td>
-												<td>${ item.name }</td>
-												<td></td>
-												<td></td>
-												<td>${ item.timeCreate }</td>
-												<td>${ item.timeSubmit }</td>
-												<td>${ item.project_id  }</td>
-												<td><a href='<c:url value="/editReport/${ item.id }"></c:url>'
-													class="btn btn-success btn-circle btn-sm"> <i
-														class="fas fa-check"></i>
-												</a> <a
-													href='<c:url value="/deleteReport/${ item.id }"/>'
-													class="btn btn-danger btn-circle btn-sm"> <i
-														class="fas fa-trash"></i>
-												</a></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
 			</div>
 			<!-- End of Main Content -->
 
 			<!-- Footer -->
 			<%@include file="/WEB-INF/views/admin/footer.jsp"%>
 			<!-- End of Footer -->
+
 		</div>
+		<!-- End of Content Wrapper -->
 	</div>
-	
+	<!-- End of Page Wrapper -->
+
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
