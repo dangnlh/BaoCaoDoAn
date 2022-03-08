@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
 
+import java.lang.annotation.Repeatable;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
@@ -70,7 +71,7 @@ public class AccountController {
 			mv.addObject("statusLogin" , "login thanh cong");
 
 		}if(acc != null && acc.getRole().equals("admin")) {			
-			mv.setViewName("/admin/admin2");					
+			mv.setViewName("/admin/admin");					
 			mv.addObject("statusLogin" , "login thanh cong");
 
 		}
@@ -103,6 +104,18 @@ public class AccountController {
 		mv.setViewName("/registrationpage");
 		return mv;
 		
+	}
+	@RequestMapping(value = "/logout")
+	public ModelAndView LogOut() {
+		mv.setViewName("/loginpage");
+		mv.addObject("statusLogin"," ");
+		return mv;
+	}
+	@RequestMapping(value = "/studenthome")
+	public ModelAndView StudentHome() {
+		mv.setViewName("/user/student");
+		
+		return mv;
 	}
 
 //	@Autowired
