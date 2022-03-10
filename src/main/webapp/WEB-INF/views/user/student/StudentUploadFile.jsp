@@ -53,7 +53,8 @@
 						<form action="${pageContext.request.contextPath}/saveReportFile"
 							method="post" style="text-align: center;"
 							enctype="multipart/form-data">
-							<input type="hidden" name="ReportId" value="${ReportId}" /> <input
+							<input type="hidden" name="ReportId" value="${ReportId}" /> 
+							<input
 								style="line-height: 1 !important" class="form-control"
 								type="file" name="file" id="formFile">
 							<button style="margin-top: 3em;" type="submit"
