@@ -3,14 +3,17 @@ package BaoCaoDoAn.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import BaoCaoDoAn.Dao.ScheduleReportDAO;
@@ -106,7 +109,40 @@ public class ScheduleReportController {
 		mv.setViewName("user/student/studentScheduleReport");
 		return mv;
 	}
-	
+	@RequestMapping(value = "/editScheduleReport", method = RequestMethod.GET)
+	public ModelAndView editAdmin(HttpServletRequest request) {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		ScheduleReport scheduleReport = scheduleReportService.getScheduleReport(id) ;
+
+		ModelAndView model = new ModelAndView("/user/ScheduleReportFrom");
+
+		model.addObject("ScheduleReportUpdateAndInsert", scheduleReport);
+
+		return model;
+	}
+
+
+
+	@RequestMapping(value = "/addScheduleReport", method = RequestMethod.GET)
+	public String doGetAddUser(Model model) {
+		if (!model.containsAttribute("ScheduleReportUpdateAndInsert")) {
+			model.addAttribute("ScheduleReportUpdateAndInsert", new ScheduleReport());
+		}
+		return "/user/ScheduleReportFrom";
+	}
+
+	@RequestMapping(value = "/addScheduleReport", method = RequestMethod.POST)
+	public String doPostAddUser(@ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport, BindingResult result) {
+		
+		if (ScheduleReport.getId() > 0) {
+			scheduleReportService.updateScheduleRepot(ScheduleReport);
+		}else{
+			scheduleReportService.InsertScheduleRepot(ScheduleReport);
+		}
+
+		return "redirect:/ScheduleReport";
+		
+	}
 
 
 }

@@ -98,9 +98,9 @@ public class ScheduleMeetingController {
 
 		if (list != null) {
 			mv.setViewName("/user/Meeting");
-			mv.addObject("ScheduleMeeting3", scheduleMeetingServiceImpl.getMeetingByScheduleMeetingID(id));
+			mv.addObject("ScheduleMeeting2", scheduleMeetingServiceImpl.getMeetingByScheduleMeetingID(id));
 		} else {
-			mv.addObject("ScheduleMeeting3", "that bai");
+			mv.addObject("ScheduleMeeting2", "that bai");
 		}
 
 		return mv;
@@ -127,20 +127,20 @@ public class ScheduleMeetingController {
 	@RequestMapping(value = "/editScheduleMeeting", method = RequestMethod.GET)
 	public ModelAndView editAdmin(HttpServletRequest request) {
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		ScheduleMeeting admin = scheduleMeetingDAO.get(id);
+		ScheduleMeeting ScheduleMeeting = scheduleMeetingDAO.get(id);
 
 		ModelAndView model = new ModelAndView("/user/ScheduleMeetingFrom");
 
-		model.addObject("ScheduleMeeting2", admin);
+		model.addObject("ScheduleMeeting2", ScheduleMeeting);
 
 		return model;
 	}
 
 	@RequestMapping(value = "/deleteScheduleMeeting", method = RequestMethod.GET)
-	public ModelAndView deleteAdmin(@RequestParam Integer id) {
+	public String deleteAdmin(@RequestParam Integer id) {
 		scheduleMeetingServiceImpl.deleteADMIN(id);
 
-		return new ModelAndView("redirect:/ScheduleMeeting");
+		return "redirect:/ScheduleMeeting";
 	}
 
 	@RequestMapping(value = "/studentMeeting")

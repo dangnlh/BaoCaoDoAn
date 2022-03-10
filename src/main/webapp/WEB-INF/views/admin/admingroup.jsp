@@ -206,8 +206,8 @@
 
 						
 <div class="container">
-		<h1>KIET</h1>
-	<a href="AddGroup">Add Group</a>
+		
+	
 	<c:forEach var="items" items="${ group4 }" varStatus="counter">
 		<c:if test="${not empty items }" />
 
@@ -238,7 +238,8 @@
 		</table>
 	
 	</c:forEach>
-	<h1 align="center">List Student</h1>
+	<a href="AddGroup">Add Group</a>
+<%-- 	<h1 align="center">List Student</h1>
 	<c:forEach var="item" items="${ group3 }" varStatus="counter">
 		
 		<c:if test="${not empty item }" />
@@ -498,7 +499,7 @@
 			<!-- End of Content Wrapper -->
 
 		</div>
-		<!-- End of Page Wrapper -->
+		<!-- End of Page Wrapper --> --%>
 
 		<!-- Scroll to Top Button-->
 		<a class="scroll-to-top rounded" href="#page-top"> <i

@@ -25,6 +25,10 @@
 	<br/><br/>
 		Project_ID: <form:input path="project_id"/> <form:errors path="project_id" cssClass="error"/> <br/><br/>
 		Account_id: <form:input path="account_id"/> <form:errors path="account_id" cssClass="error"/> <br/><br/>
+		Name SheduleMeeting <form:input path="name"/> <form:errors path="name" cssClass="error"/> <br/><br/>
+		Link Meeting <form:input path="link_meeting"/> <form:errors path="link_meeting" cssClass="error"/> <br/><br/>
+		Content <form:input path="content"/> <form:errors path="content" cssClass="error"/> <br/><br/>
+		Date Submit <form:input path="submitDate" type="date" class="form-control mb-2 mr-sm-2" value="2022-06-01" />
  		<button type="submit">Submit</button>		
  	</form:form>
 	</div>

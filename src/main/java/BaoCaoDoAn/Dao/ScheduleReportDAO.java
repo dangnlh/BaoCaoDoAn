@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import BaoCaoDoAn.Entity.Group;
+import BaoCaoDoAn.Entity.MapperScheduleMeeting;
 import BaoCaoDoAn.Entity.MapperScheduleReport;
 import BaoCaoDoAn.Entity.Report;
+import BaoCaoDoAn.Entity.ScheduleMeeting;
 import BaoCaoDoAn.Entity.ScheduleReport;
 
 @Repository
@@ -88,5 +91,33 @@ public class ScheduleReportDAO {
 				+ "order by timeReport;";
 		list = jdbcTemplate.query(sql, new MapperScheduleReport());
 		return list;
+	}
+	public int InsertScheduleRepot(ScheduleReport scheduleReport) {
+		String sql = "INSERT INTO schedulereport (id, `timeReport`,account_id,report_id,date_submit) VALUES (?,?,?,?,?)";
+		int count = jdbcTemplate.update(sql, new Object[] { scheduleReport.getId(), scheduleReport.getTimeReport(),scheduleReport.getAccount_id(),scheduleReport.getReport_id(),scheduleReport.getDateSubmit() });
+		return count;
+	}
+
+	public int updateScheduleRepot(ScheduleReport scheduleReport) {
+		String sql = "UPDATE schedulereport SET timeReport=? , account_id=? , report_id=? , date_submit=? WHERE id=?";
+		int count = jdbcTemplate.update(sql, scheduleReport.getTimeReport(),scheduleReport.getAccount_id(),scheduleReport.getReport_id(),scheduleReport.getDateSubmit(),scheduleReport.getId());
+		return count;
+	}
+	public ScheduleReport getScheduleReport(int id) {
+		String sql = "SELECT * FROM schedulereport WHERE id=" + id;
+		ScheduleReport result = jdbcTemplate.queryForObject(sql, new MapperScheduleReport());
+		return result;
+	}
+	public void updateAndSave(ScheduleReport scheduleReport) {
+		if (scheduleReport.getId() > 0) {
+			String sql = "UPDATE schedulereport SET timeReport= '?' , account_id=? , report_id=? , date_submit= '?' WHERE id=?";
+			jdbcTemplate.update(sql, scheduleReport.getTimeReport(),scheduleReport.getAccount_id(),scheduleReport.getReport_id(),scheduleReport.getDateSubmit(),scheduleReport.getId());
+
+		} else {
+			String sql = "INSERT INTO schedulereport (id, timeReport,account_id,report_id,date_submit) VALUES (?,?,?,?,?)";
+			jdbcTemplate.update(sql, scheduleReport.getTimeReport(),scheduleReport.getAccount_id(),scheduleReport.getReport_id(),scheduleReport.getDateSubmit(),scheduleReport.getId());
+			
+		}
+
 	}
 }

@@ -51,4 +51,31 @@ public List<ScheduleReport> getScheduleReportBygroupId(int groupId) {
 	return scheduleReportDAO.getScheduleReportBygroupId(groupId);
 }
 
+
+
+public int InsertScheduleRepot(ScheduleReport scheduleReport) {
+	// TODO Auto-generated method stub
+	return scheduleReportDAO.InsertScheduleRepot(scheduleReport);
+}
+
+
+
+public int updateScheduleRepot(ScheduleReport scheduleReport) {
+	return scheduleReportDAO.updateScheduleRepot(scheduleReport);
+
+}
+
+
+
+public ScheduleReport getScheduleReport(int id) {
+	// TODO Auto-generated method stub
+	return scheduleReportDAO.getScheduleReport(id);
+}
+
+
+
+public void updateAndSave(ScheduleReport scheduleReport) {
+	// TODO Auto-generated method stub
+	scheduleReportDAO.updateAndSave(scheduleReport);
+}
 }
