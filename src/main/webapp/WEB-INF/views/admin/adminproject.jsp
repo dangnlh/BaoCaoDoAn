@@ -31,6 +31,9 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
+							<a class="nav-link" href='<c:url value="/addProject"/>'>
+									<i class="fa fa-plus-square"></i> <span>Add new project</span>
+								</a></br>
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
 									<thead>
@@ -60,18 +63,27 @@
 												<td>${ item.group_name  }</td>
 												<td>${ item.teacherId }-${ item.account_name }</td>
 												<td><a
+
 													href='<c:url value="/editProject/${ item.id }"/>'
 													class="btn btn-success">Edit</a> <a
+
+													href='<c:url value="/editProject?id=${ item.id }"/>'
+													class="btn btn-success btn-circle btn-sm"> <i
+														class="fas fa-edit"></i></a> <a
+
 													href='<c:url value="/deleteProject/${ item.id }"/>'
-													class="btn btn-danger">Delete</a></td>
+													class="btn btn-danger btn-circle btn-sm"> <i
+														class="fas fa-trash"></i>
+												</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 
 
 								</table>
-								<a href='<c:url value="/addProject"/>' class="btn btn-success">Add
-									Project</a>
+								<!-- nút add cũ (màu xanh lá) -->
+								<%-- <a href='<c:url value="/addProject"/>' class="btn btn-success">Add
+									Project</a> --%>
 							</div>
 						</div>
 					</div>

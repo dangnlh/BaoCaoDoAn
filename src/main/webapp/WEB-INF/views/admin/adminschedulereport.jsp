@@ -41,7 +41,10 @@
 							<h6 class="m-0 font-weight-bold text-primary">Schedule
 								Report Detail</h6>
 						</div>
-						<a href="addScheduleReport">ADD</a>
+						</br>
+						<a class="nav-link" href='<c:url value="addScheduleReport"></c:url>'>
+									<i class="fa fa-plus-square"></i> <span>Add new schedule</span>
+								</a>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%"
@@ -74,21 +77,16 @@
 												<td>${ item.account_id }</td>
 												<td>${ item.report_id }</td>
 												<td>${ item.dateSubmit }</td>
-												
-												<td>
-												
-												
-												<a class="btn btn-success" href='<c:url value="/editScheduleReport?id=${ item.id }"></c:url>'>Edit</a>
-						
-				
 
-												
-												 <a
+												<td><a
+													href='<c:url value="/editScheduleReport?id=${ item.id }"></c:url>'
+													class="btn btn-success btn-circle btn-sm"> <i
+														class="fas fa-edit"></i></a> 
+														<a
 													href='<c:url value="/deleteScheduleReport/${ item.id }"/>'
 													class="btn btn-danger btn-circle btn-sm"> <i
 														class="fas fa-trash"></i>
-												</a>
-												</td>
+												</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -144,11 +142,11 @@
 												<td>${ item.timeCreate }</td>
 												<td>${ item.timeSubmit }</td>
 												<td>${ item.project_id  }</td>
-												<td><a href='<c:url value="/editReport/${ item.id }"></c:url>'
+												<td><a
+													href='<c:url value="/editReport/${ item.id }"></c:url>'
 													class="btn btn-success btn-circle btn-sm"> <i
-														class="fas fa-check"></i>
-												</a> <a
-													href='<c:url value="/deleteReport/${ item.id }"/>'
+														class="fas fa-edit"></i>
+												</a> <a href='<c:url value="/deleteReport/${ item.id }"/>'
 													class="btn btn-danger btn-circle btn-sm"> <i
 														class="fas fa-trash"></i>
 												</a></td>
@@ -170,8 +168,8 @@
 			<!-- End of Footer -->
 		</div>
 	</div>
-	
-	
+
+
 
 	<!-- Scripts -->
 	<%@include file="/WEB-INF/views/admin/adminscript.jsp"%>
