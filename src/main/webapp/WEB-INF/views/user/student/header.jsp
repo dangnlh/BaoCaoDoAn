@@ -43,7 +43,7 @@
 							aria-expanded="false"> <span
 								class="mr-2 d-none d-lg-inline text-white large">Account_Name</span>
 								<img class="img-profile rounded-circle"
-								src="/assets/img/undraw_profile.svg">
+								src='<c:url value="/assets/img/undraw_profile.svg" /> '>
 						</a> <!-- Dropdown - User Information -->
 							<div>
 								<a class="dropdown-item" href="<c:url value="/logout"/>"> <i

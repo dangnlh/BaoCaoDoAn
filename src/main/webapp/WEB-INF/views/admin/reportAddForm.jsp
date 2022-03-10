@@ -1,6 +1,28 @@
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Schedule Report</title>
+<!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
+<!-- Custom styles for this template-->
+<style type="text/css">
+.error {
+	color: red;
+	font-size: 1rem;
+}
+</style>
 </head>
+
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -19,63 +41,29 @@
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-
 				<!-- /.container-fluid -->
 
 				<div class="container-fluid">
 					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h4 class="m-0 font-weight-bold text-primary">Project :
-								${getAllProject.size()}</h4>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<thead>
-										<tr>
-											<!--  	<th>Code</th> -->
-											<th>Name</th>
-											<th>URL</th>
-											<th>Time Create</th>
-											<th>Group</th>
-											<th>Group Name</th>
-											<th>Teacher</th>
-											<th></th>
-										</tr>
-									</thead>
-
-
-									<tbody>
-										<c:forEach var="item" items="${ getAllProject }">
-
-											<tr>
-												<!-- 	<td>${ item.id }</td> -->
-
-												<td>${ item.project_name }</td>
-												<td>${ item.urlProject }</td>
-												<td>${ item.createTime }</td>
-												<td>${ item.group_id }</td>
-												<td>${ item.group_name  }</td>
-												<td>${ item.teacherId }-${ item.account_name }</td>
-												<td><a
-													href='<c:url value="/editProject?id=${ item.id }"/>'
-													class="btn btn-success">Edit</a> <a
-													href='<c:url value="/deleteProject/${ item.id }"/>'
-													class="btn btn-danger">Delete</a></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-
-
-								</table>
-								<a href='<c:url value="/addProject"/>' class="btn btn-success">Add
-									Project</a>
-							</div>
-						</div>
-					</div>
-
+					<h2 style="text-align: center;">Creating Report</h2>
+					<form:form action="${pageContext.request.contextPath}/addReport"
+						method="POST" modelAttribute="report">
+						<label>Report Name:</label>
+						<form:input path="name" placeholder="abcdxyz" />
+						<form:errors path="name" cssClass="error" />
+						<br>
+						<label>Deadline Of Report</label>
+						<form:input id="datePicker" path="timeSubmit" type="date" />
+						<span class="error">${dateError}</span>
+						<br>
+						<label>For Project:</label>
+						<form:select path="project_id">
+							<form:options items="${projectList}" itemValue="id"
+								itemLabel="name" />
+						</form:select>
+						<br>
+						<input type="submit" value="Create Report">
+					</form:form>
 				</div>
 
 			</div>
@@ -87,9 +75,6 @@
 		</div>
 	</div>
 
-
-	
-
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -99,7 +84,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">×</span>
+						<span aria-hidden="true">Ã</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready
@@ -112,7 +97,7 @@
 			</div>
 		</div>
 	</div>
-
+<script type="text/javascript">document.getElementById('datePicker').valueAsDate = new Date();</script>]
 	<!-- Bootstrap core JavaScript-->
 	<script src="/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -126,9 +111,9 @@
 	<!-- Page level plugins -->
 	<script src="/assets/vendor/chart.js/Chart.min.js"></script>
 
-	<!-- Scripts -->
-	<%@include file="/WEB-INF/views/admin/adminscript.jsp"%>
-	<!-- End of Scripts -->
+	<!-- Page level custom scripts -->
+	<script src="/assets/js/demo/chart-area-demo.js"></script>
+	<script src="/assets/js/demo/chart-pie-demo.js"></script>
 </body>
 
 </html>

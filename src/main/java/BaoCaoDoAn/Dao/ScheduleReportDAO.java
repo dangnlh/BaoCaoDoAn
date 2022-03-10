@@ -92,6 +92,7 @@ public class ScheduleReportDAO {
 		list = jdbcTemplate.query(sql, new MapperScheduleReport());
 		return list;
 	}
+
 	public int InsertScheduleRepot(ScheduleReport scheduleReport) {
 		String sql = "INSERT INTO schedulereport (id, `timeReport`,account_id,report_id,date_submit) VALUES (?,?,?,?,?)";
 		int count = jdbcTemplate.update(sql, new Object[] { scheduleReport.getId(), scheduleReport.getTimeReport(),scheduleReport.getAccount_id(),scheduleReport.getReport_id(),scheduleReport.getDateSubmit() });
@@ -116,8 +117,13 @@ public class ScheduleReportDAO {
 		} else {
 			String sql = "INSERT INTO schedulereport (id, timeReport,account_id,report_id,date_submit) VALUES (?,?,?,?,?)";
 			jdbcTemplate.update(sql, scheduleReport.getTimeReport(),scheduleReport.getAccount_id(),scheduleReport.getReport_id(),scheduleReport.getDateSubmit(),scheduleReport.getId());
-			
+			}
 		}
+
+	public int DeleteScheduleReportByReportId(int reportId) {
+		String sql = "DELETE FROM schedulereport WHERE report_id = " + reportId + " ";
+		int result = jdbcTemplate.update(sql);
+		return result;
 
 	}
 }

@@ -1,6 +1,5 @@
 package BaoCaoDoAn.Controller;
 
-import java.awt.datatransfer.StringSelection;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -286,6 +285,7 @@ public class ScheduleMeetingController {
 				}
 
 			}else {
+				
 				mv.addObject("filename", "");
 			}
 		}

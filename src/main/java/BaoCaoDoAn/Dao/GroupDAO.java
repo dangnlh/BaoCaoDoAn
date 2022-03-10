@@ -23,30 +23,38 @@ public class GroupDAO {
 		list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
-	public List<Account> getStudentInGroup(int id){
+
+	public List<Account> getStudentInGroup(int id) {
 		List<Account> list = new ArrayList<Account>();
 		String sql = "SELECT * FROM account where role = 'student' AND group_id =" + id;
 		list = _jdbcTemplate.query(sql, new MapperAccount());
-		return list; 
-	}
-	public List<Group> getGroupByProjectAndAccount(int id){
-		List<Group> list = new ArrayList<Group>();
-		String sql = "SELECT * FROM  baocaodoan.group AS grs ,account AS ac ,  project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.teacher_id  = " + id;
-		 list = _jdbcTemplate.query(sql, new MapperGroup());
 		return list;
 	}
-	public List<Account> getStudentInGroupCach2(int group_id){
+
+	public List<Group> getGroupByProjectAndAccount(int id) {
+		List<Group> list = new ArrayList<Group>();
+		String sql = "SELECT * FROM  baocaodoan.group AS grs ,account AS ac ,  project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.teacher_id  = "
+				+ id;
+		list = _jdbcTemplate.query(sql, new MapperGroup());
+		return list;
+	}
+
+	public List<Account> getStudentInGroupCach2(int group_id) {
 		List<Account> list = new ArrayList<Account>();
-		String sql = "SELECT * FROM baocaodoan.group AS grs, account AS ac , project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.group_id ="+ group_id ;
-		 list = _jdbcTemplate.query(sql, new MapperAccount());
+		String sql = "SELECT * FROM baocaodoan.group AS grs, account AS ac , project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.group_id ="
+				+ group_id;
+		list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
-	public List<Group> getStudentInGroupCach3(int group_id){
+
+	public List<Group> getStudentInGroupCach3(int group_id) {
 		List<Group> list = new ArrayList<Group>();
-		String sql = "SELECT * FROM baocaodoan.group AS grs, account AS ac , project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.group_id ="+ group_id ;
-		 list = _jdbcTemplate.query(sql, new MapperGroup());
+		String sql = "SELECT * FROM baocaodoan.group AS grs, account AS ac , project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.group_id ="
+				+ group_id;
+		list = _jdbcTemplate.query(sql, new MapperGroup());
 		return list;
 	}
+
 	public List<Account> GetGroup(int id) {
 		List<Account> list = new ArrayList<Account>();
 		String sql = "SELECT * FROM account where group_id = " + id;
@@ -56,7 +64,7 @@ public class GroupDAO {
 
 	public List<Group> getGroupAdmin() {
 		List<Group> listGroup = new ArrayList<Group>();
-		String sql = "SELECT * FROM `group` ";
+		String sql = "SELECT * FROM `group_student` ";
 		listGroup = _jdbcTemplate.query(sql, new MapperGroup());
 		return listGroup;
 	}

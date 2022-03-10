@@ -71,7 +71,7 @@ public class AccountController {
 			mv.addObject("statusLogin" , "login thanh cong");
 
 		}if(acc != null && acc.getRole().equals("admin")) {			
-			mv.setViewName("/admin/admin2");					
+			mv.setViewName("/admin/admin");					
 			mv.addObject("statusLogin" , "login thanh cong");
 
 		}

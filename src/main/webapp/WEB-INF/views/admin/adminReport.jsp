@@ -1,6 +1,21 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Schedule Report</title>
+<!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
+<!-- Custom styles for this template-->
 </head>
+
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -19,59 +34,69 @@
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-
 				<!-- /.container-fluid -->
 
 				<div class="container-fluid">
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h4 class="m-0 font-weight-bold text-primary">Project :
-								${getAllProject.size()}</h4>
+							<h6 class="m-0 font-weight-bold text-primary">Report Detail</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
+								<a class="nav-link" href='<c:url value="/addReport"></c:url>'>
+									<i class="fa fa-plus-square"></i> <span>Add new report</span>
+								</a>
+
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
 									<thead>
 										<tr>
-											<!--  	<th>Code</th> -->
+											<th>Code</th>
 											<th>Name</th>
-											<th>URL</th>
+											<th>Point</th>
+											<th>Comment</th>
 											<th>Time Create</th>
-											<th>Group</th>
-											<th>Group Name</th>
-											<th>Teacher</th>
-											<th></th>
+											<th>Time Submit</th>
+											<th>Code Project</th>
+											<th>Action</th>
 										</tr>
 									</thead>
-
-
+									<tfoot>
+										<tr>
+											<th>Code</th>
+											<th>Name</th>
+											<th>Point</th>
+											<th>Comment</th>
+											<th>Time Create</th>
+											<th>Time Submit</th>
+											<th>Code Project</th>
+											<th>Action</th>
+										</tr>
+									</tfoot>
 									<tbody>
-										<c:forEach var="item" items="${ getAllProject }">
-
+										<c:forEach var="item" items="${ getAllReport }">
+											<c:set var="project" value="${item.project}" />
 											<tr>
-												<!-- 	<td>${ item.id }</td> -->
-
-												<td>${ item.project_name }</td>
-												<td>${ item.urlProject }</td>
-												<td>${ item.createTime }</td>
-												<td>${ item.group_id }</td>
-												<td>${ item.group_name  }</td>
-												<td>${ item.teacherId }-${ item.account_name }</td>
+												<td>${ item.id }</td>
+												<td>${ item.name }</td>
+												<td>${item.point }</td>
+												<td>${item.comment }</td>
+												<td>${ item.timeCreate }</td>
+												<td>${ item.timeSubmit }</td>
+												<td>${ project.name  }</td>
 												<td><a
-													href='<c:url value="/editProject?id=${ item.id }"/>'
-													class="btn btn-success">Edit</a> <a
-													href='<c:url value="/deleteProject/${ item.id }"/>'
-													class="btn btn-danger">Delete</a></td>
+													href='<c:url value="/updateReport/${ item.id }"></c:url>'
+													class="btn btn-success btn-circle btn-sm"><i
+														class="fas fa-edit"></i> </a> <a
+													href='<c:url value="/deleteReport/${ item.id }"/>'
+													class="btn btn-danger btn-circle btn-sm"> <i
+														class="fas fa-trash"></i>
+												</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
-
-
 								</table>
-								<a href='<c:url value="/addProject"/>' class="btn btn-success">Add
-									Project</a>
 							</div>
 						</div>
 					</div>
@@ -87,9 +112,6 @@
 		</div>
 	</div>
 
-
-	
-
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -99,7 +121,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">×</span>
+						<span aria-hidden="true">Ã</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready
@@ -126,9 +148,9 @@
 	<!-- Page level plugins -->
 	<script src="/assets/vendor/chart.js/Chart.min.js"></script>
 
-	<!-- Scripts -->
-	<%@include file="/WEB-INF/views/admin/adminscript.jsp"%>
-	<!-- End of Scripts -->
+	<!-- Page level custom scripts -->
+	<script src="/assets/js/demo/chart-area-demo.js"></script>
+	<script src="/assets/js/demo/chart-pie-demo.js"></script>
 </body>
 
 </html>
