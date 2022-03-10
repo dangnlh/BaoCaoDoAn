@@ -285,6 +285,8 @@ public class ScheduleMeetingController {
 					}
 				}
 
+			}else {
+				
 			}
 		}
 		System.out.println("MESSAGE:" + uploadMessage);
