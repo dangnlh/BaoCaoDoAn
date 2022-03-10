@@ -27,7 +27,7 @@ public interface IProjectService {
 	public int deleteProject(int id);
 	
 	@Autowired
-	public int editProject(Project project) ;
+	public int editProject(int id,Project project) ;
 	
 	@Autowired
 	public Project getProjectByGroupId(int groupId);
