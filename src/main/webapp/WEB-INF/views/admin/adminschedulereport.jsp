@@ -41,6 +41,10 @@
 							<h6 class="m-0 font-weight-bold text-primary">Schedule
 								Report Detail</h6>
 						</div>
+						</br>
+						<a class="nav-link" href='<c:url value="addScheduleReport"></c:url>'>
+									<i class="fa fa-plus-square"></i> <span>Add new schedule</span>
+								</a>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%"
@@ -49,28 +53,27 @@
 										<tr>
 											<th>Code</th>
 											<th>Time Created</th>
+											<th>Account Id</th>
 											<th>Code Report</th>
+											<th>Date Submit</th>
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Code</th>
-											<th>Time Created</th>
-											<th>Code Report</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
+									
 									<tbody>
 										<c:forEach var="item" items="${ getAllScheduleReport }">
 											<tr>
 												<td>${ item.id }</td>
 												<td>${ item.timeReport }</td>
+												<td>${ item.account_id }</td>
 												<td>${ item.report_id }</td>
-												<td><a href='#'
+												<td>${ item.dateSubmit }</td>
+
+												<td><a
+													href='<c:url value="/editScheduleReport?id=${ item.id }"></c:url>'
 													class="btn btn-success btn-circle btn-sm"> <i
-														class="fas fa-check"></i>
-												</a> <a
+														class="fas fa-edit"></i></a> 
+														<a
 													href='<c:url value="/deleteScheduleReport/${ item.id }"/>'
 													class="btn btn-danger btn-circle btn-sm"> <i
 														class="fas fa-trash"></i>
@@ -86,7 +89,7 @@
 				</div>
 				<!-- /.container-fluid -->
 
-				<div class="container-fluid">
+				<%-- <div class="container-fluid">
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
@@ -130,11 +133,11 @@
 												<td>${ item.timeCreate }</td>
 												<td>${ item.timeSubmit }</td>
 												<td>${ item.project_id  }</td>
-												<td><a href='<c:url value="/editReport/${ item.id }"></c:url>'
+												<td><a
+													href='<c:url value="/editReport/${ item.id }"></c:url>'
 													class="btn btn-success btn-circle btn-sm"> <i
-														class="fas fa-check"></i>
-												</a> <a
-													href='<c:url value="/deleteReport/${ item.id }"/>'
+														class="fas fa-edit"></i>
+												</a> <a href='<c:url value="/deleteReport/${ item.id }"/>'
 													class="btn btn-danger btn-circle btn-sm"> <i
 														class="fas fa-trash"></i>
 												</a></td>
@@ -149,53 +152,19 @@
 				</div>
 
 			</div>
-			<!-- End of Main Content -->
+ --%>			<!-- End of Main Content -->
 
 			<!-- Footer -->
 			<%@include file="/WEB-INF/views/admin/footer.jsp"%>
 			<!-- End of Footer -->
 		</div>
 	</div>
-	
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">Ã</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="/assets/vendor/jquery/jquery.min.js"></script>
-	<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages-->
-	<script src="/assets/js/sb-admin-2.min.js"></script>
-
-	<!-- Page level plugins -->
-	<script src="/assets/vendor/chart.js/Chart.min.js"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="/assets/js/demo/chart-area-demo.js"></script>
-	<script src="/assets/js/demo/chart-pie-demo.js"></script>
+	<!-- Scripts -->
+	<%@include file="/WEB-INF/views/admin/adminscript.jsp"%>
+	<!-- End of Scripts -->
 </body>
 
 </html>

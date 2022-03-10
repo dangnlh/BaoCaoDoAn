@@ -10,12 +10,14 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Schedule Meeting Page</title>
+<title>Schedule Meeting</title>
 <!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
+<!-- Custom styles for this template-->
 </head>
 
 <body id="page-top">
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -27,55 +29,59 @@
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
 			<div id="content">
-
 				<!-- Header -->
 				<%@include file="/WEB-INF/views/admin/header.jsp"%>
 				<!-- End of Header -->
 
 				<!-- Begin Page Content -->
+				<!-- /.container-fluid -->
+
 				<div class="container-fluid">
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Schedule Meeting</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Schedule
+								Meeting</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
+								<a class="nav-link" href='<c:url value="/addScheduleMeeting"></c:url>'>
+								<a class="nav-link" href='<c:url value="addScheduleMeeting"></c:url>'>
+									<i class="fa fa-plus-square"></i> <span>Add new meeting</span>
+								</a>
+
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
 									<thead>
 										<tr>
-											<th>1</th>
-											<th>2</th>
-											<th>3</th>
-											<th>4</th>
-											<th>5</th>
+											<th>Id</th>
+											<th>TimeMeeting</th>
+											<th>Project_id</th>
+											<th>Account_id</th>
+											<th>Name ScheduleMeeting</th>
+											<th>Link Meeting</th>
+											<th>Content</th>
+											<th>Date Submit</th>
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>1</th>
-											<th>2</th>
-											<th>3</th>
-											<th>4</th>
-											<th>5</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
+									
 									<tbody>
-										<c:forEach var="items" items="${ group4 }" varStatus="counter">
-											<c:if test="${not empty items }" />
+										<c:forEach var="item" items="${ ScheduleMeeting }">
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td><a href=''
-													class="btn btn-success btn-circle btn-sm"> <i
-														class="fas fa-check"></i>
-												</a> <a href=''
+												<td>${ item.id }</td>
+												<td>${ item.timeMeeting }</td>
+												<td>${ item.project_id }</td>
+												<td>${ item.account_id }</td>
+												<td>${ item.name }</td>
+												<td>${ item.link_meeting }</td>
+												<td>${ item.content  }</td>
+												<td>${ item.submitDate }</td>
+												<td><a
+													href='<c:url value="/editScheduleMeeting?id=${ item.id }"></c:url>'
+													class="btn btn-success btn-circle btn-sm"><i
+														class="fas fa-edit"></i> </a> <a
+													href='<c:url value="/deleteScheduleMeeting?id=${ item.id }"/>'
 													class="btn btn-danger btn-circle btn-sm"> <i
 														class="fas fa-trash"></i>
 												</a></td>
@@ -88,18 +94,15 @@
 					</div>
 
 				</div>
-				<!-- /.container-fluid -->
+
 			</div>
 			<!-- End of Main Content -->
 
 			<!-- Footer -->
 			<%@include file="/WEB-INF/views/admin/footer.jsp"%>
 			<!-- End of Footer -->
-
 		</div>
-		<!-- End of Content Wrapper -->
 	</div>
-	<!-- End of Page Wrapper -->
 
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"

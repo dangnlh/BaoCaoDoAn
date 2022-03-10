@@ -10,15 +10,16 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Project Page</title>
+<title>Project</title>
 <!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
+<!-- Custom styles for this template-->
 </head>
-
 <body id="page-top">
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
-	
+
 		<!-- Sidebar -->
 		<%@include file="/WEB-INF/views/admin/sidebar.jsp"%>
 		<!-- End of Sidebar -->
@@ -27,55 +28,60 @@
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
 			<div id="content">
-			
-				<!-- Header -->
+				<!-- Topbar -->
 				<%@include file="/WEB-INF/views/admin/header.jsp"%>
-				<!-- End of Header -->
+				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
+
+				<!-- /.container-fluid -->
+
 				<div class="container-fluid">
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Project Detail</h6>
+							<h4 class="m-0 font-weight-bold text-primary">Project :
+								${getAllProject.size()}</h4>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
+							<a class="nav-link" href='<c:url value="/addProject"/>'>
+									<i class="fa fa-plus-square"></i> <span>Add new project</span>
+								</a></br>
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
 									<thead>
 										<tr>
-											<th>Code</th>
+											<!--  	<th>Code</th> -->
 											<th>Name</th>
 											<th>URL</th>
-											<th>Time Created</th>
+											<th>Time Create</th>
 											<th>Group</th>
-											<th>Action</th>
+											<th>Group Name</th>
+											<th>Teacher</th>
+											<th></th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Code</th>
-											<th>Name</th>
-											<th>URL</th>
-											<th>Time Created</th>
-											<th>Group</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
+
+
 									<tbody>
 										<c:forEach var="item" items="${ getAllProject }">
+
 											<tr>
-												<td>${ item.id }</td>
-												<td>${ item.name }</td>
+												<!-- 	<td>${ item.id }</td> -->
+
+												<td>${ item.project_name }</td>
 												<td>${ item.urlProject }</td>
 												<td>${ item.createTime }</td>
 												<td>${ item.group_id }</td>
-												<td><a
-													href='<c:url value="/edit/${ item.id }"/>'
+												<td>${ item.group_name  }</td>
+												<td>${ item.teacherId }-${ item.account_name }</td>
+												<td> <a
+
+													href='<c:url value="/editProject?id=${ item.id }"/>'
 													class="btn btn-success btn-circle btn-sm"> <i
-														class="fas fa-check"></i>
-												</a> <a
+														class="fas fa-edit"></i></a> <a
+
 													href='<c:url value="/deleteProject/${ item.id }"/>'
 													class="btn btn-danger btn-circle btn-sm"> <i
 														class="fas fa-trash"></i>
@@ -83,45 +89,24 @@
 											</tr>
 										</c:forEach>
 									</tbody>
+
+
 								</table>
+								<!-- nút add cũ (màu xanh lá) -->
+								<%-- <a href='<c:url value="/addProject"/>' class="btn btn-success">Add
+									Project</a> --%>
 							</div>
 						</div>
 					</div>
 
 				</div>
-				<!-- /.container-fluid -->
+
 			</div>
 			<!-- End of Main Content -->
 
 			<!-- Footer -->
 			<%@include file="/WEB-INF/views/admin/footer.jsp"%>
 			<!-- End of Footer -->
-			
-		</div>
-		<!-- End of Content Wrapper -->
-	</div>
-	<!-- End of Page Wrapper -->
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">Ã</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
-			</div>
 		</div>
 	</div>
 
@@ -138,9 +123,9 @@
 	<!-- Page level plugins -->
 	<script src="/assets/vendor/chart.js/Chart.min.js"></script>
 
-	<!-- Page level custom scripts -->
-	<script src="/assets/js/demo/chart-area-demo.js"></script>
-	<script src="/assets/js/demo/chart-pie-demo.js"></script>
+	<!-- Scripts -->
+	<%@include file="/WEB-INF/views/admin/adminscript.jsp"%>
+	<!-- End of Scripts -->
 </body>
 
 </html>

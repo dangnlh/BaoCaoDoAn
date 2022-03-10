@@ -15,10 +15,10 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+ 
 
 	<div class="container">
-		<h2>Schedule Report</h2>
+		<h2>Schedule Report </h2>
 
 		<table class="table table-striped" border="1">
 
@@ -126,7 +126,7 @@
 						<td>${ item.timeSubmit }</td>
 						<td>${ item.project_id  }</td>
 						<td>
-						<a class="btn btn-success" href='<c:url value="/editReport/${ item.id }"></c:url>'>Edit</a>
+						<a class="btn btn-success" href='<c:url value="/editReport?id=${ item.id }"></c:url>'>Edit</a>
 						
 				
 

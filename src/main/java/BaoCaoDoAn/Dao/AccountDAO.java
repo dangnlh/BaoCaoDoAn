@@ -12,7 +12,9 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import BaoCaoDoAn.Entity.Account;
+import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.MapperAccount;
+import BaoCaoDoAn.Entity.MapperGroup;
 
 @Repository
 public class AccountDAO {
@@ -73,6 +75,7 @@ public class AccountDAO {
 		Account account = jdbcTemplate.queryForObject(sql, new MapperAccount());
 		return account;
 	}
+
 	
 //	public List<Account> getListAccount() {
 //		List<Account> list = new ArrayList<Account>();
@@ -81,4 +84,15 @@ public class AccountDAO {
 //                +   " WHERE name like ? ";
 //		return list;
 //	
-}																																															
+//}																																															
+
+
+	public List<Account> getTeacherAdmin() {
+		List<Account> listTeacher = new ArrayList<Account>();
+		String sql = "SELECT * FROM `account` WHERE role = 'teacher' ";
+
+		listTeacher = jdbcTemplate.query(sql, new MapperAccount());
+		return listTeacher;
+	}
+}
+

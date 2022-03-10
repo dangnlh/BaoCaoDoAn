@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import BaoCaoDoAn.Dto.group_Account_Project;
 import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.Report;
 
@@ -15,10 +15,10 @@ public interface IProjectService {
 	public List<Project> getProject(int id) ;
 	
 	@Autowired
-	public List<Project> getAllProject() ;
+	public List<group_Account_Project> getAllProject() ;
 	
 	@Autowired
-	public List<Project> getProjectById(int id) ;
+	public Project getProjectById(int id) ;
 	
 	@Autowired
 	public int addProject(Project project);
@@ -27,7 +27,7 @@ public interface IProjectService {
 	public int deleteProject(int id);
 	
 	@Autowired
-	public int editProject(int id) ;
+	public int editProject(int id,Project project) ;
 	
 	@Autowired
 	public Project getProjectByGroupId(int groupId);

@@ -20,7 +20,7 @@ public class ReportDAO {
 	public Report getReport(int id) {
 		Report result = null;
 		List<Report> list = new ArrayList<Report>();
-		String sql = "Select * from report where id = " + id;
+		String sql = "Select * from report where id =" + id;
 		list = jdbcTemplate.query(sql, new MapperReport());
 		if (!list.isEmpty()) {
 			result = list.get(0);
@@ -31,7 +31,7 @@ public class ReportDAO {
 
 	public List<Report> getAllReport() {
 		List<Report> list = new ArrayList<Report>();
-		String sql = "Select * from report ";
+		String sql = "Select * from report  ORDER BY project_id;";
 		list = jdbcTemplate.query(sql, new MapperReport());
 		return list;
 
@@ -39,27 +39,26 @@ public class ReportDAO {
 
 	public int addReport(Report report) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO report (name, timeCreate,timeSubmit,urlReport,project_id) " + "VALUES ('"
-				+ report.getName() + "', '" + report.getTimeCreate() + "' " + ",'" + report.getTimeSubmit() + "', '"
-				+ report.getUrlReport() + "'" + " ," + report.getProject_id() + ");");
-		int insert = jdbcTemplate.update(sql.toString());
+		System.out.println("REPORT DATE:" + report.getTimeCreate());
+		sql.append("INSERT INTO report (name, timeCreate,timeSubmit,urlReport,project_id,status) "
+				+ "VALUES (?,?,?,?,?,?);");
+
+		int insert = jdbcTemplate.update(sql.toString(), new Object[] { report.getName(), report.getTimeCreate(),
+				report.getTimeSubmit(), "", report.getProject_id(), 0 });
 		return insert;
 	}
 
-	public int DeleteReport(String id) {
-
+	public int DeleteReport(int id) {
 		String sql = "DELETE FROM report WHERE id = " + id + " ";
 		int result = jdbcTemplate.update(sql);
 		return result;
 
 	}
 
-	public int editReport(int id) {
-		Report report = new Report();
-		String sql = "UPDATE report SET name='" + report.getName() + "', timeCreate='" + report.getTimeCreate() + "'"
-				+ ", timeSubmit='" + report.getTimeSubmit() + "' , project_id= " + report.getProject_id()
-				+ " WHERE id= " + id;
-		int result = jdbcTemplate.update(sql);
+	public int editReport(int id, Report report) {
+		String sql = "UPDATE report SET name=?, timeSubmit=?, project_id=?" + " WHERE id= ?";
+		int result = jdbcTemplate.update(sql,
+				new Object[] { report.getName(), report.getTimeSubmit(), report.getProject_id(), id });
 		return result;
 	}
 
@@ -76,18 +75,18 @@ public class ReportDAO {
 		int result = jdbcTemplate.update(sql);
 		return result;
 	}
+
 	public void saveFileReportFile(String fileName, Integer reportId) {
 		String sql = "UPDATE `baocaodoan`.`report` SET `urlReport` = ? WHERE (`id` = ?);";
 		jdbcTemplate.update(sql, new Object[] { fileName, reportId });
 	}
-	
-	public List<Report> getTimeSubmitReport(int group_id , int porject_id) {
+
+	public List<Report> getTimeSubmitReport(int group_id, int porject_id) {
 		List<Report> list = new ArrayList<Report>();
-		String sql = "SELECT * FROM baocaodoan.project as p,"
-				+ "baocaodoan.report as r where p.group_id = "+group_id+" and p.id = "+porject_id+" ";
-	 list = jdbcTemplate.query(sql, new MapperReport());
-	 return list ;
+		String sql = "SELECT * FROM baocaodoan.project as p," + "baocaodoan.report as r where p.group_id = " + group_id
+				+ " and p.id = " + porject_id + " ";
+		list = jdbcTemplate.query(sql, new MapperReport());
+		return list;
 	}
-	
 
 }

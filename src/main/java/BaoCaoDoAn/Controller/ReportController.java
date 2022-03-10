@@ -31,7 +31,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import BaoCaoDoAn.Dao.ReportDAO;
+import BaoCaoDoAn.Dto.group_Account_Project;
 import BaoCaoDoAn.Entity.Account;
+import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.Report;
 
@@ -70,15 +72,11 @@ public class ReportController {
 
 	@RequestMapping(value = { "/deleteReport/{id}" })
 	public String DeleteReport(@PathVariable String id) {
-		int result = reportDAO.DeleteReport(id);
-
-		if (result > 0) {
-			System.out.println("thanh cong");
-			reportDAO.DeleteReport(id);
-
+		Report report = reportService.getReport(Integer.parseInt(id));
+		if (report != null) {
+			reportService.deleteReport(report);
 		}
-
-		return "redirect:/ScheduleReport";
+		return "redirect:/getReport";
 
 	}
 
@@ -111,11 +109,9 @@ public class ReportController {
 			List<Report> reports = reportService.getAllReportByProjecId(project2.getId());
 			project2.setReport(reports);
 		}
-	
-		
-		  
+
 		mv.addObject("listReport", project);
-		  
+
 		mv.setViewName("user/student/studentreport");
 
 		return mv;
@@ -155,37 +151,33 @@ public class ReportController {
 
 	@RequestMapping("/upload_report/{report_id}")
 	public ModelAndView showUploadPage(@PathVariable int report_id, @ModelAttribute("message") String message,
-			HttpSession session , RedirectAttributes redirAttr) {
+			HttpSession session, RedirectAttributes redirAttr) {
 
 		mv.setViewName("/user/student/StudentUploadFile");
-		Report report =  reportDAO.getReport(report_id) ;
-		
-		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-		
-		mv.addObject("InforReport", report.getTimeSubmit());				
-	    mv.addObject("TIMENOW", date);
-	    
-	 int compareTime = report.getTimeSubmit().compareTo(date) ;
-	
-	 mv.addObject("compareTime", compareTime);
-	
-	   if(compareTime == -1) {
-		   if(report.getTimeSubmit().toString().equalsIgnoreCase(date.toString())) {
-			   mv.setViewName("/user/student/StudentUploadFile");
-		   }
-		   else {
-			 
-			   mv.setViewName("/user/student/studentreport");
-				
-		}
+		Report report = reportDAO.getReport(report_id);
 
-	   
-	   }else if(compareTime == 1) {
-		
-		   mv.setViewName("/user/student/StudentUploadFile");
-	}
-		   
-		
+		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+
+		mv.addObject("InforReport", report.getTimeSubmit());
+		mv.addObject("TIMENOW", date);
+
+		int compareTime = report.getTimeSubmit().compareTo(date);
+
+		mv.addObject("compareTime", compareTime);
+
+		if (compareTime == -1) {
+			if (report.getTimeSubmit().toString().equalsIgnoreCase(date.toString())) {
+				mv.setViewName("/user/student/StudentUploadFile");
+			} else {
+
+				mv.setViewName("/user/student/studentreport");
+
+			}
+
+		} else if (compareTime == 1) {
+
+			mv.setViewName("/user/student/StudentUploadFile");
+		}
 
 		mv.addObject("ReportId", report_id);
 		return mv;
@@ -238,5 +230,83 @@ public class ReportController {
 
 		return "redirect:/upload_report/" + reportId;
 
+	}
+
+	@RequestMapping("/getReport")
+	public ModelAndView getAllReport() {
+		mv.setViewName("/admin/adminReport");
+		List<Report> reportList = reportService.getAllReport();
+
+		for(Report rp:reportList) {
+			Project projet = projectSerivce.getProjectById(rp.getProject_id());
+			rp.setProject(projet);
+			
+		}
+
+		mv.addObject("getAllReport", reportList);
+		return mv;
+	}
+
+	@GetMapping("/addReport")
+	public ModelAndView showAddReportForm() {
+		ModelAndView modelView = new ModelAndView("/admin/reportAddForm");
+		List<Project> projectList = projectSerivce.getAllProjectSimple();
+		modelView.addObject("projectList", projectList);
+		modelView.addObject("report", new Report());
+		return modelView;
+	}
+
+	@PostMapping("/addReport")
+	public ModelAndView processAddReportForm(@Valid @ModelAttribute("report") Report report,
+			BindingResult theBindingResult) {
+		if (theBindingResult.hasFieldErrors("name") || theBindingResult.hasGlobalErrors()) {
+			if (theBindingResult.hasGlobalErrors()) {
+				mv.addObject("dateError", "Deadline have to greater than now!");
+			} else {
+				mv.addObject("dateError", "");
+			}
+			mv.setViewName("admin/reportAddForm");
+			List<Project> projectList = projectSerivce.getAllProjectSimple();
+			mv.addObject("projectList", projectList);
+		} else {
+			Report addedReport = new Report();
+			Group group = groupServiceImpl.getGroupByProjectId(report.getProject_id());
+			addedReport.setName(report.getName());
+			addedReport.setProject_id(report.getProject_id());
+			addedReport.setTimeCreate(new Date(new java.util.Date().getTime()));
+			addedReport.setTimeSubmit(report.getTimeSubmit());
+			addedReport.setGroup(group);
+			reportService.addReport(addedReport);
+			mv = new ModelAndView("redirect:/getReport");
+		}
+		return mv;
+	}
+
+	@GetMapping("/updateReport/{id}")
+	public ModelAndView showUpdateReportForm(@PathVariable("id") int id) {
+		ModelAndView modelView = new ModelAndView("/admin/reportEditForm");
+		List<Project> projectList = projectSerivce.getAllProjectSimple();
+		modelView.addObject("projectList", projectList);
+		modelView.addObject("report", reportService.getReport(id));
+		return modelView;
+	}
+
+	@PostMapping("/updateReport")
+	public ModelAndView processUpdateReportForm(@Valid @ModelAttribute("report") Report report,
+			BindingResult theBindingResult) {
+		if (theBindingResult.hasFieldErrors("name") || theBindingResult.hasGlobalErrors()) {
+			if (theBindingResult.hasGlobalErrors()) {
+				mv.addObject("dateError", "Deadline have to greater than create time!");
+			} else {
+				mv.addObject("dateError", "");
+			}
+			mv.setViewName("admin/reportEditForm");
+			List<Project> projectList = projectSerivce.getAllProjectSimple();
+			mv.addObject("projectList", projectList);
+		} else {
+			reportService.editReport(report.getId(), report);
+			mv = new ModelAndView("redirect:/getReport");
+		}
+		return mv;
 	}
 }

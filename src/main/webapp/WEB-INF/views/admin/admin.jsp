@@ -8,8 +8,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Admin Page</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Group</title>
+<!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
+<!-- Custom styles for this template-->
 </head>
 
 <body id="page-top">
@@ -41,6 +45,11 @@
 		</div>
 	</div>
 
+
+	<!-- Scripts -->
+	<%@include file="/WEB-INF/views/admin/adminscript.jsp"%>
+	<!-- End of Scripts -->
+
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -50,7 +59,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">Ã</span>
+						<span aria-hidden="true">×</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready
@@ -71,6 +80,7 @@
 	<script src="/assets/vendor/chart.js/Chart.min.js"></script>
 	<script src="/assets/js/demo/chart-area-demo.js"></script>
 	<script src="/assets/js/demo/chart-pie-demo.js"></script>
+
 </body>
 
 </html>

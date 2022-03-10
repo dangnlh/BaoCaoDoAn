@@ -23,30 +23,38 @@ public class GroupDAO {
 		list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
-	public List<Account> getStudentInGroup(int id){
+
+	public List<Account> getStudentInGroup(int id) {
 		List<Account> list = new ArrayList<Account>();
 		String sql = "SELECT * FROM account where role = 'student' AND group_id =" + id;
 		list = _jdbcTemplate.query(sql, new MapperAccount());
-		return list; 
-	}
-	public List<Group> getGroupByProjectAndAccount(int id){
-		List<Group> list = new ArrayList<Group>();
-		String sql = "SELECT * FROM  baocaodoan.group AS grs ,account AS ac ,  project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.teacher_id  = " + id;
-		 list = _jdbcTemplate.query(sql, new MapperGroup());
 		return list;
 	}
-	public List<Account> getStudentInGroupCach2(int group_id){
+
+	public List<Group> getGroupByProjectAndAccount(int id) {
+		List<Group> list = new ArrayList<Group>();
+		String sql = "SELECT * FROM  baocaodoan.group_student AS grs ,account AS ac ,  project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.teacher_id  = "
+				+ id;
+		list = _jdbcTemplate.query(sql, new MapperGroup());
+		return list;
+	}
+
+	public List<Account> getStudentInGroupCach2(int group_id) {
 		List<Account> list = new ArrayList<Account>();
-		String sql = "SELECT * FROM baocaodoan.group AS grs, account AS ac , project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.group_id ="+ group_id ;
-		 list = _jdbcTemplate.query(sql, new MapperAccount());
+		String sql = "SELECT * FROM baocaodoan.group_student AS grs, account AS ac , project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.group_id ="
+				+ group_id;
+		list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
-	public List<Group> getStudentInGroupCach3(int group_id){
+
+	public List<Group> getStudentInGroupCach3(int group_id) {
 		List<Group> list = new ArrayList<Group>();
-		String sql = "SELECT * FROM baocaodoan.group AS grs, account AS ac , project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.group_id ="+ group_id ;
-		 list = _jdbcTemplate.query(sql, new MapperGroup());
+		String sql = "SELECT * FROM baocaodoan.group_student AS grs, account AS ac , project AS pr WHERE grs.id = pr.group_id AND ac.id = pr.teacher_id AND pr.group_id ="
+				+ group_id;
+		list = _jdbcTemplate.query(sql, new MapperGroup());
 		return list;
 	}
+
 	public List<Account> GetGroup(int id) {
 		List<Account> list = new ArrayList<Account>();
 		String sql = "SELECT * FROM account where group_id = " + id;
@@ -56,19 +64,19 @@ public class GroupDAO {
 
 	public List<Group> getGroupAdmin() {
 		List<Group> listGroup = new ArrayList<Group>();
-		String sql = "SELECT * FROM `group` ";
+		String sql = "SELECT * FROM `group_student` ";
 		listGroup = _jdbcTemplate.query(sql, new MapperGroup());
 		return listGroup;
 	}
 
 	public int addAccountInGroup(Group group) {
-		String sql = "INSERT INTO `group` (`id`, `name`) VALUES (?,?)";
+		String sql = "INSERT INTO `group_student` (`id`, `group_name`) VALUES (?,?)";
 		int count = _jdbcTemplate.update(sql, new Object[] { group.getId(), group.getName() });
 		return count;
 	}
 
 	public int updateGroup(Group group) {
-		String sql = "UPDATE `group` SET `name`=? WHERE id=?";
+		String sql = "UPDATE `group_student` SET `group_name`=? WHERE id=?";
 		int count = _jdbcTemplate.update(sql, group.getName(), group.getId());
 		return count;
 	}
@@ -86,19 +94,19 @@ public class GroupDAO {
 	}
 
 	public Group FindGroupID(int groupID) {
-		String sql = "SELECT * FROM `group` WHERE id = " + groupID;
+		String sql = "SELECT * FROM `group_student` WHERE id = " + groupID;
 		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
 		return result;
 	}
 
 	// delete
 	public void delete(int id) {
-		String sql = "DELETE FROM `group` WHERE id=?";
+		String sql = "DELETE FROM `group_student` WHERE id=?";
 		_jdbcTemplate.update(sql, id);
 	}
 
 	public Group getGroupByProjectId(int projectId) {
-		String sql = "SELECT g.id,g.group_name\r\n" + "FROM `group` as g,project as p \r\n"
+		String sql = "SELECT g.id,g.group_name FROM `group_student` as g ,project as p "
 				+ "WHERE  g.id=p.group_id AND p.id=" + projectId;
 		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
 		return result;

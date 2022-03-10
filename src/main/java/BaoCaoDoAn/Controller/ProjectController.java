@@ -1,25 +1,40 @@
 package BaoCaoDoAn.Controller;
 
+import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import BaoCaoDoAn.Dao.AccountDAO;
 import BaoCaoDoAn.Dao.ProjectDAO;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Project;
+import BaoCaoDoAn.Entity.Report;
 import BaoCaoDoAn.Service.User.Impl.AccountServiceImpl;
+import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ProjectServiceImpl;
 
 @Controller
 public class ProjectController {
+	@Autowired
+	AccountDAO accountDao;
+	@Autowired
+	GroupServiceImpl groupServiceImpl;
 	@Autowired
 	private ProjectServiceImpl projectService;
 	@Autowired
@@ -38,19 +53,69 @@ public class ProjectController {
 		return mv;
 	}
 
-	@RequestMapping(value = { "/Project" })
+	@RequestMapping(value = { "/AdminProject" })
 	public ModelAndView getAllProject(Project project) {
-
+		mv.setViewName("admin/adminproject");
 		mv.addObject("getAllProject", projectService.getAllProject());
 		mv.addObject("project", new Project());
-		mv.setViewName("admin/adminproject");
 		return mv;
 	}
 
-	@RequestMapping(value = "/add-project", method = RequestMethod.POST)
-	public ModelAndView addReport(@ModelAttribute("project") Project project) {
-		mv.addObject("addproject", projectService.addProject(project));
-		return new ModelAndView("redirect:/Project");
+	@RequestMapping(value = "/addProject", method = RequestMethod.GET)
+	public ModelAndView doGetAddProject(Model model, HttpSession session) {
+		if (!model.containsAttribute("ProjectUpdateAndInsert")) {
+			model.addAttribute("ProjectUpdateAndInsert", new Project());
+		}
+		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+		mv.addObject("TIMENOW", date);
+
+		mv.addObject("teacher", accountDao.getTeacherAdmin());
+		mv.addObject("groups", groupServiceImpl.getGroupAdmin());
+		mv.addObject("getAllProject", projectService.getAllProject());
+		mv.setViewName("/admin/addProject");
+		return mv;
+
+	}
+
+	@RequestMapping(value = "/addProject", method = RequestMethod.POST)
+	public ModelAndView add(@Valid @ModelAttribute("ProjectUpdateAndInsert") Project project,
+			BindingResult bindingResult) {
+		System.out.println(bindingResult);
+		if (bindingResult.hasErrors()) {
+			mv.setViewName("/admin/addProject");
+
+		} else {
+			projectService.addProject(project);
+			return new ModelAndView("redirect:/AdminProject");
+		}
+
+		return mv;
+
+	}
+
+	@GetMapping(value = "/editProject/{id}")
+	public ModelAndView getEditProject(@PathVariable("id") int id) {
+		mv.addObject("getProjectbyId", projectService.getProjectById(id));
+		mv.setViewName("/admin/editProject");
+		mv.addObject("teacher", accountDao.getTeacherAdmin());
+		mv.addObject("groups", groupServiceImpl.getGroupAdmin());
+		return mv;
+
+	}
+
+	@PostMapping(value = "/editProject")
+	public ModelAndView edit(@Valid @ModelAttribute("project") Project project, BindingResult bindingResult) {
+		System.out.println("project id = " + project.getId());
+		System.out.println("project  = " + project);
+		if (bindingResult.hasErrors()) {
+			mv.setViewName("/admin/editProject");
+
+		} else {
+			projectService.editProject(project.getId(), project);
+			return new ModelAndView("redirect:/AdminProject");
+		}
+
+		return mv;
 
 	}
 
@@ -62,28 +127,9 @@ public class ProjectController {
 			System.out.println("thanh cong");
 			projectService.deleteProject(id);
 		}
-		return new ModelAndView("redirect:/Project");
+		return new ModelAndView("redirect:/AdminProject");
 	}
 
-	@RequestMapping(value = { "/edit/{id}" })
-	public ModelAndView getEditProject(@PathVariable int id) {
-
-		mv.addObject("getProjectByid", projectService.getProjectById(id));
-		mv.setViewName("user/editProject");
-		mv.addObject("project", new Project());
-
-		return mv;
-
-	}
-
-//	@RequestMapping(path = "/edit-Project/", method = RequestMethod.POST  )
-//	public ModelAndView editeport( @ModelAttribute("project") Project project , @PathVariable int id) {		
-//		System.out.println("thanhcong");
-//			mv.addObject("edit" ,projectService.editProject(id)) ;		
-//		return new ModelAndView("redirect:/Project") ;
-//		
-//	}
-//	@
 	@RequestMapping(value = "/studentProject")
 	public ModelAndView getProject(HttpSession session) {
 		Account student = (Account) session.getAttribute("InforAccount");
@@ -95,5 +141,4 @@ public class ProjectController {
 		return mv;
 	}
 
-	
 }

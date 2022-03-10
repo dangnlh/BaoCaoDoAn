@@ -3,19 +3,29 @@ package BaoCaoDoAn.Entity;
 import java.sql.Date;
 import java.util.List;
 
-import BaoCaoDoAn.Dao.GroupDAO;
+
+import javax.validation.constraints.Pattern;
+
+
+
 import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
 
+
+
 public class Project {
-	private int id;
+	private int id;	
+	
+	@Pattern(regexp = "[a-zA-Z ]{1,100}" , message = "Name is empty")
+	
 	private String name;
 	private String urlProject;
+
 	private Date createTime;
 	private int group_id;
 	private int teacherId;
 	private List<ScheduleMeeting> scheduleMeeting;
-	private List<Report> report ;
-	
+	private List<Report> report;
+
 	public List<Report> getReport() {
 		return report;
 	}
@@ -35,7 +45,6 @@ public class Project {
 	public Project() {
 		super();
 	}
-
 
 	public Project(int id, String name, String urlProject, Date createTime, int group_id, int teacherId,
 			List<ScheduleMeeting> scheduleMeeting) {
@@ -101,6 +110,5 @@ public class Project {
 	public void setTeacherId(int teacherId) {
 		this.teacherId = teacherId;
 	}
-	
 
 }

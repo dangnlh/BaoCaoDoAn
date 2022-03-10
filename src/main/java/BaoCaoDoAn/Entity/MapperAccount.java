@@ -10,7 +10,7 @@ public class MapperAccount implements RowMapper<Account> {
 	public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Account acc = new Account();
 		acc.setId(rs.getInt("id"));
-		acc.setName(rs.getString("name"));
+		acc.setName(rs.getString("account_name"));
 		acc.setPassword(rs.getString("password"));
 		acc.setMail(rs.getString("mail"));
 		acc.setPhone(rs.getInt("phone"));

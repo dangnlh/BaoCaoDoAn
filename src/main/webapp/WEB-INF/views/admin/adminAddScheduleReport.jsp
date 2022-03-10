@@ -1,9 +1,7 @@
-
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
@@ -17,7 +15,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Admin Page</title>
+<title>Add Schedule</title>
 <!-- Custom fonts for this template-->
 <link
 	href="<c:url value="/assets/vendor/fontawesome-free/css/all.min.css" /> "
@@ -34,47 +32,43 @@
 
 </head>
 
-<body id="page-top">	
-	<div id="wrapper">		
+<body id="page-top">
+	<div id="wrapper">
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">			
+			id="accordionSidebar">
 			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				href="/admin">
 				<div class="sidebar-brand-icon">
 					<img src="" alt="FPT" style="max-width: 140px;">
-				</div> 
+				</div>
 			</a>
-			<hr class="sidebar-divider my-0">	
+			<hr class="sidebar-divider my-0">
 			<li class="nav-item active"><a class="nav-link" href="/admin">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 			</a></li>
 			<hr class="sidebar-divider">
-		
+
 			<div class="sidebar-heading">Website-Manager</div>
 			<li class="nav-item">
 			<li class="nav-item"><a class="nav-link" href="/posts"> <i
 					class="fas fa-fw fa-table"></i> <span>Student</span></a></li>
-			
-			<li class="nav-item">
-			
-			<a class="nav-link" href='<c:url value="/ScheduleReport"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Schedule Report</span></a>
-	
-			</li>
-			<li class="nav-item">
-			
-			<a class="nav-link" href='<c:url value="/ScheduleMeeting"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Schedule Meeting</span></a>
-	
-			</li>
-			
-			<li class="nav-item"><a class="nav-link"
-				href='<c:url value="/Project"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Project</span></a>
 
-	</li>
-				<li class="nav-item">
-				<a class="nav-link" href='<c:url value="/ListGroup"></c:url>'> <i class="fas fa-fw fa-table"></i> <span>Group</span></a>
-	</li>
-			
+			<li class="nav-item"><a class="nav-link"
+				href='<c:url value="/ScheduleReport"></c:url>'> <i
+					class="fas fa-fw fa-table"></i> <span>Schedule Report</span></a></li>
+			<li class="nav-item"><a class="nav-link"
+				href='<c:url value="/ScheduleMeeting"></c:url>'> <i
+					class="fas fa-fw fa-table"></i> <span>Schedule Meeting</span></a></li>
+
+			<li class="nav-item"><a class="nav-link"
+				href='<c:url value="/Project"></c:url>'> <i
+					class="fas fa-fw fa-table"></i> <span>Project</span></a></li>
+			<li class="nav-item"><a class="nav-link"
+				href='<c:url value="/ListGroup"></c:url>'> <i
+					class="fas fa-fw fa-table"></i> <span>Group</span></a></li>
+
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
@@ -82,38 +76,46 @@
 			<div class="text-center d-none d-md-inline">
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>
 			</div>
-		</ul>		
-	
-			<div style="margin: 0 auto;" >
+		</ul>
+
+		<div style="margin: 0 auto;">
 			<div class="modal-dialog">
 				<div class="modal-content">
 
-					
+
 					<div class="modal-header">
 						<h4 class="modal-title">Add New Schedule Report</h4>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 
-				
+
 					<div class="modal-body">
-					
-							<form:form method="POST" action="addSchedule" modelAttribute="schedule" >
-							<label for="email2" class="mb-2 mr-sm-2">Time Create</label> <br>
-							 <form:input path="timeReport" type="date" class="form-control mb-2 mr-sm-2" value="2022-06-01" />
-								 <br> <br>
-								
-								 
-								 <label for="email2" class="mb-2 mr-sm-2">Schedule for Report</label> <br>
-								  <form:input path="report_id" type="text" class="form-control mb-2 mr-sm-2"/>
-							 <br> <br>
-								
-								<button type="submit" class="btn btn-primary mb-2">Save</button>
+
+						<form:form method="POST" action="addSchedule"
+							modelAttribute="schedule">
+							<label for="email2" class="mb-2 mr-sm-2">Time Create</label>
+							<br>
+							<form:input path="timeReport" type="date"
+								class="form-control mb-2 mr-sm-2" value="2022-06-01" />
+							<br>
+							<br>
+
+
+							<label for="email2" class="mb-2 mr-sm-2">Schedule for
+								Report</label>
+							<br>
+							<form:input path="report_id" type="text"
+								class="form-control mb-2 mr-sm-2" />
+							<br>
+							<br>
+
+							<button type="submit" class="btn btn-primary mb-2">Save</button>
 
 						</form:form>
 
 					</div>
 
-				
+
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 					</div>
@@ -122,25 +124,12 @@
 			</div>
 		</div>
 
-	
-	
-	
-	
-		</div>
-	
+	</div>
 
 
-	
-		
-
-	
-		<script src="/assets/vendor/jquery/jquery.min.js"></script>
-		<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>	
-		<script src="/assets/js/sb-admin-2.min.js"></script>	
-		<script src="/assets/vendor/chart.js/Chart.min.js"></script>
-		<script src="/assets/js/demo/chart-area-demo.js"></script>
-		<script src="/assets/js/demo/chart-pie-demo.js"></script>
+	<!-- Scripts -->
+	<%@include file="/WEB-INF/views/admin/adminscript.jsp"%>
+	<!-- End of Scripts -->
 </body>
 
 </html>
