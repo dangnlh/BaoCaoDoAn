@@ -89,4 +89,10 @@ public class ScheduleReportDAO {
 		list = jdbcTemplate.query(sql, new MapperScheduleReport());
 		return list;
 	}
+	public int DeleteScheduleReportByReportId(int reportId) {
+		String sql = "DELETE FROM schedulereport WHERE report_id = " + reportId + " ";
+		int result = jdbcTemplate.update(sql);
+		return result;
+
+	}
 }

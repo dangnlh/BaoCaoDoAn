@@ -53,6 +53,4 @@ public class ProjectServiceImpl implements IProjectService {
 		
 		return projectDao.getProjectByGroupId(groupId);
 	}
-	
-
 }

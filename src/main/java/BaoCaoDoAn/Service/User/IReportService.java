@@ -21,7 +21,7 @@ public interface IReportService {
 	public int addReport(Report report);
 	
 	@Autowired
-	public int editReport(int id);
+	public int editReport(int id,Report report);
 	
 	public List<Report> getAllReportByProjecId(int reportId) ;
 	public int gradeReport(Double point, int reportId);

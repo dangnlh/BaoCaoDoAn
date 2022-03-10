@@ -15,15 +15,15 @@ import BaoCaoDoAn.Entity.Project;
 @Repository
 
 public class ProjectDAO {
-	
+
 	@Autowired
-	JdbcTemplate jdbcTemplate ;
-	
+	JdbcTemplate jdbcTemplate;
+
 	public List<Project> getProjectByGroup_id(int id) {
 		List<Project> list = new ArrayList<Project>();
-		String sql = "Select * from project where group_id = " + id ;
-		 list =  jdbcTemplate.query(sql, new MapperProject()) ;
-		return list ;
+		String sql = "Select * from project where group_id = " + id;
+		list = jdbcTemplate.query(sql, new MapperProject());
+		return list;
 
 	}
 	
@@ -51,13 +51,12 @@ public class ProjectDAO {
 	}
 	
 
-	
-	public int deleteProject( int id) {
-		
-		String sql = "DELETE FROM project WHERE id = "+id+" " ;
-		int result = jdbcTemplate.update(sql); 
+	public int deleteProject(int id) {
+
+		String sql = "DELETE FROM project WHERE id = " + id + " ";
+		int result = jdbcTemplate.update(sql);
 		return result;
-		
+
 	}
 	public int addProject(Project project) {
 
@@ -100,10 +99,11 @@ public class ProjectDAO {
 	
 	public List<Project> getProjectByTeacherId(int teacherId) {
 		List<Project> list = new ArrayList<Project>();
-		String sql = "Select * from project where teacher_id = " + teacherId ;
-		 list =  jdbcTemplate.query(sql, new MapperProject()) ;
-		return list ;
+		String sql = "Select * from project where teacher_id = " + teacherId;
+		list = jdbcTemplate.query(sql, new MapperProject());
+		return list;
 	}
+
 	public Project getProjectByGroupId(int id) {
 		Project project;
 		String sql = "SELECT * FROM project where group_id = " + id;
@@ -111,6 +111,4 @@ public class ProjectDAO {
 		return project;
 	}
 
-
-	
 }
