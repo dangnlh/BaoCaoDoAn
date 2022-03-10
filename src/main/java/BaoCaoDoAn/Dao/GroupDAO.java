@@ -106,7 +106,7 @@ public class GroupDAO {
 	}
 
 	public Group getGroupByProjectId(int projectId) {
-		String sql = "SELECT g.id,g.group_name\r\n" + "FROM `group` as g,project as p \r\n"
+		String sql = "SELECT g.id,g.group_name FROM `group_student` as g ,project as p "
 				+ "WHERE  g.id=p.group_id AND p.id=" + projectId;
 		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
 		return result;
