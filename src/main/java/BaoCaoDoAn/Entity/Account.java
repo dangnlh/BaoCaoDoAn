@@ -12,6 +12,7 @@ public class Account {
 	private int phone ;
 	private String role ;
 	private Boolean isLeader ;
+	private String gender;
 	
 	public int getId() {
 		return id;
@@ -60,6 +61,12 @@ public class Account {
 	}
 	public void setIsLeader(Boolean isLeader) {
 		this.isLeader = isLeader;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	

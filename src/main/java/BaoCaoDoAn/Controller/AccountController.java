@@ -1,31 +1,20 @@
-package BaoCaoDoAn.Controller;
+  package BaoCaoDoAn.Controller;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
-
-import java.lang.annotation.Repeatable;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
 import BaoCaoDoAn.Dao.AccountDAO;
 import BaoCaoDoAn.Dao.ScheduleReportDAO;
 import BaoCaoDoAn.Entity.Account;
-import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.ScheduleReport;
 import BaoCaoDoAn.Service.User.IProjectService;
 import BaoCaoDoAn.Service.User.Impl.AccountServiceImpl;
-import BaoCaoDoAn.Service.User.Impl.ReportServiceImpl;
-import BaoCaoDoAn.Service.User.Impl.ScheduleReportServiceImpl;
 
 @Controller
 public class AccountController {
@@ -117,6 +106,17 @@ public class AccountController {
 		
 		return mv;
 	}
+
+	@RequestMapping(value = "/searchAccount")
+	public ModelAndView searchAccount() {
+		mv.setViewName("/loginpage");
+		mv.addObject("account" , new Account());
+		mv.addObject("schduleReport" ,  new ScheduleReport()) ;
+		mv.addObject("scheduleReportDAO" , scheduleReportDAO.getAllScheduleReport());
+		return mv ;
+	}
+	
+	
 
 //	@Autowired
 //	private ScheduleReportServiceImpl  scheduleReportService ;

@@ -19,7 +19,8 @@
 
 	<div class="sidebar-heading">Website-Manager</div>
 	<li class="nav-item">
-	<li class="nav-item active"><a class="nav-link" href="#"> <i
+	<li class="nav-item active"><a class="nav-link" 
+		href='<c:url value="/studentList"></c:url>'> <i
 			class="fas fa-fw fa-table"></i> <span>Student</span></a></li>
 
 	<li class="nav-item active"><a class="nav-link"

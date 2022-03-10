@@ -73,4 +73,12 @@ public class AccountDAO {
 		Account account = jdbcTemplate.queryForObject(sql, new MapperAccount());
 		return account;
 	}
-}
+	
+//	public List<Account> getListAccount() {
+//		List<Account> list = new ArrayList<Account>();
+//		String sql=" SELECT id, name, mail, group_id, phone, role, isLeader, gender"
+//                +   " FROM account "
+//                +   " WHERE name like ? ";
+//		return list;
+//	
+}																																															
