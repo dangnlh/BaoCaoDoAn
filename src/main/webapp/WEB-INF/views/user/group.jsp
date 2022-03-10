@@ -17,8 +17,7 @@
       </c:forEach>
     </ul>
   </c:if> -->
-   <h1>Group ne</h1>
-   <h1>${ Group2.size() }</h1>
+
   <c:forEach var="item" items="${ Group2 }" varStatus="counter" >
   			<c:if test="${not empty item }"/>
   			<div align="center">
