@@ -1,56 +1,111 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Edit Report</title>
+<!-- Custom fonts for this template-->
+<%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
+<style>
+.error {
+	color: red;
+	font-size: 1rem;
+}
+</style>
 </head>
-<body>
-<div class="container">
-<c:forEach var="item" items="${ getReport }">
-	<form:form method="POST" action="" modelAttribute="report" >
-						
-							<label for="email2" class="mb-2 mr-sm-2">Name Report</label> <br>
-							
-							<form:input path="name" type="text" class="form-control mb-2 mr-sm-2" placeholder="Name Report" 
-							value="${ item.name }" />
-							
-							 <br><br> 
-							
-								<label for="pwd2" class="mb-2 mr-sm-2">Time Create</label> <br>
-								<form:input path="timeCreate" type="date" class="form-control mb-2 mr-sm-2" value="${ item.timeCreate }" />
-								 <br> <br>
-								 
-								 <label for="pwd2" class="mb-2 mr-sm-2">Time Submit</label> <br>
-								 <form:input path="timeSubmit" type="date" class="form-control mb-2 mr-sm-2" value="${ item.timeSubmit }" />
-								 <br> <br>
-								 
-								 <label for="email2" class="mb-2 mr-sm-2">URL Report</label> <br>
-								 <form:input path="urlReport" type="text" class="form-control mb-2 mr-sm-2" value="${ item.urlReport }" />
-								 <br> <br> 
-								
-								 <label for="email2" class="mb-2 mr-sm-2">Project</label> <br>
-								 <form:input path="project_id" type="text" class="form-control mb-2 mr-sm-2" value="${ item.project_id }" />
-								 <br> <br> 
-								
-									
-								<button type="submit" class="btn btn-primary mb-2">Submit</button>
-								
 
-						
-						</form:form>
-</c:forEach>
-					
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<%@include file="/WEB-INF/views/admin/sidebar.jsp"%>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+			<!-- Main Content -->
+			<div id="content">
+				<!-- Topbar -->
+				<%@include file="/WEB-INF/views/admin/header.jsp"%>
+
+
+				<div class="container-fluid">
+					<div class="row justify-content-center">
+						<div class="col-sm-8">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h4 style="text-align: center;"
+										class="m-0 font-weight-bold text-primary">Edit Report</h4>
+								</div>
+
+								<div style="margin: 30px 200px">
+								<form:form action="${pageContext.request.contextPath}/updateReport" method="POST"
+						modelAttribute="report">
+							<form:hidden path="id"/>
+						<label>Report Name:</label>
+						<form:input path="name" placeholder="abcdxyz" />
+						<form:errors path="name" cssClass="error" />
+						<br>
+						<label>Deadline Of Report</label>
+						<form:input id="datePicker" path="timeSubmit" type="date"/>
+						<span class="error">${dateError}</span>
+						<br>
+						<label>For Project:</label>
+						<form:select path="project_id">
+							<form:options items="${projectList}" itemValue="id"
+								itemLabel="name" />
+						</form:select>
+						<br>
+						<input type="submit" value="Update Report">
+					</form:form>
+									<h1></h1>
+								</div>
+
+							</div>
+
 						</div>
 
+					</div>
+					<!-- DataTales Example -->
+
+				</div>
+
+			</div>
+			<!-- End of Main Content -->
+
+			<!-- Footer -->
+			<%@include file="/WEB-INF/views/admin/footer.jsp"%>
+			<!-- End of Footer -->
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="/assets/vendor/jquery/jquery.min.js"></script>
+	<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="/assets/js/sb-admin-2.min.js"></script>
+
+	<!-- Page level plugins -->
+	<script src="/assets/vendor/chart.js/Chart.min.js"></script>
+
+	<!-- Page level custom scripts -->
+	<script src="/assets/js/demo/chart-area-demo.js"></script>
+	<script src="/assets/js/demo/chart-pie-demo.js"></script>
 </body>
+
 </html>
+

@@ -34,7 +34,7 @@
 
 
 				<div class="container-fluid">
-					<div class="row">
+					<div class="row justify-content-center">
 						<div class="col-sm-8">
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
@@ -84,23 +84,6 @@
 								</div>
 
 							</div>
-
-						</div>
-						<div class="col-sm-4">
-							<div class="card shadow mb-4">
-								<div class="card-header py-3">
-									<h4 style="text-align: center;"
-										class="m-0 font-weight-bold text-primary">Group
-										Information</h4>
-								</div>
-
-								<div style="margin: 30px 200px">
-									<h2>haha</h2>
-
-								</div>
-
-							</div>
-
 						</div>
 					</div>
 					<!-- DataTales Example -->
