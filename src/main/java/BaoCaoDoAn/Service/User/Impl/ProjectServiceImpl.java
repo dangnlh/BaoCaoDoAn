@@ -35,8 +35,7 @@ public class ProjectServiceImpl implements IProjectService {
 		return projectDao.deleteProject(id);
 	}
 
-	public List<Project> getProjectById(int id) {
-
+	public Project getProjectById(int id) {
 		return projectDao.getProjectByid(id);
 	}
 
@@ -52,6 +51,4 @@ public class ProjectServiceImpl implements IProjectService {
 		// TODO Auto-generated method stub
 		return projectDao.getProjectByGroupId(groupId);
 	}
-	
-
 }

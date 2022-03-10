@@ -7,72 +7,72 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-
 import BaoCaoDoAn.Entity.MapperProject;
 import BaoCaoDoAn.Entity.Project;
 
 @Repository
 
 public class ProjectDAO {
-	
+
 	@Autowired
-	JdbcTemplate jdbcTemplate ;
-	
+	JdbcTemplate jdbcTemplate;
+
 	public List<Project> getProjectByGroup_id(int id) {
 		List<Project> list = new ArrayList<Project>();
-		String sql = "Select * from project where group_id = " + id ;
-		 list =  jdbcTemplate.query(sql, new MapperProject()) ;
-		return list ;
+		String sql = "Select * from project where group_id = " + id;
+		list = jdbcTemplate.query(sql, new MapperProject());
+		return list;
 
 	}
-	
-	public List<Project> getProjectByid(int id) {
-		List<Project> list = new ArrayList<Project>();
-		String sql = "Select * from project where id = " + id ;
-		 list =  jdbcTemplate.query(sql, new MapperProject()) ;
-		return list ;
+
+	public Project getProjectByid(int id) {
+		Project project = null;
+		String sql = "SELECT * FROM baocaodoan.project where id=" + id;
+		project = jdbcTemplate.queryForObject(sql, new MapperProject());
+		return project;
 
 	}
-	
+
 	public List<Project> getAllProject() {
 		List<Project> list = new ArrayList<Project>();
-		String sql = "Select * from project  " ;
-		list =  jdbcTemplate.query(sql, new MapperProject()) ;
+		String sql = "Select * from project  ";
+		list = jdbcTemplate.query(sql, new MapperProject());
 		return list;
 	}
+
 	public int addProject(Project project) {
-		StringBuffer sql = new StringBuffer();	
-		sql.append("INSERT INTO project (name,urlProject,createTime,group_id) "
-				+ "VALUES ('"+project.getName()+"', '"+project.getUrlProject()+"' "
-				+ ",'"+project.getCreateTime()+"', "+project.getGroup_id()+" )");	
-		int insert = jdbcTemplate.update(sql.toString()) ; 		
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO project (name,urlProject,createTime,group_id) " + "VALUES ('" + project.getName()
+				+ "', '" + project.getUrlProject() + "' " + ",'" + project.getCreateTime() + "', "
+				+ project.getGroup_id() + " )");
+		int insert = jdbcTemplate.update(sql.toString());
 		return insert;
 	}
 
-	
-	public int deleteProject( int id) {
-		
-		String sql = "DELETE FROM project WHERE id = "+id+" " ;
-		int result = jdbcTemplate.update(sql); 
+	public int deleteProject(int id) {
+
+		String sql = "DELETE FROM project WHERE id = " + id + " ";
+		int result = jdbcTemplate.update(sql);
 		return result;
-		
+
 	}
-	
+
 	public int editProject(int id) {
 		Project project = new Project();
-		StringBuffer sql = new StringBuffer();	
-		sql.append("UPDATE project SET name = '"+project.getName()+"', urlProject = '"+project.getUrlProject()+"'"
-				+ " , createTime ='"+project.getCreateTime()+"' WHERE id = "+id+" ");	
-		int insert = jdbcTemplate.update(sql.toString()) ; 		
+		StringBuffer sql = new StringBuffer();
+		sql.append("UPDATE project SET name = '" + project.getName() + "', urlProject = '" + project.getUrlProject()
+				+ "'" + " , createTime ='" + project.getCreateTime() + "' WHERE id = " + id + " ");
+		int insert = jdbcTemplate.update(sql.toString());
 		return insert;
 	}
-	
+
 	public List<Project> getProjectByTeacherId(int teacherId) {
 		List<Project> list = new ArrayList<Project>();
-		String sql = "Select * from project where teacher_id = " + teacherId ;
-		 list =  jdbcTemplate.query(sql, new MapperProject()) ;
-		return list ;
+		String sql = "Select * from project where teacher_id = " + teacherId;
+		list = jdbcTemplate.query(sql, new MapperProject());
+		return list;
 	}
+
 	public Project getProjectByGroupId(int id) {
 		Project project;
 		String sql = "SELECT * FROM project where group_id = " + id;
@@ -80,6 +80,4 @@ public class ProjectDAO {
 		return project;
 	}
 
-
-	
 }

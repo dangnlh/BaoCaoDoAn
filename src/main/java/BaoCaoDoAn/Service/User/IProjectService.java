@@ -18,7 +18,7 @@ public interface IProjectService {
 	public List<Project> getAllProject() ;
 	
 	@Autowired
-	public List<Project> getProjectById(int id) ;
+	public Project getProjectById(int id) ;
 	
 	@Autowired
 	public int addProject(Project project);

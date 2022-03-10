@@ -1,15 +1,20 @@
 package BaoCaoDoAn.Entity;
 
 import java.sql.Date;
-
+import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
 
+import BaoCaoDoAn.validator.FutureBasedDate;
 
+@FutureBasedDate(message = "Deadline must be greater than create time!")
 public class Report {
 	private int id;
+	@NotNull
+	@Length(min = 5, max = 20, message = "Length of report name must be between 5 and 20")
 	private String name;
 
 	@NotNull(message = "Not character, just number")
@@ -18,13 +23,15 @@ public class Report {
 	private Double point;
 	private String comment;
 	private Date timeCreate;
+
+	@NotNull
 	private Date timeSubmit;
 	private String urlReport;
 	private int project_id;
 	private int status;
 	private String convertedStatus;
-	private Group group ;
-	
+	private Group group;
+	private Project project;
 
 	public Group getGroup() {
 		return group;
@@ -100,7 +107,7 @@ public class Report {
 	}
 
 	public String getUrlReport() {
-		return urlReport.trim();
+		return urlReport;
 	}
 
 	public void setUrlReport(String urlReport) {
@@ -136,7 +143,12 @@ public class Report {
 		this.convertedStatus = convertedStatus;
 	}
 
+	public Project getProject() {
+		return project;
+	}
 
-
+	public void setProject(Project project) {
+		this.project = project;
+	}
 
 }
