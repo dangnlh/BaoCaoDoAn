@@ -34,7 +34,7 @@
 			class="fas fa-fw fa-table"></i> <span>Schedule Meeting</span></a></li>
 
 	<li class="nav-item active"><a class="nav-link"
-		href='<c:url value="/Project"></c:url>'> <i
+		href='<c:url value="/AdminProject"></c:url>'> <i
 			class="fas fa-fw fa-table"></i> <span>Project</span></a></li>
 
 	<li class="nav-item active"><a class="nav-link"

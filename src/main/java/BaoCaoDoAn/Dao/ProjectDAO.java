@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import BaoCaoDoAn.Dto.MapperGroup_Account_Project;
+import BaoCaoDoAn.Dto.group_Account_Project;
 import BaoCaoDoAn.Entity.MapperProject;
 import BaoCaoDoAn.Entity.Project;
 
@@ -24,30 +26,30 @@ public class ProjectDAO {
 		return list;
 
 	}
-
+	
 	public Project getProjectByid(int id) {
-		Project project = null;
-		String sql = "SELECT * FROM baocaodoan.project where id=" + id;
-		project = jdbcTemplate.queryForObject(sql, new MapperProject());
-		return project;
+		Project project = new Project();
+		String sql = "Select * from project where id = " + id ;
+		Project result =  jdbcTemplate.queryForObject(sql, new MapperProject()) ;
+		return  result;
 
 	}
-
-	public List<Project> getAllProject() {
-		List<Project> list = new ArrayList<Project>();
-		String sql = "Select * from project  ";
-		list = jdbcTemplate.query(sql, new MapperProject());
+	
+	public List<group_Account_Project> getAllProject() {
+		List<group_Account_Project> list = new ArrayList<group_Account_Project>();
+		String sql = "SELECT p.id , p.project_name , p.urlProject  , p.createTime  ,p.group_id , p.teacher_id , g.group_name , a.account_name\r\n" + 
+				"			FROM project AS p\r\n" + 
+				"			INNER JOIN \r\n" + 
+				"			account AS a \r\n" + 
+				"			ON p.teacher_id = a.id \r\n" + 
+				"			 INNER JOIN \r\n" + 
+				"				 group_student AS g\r\n" + 
+				"		 ON p.group_id = g.id ";
+		list= jdbcTemplate.query(sql ,  new MapperGroup_Account_Project()) ;
+	
 		return list;
 	}
-
-	public int addProject(Project project) {
-		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO project (name,urlProject,createTime,group_id) " + "VALUES ('" + project.getName()
-				+ "', '" + project.getUrlProject() + "' " + ",'" + project.getCreateTime() + "', "
-				+ project.getGroup_id() + " )");
-		int insert = jdbcTemplate.update(sql.toString());
-		return insert;
-	}
+	
 
 	public int deleteProject(int id) {
 
@@ -56,16 +58,45 @@ public class ProjectDAO {
 		return result;
 
 	}
+	public int addProject(Project project) {
 
-	public int editProject(int id) {
-		Project project = new Project();
-		StringBuffer sql = new StringBuffer();
-		sql.append("UPDATE project SET name = '" + project.getName() + "', urlProject = '" + project.getUrlProject()
-				+ "'" + " , createTime ='" + project.getCreateTime() + "' WHERE id = " + id + " ");
-		int insert = jdbcTemplate.update(sql.toString());
-		return insert;
+		String sql = "INSERT INTO project (project_name,urlProject,createTime,group_id, teacher_id) VALUES (?,?,?,?,?)" ;
+		
+		int count  = jdbcTemplate.update(sql , new Object[] {
+				project.getName() , project.getUrlProject() ,project.getCreateTime(), project.getGroup_id() ,project.getTeacherId()
+		}) ; 		
+		return count;
 	}
+	
+	public int editProject(Project project) {
+		
+	
+		String sql ="UPDATE project SET project_name = ?, urlProject = ? , createTime = ? , group_Id = ? , teacher_id = ? WHERE id = ?";
+		
 
+		int count = jdbcTemplate.update(sql,  new Object[] {project.getName() , project.getUrlProject() , project.getCreateTime(),
+				project.getGroup_id() , project.getTeacherId(), project.getId() }) ; 		
+		return count;
+	}
+	
+//	public void updateAndSave (Project project) {
+//		if(project.getId() > 0) {
+//			String sql ="UPDATE project SET project_name = '?', urlProject = '?' , createTime = '?' , group_Id = ? , teacher_id = ? WHERE id = ?";
+//		 jdbcTemplate.update(sql.toString() , project.getName() , project.getUrlProject() , project.getCreateTime(),
+//					project.getGroup_id() , project.getTeacherId(), project.getId() ) ; 
+//			
+//		}
+//		else {
+//			String sql = "INSERT INTO project (project_name,urlProject,createTime,group_id, teacher_id) VALUES('?','?','?',?,?)" ;
+//			jdbcTemplate.update(sql, project.getName() , project.getUrlProject() , project.getCreateTime(),
+//					project.getGroup_id() , project.getTeacherId(), project.getId()) ; 		
+//		}
+//	}
+	
+	
+	
+	
+	
 	public List<Project> getProjectByTeacherId(int teacherId) {
 		List<Project> list = new ArrayList<Project>();
 		String sql = "Select * from project where teacher_id = " + teacherId;
