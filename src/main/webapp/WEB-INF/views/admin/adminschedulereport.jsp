@@ -41,6 +41,7 @@
 							<h6 class="m-0 font-weight-bold text-primary">Schedule
 								Report Detail</h6>
 						</div>
+						<a href="addScheduleReport">ADD</a>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%"
@@ -49,7 +50,9 @@
 										<tr>
 											<th>Code</th>
 											<th>Time Created</th>
+											<th>Account Id</th>
 											<th>Code Report</th>
+											<th>Date Submit</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -57,7 +60,9 @@
 										<tr>
 											<th>Code</th>
 											<th>Time Created</th>
+											<th>Account Id</th>
 											<th>Code Report</th>
+											<th>Date Submit</th>
 											<th>Action</th>
 										</tr>
 									</tfoot>
@@ -66,15 +71,24 @@
 											<tr>
 												<td>${ item.id }</td>
 												<td>${ item.timeReport }</td>
+												<td>${ item.account_id }</td>
 												<td>${ item.report_id }</td>
-												<td><a href='#'
-													class="btn btn-success btn-circle btn-sm"> <i
-														class="fas fa-check"></i>
-												</a> <a
+												<td>${ item.dateSubmit }</td>
+												
+												<td>
+												
+												
+												<a class="btn btn-success" href='<c:url value="/editScheduleReport?id=${ item.id }"></c:url>'>Edit</a>
+						
+				
+
+												
+												 <a
 													href='<c:url value="/deleteScheduleReport/${ item.id }"/>'
 													class="btn btn-danger btn-circle btn-sm"> <i
 														class="fas fa-trash"></i>
-												</a></td>
+												</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>

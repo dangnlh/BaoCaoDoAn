@@ -14,6 +14,7 @@ public class MapperScheduleReport implements RowMapper<ScheduleReport>{
 		
 			sr.setAccount_id(rs.getInt("account_id"));
 			sr.setReport_id(rs.getInt("report_id"));
+			sr.setDateSubmit(rs.getDate("date_submit"));
 		return sr;
 	}
 
