@@ -14,6 +14,12 @@
 <title>Group Page</title>
 <!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
+<style>
+.error {
+	color: red;
+	font-size: 1rem;
+}
+</style>
 </head>
 
 <body id="page-top">
@@ -45,10 +51,17 @@
 								<div style="margin: 30px 200px">
 									<form:form method="POST" action="/BaoCaoDoAn/addProject"
 										modelAttribute="ProjectUpdateAndInsert">
+
 										<label for="email2" class="mb-2 mr-sm-2">Name Project</label>
 										<br>
 										<form:input path="name" type="text"
 											class="form-control mb-2 mr-sm-2" />
+
+										<form:errors path="name" cssClass="error" />
+
+
+
+
 										<br>
 
 
@@ -59,27 +72,54 @@
 										<br>
 
 
-										<label for="email2" class="mb-2 mr-sm-2">Time Create </label>
+										<label h for="email2" class="mb-2 mr-sm-2">Time Create  : ${ TIMENOW }
+										</label>
 										<br>
-										<form:input path="createTime" type="date"
-											class="form-control mb-2 mr-sm-2" />
+										<form:input type="hidden" path="createTime"
+											class="form-control mb-2 mr-sm-2" value="${ TIMENOW }" />
+
+
 										<br>
 
-										<label for="email2" class="mb-2 mr-sm-2">Group</label>
+										<!--<label for="email2" class="mb-2 mr-sm-2">Group</label>
 										<br>
 										<form:input path="group_id" type="text"
 											class="form-control mb-2 mr-sm-2" />
+											  -->
+
+
+										<label for="cars">Group:</label>
+
+										<form:select path="group_id">
+											<c:forEach var="item" items="${ groups }">
+
+												<option value="${ item.id }">${ item.id }</option>
+											</c:forEach>
+										</form:select>
 										<br>
 
-										<label for="email2" class="mb-2 mr-sm-2">Teacher</label>
+
 										<br>
-										<form:input path="teacherId" type="text"
+
+										<label for="cars">Teacher:</label>
+
+										<form:select path="teacherId">
+											<c:forEach var="item" items="${ teacher }">
+												<option value="${ item.id }">${ item.id }</option>
+											</c:forEach>
+										</form:select>
+
+
+										<!-- 		<form:input path="teacherId" type="text"
 											class="form-control mb-2 mr-sm-2" />
+											 -->
+										<br>
 										<br>
 
 										<button type="submit" class="btn btn-primary mb-2">Submit</button>
 
 									</form:form>
+									<h1></h1>
 
 								</div>
 
