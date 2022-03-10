@@ -60,7 +60,7 @@
 												<td>${ item.group_name  }</td>
 												<td>${ item.teacherId }-${ item.account_name }</td>
 												<td><a
-													href='<c:url value="/editProject?id=${ item.id }"/>'
+													href='<c:url value="/editProject/${ item.id }"/>'
 													class="btn btn-success">Edit</a> <a
 													href='<c:url value="/deleteProject/${ item.id }"/>'
 													class="btn btn-danger">Delete</a></td>
@@ -88,7 +88,7 @@
 	</div>
 
 
-	
+
 
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
