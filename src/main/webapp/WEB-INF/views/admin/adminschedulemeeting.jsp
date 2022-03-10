@@ -10,7 +10,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Schedule Report</title>
+<title>Schedule Meeting</title>
 <!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
 <!-- Custom styles for this template-->
@@ -29,9 +29,9 @@
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
 			<div id="content">
-				<!-- Topbar -->
+				<!-- Header -->
 				<%@include file="/WEB-INF/views/admin/header.jsp"%>
-				<!-- End of Topbar -->
+				<!-- End of Header -->
 
 				<!-- Begin Page Content -->
 				<!-- /.container-fluid -->
@@ -46,6 +46,7 @@
 						<div class="card-body">
 							<div class="table-responsive">
 								<a class="nav-link" href='<c:url value="/addScheduleMeeting"></c:url>'>
+								<a class="nav-link" href='<c:url value="addScheduleMeeting"></c:url>'>
 									<i class="fa fa-plus-square"></i> <span>Add new meeting</span>
 								</a>
 

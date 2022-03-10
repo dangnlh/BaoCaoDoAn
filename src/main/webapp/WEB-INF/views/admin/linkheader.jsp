@@ -14,5 +14,3 @@
 <link href="<c:url value="/assets/css/sb-admin-2.min.css" /> "
 	rel="stylesheet" />
 <!-- Custom styles for this template-->
-
-

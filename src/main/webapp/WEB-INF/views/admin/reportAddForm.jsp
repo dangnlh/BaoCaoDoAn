@@ -1,7 +1,7 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -11,11 +11,10 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Schedule Report</title>
+<title>Add Report</title>
 <!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
-<!-- Custom styles for this template-->
-<style type="text/css">
+<style>
 .error {
 	color: red;
 	font-size: 1rem;
@@ -38,32 +37,59 @@
 			<div id="content">
 				<!-- Topbar -->
 				<%@include file="/WEB-INF/views/admin/header.jsp"%>
-				<!-- End of Topbar -->
 
-				<!-- Begin Page Content -->
-				<!-- /.container-fluid -->
 
 				<div class="container-fluid">
+					<div class="row justify-content-center">
+						<div class="col-sm-8">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h4 style="text-align: center;"
+										class="m-0 font-weight-bold text-primary">Add Report</h4>
+								</div>
+
+								<div style="margin: 30px 200px">
+									<form:form
+										action="${pageContext.request.contextPath}/addReport"
+										method="POST" modelAttribute="report"
+										class="bg-white  rounded-5 shadow-5-strong p-5">
+
+										<label for="email2" class="mb-2 mr-sm-2">Report Name:</label>
+										<br>
+										<form:input path="name" placeholder="abcdxyz"
+											class="form-control mb-2 mr-sm-2" />
+										<form:errors path="name" cssClass="error" />
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">Deadline Of
+											Report</label>
+										<br>
+										<form:input id="datePicker" path="timeSubmit" type="date"
+											class="form-control mb-2 mr-sm-2" />
+										<span class="error">${dateError}</span>
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">For Project:</label>
+										<br>
+										<form:select path="project_id" class="form-control mb-2 mr-sm-2">
+											<form:options items="${projectList}" itemValue="id"
+												itemLabel="name" />
+										</form:select>
+										<br>
+
+										<button type="submit" class="btn btn-primary mb-2">Submit</button>
+
+									</form:form>
+									<h1></h1>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
 					<!-- DataTales Example -->
-					<h2 style="text-align: center;">Creating Report</h2>
-					<form:form action="${pageContext.request.contextPath}/addReport"
-						method="POST" modelAttribute="report">
-						<label>Report Name:</label>
-						<form:input path="name" placeholder="abcdxyz" />
-						<form:errors path="name" cssClass="error" />
-						<br>
-						<label>Deadline Of Report</label>
-						<form:input id="datePicker" path="timeSubmit" type="date" />
-						<span class="error">${dateError}</span>
-						<br>
-						<label>For Project:</label>
-						<form:select path="project_id">
-							<form:options items="${projectList}" itemValue="id"
-								itemLabel="name" />
-						</form:select>
-						<br>
-						<input type="submit" value="Create Report">
-					</form:form>
+
 				</div>
 
 			</div>
@@ -75,29 +101,6 @@
 		</div>
 	</div>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">Ã</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
-<script type="text/javascript">document.getElementById('datePicker').valueAsDate = new Date();</script>]
 	<!-- Bootstrap core JavaScript-->
 	<script src="/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -117,3 +120,4 @@
 </body>
 
 </html>
+
