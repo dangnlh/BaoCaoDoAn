@@ -14,7 +14,7 @@ public class MapperReport implements RowMapper<Report> {
 			rp.setPoint(rs.getDouble("point"));
 			rp.setComment(rs.getString("comment"));
 		
-			rp.setTimeSubmit(rs.getDate("timeCreate"));
+			rp.setTimeCreate(rs.getDate("timeCreate"));
 			rp.setTimeSubmit(rs.getDate("timeSubmit"));
 			rp.setUrlReport(rs.getString("urlReport"));	
 			rp.setProject_id(rs.getInt("project_id"));
