@@ -5,7 +5,7 @@
 <!-- MENU BAR -->
 <div class="menubar">
 	<div class="dropdown" style="margin-left: 50px;">
-		<a href="<c:url value="/studenthome"/>" target="_top"><button
+		<a href="<c:url value=""/>" target="_top"><button
 				class="dropbtn">
 				<i class="fa fa-home"></i>
 			</button></a>
@@ -14,14 +14,14 @@
 	<div class="dropdown">
 		<button class="dropbtn">Report</button>
 		<div class="dropdown-content">
-			<a href="<c:url value="/student_ViewReport"/>">View report</a>
+			<a href='<c:url value="/teacher_viewReport"/>'>View report</a>
 		</div>
 	</div>
 
 	<div class="dropdown">
 		<button class="dropbtn">Nhóm</button>
 		<div class="dropdown-content">
-			<a href="<c:url value="/studentGroupByteacher_id"/>">Thông
+			<a href='<c:url value="/teacherGroupByteacher_id"/>'>Thông
 				tin nhóm</a>
 		</div>
 	</div>
@@ -29,7 +29,7 @@
 	<div class="dropdown">
 		<button class="dropbtn">Schedule Report</button>
 		<div class="dropdown-content">
-			<a href="<c:url value="/student_ViewScheduleReport"/>">Xem lịch</a>
+			<a href='<c:url value="/teacher_viewReportSchedule"/>'>Xem lịch</a>
 		</div>
 	</div>
 
@@ -37,14 +37,14 @@
 		<button class="dropbtn">Meeting</button>
 		<div class="dropdown-content">
 			<a
-				href="<c:url value="/studentMeeting"/>">Xem lịch</a>
+				href='<c:url value="/teacher_viewScheduleMeeting"/>'>Xem lịch</a>
 		</div>
 	</div>
 
 	<div class="dropdown">
 		<button class="dropbtn">Đồ án</button>
 		<div class="dropdown-content">
-			<a href="<c:url value="/studentProject"/>">Thông tin đồ án</a>
+			<a href='<c:url value="/teacher_getProject/${ InforAccount.id }"/>'>Thông tin đồ án</a>
 		</div>
 	</div>
 

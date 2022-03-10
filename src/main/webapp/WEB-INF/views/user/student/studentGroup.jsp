@@ -25,62 +25,70 @@
 			<div class="row">
 				<div class="col-lg-12 grid-margin stretch-card">
 					<div class="card">
-								<div class="card-body">
+						<div class="card-body">
 
 
-									<div class="table table-striped project-orders-table">
-								<h4 style="text-transform: uppercase;padding:16px;">Your Group  </h4>
+							<div class="table table-striped project-orders-table">
+								<h4 style="text-transform: uppercase; padding: 16px;">Your
+									Group</h4>
 
 								<c:forEach var="items" items="${ teacherNameInGroup }">
-									<h5 style="text-align: center; text-transform: uppercase;margin:16px;">TEACHER: ${items.name}</h5>
-									
-								</c:forEach>
-									<c:forEach var="itemss" items="${ getNameGroup }">
-									<h5 style="text-align: center; text-transform: uppercase;margin:16px;">Group ${itemss.id}</h5>
-									
-								</c:forEach>
-											
-											<table class="table">
-												<thead>
+									<h5
+										style="text-align: center; text-transform: uppercase; margin: 16px;">TEACHER:
+										${items.name}</h5>
 
-													<tr>
-														
-														<th>ID</th>
-														<th>Name</th>
-														<th>Mail</th>
-														<th>Role</th>
-														<th>GroupID</th>
-													</tr>
-												</thead>
-												<tbody>
-												<c:forEach var="item" items="${studentGroup}">
-													<tr>
-														
-														<td>${ item.id }</td>
-														<td>${ item.name }</td>
-														<td>${ item.mail }</td>
-														<td>${ item.role }</td>
-														<td>${ item.group_id }</td>
-													</tr>
-												</tbody>
-												</c:forEach>
-											</table>
+								</c:forEach>
+								<c:forEach var="itemss" items="${ getNameGroup }">
+									<h5
+										style="text-align: center; text-transform: uppercase; margin: 16px;">Group
+										${itemss.id}</h5>
 
-										
-									</div>
-								</div>
+								</c:forEach>
+
+								<table class="table">
+									<thead>
+
+										<tr>
+
+											<!-- 		<th>ID</th>-->
+											<th>Name</th>
+											<th>Mail</th>
+											<th>Role</th>
+											<!-- 	<th>GroupID</th> -->
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="item" items="${studentGroup}">
+											<tr>
+
+												<!-- 	<td>${ item.id }</td> -->
+												<td>${ item.name }</td>
+												<td>${ item.mail }</td>
+												<td>${ item.role }</td>
+												<!-- 	<td>${ item.group_id }</td>-->
+											</tr>
+									</tbody>
+									</c:forEach>
+								</table>
+
 
 							</div>
-							
+						</div>
+
+					</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- ---------------------END OF CONTENT--------------------- -->
-	
-	<!-- -----------------FOOTER-------------------- -->
 
+	<!-- -----------------FOOTER-------------------- -->
+	<%@include file="/WEB-INF/views/user/student/footer.jsp"%>
 	<!-- -----------------END OF FOOTER-------------------- -->
+	
+	<!-- Script-->
+	<%@include file="/WEB-INF/views/user/student/studentscript.jsp"%>
 </body>
 
 

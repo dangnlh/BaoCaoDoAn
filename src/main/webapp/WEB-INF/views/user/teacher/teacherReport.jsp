@@ -7,16 +7,14 @@
 
 <body>
 
-	<div class="container-scroller" style="margin-top: -75px;">
-
-
-		<%@include file="/WEB-INF/views/user/teacher/Header.jsp"%>
-
-
-
-		<div class="container-fluid page-body-wrapper">
-
-			<%@include file="/WEB-INF/views/user/teacher/sidebar.jsp"%>
+	<div class="header">
+		<!-- -----------------HEADER-------------------- -->
+		<%@include file="/WEB-INF/views/user/teacher/header.jsp"%>
+		<!-- -----------------END OF HEADER-------------------- -->
+		<!-- -----------------MENU BAR-------------------- -->
+		<%@include file="/WEB-INF/views/user/teacher/menubar.jsp"%>
+		<!-- -----------------END OF MENU BAR-------------------- -->
+	</div>
 
 
 			<!-- partial -->
@@ -60,7 +58,7 @@
 														<td>${report.timeSubmit}</td>
 														<td><a
 															href='<c:url value="/report_stogare/${report.urlReport}"/>'
-															download>Download Report</a></td>
+															download>${report.urlReport}</a></td>
 														<th>${report.point}</th>
 														<td>${group.name}</td>
 														<td>${report.convertedStatus}</td>
@@ -93,13 +91,9 @@
 
 				</div>
 
-				<%@include file="/WEB-INF/views/user/teacher/Footer.jsp"%>
+				<%@include file="/WEB-INF/views/user/teacher/footer.jsp"%>
 
 			</div>
-
-		</div>
-
-	</div>
 
 
 </body>
