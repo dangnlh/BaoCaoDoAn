@@ -44,39 +44,59 @@
 
 								<div style="margin: 30px 200px">
 									<form:form method="POST" action="/BaoCaoDoAn/editProject"
-										modelAttribute="ProjectUpdateAndInsert">
+										modelAttribute="project">
+										<form:hidden path="id" value="${ getProjectbyId.id}" />
 										<label for="email2" class="mb-2 mr-sm-2">Name Project</label>
 										<br>
-										<form:input path="name" type="text"
+
+
+										<form:input path="name" placeholder="abcdxyz" type="text"
+											value="${ getProjectbyId.name}"
 											class="form-control mb-2 mr-sm-2" />
+										<form:errors path="name" cssClass="error" />
 										<br>
 
 
 										<label for="email2" class="mb-2 mr-sm-2">UrL Porject</label>
 										<br>
 										<form:input path="urlProject" type="text"
-											class="form-control mb-2 mr-sm-2" />
+											class="form-control mb-2 mr-sm-2"
+											value="${ getProjectbyId.urlProject}" />
 										<br>
 
 
 										<label for="email2" class="mb-2 mr-sm-2">Time Create </label>
 										<br>
 										<form:input path="createTime" type="date"
-											class="form-control mb-2 mr-sm-2" />
+											class="form-control mb-2 mr-sm-2"
+											value="${ getProjectbyId.createTime}" />
 										<br>
 
 										<label for="email2" class="mb-2 mr-sm-2">Group</label>
 										<br>
-										<form:input path="group_id" type="text"
-											class="form-control mb-2 mr-sm-2" />
+
+										<form:select path="group_id">
+											<c:forEach var="item" items="${ groups }">
+
+												<option value="${ getProjectbyId.group_id}">${ item.id }</option>
+											</c:forEach>
+										</form:select>
+
 										<br>
+										<br>
+
+
+
 
 										<label for="email2" class="mb-2 mr-sm-2">Teacher</label>
 										<br>
-										<form:input path="teacherId" type="text"
-											class="form-control mb-2 mr-sm-2" />
+										<form:select path="teacherId">
+											<c:forEach var="item" items="${ teacher }">
+												<option value="${ getProjectbyId.teacherId}">${ item.id }</option>
+											</c:forEach>
+										</form:select>
 										<br>
-
+										<br>
 										<button type="submit" class="btn btn-primary mb-2">Submit</button>
 
 									</form:form>
@@ -86,22 +106,7 @@
 							</div>
 
 						</div>
-						<div class="col-sm-4">
-							<div class="card shadow mb-4">
-								<div class="card-header py-3">
-									<h4 style="text-align: center;"
-										class="m-0 font-weight-bold text-primary">Group
-										Information</h4>
-								</div>
 
-								<div style="margin: 30px 200px">
-									<h2>haha</h2>
-
-								</div>
-
-							</div>
-
-						</div>
 					</div>
 					<!-- DataTales Example -->
 

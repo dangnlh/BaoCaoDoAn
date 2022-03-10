@@ -12,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -64,9 +66,9 @@ public class ProjectController {
 		if (!model.containsAttribute("ProjectUpdateAndInsert")) {
 			model.addAttribute("ProjectUpdateAndInsert", new Project());
 		}
-		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());			
-	    mv.addObject("TIMENOW", date);
-	
+		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+		mv.addObject("TIMENOW", date);
+
 		mv.addObject("teacher", accountDao.getTeacherAdmin());
 		mv.addObject("groups", groupServiceImpl.getGroupAdmin());
 		mv.addObject("getAllProject", projectService.getAllProject());
@@ -76,41 +78,44 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/addProject", method = RequestMethod.POST)
-	public ModelAndView add(@Valid @ModelAttribute("ProjectUpdateAndInsert")  Project project,
+	public ModelAndView add(@Valid @ModelAttribute("ProjectUpdateAndInsert") Project project,
 			BindingResult bindingResult) {
 		System.out.println(bindingResult);
 		if (bindingResult.hasErrors()) {
 			mv.setViewName("/admin/addProject");
 
-		}else {
+		} else {
 			projectService.addProject(project);
 			return new ModelAndView("redirect:/AdminProject");
 		}
 
-		return mv ;
-
-	
-
-	}
-
-	@RequestMapping(value = "/editProject", method = RequestMethod.GET)
-	public ModelAndView getEditProject(HttpServletRequest request) {
-
-		Integer id = Integer.parseInt(request.getParameter("id"));
-		Project project = projectService.getProjectById(id);
-		mv.setViewName("/admin/editProject");
-
-		mv.addObject("ProjectUpdateAndInsert", project);
 		return mv;
 
 	}
 
-	@RequestMapping(value = "/editProject", method = RequestMethod.POST)
-	public ModelAndView edit(@ModelAttribute("ProjectUpdateAndInsert") Project project) {
+	@GetMapping(value = "/editProject/{id}")
+	public ModelAndView getEditProject(@PathVariable("id") int id) {
+		mv.addObject("getProjectbyId", projectService.getProjectById(id));
+		mv.setViewName("/admin/editProject");
+		mv.addObject("teacher", accountDao.getTeacherAdmin());
+		mv.addObject("groups", groupServiceImpl.getGroupAdmin());
+		return mv;
 
-		projectService.editProject(project);
+	}
 
-		return new ModelAndView("redirect:/AdminProject");
+	@PostMapping(value = "/editProject")
+	public ModelAndView edit(@Valid @ModelAttribute("project") Project project, BindingResult bindingResult) {
+		System.out.println("project id = " + project.getId());
+		System.out.println("project  = " + project);
+		if (bindingResult.hasErrors()) {
+			mv.setViewName("/admin/editProject");
+
+		} else {
+			projectService.editProject(project.getId(), project);
+			return new ModelAndView("redirect:/AdminProject");
+		}
+
+		return mv;
 
 	}
 

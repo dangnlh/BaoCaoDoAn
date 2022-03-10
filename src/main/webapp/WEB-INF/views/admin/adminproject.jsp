@@ -63,9 +63,14 @@
 												<td>${ item.group_name  }</td>
 												<td>${ item.teacherId }-${ item.account_name }</td>
 												<td><a
+
+													href='<c:url value="/editProject/${ item.id }"/>'
+													class="btn btn-success">Edit</a> <a
+
 													href='<c:url value="/editProject?id=${ item.id }"/>'
 													class="btn btn-success btn-circle btn-sm"> <i
 														class="fas fa-edit"></i></a> <a
+
 													href='<c:url value="/deleteProject/${ item.id }"/>'
 													class="btn btn-danger btn-circle btn-sm"> <i
 														class="fas fa-trash"></i>
