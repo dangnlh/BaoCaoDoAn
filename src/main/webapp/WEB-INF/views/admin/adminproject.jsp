@@ -87,6 +87,9 @@
 		</div>
 	</div>
 
+
+	
+
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -123,9 +126,9 @@
 	<!-- Page level plugins -->
 	<script src="/assets/vendor/chart.js/Chart.min.js"></script>
 
-	<!-- Page level custom scripts -->
-	<script src="/assets/js/demo/chart-area-demo.js"></script>
-	<script src="/assets/js/demo/chart-pie-demo.js"></script>
+	<!-- Scripts -->
+	<%@include file="/WEB-INF/views/admin/adminscript.jsp"%>
+	<!-- End of Scripts -->
 </body>
 
 </html>

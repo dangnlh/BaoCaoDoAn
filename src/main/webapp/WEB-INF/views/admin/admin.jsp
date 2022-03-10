@@ -31,6 +31,11 @@
 		</div>
 	</div>
 
+
+	<!-- Scripts -->
+	<%@include file="/WEB-INF/views/admin/adminscript.jsp"%>
+	<!-- End of Scripts -->
+
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -61,6 +66,7 @@
 	<script src="/assets/vendor/chart.js/Chart.min.js"></script>
 	<script src="/assets/js/demo/chart-area-demo.js"></script>
 	<script src="/assets/js/demo/chart-pie-demo.js"></script>
+
 </body>
 
 </html>
