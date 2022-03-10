@@ -62,18 +62,7 @@
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Code</th>
-											<th>Name</th>
-											<th>Point</th>
-											<th>Comment</th>
-											<th>Time Create</th>
-											<th>Time Submit</th>
-											<th>Code Project</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
+									
 									<tbody>
 										<c:forEach var="item" items="${ getAllReport }">
 											<c:set var="project" value="${item.project}" />

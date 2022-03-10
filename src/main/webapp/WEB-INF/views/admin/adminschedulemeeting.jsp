@@ -45,6 +45,7 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
+								<a class="nav-link" href='<c:url value="/addScheduleMeeting"></c:url>'>
 								<a class="nav-link" href='<c:url value="addScheduleMeeting"></c:url>'>
 									<i class="fa fa-plus-square"></i> <span>Add new meeting</span>
 								</a>
@@ -64,19 +65,7 @@
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Id</th>
-											<th>TimeMeeting</th>
-											<th>Project_id</th>
-											<th>Account_id</th>
-											<th>Name ScheduleMeeting</th>
-											<th>Link Meeting</th>
-											<th>Content</th>
-											<th>Date Submit</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
+									
 									<tbody>
 										<c:forEach var="item" items="${ ScheduleMeeting }">
 											<tr>

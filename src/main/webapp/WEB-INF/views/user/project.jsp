@@ -19,7 +19,7 @@
 	<div class="container">
 		<h2>Project</h2>
 
-		<table class="table table-striped" border="1">
+			<table class="table table-striped" border="1">
 
 
 			<thead>
@@ -33,28 +33,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="item" items="${ getAllProject }">
+				<h1>${ getAllProject }</h1>
 
-					<tr>
-						<td>${ item.id }</td>
+				<tr>
+					<td>${ getAllProject.name }</td>
 
-						<td>${ item.name }</td>
-						<td>${ item.urlProject }</td>
-						<td>${ item.createTime }</td>
-						<td>${ item.group_id }</td>
-						<td>
-					
-					    <a  href='<c:url value="/edit/${ item.id }"/>' class="btn btn-success" >Edit</a>
-					    <a href='<c:url value="/deleteProject/${ item.id }"/>' class="btn btn-danger">Delete</a>
-							
 
-						</td>
-					</tr>
-				</c:forEach>
+
+				</tr>
+
 			</tbody>
 
 		</table>
-		<button type="button" class="btn btn-primary" data-toggle="modal"
+		<%-- <button type="button" class="btn btn-primary" data-toggle="modal"
 			data-target="#modalAddProject">Add Project</button>
 
 
@@ -101,7 +92,7 @@
 				
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					</div>
+					</div> --%>
 
 				</div>
 			</div>

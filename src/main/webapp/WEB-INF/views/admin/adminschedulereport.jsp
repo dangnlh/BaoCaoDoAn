@@ -59,16 +59,7 @@
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Code</th>
-											<th>Time Created</th>
-											<th>Account Id</th>
-											<th>Code Report</th>
-											<th>Date Submit</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
+									
 									<tbody>
 										<c:forEach var="item" items="${ getAllScheduleReport }">
 											<tr>
@@ -98,7 +89,7 @@
 				</div>
 				<!-- /.container-fluid -->
 
-				<div class="container-fluid">
+				<%-- <div class="container-fluid">
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
@@ -161,7 +152,7 @@
 				</div>
 
 			</div>
-			<!-- End of Main Content -->
+ --%>			<!-- End of Main Content -->
 
 			<!-- Footer -->
 			<%@include file="/WEB-INF/views/admin/footer.jsp"%>

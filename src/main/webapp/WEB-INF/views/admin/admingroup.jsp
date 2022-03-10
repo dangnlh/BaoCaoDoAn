@@ -60,16 +60,7 @@
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>.NO</th>
-											<th>ID</th>
-											<th>Name</th>
-											<th>ViewProject</th>
-											<th>ViewStudent</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
+									
 									<tbody>
 										<c:forEach var="items" items="${ group4 }" varStatus="counter">
 											<c:if test="${not empty items }" />
