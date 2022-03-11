@@ -92,7 +92,7 @@ public class StudentDAO {
 
 	public List<Account> FindAccountbyName(String name) {
 		List<Account> list = new ArrayList<Account>();
-		String sql = "SELECT * FROM `account` WHERE name like '%" + name + "%' ";
+		String sql = "SELECT * FROM `account` WHERE account_name like '%" + name + "%' ";
 		list = jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}

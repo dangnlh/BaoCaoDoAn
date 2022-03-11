@@ -45,8 +45,8 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-							<a class="nav-link" href='<c:url value="/addProject"/>'>
-									<i class="fa fa-plus-square"></i> <span>Add new project</span>
+								<a class="nav-link" href='<c:url value="/addProject"/>'> <i
+									class="fa fa-plus-square"></i> <span>Add new project</span>
 								</a></br>
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
@@ -76,12 +76,10 @@
 												<td>${ item.group_id }</td>
 												<td>${ item.group_name  }</td>
 												<td>${ item.teacherId }-${ item.account_name }</td>
-												<td> <a
-
-													href='<c:url value="/editProject?id=${ item.id }"/>'
+												<td><a
+													href='<c:url value="/editProject/${ item.id }"/>'
 													class="btn btn-success btn-circle btn-sm"> <i
 														class="fas fa-edit"></i></a> <a
-
 													href='<c:url value="/deleteProject/${ item.id }"/>'
 													class="btn btn-danger btn-circle btn-sm"> <i
 														class="fas fa-trash"></i>

@@ -113,7 +113,7 @@ public class GroupDAO {
 	}
 
 	public Group getGroupByAccountId(int accountId) {
-		String sql = "SELECT g.* \r\n" + "FROM baocaodoan.account as a, baocaodoan.group as g\r\n" + "WHERE a.id ="
+		String sql = "SELECT g.* \r\n" + "FROM baocaodoan.account as a, baocaodoan.group_student as g\r\n" + "WHERE a.id ="
 				+ accountId + " and a.group_id = g.id;";
 		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
 		return result;
