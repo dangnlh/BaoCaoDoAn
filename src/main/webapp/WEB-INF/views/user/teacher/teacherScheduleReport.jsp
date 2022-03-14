@@ -5,7 +5,7 @@
 
 <%@include file="/WEB-INF/views/user/teacher/linkHeader.jsp"%>
 
-<body>
+<body style="overflow: visible;">
 <div class="header">
 		<!-- -----------------HEADER-------------------- -->
 		<%@include file="/WEB-INF/views/user/teacher/header.jsp"%>

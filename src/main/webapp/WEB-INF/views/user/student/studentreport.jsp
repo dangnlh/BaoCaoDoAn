@@ -10,7 +10,7 @@
 <%@include file="/WEB-INF/views/user/student/linkHeader.jsp"%>
 </head>
 
-<body>
+<body style="overflow: visible;">
 	<c:set var="message" value="${message}" />
 
 	<div class="header" th:fragment="headerfrag">
