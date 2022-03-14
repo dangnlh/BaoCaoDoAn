@@ -58,12 +58,7 @@
 											class="form-control mb-2 mr-sm-2" />
 
 										<form:errors path="name" cssClass="error" />
-
-
-
-
 										<br>
-
 
 										<label for="email2" class="mb-2 mr-sm-2">UrL Porject</label>
 										<br>
@@ -71,14 +66,11 @@
 											class="form-control mb-2 mr-sm-2" />
 										<br>
 
-
-										<label h for="email2" class="mb-2 mr-sm-2">Time Create  : ${ TIMENOW }
-										</label>
+										<label h for="email2" class="mb-2 mr-sm-2">Time Create
+											: ${ TIMENOW } </label>
 										<br>
 										<form:input type="hidden" path="createTime"
 											class="form-control mb-2 mr-sm-2" value="${ TIMENOW }" />
-
-
 										<br>
 
 										<!--<label for="email2" class="mb-2 mr-sm-2">Group</label>
@@ -86,7 +78,6 @@
 										<form:input path="group_id" type="text"
 											class="form-control mb-2 mr-sm-2" />
 											  -->
-
 
 										<label for="cars">Group:</label>
 
@@ -97,8 +88,6 @@
 											</c:forEach>
 										</form:select>
 										<br>
-
-
 										<br>
 
 										<label for="cars">Teacher:</label>
@@ -108,7 +97,6 @@
 												<option value="${ item.id }">${ item.id }</option>
 											</c:forEach>
 										</form:select>
-
 
 										<!-- 		<form:input path="teacherId" type="text"
 											class="form-control mb-2 mr-sm-2" />
@@ -120,18 +108,12 @@
 
 									</form:form>
 									<h1></h1>
-
 								</div>
-
 							</div>
-
 						</div>
-						
 					</div>
 					<!-- DataTales Example -->
-
 				</div>
-
 			</div>
 			<!-- End of Main Content -->
 

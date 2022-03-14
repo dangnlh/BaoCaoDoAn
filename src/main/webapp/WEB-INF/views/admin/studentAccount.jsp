@@ -32,12 +32,8 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-
-					
-
-					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
+				
+				<div class="card-header py-3">
 							<!--	<h6 class="m-0 font-weight-bold text-primary">Search</h6> -->
 							<!-- Load icon library -->
 							<form:form method="POST" action="/BaoCaoDoAn/searchAcc"
@@ -46,22 +42,23 @@
 								<br>
 								<form:input path="name" type="text"
 									class="form-control mb-2 mr-sm-2" />
-								<br>
-								<button type="submit">Submit</button></br>
-							
-										<!-- Add Group Button -->
-					<a href="addAccountStudent" style="font-size: 30px;">Add
-						Account</a>
-					<!-- End of Add Group Button -->
+								<button type="submit">Submit</button>
 							</form:form>
-						
-
-						
+						</div>
+					<!-- DataTales Example -->
+					<div class="card shadow mb-4">
+					<div class="card-header py-3">
+							<h4 class="m-0 font-weight-bold text-primary">Student Account Detail</h4>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								
-								<table class="table table-bordered" id="dataTable" width="100%"
+								<!-- Add Group Button -->
+								<a class="nav-link" style="font-size: 18px;"
+									href='<c:url value="addAccountStudent"></c:url>'> <i
+									class="fa fa-plus-square"></i> <span>Add new account</span>
+								</a>
+								<!-- End of Add Group Button -->
+								<table class="table table-striped" id="dataTable" width="100%"
 									cellspacing="0">
 									<thead>
 										<tr>
@@ -74,10 +71,11 @@
 											<th>Role</th>
 											<th>Is Leader</th>
 											<th>Gender</th>
+											<th>Action</th>
 										</tr>
 
 									</thead>
-						
+
 									<tbody>
 										<c:forEach var="items" items="${ studentList }"
 											varStatus="counter">
@@ -95,7 +93,7 @@
 												<td><a
 													href='<c:url value="/editStudentAccount?id=${items.id}"></c:url>'
 													class="btn btn-success btn-circle btn-sm"> <i
-														class="fas fa-check"></i>
+														class="fas fa-edit"></i>
 												</a> <a
 													href='<c:url value="/deleteAccount?id=${items.id}"></c:url>'
 													class="btn btn-danger btn-circle btn-sm"> <i
