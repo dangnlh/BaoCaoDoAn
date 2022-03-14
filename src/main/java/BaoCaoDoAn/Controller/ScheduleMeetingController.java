@@ -56,12 +56,13 @@ public class ScheduleMeetingController {
 //		List<project_scheduleMeeting> result = scheduleMeetingServiceImpl.GetScheduleMeetingByProjectId(teacher.getId()) ;
 
 		List<Project> project = projectService.getProjectByTeacherId(teacher.getId());
+		System.out.println("alo" + project);
 		System.out.println("project" + project);
 		for (Project project2 : project) {
 			List<ScheduleMeeting> scheduleMeeting = scheduleMeetingServiceImpl
 					.GetScheduleMeetingByProjectId(project2.getId());
 			project2.setScheduleMeeting(scheduleMeeting);
-
+			System.out.println("Kiet oi la KIet" + scheduleMeeting);
 		}
 		mv.addObject("projects", project);
 		mv.setViewName("user/teacher/ScheduleMeeting");
