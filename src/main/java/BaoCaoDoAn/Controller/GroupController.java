@@ -98,11 +98,21 @@ public class GroupController {
 	
 	@RequestMapping(value = "/Project/{id}")
 	public ModelAndView group(@PathVariable int id, Project project) {
+		mv.setViewName("/user/project");
 		List<Project> list = new ArrayList<Project>();
 		Project projectTemp = groupServiceImpl.GetProjectByGroupID(id);
+		System.out.println("FAIL PRoject"+projectTemp);
 		list.add(projectTemp);
+
 		mv.setViewName("/user/project");
 		mv.addObject("getAllProject", groupServiceImpl.GetProjectByGroupID(id));
+
+		
+			
+			mv.addObject("getAllProject", projectTemp);
+		
+			
+
 
 		return mv;
 	}

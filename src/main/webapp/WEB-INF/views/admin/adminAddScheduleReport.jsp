@@ -1,5 +1,3 @@
-
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -17,7 +15,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Admin Page</title>
+<title>Add Schedule</title>
 <!-- Custom fonts for this template-->
 <link
 	href="<c:url value="/assets/vendor/fontawesome-free/css/all.min.css" /> "

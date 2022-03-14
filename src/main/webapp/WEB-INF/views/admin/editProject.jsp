@@ -34,7 +34,7 @@
 
 
 				<div class="container-fluid">
-					<div class="row">
+					<div class="row justify-content-center">
 						<div class="col-sm-8">
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
@@ -106,6 +106,10 @@
 							</div>
 
 						</div>
+
+
+						</div>
+
 
 					</div>
 					<!-- DataTales Example -->

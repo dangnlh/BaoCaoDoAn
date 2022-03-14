@@ -38,10 +38,10 @@
 
 				<!-- Nav Item - User Information -->
 						<a
-							class="nav-link " href="#" id="userDropdown"
+							class="nav-link dropdown" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-white large">Account_Name</span>
+								class="mr-2 d-none d-lg-inline text-white medium">Account_Name</span>
 								<img class="img-profile rounded-circle"
 								src='<c:url value="/assets/img/undraw_profile.svg" /> '>
 						</a> <!-- Dropdown - User Information -->

@@ -23,7 +23,7 @@
 	<div class="container">
 		<h2>Project</h2>
 
-		<table class="table table-striped" border="1">
+			<table class="table table-striped" border="1">
 
 
 			<thead>
@@ -49,7 +49,7 @@
 			</tbody>
 
 		</table>
-		<button type="button" class="btn btn-primary" data-toggle="modal"
+		<%-- <button type="button" class="btn btn-primary" data-toggle="modal"
 			data-target="#modalAddProject">Add Project</button>
 
 
@@ -105,7 +105,7 @@
 
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					</div>
+					</div> --%>
 
 				</div>
 			</div>
