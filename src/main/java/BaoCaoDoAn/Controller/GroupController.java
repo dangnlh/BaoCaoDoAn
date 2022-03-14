@@ -101,12 +101,8 @@ public class GroupController {
 		List<Project> list = new ArrayList<Project>();
 		Project projectTemp = groupServiceImpl.GetProjectByGroupID(id);
 		list.add(projectTemp);
-		if (list != null) {
-			mv.setViewName("/user/project");
-			mv.addObject("getAllProject", groupServiceImpl.GetProjectByGroupID(id));
-		} else {
-			mv.addObject("getAllProject", "that bai");			
-		}
+		mv.setViewName("/user/project");
+		mv.addObject("getAllProject", groupServiceImpl.GetProjectByGroupID(id));
 
 		return mv;
 	}
