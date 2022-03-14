@@ -103,11 +103,16 @@ public class GroupController {
 		Project projectTemp = groupServiceImpl.GetProjectByGroupID(id);
 		System.out.println("FAIL PRoject"+projectTemp);
 		list.add(projectTemp);
+
+		mv.setViewName("/user/project");
+		mv.addObject("getAllProject", groupServiceImpl.GetProjectByGroupID(id));
+
 		
 			
 			mv.addObject("getAllProject", projectTemp);
 		
 			
+
 
 		return mv;
 	}
