@@ -40,15 +40,15 @@
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Group</h6>
+							<h4 class="m-0 font-weight-bold text-primary">Group</h4>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<a class="nav-link" href="AddGroup">
+								<a class="nav-link" href="AddGroup" style="font-size: 18px;">
 									<i class="fa fa-plus-square"></i> <span>Add group</span>
 								</a>
 
-								<table class="table table-bordered" id="dataTable" width="100%"
+								<table class="table table-striped" id="dataTable" width="100%"
 									cellspacing="0">
 									<thead>
 										<tr>

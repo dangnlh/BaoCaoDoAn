@@ -40,15 +40,15 @@
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Report Detail</h6>
+							<h4 class="m-0 font-weight-bold text-primary">Report Detail</h4>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<a class="nav-link" href='<c:url value="/addReport"></c:url>'>
+								<a class="nav-link" style="font-size: 18px;" href='<c:url value="/addReport"></c:url>'>
 									<i class="fa fa-plus-square"></i> <span>Add new report</span>
 								</a>
 
-								<table class="table table-bordered" id="dataTable" width="100%"
+								<table class="table table-striped" id="dataTable" width="100%"
 									cellspacing="0">
 									<thead>
 										<tr>
