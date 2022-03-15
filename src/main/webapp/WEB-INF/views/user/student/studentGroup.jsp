@@ -7,7 +7,7 @@
 <%@include file="/WEB-INF/views/user/student/linkHeader.jsp"%>
 </head>
 
-<body>
+<body style="overflow: visible;">
 
 	<div class="header" th:fragment="headerfrag">
 		<!-- -----------------HEADER-------------------- -->
