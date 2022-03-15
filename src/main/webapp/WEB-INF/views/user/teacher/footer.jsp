@@ -10,6 +10,7 @@
 					<th>LIÊN HỆ</th>
 					<th>NGÀNH ĐÀO TẠO</th>
 					<th> </th>
+					<th> </th>
 				</tr>
 				<tr>
 					<td>TRƯỜNG ĐẠI HỌC FPT</td>
@@ -17,6 +18,8 @@
 					target="_top">Quản trị kinh doanh</a></td>
 					<td class="color"><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/nganh-kinh-doanh-quoc-te"
 					target="_top">Kinh doanh quốc tế</a></td>
+					<td class="color"><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/he-thong-thong-tin"
+					target="_top">Hệ thống thông tin</a></td>
 				</tr>
 				<tr>
 					<td>Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</td>
@@ -24,6 +27,8 @@
 					target="_top">Digital Marketing</a></td>
 					<td class="color"><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/nganh-ky-thuat-phan-mem"
 					target="_top">Kỹ thuật phần mềm</a></td>
+					<td class="color"><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/nganh-quan-tri-dich-vu-du-lich-lu-hanh"
+					target="_top">Quản trị dịch vụ du lịch & lữ hành</a></td>
 				</tr>
 				<tr>
 					<td> (028) 7300 5588</td>
@@ -31,6 +36,8 @@
 					target="_top">An toàn thông tin</a></td>
 					<td class="color"><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/tri-tue-nhan-tao"
 					target="_top">Trí tuệ nhân tạo</a></td>
+					<td class="color"><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/nganh-ngon-ngu-anh"
+					target="_top">Ngôn ngữ Anh</a></td>
 				</tr>
 				<tr>
 					<td>daihoc.hcm@fpt.edu.vn</td>
@@ -38,6 +45,8 @@
 					target="_top">Truyền thông đa phương tiện</a></td>
 					<td class="color"><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/tri-tue-nhan-tao"
 					target="_top">Thiết kế Mỹ thuật số</a></td>
+					<td class="color"><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/nganh-ngon-ngu-han-quoc"
+					target="_top">Ngôn ngữ Hàn Quốc</a></td>
 				</tr>
 				<tr>
 					<td><a href="#"
@@ -46,36 +55,12 @@
 					target="_top">Quản trị khách sạn</a></td>
 					<td class="color"><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/nganh-ngon-ngu-nhat"
 					target="_top">Ngôn ngữ Nhật</a></td>
-				</tr>
-			</table>
-		</div>
-		<div class="column">
-			<table class="t2">
-				<tr>
-					<th> </th>
-				</tr>
-				<tr>
-					<td><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/he-thong-thong-tin"
-					target="_top">Hệ thống thông tin</a></td>
-				</tr>
-				<tr>
-					<td><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/nganh-quan-tri-dich-vu-du-lich-lu-hanh"
-					target="_top">Quản trị dịch vụ du lịch & lữ hành</a></td>
-				</tr>
-				<tr>
-					<td><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/nganh-ngon-ngu-anh"
-					target="_top">Ngôn ngữ Anh</a></td>
-				</tr>
-				<tr>
-					<td><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/nganh-ngon-ngu-han-quoc"
-					target="_top">Ngôn ngữ Hàn Quốc</a></td>
-				</tr>
-				<tr>
-					<td><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/iot-internet-of-things"
+					<td class="color"><a href="https://hcmuni.fpt.edu.vn/nganh-dao-tao/iot-internet-of-things"
 					target="_top">IoT (Internet of Things)</a></td>
 				</tr>
 			</table>
 		</div>
+		
 	</div>
 	
 	<div class="bot">
