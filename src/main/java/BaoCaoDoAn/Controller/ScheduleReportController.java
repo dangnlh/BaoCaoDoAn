@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -114,33 +115,43 @@ public class ScheduleReportController {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		ScheduleReport scheduleReport = scheduleReportService.getScheduleReport(id) ;
 
-		ModelAndView model = new ModelAndView("/user/ScheduleReportFrom");
+		ModelAndView mv = new ModelAndView("/user/ScheduleReportFrom");
 
-		model.addObject("ScheduleReportUpdateAndInsert", scheduleReport);
+		mv.addObject("ScheduleReportUpdateAndInsert", scheduleReport);
+		mv.addObject("getAllReport", reportService.getAllReport());
 
-		return model;
+		return mv;
 	}
 
 
 
 	@RequestMapping(value = "/addScheduleReport", method = RequestMethod.GET)
-	public String doGetAddUser(Model model) {
+	public ModelAndView doGetAddUser(Model model, HttpSession session) {
 		if (!model.containsAttribute("ScheduleReportUpdateAndInsert")) {
 			model.addAttribute("ScheduleReportUpdateAndInsert", new ScheduleReport());
 		}
-		return "/user/ScheduleReportFrom";
+		
+		mv.addObject("getAllReport", reportService.getAllReport());
+		mv.setViewName("/user/ScheduleReportFrom");
+		return mv;
 	}
 
 	@RequestMapping(value = "/addScheduleReport", method = RequestMethod.POST)
-	public String doPostAddUser(@ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport, BindingResult result) {
+	public ModelAndView doPostAddUser(@Valid @ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport, BindingResult result) {
 		
+		if(result.hasErrors()) {
+			mv.setViewName("/user/ScheduleReportFrom");
+		}
 		if (ScheduleReport.getId() > 0) {
 			scheduleReportService.updateScheduleRepot(ScheduleReport);
-		}else{
+			return new ModelAndView("redirect:/ScheduleReport");
+		}else {
 			scheduleReportService.InsertScheduleRepot(ScheduleReport);
+			return new ModelAndView("redirect:/ScheduleReport");
 		}
+		
 
-		return "redirect:/ScheduleReport";
+		
 		
 	}
 

@@ -38,7 +38,7 @@
 				<!-- Topbar -->
 				<%@include file="/WEB-INF/views/admin/header.jsp"%>
 
-
+				<h1>ngu vk : ${ getAllProject.size() }</h1>
 				<div class="container-fluid">
 					<div class="row justify-content-center">
 						<div class="col-sm-8">
@@ -52,51 +52,59 @@
 									<form:form action="addScheduleMeeting" method="POST"
 										modelAttribute="ScheduleMeeting2">
 										<form:hidden path="id" />
-										
-											<label for="email2" class="mb-2 mr-sm-2">timeMeeting</label>
-											<br>
-											<form:input path="timeMeeting" type="date" class="form-control mb-2 mr-sm-2" value="2022-06-01" />
-											<br>
-											
-											<label for="email2" class="mb-2 mr-sm-2">Project_ID:</label>
-											<br>
-											<form:input path="project_id" class="form-control mb-2 mr-sm-2"/>
-											<form:errors path="project_id" cssClass="error"/>
-											<br>
-											
-											<label for="email2" class="mb-2 mr-sm-2">Account_id:</label>
-											<br>
-											<form:input path="account_id" class="mb-2 mr-sm-2"/>
-											<form:errors path="account_id" cssClass="error"/>
-											<br>
-											
-											<label for="email2" class="mb-2 mr-sm-2">Name SheduleMeeting</label>
-											<br>
-											<form:input path="name" class="mb-2 mr-sm-2"/>
-											<form:errors path="name" cssClass="error"/>
-											<br>
-											
-											<label for="email2" class="mb-2 mr-sm-2">Link Meeting</label>
-											<br>
-											<form:input path="link_meeting" class="mb-2 mr-sm-2"/>
-											<form:errors path="link_meeting" cssClass="error"/>
-											<br>
-											
-											<label for="email2" class="mb-2 mr-sm-2">Content</label>
-											<br>
-											<form:input path="content" class="mb-2 mr-sm-2"/>
-											<form:errors path="content" cssClass="error"/>
-											<br>
-											
-											<label for="email2" class="mb-2 mr-sm-2">Date Submit</label>
-											<br>
-											<form:input path="submitDate" type="date" class="form-control mb-2 mr-sm-2" value="2022-06-01" />
-											<br>
-											
-											<button type="submit" class="btn btn-primary mb-2">Submit</button>
 
-										</form:form>
-										<h1></h1>
+										<label for="email2" class="mb-2 mr-sm-2">timeMeeting</label>
+										<br>
+										<form:input path="timeMeeting" type="date"
+											class="form-control mb-2 mr-sm-2" value="2022-06-01" />
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">Project_ID:</label>
+										<br>
+										<form:select path="project_id">
+											<c:forEach var="item" items="${ getAllProject }">>
+
+												<option value="${ item.id }">${ item.id }</option>
+											</c:forEach>
+										</form:select>
+										<br>
+										<br>
+
+										<%-- <label for="email2" class="mb-2 mr-sm-2">Account_id:</label>
+										<br>
+										<form:input path="account_id" class="mb-2 mr-sm-2" />
+										<form:errors path="account_id" cssClass="error" />
+										<br> --%>
+
+										<label for="email2" class="mb-2 mr-sm-2">Name
+											SheduleMeeting</label>
+										<br>
+										<form:input path="name" class="mb-2 mr-sm-2" />
+										<form:errors path="name" cssClass="error" />
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">Link Meeting</label>
+										<br>
+										<form:input path="link_meeting" class="mb-2 mr-sm-2" />
+										<form:errors path="link_meeting" cssClass="error" />
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">Content</label>
+										<br>
+										<form:input path="content" class="mb-2 mr-sm-2" />
+										<form:errors path="content" cssClass="error" />
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">Date Submit</label>
+										<br>
+										<form:input path="submitDate" type="date"
+											class="form-control mb-2 mr-sm-2" value="2022-06-01" />
+										<br>
+
+										<button type="submit" class="btn btn-primary mb-2">Submit</button>
+
+									</form:form>
+									<h1></h1>
 								</div>
 
 							</div>

@@ -57,7 +57,6 @@
 											<th>Id</th>
 											<th>TimeMeeting</th>
 											<th>Project_id</th>
-											<th>Account_id</th>
 											<th>Name ScheduleMeeting</th>
 											<th>Link Meeting</th>
 											<th>Content</th>
@@ -72,9 +71,9 @@
 												<td>${ item.id }</td>
 												<td>${ item.timeMeeting }</td>
 												<td>${ item.project_id }</td>
-												<td>${ item.account_id }</td>
+												
 												<td>${ item.name }</td>
-												<td>${ item.link_meeting }</td>
+												<td><a href="${ item.link_meeting }">Link Meeting</a></td>
 												<td>${ item.content  }</td>
 												<td>${ item.submitDate }</td>
 												<td><a

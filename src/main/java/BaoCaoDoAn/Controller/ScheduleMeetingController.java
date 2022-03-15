@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,33 +108,39 @@ public class ScheduleMeetingController {
 	}
 
 	@RequestMapping(value = "/addScheduleMeeting", method = RequestMethod.GET)
-	public String doGetAddUser(Model model) {
+	public ModelAndView doGetAddUser(Model model,HttpSession session) {
 		if (!model.containsAttribute("ScheduleMeeting2")) {
 			model.addAttribute("ScheduleMeeting2", new ScheduleMeeting());
 		}
-		return "/user/ScheduleMeetingFrom";
+		mv.addObject("getAllProject", projectService.getAllProject());
+		mv.setViewName("/user/ScheduleMeetingFrom");
+		return mv;
 	}
 
 	@RequestMapping(value = "/addScheduleMeeting", method = RequestMethod.POST)
-	public String doPostAddUser(@ModelAttribute("ScheduleMeeting2") ScheduleMeeting admin, BindingResult result) {
-		System.out.println("SUCCESS");
-		if (result.hasErrors()) {
-			return "/user/ScheduleMeetingFrom";
+	public ModelAndView doPostAddUser(@Valid @ModelAttribute("ScheduleMeeting2") ScheduleMeeting admin, BindingResult bindingResult) {
+		System.out.println(bindingResult);
+		if (bindingResult.hasErrors()) {
+			mv.setViewName("/user/ScheduleMeetingFrom");
+			
+		}else {
+			scheduleMeetingDAO.updateAndSave(admin);
+			return new ModelAndView("redirect:/ScheduleMeeting");
 		}
-		scheduleMeetingDAO.updateAndSave(admin);
-		return "redirect:/ScheduleMeeting";
+				return mv ;
 	}
 
 	@RequestMapping(value = "/editScheduleMeeting", method = RequestMethod.GET)
-	public ModelAndView editAdmin(HttpServletRequest request) {
+	public ModelAndView editAdmin(HttpServletRequest request,HttpSession session) {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		ScheduleMeeting ScheduleMeeting = scheduleMeetingDAO.get(id);
 
-		ModelAndView model = new ModelAndView("/user/ScheduleMeetingFrom");
+		ModelAndView mv = new ModelAndView("/user/ScheduleMeetingFrom");
 
-		model.addObject("ScheduleMeeting2", ScheduleMeeting);
+		mv.addObject("ScheduleMeeting2", ScheduleMeeting);
+		mv.addObject("getAllProject", projectService.getAllProject());
 
-		return model;
+		return mv;
 	}
 
 	@RequestMapping(value = "/deleteScheduleMeeting", method = RequestMethod.GET)
