@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -118,10 +119,19 @@ public class ProjectDAO {
 	}
 
 	public Project getProjectByGroupId(int id) {
+		try {
 		Project project;
 		String sql = "SELECT * FROM project where group_id = " + id;
 		project = jdbcTemplate.queryForObject(sql, new MapperProject());
-		return project;
+		if (project != null) {
+			return project;
+		}
+	} catch (EmptyResultDataAccessException e) {
+
+		return null;
+	}
+	return null;
+		
 	}
 
 }

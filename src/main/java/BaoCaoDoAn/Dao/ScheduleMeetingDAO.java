@@ -68,12 +68,12 @@ public class ScheduleMeetingDAO {
 	public void updateAndSave(ScheduleMeeting admin) {
 		if (admin.getId() > 0) {
 			String sql = "UPDATE schedulemeeting SET timeMeeting=?, project_id=?, account_id=? ,name_scheduleMeeting=?,link_meeting=?,content=?,date_submit=?" + "WHERE id=?";
-			jdbcTemplate.update(sql, admin.getTimeMeeting(), admin.getProject_id(),admin.getAccount_id(),admin.getName(),admin.getLink_meeting(),admin.getContent(),admin.getSubmitDate(),
+			jdbcTemplate.update(sql, admin.getTimeMeeting(), admin.getProject_id(),1,admin.getName(),admin.getLink_meeting(),admin.getContent(),admin.getSubmitDate(),
 					admin.getId());
 		} else {
 			String sql = "INSERT INTO schedulemeeting (timeMeeting,project_id,account_id,name_scheduleMeeting,link_meeting,content,date_submit) VALUES (?,?,?,?,?,?,?)";
 			jdbcTemplate.update(sql,
-					new Object[] { admin.getTimeMeeting(), admin.getProject_id(),admin.getAccount_id(),admin.getName(),admin.getLink_meeting(),admin.getContent(),admin.getSubmitDate() });
+					new Object[] { admin.getTimeMeeting(), admin.getProject_id(),1,admin.getName(),admin.getLink_meeting(),admin.getContent(),admin.getSubmitDate() });
 
 		}
 

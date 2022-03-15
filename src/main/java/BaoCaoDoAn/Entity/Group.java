@@ -2,9 +2,15 @@ package BaoCaoDoAn.Entity;
 
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+
 public class Group {
 	
 	private int id;
+	@NotEmpty(message = "Name is empty")
 	private String name;
 	private List<Account> account;
 	

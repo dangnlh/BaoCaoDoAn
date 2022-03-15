@@ -25,4 +25,6 @@ public interface IReportService {
 	
 	public List<Report> getAllReportByProjecId(int reportId) ;
 	public int gradeReport(Double point, int reportId);
+	
+
 }

@@ -38,14 +38,14 @@
 				<!-- Topbar -->
 				<%@include file="/WEB-INF/views/admin/header.jsp"%>
 
-
 				<div class="container-fluid">
 					<div class="row justify-content-center">
 						<div class="col-sm-8">
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
 									<h4 style="text-align: center;"
-										class="m-0 font-weight-bold text-primary">Add Schedule</h4>
+										class="m-0 font-weight-bold text-primary">Add Schedule
+										Report</h4>
 								</div>
 
 								<div style="margin: 30px 200px">
@@ -58,21 +58,30 @@
 										<form:input path="timeReport" type="date"
 											class="form-control mb-2 mr-sm-2" />
 										<br>
-										<label for="email2" class="mb-2 mr-sm-2">Account ID:</label>
+										<%-- <label for="email2" class="mb-2 mr-sm-2">Account ID:</label>
 										<br>
 										<form:input path="account_id" class="form-control mb-2 mr-sm-2"/>
 										<form:errors path="account_id" cssClass="error"/>
 										<br>
-										
+										 --%>
 										<label for="email2" class="mb-2 mr-sm-2">Report ID:</label>
 										<br>
-										<form:input path="report_id" class="form-control mb-2 mr-sm-2"/>
-										<form:errors path="report_id" cssClass="error"/>
+
+
+										<form:select path="report_id">
+											<c:forEach var="item" items="${ getAllReport }">
+
+												<option value="${ item.id }">${ item.id }</option>
+											</c:forEach>
+										</form:select>
 										<br>
-										
+										<br>
+										<br>
+
 										<label for="email2" class="mb-2 mr-sm-2">Date Submit</label>
 										<br>
-										<form:input path="dateSubmit" type="date" class="form-control mb-2 mr-sm-2" value="2022/06/01" />
+										<form:input path="dateSubmit" type="date"
+											class="form-control mb-2 mr-sm-2"  />
 										<br>
 
 										<button type="submit" class="btn btn-primary mb-2">Submit</button>
