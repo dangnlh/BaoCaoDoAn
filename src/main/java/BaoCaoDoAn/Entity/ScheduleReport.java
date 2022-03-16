@@ -2,9 +2,9 @@ package BaoCaoDoAn.Entity;
 
 import java.sql.Date;
 
-import javax.validation.constraints.NotEmpty;
+
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,8 +12,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class ScheduleReport {
 	private int id;
-	 
+	
+	@Past(message="date of birth must be less than today")  
+	@DateTimeFormat( pattern="dd-MM-yyyy")
 	private Date timeReport;
+	
+	@Past(message="date of birth must be less than today")  
+	@DateTimeFormat( pattern="dd-MM-yyyy")	
 	private Date dateSubmit;
 	private int account_id;
 	@NotNull(message = "dsa")

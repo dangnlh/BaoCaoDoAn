@@ -140,15 +140,17 @@ public class ScheduleReportController {
 	public ModelAndView doPostAddUser(@Valid @ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport, BindingResult result) {
 		
 		if(result.hasErrors()) {
-			mv.setViewName("/user/ScheduleReportFrom");
-		}
-		if (ScheduleReport.getId() > 0) {
-			scheduleReportService.updateScheduleRepot(ScheduleReport);
-			return new ModelAndView("redirect:/ScheduleReport");
+			return new ModelAndView("/user/ScheduleReportFrom");
 		}else {
-			scheduleReportService.InsertScheduleRepot(ScheduleReport);
-			return new ModelAndView("redirect:/ScheduleReport");
+			if (ScheduleReport.getId() > 0) {
+				scheduleReportService.updateScheduleRepot(ScheduleReport);
+				return new ModelAndView("redirect:/ScheduleReport");
+			}else {
+				scheduleReportService.InsertScheduleRepot(ScheduleReport);
+				return new ModelAndView("redirect:/ScheduleReport");
+			}
 		}
+		
 		
 
 		

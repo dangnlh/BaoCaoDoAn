@@ -85,6 +85,10 @@ public class ProjectController {
 			mv.setViewName("/admin/addProject");
 
 		} else {
+		
+		System.out.println(project.getGroup_id()); 
+	
+			System.out.println(project.getGroup_id()); 
 			projectService.addProject(project);
 			return new ModelAndView("redirect:/AdminProject");
 		}
