@@ -118,5 +118,10 @@ public class GroupDAO {
 		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
 		return result;
 	}
-
+	public List<Group> CheckName(String name) {
+		List<Group> listGroup = new ArrayList<Group>();
+		String sql  = "Select * From 'group_student' Where 'group_name' = " + name;
+		listGroup = _jdbcTemplate.query(sql, new MapperGroup());
+		return listGroup;
+	}
 }

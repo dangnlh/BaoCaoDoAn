@@ -5,7 +5,10 @@ import java.time.LocalTime;
 import java.util.Optional;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class ScheduleMeeting {
 	private int id;
@@ -13,6 +16,8 @@ public class ScheduleMeeting {
 	@Pattern(regexp = "[a-zA-Z ]{1,100}" , message = "Name is empty")
 	
 	private String name;
+	@Past(message="date of birth must be less than today")  
+	@DateTimeFormat( pattern="yyyy-MM-dd")
 	private Date timeMeeting;
 	private int project_id;
 	private int account_id;
