@@ -45,7 +45,8 @@
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
 									<h4 style="text-align: center;"
-										class="m-0 font-weight-bold text-primary">Student Account Details</h4>
+										class="m-0 font-weight-bold text-primary">Student Account
+										Details</h4>
 								</div>
 
 								<div style="margin: 30px 200px">
@@ -74,10 +75,14 @@
 										<form:errors path="password" cssClass="error" />
 										<br>
 
-										<label for="email2" class="mb-2 mr-sm-2">Group ID:</label>
-										<br>
-										<form:input path="group_id" class="form-control mb-2 mr-sm-2" />
-										<form:errors path="group_id" cssClass="error" />
+										<label for="cars">Group:</label>
+
+										<form:select path="group_id">
+											<c:forEach var="item" items="${ groups }">
+
+												<option value="${ item.id }">${ item.id }</option>
+											</c:forEach>
+										</form:select>
 										<br>
 
 										<label for="email2" class="mb-2 mr-sm-2">Phone:</label>
@@ -86,10 +91,9 @@
 										<form:errors path="phone" cssClass="error" />
 										<br>
 
-										<label for="email2" class="mb-2 mr-sm-2">Role:</label>
-										<br>
-										<form:input path="role" class="form-control mb-2 mr-sm-2" />
-										<form:errors path="role" cssClass="error" />
+										<form:select path="role">
+											<option value="${ item.role }">Student</option>
+										</form:select>
 										<br>
 
 										<label for="email2" class="mb-2 mr-sm-2">Leader:</label>
@@ -100,10 +104,10 @@
 
 										<label for="email2" class="mb-2 mr-sm-2">Gender:</label>
 										<br>
-										<form:input path="gender" class="form-control mb-2 mr-sm-2"/>
-										<form:errors path="gender" cssClass="error"/>
+										<form:input path="gender" class="form-control mb-2 mr-sm-2" />
+										<form:errors path="gender" cssClass="error" />
 										<br>
-										
+
 										<button type="submit" class="btn btn-primary mb-2">Submit</button>
 
 									</form:form>

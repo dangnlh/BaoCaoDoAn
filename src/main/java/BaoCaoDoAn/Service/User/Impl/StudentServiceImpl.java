@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import BaoCaoDoAn.Dao.AccountDAO;
 import BaoCaoDoAn.Dao.StudentDAO;
 import BaoCaoDoAn.Dto.AccountSearchCondition;
 import BaoCaoDoAn.Entity.Account;
@@ -36,7 +35,7 @@ public class StudentServiceImpl implements IStudentService {
 	}
 	
 	public List<Account> findAccountByName(String name) {
-		return studentDao.FindAccountbyName(name);
+		return studentDao.FindAccountbyaccount_name(name);
 	}
 	public List<Account> SearchAcc(String name) {
 		return studentDao.listAcc(name);
@@ -56,6 +55,10 @@ public class StudentServiceImpl implements IStudentService {
 	}
 	
 	public Group findGroupById(String name) {
-		return studentDao.FindAccountName(name);
+		return studentDao.FindAccountaccount_name(name);
+	}
+	
+	public Account getGroupIdByAccount(int id) {
+		return studentDao.getAccountByGroupId(id);
 	}
 }
