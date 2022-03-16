@@ -129,9 +129,12 @@ public class ReportController {
 		// get point detail for each member by using report id
 		for (Account a : members) {
 			PointDetail p = reportService.getPointDetaiByReportIdStudentId(reportId, a.getId());
-			if (p.getId() != 0) {
-				a.setStatusPoint(1);
-				a.setPointDetailForReport(p);
+			if (p!=null) {
+				if(p.getId()!=0) {
+					a.setStatusPoint(1);
+					a.setPointDetailForReport(p);
+				}
+			
 			}
 		}
 

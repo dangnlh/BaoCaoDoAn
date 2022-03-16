@@ -42,8 +42,7 @@
 													<th>Report Name</th>
 
 													<th>Time Submit</th>
-													<th>Download</th>
-													<th>Point</th>
+													<th>Download</th>													
 													<th>Group Name</th>
 													<th>Status</th>
 													<th>Action</th>
@@ -58,8 +57,7 @@
 														<td>${report.timeSubmit}</td>
 														<td><a
 															href='<c:url value="/report_stogare/${report.urlReport}"/>'
-															download>${report.urlReport}</a></td>
-														<th>${report.point}</th>
+															download>${report.urlReport}</a></td>														
 														<td>${group.name}</td>
 														<td>${report.convertedStatus}</td>
 														<td>

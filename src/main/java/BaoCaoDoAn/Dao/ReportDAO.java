@@ -96,9 +96,12 @@ public class ReportDAO {
 
 	public PointDetail getPointDetailByReporIdStudentId(int reportId, int studentId) {
 		String sql = "SELECT * FROM pointdetail where report_id = ? and student_id=?;";
-		PointDetail result = jdbcTemplate.queryForObject(sql, new Object[] { reportId, studentId },
+		List<PointDetail> result = jdbcTemplate.query(sql, new Object[] { reportId, studentId },
 				new PointDetailMapper());
-		return result;
+		if(result.size()!=0) {
+			return result.get(0);
+		}
+		return null;
 	}
 
 	public boolean addPointDetail(PointDetail poinDetail) {

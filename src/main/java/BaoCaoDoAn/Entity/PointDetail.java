@@ -7,21 +7,17 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public class PointDetail {
-	private Integer id;
-	private Integer reportId;
-	private Integer studentId;
-	private Integer teacherId;
+	private int id;
+	private int reportId;
+	private int studentId;
+	private int teacherId;
 	private Date dateGrade;
 	@NotNull(message = "Not character, just number")
 	@Max(value = 10, message = "must be less than or equal 10")
 	@Min(value = 0, message = "must be equal or greater than 0")
 	private Double point;
 
-	public PointDetail() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public PointDetail(Integer id, Integer reportId, Integer studentId, Integer teacherId, Date dateGrade, Double point) {
+	public PointDetail(int id, int reportId, int studentId, int teacherId, Date dateGrade, Double point) {
 		super();
 		this.id = id;
 		this.reportId = reportId;
@@ -29,14 +25,17 @@ public class PointDetail {
 		this.teacherId = teacherId;
 		this.dateGrade = dateGrade;
 		this.point = point;
-
 	}
 
-	public Integer getId() {
+	public PointDetail() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -44,23 +43,23 @@ public class PointDetail {
 		return reportId;
 	}
 
-	public void setReportId(Integer reportId) {
+	public void setReportId(int reportId) {
 		this.reportId = reportId;
 	}
 
-	public Integer getStudentId() {
+	public int getStudentId() {
 		return studentId;
 	}
 
-	public void setStudentId(Integer studentId) {
+	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
 
-	public Integer getTeacherId() {
+	public int getTeacherId() {
 		return teacherId;
 	}
 
-	public void setTeacherId(Integer teacherId) {
+	public void setTeacherId(int teacherId) {
 		this.teacherId = teacherId;
 	}
 
