@@ -234,6 +234,7 @@ public class ReportController {
 	@RequestMapping("/getReport")
 	public ModelAndView getAllReport() {
 		mv.setViewName("/admin/adminReport");
+		
 		List<Report> reportList = reportService.getAllReport();
 		//load project object for each report
 		for(Report rp:reportList) {
@@ -248,7 +249,7 @@ public class ReportController {
 	@GetMapping("/addReport")
 	public ModelAndView showAddReportForm() {
 		ModelAndView modelView = new ModelAndView("/admin/reportAddForm");
-		List<Project> projectList = projectSerivce.getAllProject();
+		List<Project> projectList = projectSerivce.getAllProjectSimple();
 		modelView.addObject("projectList", projectList);		
 		modelView.addObject("report", new Report());
 		return modelView;
@@ -262,7 +263,7 @@ public class ReportController {
 				mv.addObject("dateError", "");
 			}
 			mv.setViewName("admin/reportAddForm");
-			List<Project> projectList = projectSerivce.getAllProject();
+			List<Project> projectList = projectSerivce.getAllProjectSimple();
 			mv.addObject("projectList", projectList);	
 		}else {
 			Report addedReport = new Report();
@@ -283,7 +284,7 @@ public class ReportController {
 	@GetMapping("/updateReport/{id}")
 	public ModelAndView showUpdateReportForm(@PathVariable("id") int id) {
 		ModelAndView modelView = new ModelAndView("/admin/reportEditForm");
-		List<Project> projectList = projectSerivce.getAllProject();
+		List<Project> projectList = projectSerivce.getAllProjectSimple();
 		modelView.addObject("projectList", projectList);		
 		modelView.addObject("report",reportService.getReport(id));
 		return modelView;
@@ -297,7 +298,7 @@ public class ReportController {
 				mv.addObject("dateError", "");
 			}
 			mv.setViewName("admin/reportEditForm");
-			List<Project> projectList = projectSerivce.getAllProject();
+			List<Project> projectList = projectSerivce.getAllProjectSimple();
 			mv.addObject("projectList", projectList);
 		}else {		
 			reportService.editReport(report.getId(),report);
