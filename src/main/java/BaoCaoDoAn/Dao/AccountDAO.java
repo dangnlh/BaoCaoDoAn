@@ -54,9 +54,9 @@ public class AccountDAO {
 
 	public int AddAccount(Account account) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO account (name, mail,password,phone,role,isLeader) " + "VALUES ('" + account.getName()
-				+ "', '" + account.getMail() + "'" + ",'" + account.getPassword() + "', '" + account.getPhone() + "'"
-				+ " ,'" + account.getRole() + "'," + account.getIsLeader() + ");");
+		sql.append("INSERT INTO account (account_name, mail,password,phone,role,isLeader) " + "VALUES ('"
+				+ account.getName() + "', '" + account.getMail() + "'" + ",'" + account.getPassword() + "', '"
+				+ account.getPhone() + "'" + " ,'" + account.getRole() + "'," + account.getIsLeader() + ");");
 		int insert = jdbcTemplate.update(sql.toString());
 		return insert;
 
@@ -71,7 +71,7 @@ public class AccountDAO {
 	}
 
 	public Account getAccountByAccountId(int accId) {
-		String sql = "SELECT * FROM baocaodoan.account where id =" + accId;
+		String sql = "SELECT * FROM account where id =" + accId;
 		Account account = jdbcTemplate.queryForObject(sql, new MapperAccount());
 		return account;
 	}
@@ -82,5 +82,12 @@ public class AccountDAO {
 
 		listTeacher = jdbcTemplate.query(sql, new MapperAccount());
 		return listTeacher;
+	}
+
+	public List<Account> getStudentByGroupId(int groupId) {
+		List<Account> listMember = new ArrayList<Account>();
+		String sql = "SELECT * FROM `account` WHERE role='student' and group_id =" + groupId;
+		listMember = jdbcTemplate.query(sql, new MapperAccount());
+		return listMember;
 	}
 }

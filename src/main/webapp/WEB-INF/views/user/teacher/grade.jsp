@@ -4,7 +4,15 @@
 <html lang="en">
 
 <%@include file="/WEB-INF/views/user/teacher/linkHeader.jsp"%>
+<header>
 
+	<style>
+.error {
+	font-size: 1rem;
+	color: red;
+}
+</style>
+</header>
 <body>
 
 	<div class="header">
@@ -17,49 +25,70 @@
 	</div>
 
 
-			<!-- partial -->
-			<div class="main-panel">
-				<div class="content-wrapper">
+	<!-- partial -->
+	<div class="main-panel">
+		<div class="content-wrapper">
 
 
 
 
-					<div class="row">
+			<div class="row">
 
 
-						<div class="col-lg-12 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<h1 style="text-align: center;">GRADE FOR REPORT</h1>
-									<form:form
-										action="${pageContext.request.contextPath}/processGrade"
-										method="POST" modelAttribute="report">
-										<form:hidden path="id" />
-										<form:input path="name" readonly="true" />
-										<br>
-										<form:input path="timeSubmit" readonly="true" />
-										<br>
-										<form:input path="point" />
-										<form:errors path="point" cssClass="error" />
-										<br>
-										<a href="#">Download</a>
-										<br>
-										<input type="submit" />
-									</form:form>
-								</div>
-
-							</div>
+				<div class="col-lg-12 grid-margin stretch-card">
+					<div class="card">
+						<div class="card-body">
+							<h1 style="text-align: center;">GRADE FOR REPORT</h1>
+							<c:set value="${report}" var="report" />
+							<c:set value="${student}" var="student" />
+							<h5>Report Name: ${report.name}</h5>
+							<h5>Student Name:${student.name }</h5>
+							<c:if test="${editAction == null }">
+								<form:form
+									action="${pageContext.request.contextPath}/processGrade"
+									method="POST" modelAttribute="pointDetail">
+									<form:hidden path="id" />
+									<form:hidden path="reportId" />
+									<form:hidden path="studentId" />
+									<form:hidden path="teacherId" />
+									<br>
+									<form:input path="point" />
+									<form:errors path="point" cssClass="error" />
+									<br>
+									<br>
+									<input type="submit" />
+								</form:form>
+							</c:if>
+							<c:if test="${editAction == true }">
+								<form:form
+									action="${pageContext.request.contextPath}/processEditGrade"
+									method="POST" modelAttribute="pointDetail">
+									<form:hidden path="id" />
+									<form:hidden path="reportId" />
+									<form:hidden path="studentId" />
+									<form:hidden path="teacherId" />
+									<br>
+									<form:input path="point" />
+									<form:errors path="point" cssClass="error" />
+									<br>
+									<br>
+									<input type="submit" />
+								</form:form>
+							</c:if>
 						</div>
 
 					</div>
-
 				</div>
-
-				<%@include file="/WEB-INF/views/user/teacher/footer.jsp"%>
 
 			</div>
 
-		
+		</div>
+
+		<%@include file="/WEB-INF/views/user/teacher/footer.jsp"%>
+
+	</div>
+
+
 
 </body>
 
