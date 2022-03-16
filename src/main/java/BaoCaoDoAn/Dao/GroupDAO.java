@@ -70,13 +70,13 @@ public class GroupDAO {
 	}
 
 	public int addAccountInGroup(Group group) {
-		String sql = "INSERT INTO group_student (`id`, `name`) VALUES (?,?)";
+		String sql = "INSERT INTO group_student (`id`, `group_name`) VALUES (?,?)";
 		int count = _jdbcTemplate.update(sql, new Object[] { group.getId(), group.getName() });
 		return count;
 	}
 
 	public int updateGroup(Group group) {
-		String sql = "UPDATE group_student SET `name`=? WHERE id=?";
+		String sql = "UPDATE group_student SET `group_name`=? WHERE id=?";
 		int count = _jdbcTemplate.update(sql, group.getName(), group.getId());
 		return count;
 	}

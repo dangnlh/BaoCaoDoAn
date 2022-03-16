@@ -35,13 +35,6 @@
 					<div class="card">
 						<div class="card-body">
 
-
-
-
-
-
-
-
 							<c:forEach var="project" items="${ listReport }">
 								<c:set var="Report" value="${ project.report }" />
 
@@ -51,12 +44,11 @@
 									<table class="table">
 										<thead>
 											<tr>
-												<th>Name Report</th>
-												<th>Point</th>
-												<th>Comment</th>
-												<!--<th>Time Create</th>  -->
+												<th>Tên báo cáo</th>
+												<th>Điểm</th>
+												<th>Ghi chú</th>
 												<th>Time Submit</th>
-												<th>URL report</th>
+												<th>URL báo cáo</th>
 												<th>Action</th>
 
 											</tr>
@@ -74,7 +66,7 @@
 													<td><a  download href='<c:url value="/report_stogare/${ item.urlReport }"/>'>${ item.urlReport }</a></td>
 													<td><a class=""
 														href="${pageContext.request.contextPath}/upload_report/${item.id}"
-														role="button">Upload</a></td>
+														role="button">Tải lên</a></td>
 
 												</tr>
 
