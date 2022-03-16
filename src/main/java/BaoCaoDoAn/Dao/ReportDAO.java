@@ -42,11 +42,7 @@ public class ReportDAO {
 	
 	public List<Report> getAllReport() {
 		List<Report> list = new ArrayList<Report>();
-<<<<<<< HEAD
-		String sql = "Select * from report " + " ORDER BY project_id;";
-=======
 		String sql = "Select * from report  ORDER BY project_id;";
->>>>>>> main
 		list = jdbcTemplate.query(sql, new MapperReport());
 		return list;
 
