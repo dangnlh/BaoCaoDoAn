@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
 import BaoCaoDoAn.Dao.ScheduleReportDAO;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
@@ -137,15 +138,17 @@ public class ScheduleReportController {
 	public ModelAndView doPostAddUser(@Valid @ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport, BindingResult result) {
 		
 		if(result.hasErrors()) {
-			mv.setViewName("/user/ScheduleReportFrom");
-		}
-		if (ScheduleReport.getId() > 0) {
-			scheduleReportService.updateScheduleRepot(ScheduleReport);
-			return new ModelAndView("redirect:/ScheduleReport");
+			return new ModelAndView("/user/ScheduleReportFrom");
 		}else {
-			scheduleReportService.InsertScheduleRepot(ScheduleReport);
-			return new ModelAndView("redirect:/ScheduleReport");
+			if (ScheduleReport.getId() > 0) {
+				scheduleReportService.updateScheduleRepot(ScheduleReport);
+				return new ModelAndView("redirect:/ScheduleReport");
+			}else {
+				scheduleReportService.InsertScheduleRepot(ScheduleReport);
+				return new ModelAndView("redirect:/ScheduleReport");
+			}
 		}
+		
 		
 
 		
