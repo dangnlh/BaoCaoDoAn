@@ -109,7 +109,7 @@ public class GroupController {
 		List<Project> list = new ArrayList<Project>();
 		Project projectTemp = groupServiceImpl.GetProjectByGroupID(id);
 		
-			
+		System.out.println(projectTemp);
 		if(projectTemp == null ) {
 			System.out.println("FAIL PRoject" + projectTemp);
 			mv.addObject("statusGroupOfStudent" , "Group chua co project ") ;
@@ -219,6 +219,7 @@ public class GroupController {
 		if (result.hasErrors()) {
 			return "/user/AddGroup";
 		}
+		
 		if (group.getId() == 0) {
 			groupServiceImpl.addGroup(group);
 		} else if (group.getId() > 0) {

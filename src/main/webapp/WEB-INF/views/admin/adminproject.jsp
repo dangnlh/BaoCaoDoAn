@@ -71,7 +71,7 @@
 												<!-- 	<td>${ item.id }</td> -->
 
 												<td>${ item.project_name }</td>
-												<td>${ item.urlProject }</td>
+												<td><a href="${ item.urlProject }">URL</a></td>
 												<td>${ item.createTime }</td>
 												<td>${ item.group_id }</td>
 												<td>${ item.group_name  }</td>
