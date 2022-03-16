@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -8,16 +10,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>Schedule Meeting</title>
-<!-- Custom fonts for this template-->
+<title>student page</title>
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
-<!-- Custom styles for this template-->
 </head>
-
 <body id="page-top">
-
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -29,58 +25,78 @@
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
 			<div id="content">
+
 				<!-- Header -->
 				<%@include file="/WEB-INF/views/admin/header.jsp"%>
 				<!-- End of Header -->
 
 				<!-- Begin Page Content -->
-				<!-- /.container-fluid -->
-
 				<div class="container-fluid">
+
+					
+
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h4 class="m-0 font-weight-bold text-primary">Schedule
-								Meeting</h4>
+							<!--	<h6 class="m-0 font-weight-bold text-primary">Search</h6> -->
+							<!-- Load icon library -->
+							<form:form method="POST" action="/BaoCaoDoAn/searchAcc"
+								modelAttribute="accountSearch">
+								<label for="email2" class="mb-2 mr-sm-2">Seach by Name </label>
+								<br>
+								<form:input path="name" type="text"
+									class="form-control mb-2 mr-sm-2" />
+								
+								<button type="submit">Submit</button></br>
+
+							<!-- Add Group Button -->
+					<a href="addAccountStudent" style="font-size: 30px;">Add
+						Account</a>
+					<!-- End of Add Group Button -->
+							</form:form>
+
+
+						
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								
-								<a class="nav-link" style="font-size: 18px;" href='<c:url value="addScheduleMeeting"></c:url>'>
-									<i class="fa fa-plus-square"></i> <span>Add new meeting</span>
-								</a>
-
-								<table class="table table-striped" id="dataTable" width="100%"
+								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
 									<thead>
 										<tr>
-											<th>Id</th>
-											<th>TimeMeeting</th>
-											<th>Project_id</th>
-											<th>Name ScheduleMeeting</th>
-											<th>Link Meeting</th>
-											<th>Content</th>
-											<th>Date Submit</th>
-											<th>Action</th>
+											<th>ID</th>
+											<th>Name</th>
+											<th>Mail</th>
+											<th>Password</th>
+											<th>Group ID</th>
+											<th>Phone</th>
+											<th>Role</th>
+											<th>Is Leader</th>
+											<th>Gender</th>
 										</tr>
+
 									</thead>
-									
+
 									<tbody>
-										<c:forEach var="item" items="${ ScheduleMeeting }">
+										<c:forEach var="items" items="${ resultSearch }"
+											varStatus="counter">
+											<c:if test="${not empty items }" />
 											<tr>
-												<td>${ item.id }</td>
-												<td>${ item.timeMeeting }</td>
-												<td>${ item.project_id }</td>
-												
-												<td>${ item.name }</td>
-												<td><a href="${ item.link_meeting }">Link Meeting</a></td>
-												<td>${ item.content  }</td>
-												<td>${ item.submitDate }</td>
+												<td>${ items.id }</td>
+												<td>${ items.name }</td>
+												<td>${ items.mail }</td>
+												<td>${ items.password }</td>
+												<td>${ items.group_id }</td>
+												<td>${ items.phone }</td>
+												<td>${ items.role }</td>
+												<td>${ items.isLeader }</td>
+												<td>${ items.gender }</td>
 												<td><a
-													href='<c:url value="/editScheduleMeeting?id=${ item.id }"></c:url>'
-													class="btn btn-success btn-circle btn-sm"><i
-														class="fas fa-edit"></i> </a> <a
-													href='<c:url value="/deleteScheduleMeeting?id=${ item.id }"/>'
+													href='<c:url value="/editStudentAccount?id=${items.id}"></c:url>'
+													class="btn btn-success btn-circle btn-sm"> <i
+														class="fas fa-check"></i>
+												</a> <a
+													href='<c:url value="/deleteAccount?id=${items.id}"></c:url>'
 													class="btn btn-danger btn-circle btn-sm"> <i
 														class="fas fa-trash"></i>
 												</a></td>
@@ -93,15 +109,18 @@
 					</div>
 
 				</div>
-
+				<!-- /.container-fluid -->
 			</div>
 			<!-- End of Main Content -->
 
 			<!-- Footer -->
 			<%@include file="/WEB-INF/views/admin/footer.jsp"%>
 			<!-- End of Footer -->
+
 		</div>
+		<!-- End of Content Wrapper -->
 	</div>
+	<!-- End of Page Wrapper -->
 
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
@@ -143,5 +162,4 @@
 	<script src="/assets/js/demo/chart-area-demo.js"></script>
 	<script src="/assets/js/demo/chart-pie-demo.js"></script>
 </body>
-
 </html>

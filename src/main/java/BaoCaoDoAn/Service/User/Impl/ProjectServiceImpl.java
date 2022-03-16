@@ -26,6 +26,10 @@ public class ProjectServiceImpl implements IProjectService {
 		return projectDao.getAllProject();
 	}
 	public List<Project> getAllProjectSimple() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 		return projectDao.getAllProjectSimple();
 	}
 	public int addProject(Project project) {
@@ -43,9 +47,9 @@ public class ProjectServiceImpl implements IProjectService {
 		return projectDao.getProjectByid(id);
 	}
 
-	public int editProject(Project project) {
+	public int editProject(int id ,Project project) {
 
-		return projectDao.editProject(project);
+		return projectDao.editProject(id ,project);
 	}
 
 	public List<Project> getProjectByTeacherId(int teacherId) {

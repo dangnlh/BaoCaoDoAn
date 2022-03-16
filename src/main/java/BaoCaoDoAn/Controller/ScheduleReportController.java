@@ -1,13 +1,23 @@
 package BaoCaoDoAn.Controller;
 
 import java.util.List;
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
+=======
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
+>>>>>>> main
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import BaoCaoDoAn.Dao.ScheduleReportDAO;
 import BaoCaoDoAn.Entity.Account;
@@ -101,7 +111,50 @@ public class ScheduleReportController {
 		mv.setViewName("user/student/studentScheduleReport");
 		return mv;
 	}
-	
+	@RequestMapping(value = "/editScheduleReport", method = RequestMethod.GET)
+	public ModelAndView editAdmin(HttpServletRequest request) {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		ScheduleReport scheduleReport = scheduleReportService.getScheduleReport(id) ;
+
+		ModelAndView mv = new ModelAndView("/user/ScheduleReportFrom");
+
+		mv.addObject("ScheduleReportUpdateAndInsert", scheduleReport);
+		mv.addObject("getAllReport", reportService.getAllReport());
+
+		return mv;
+	}
+
+
+
+	@RequestMapping(value = "/addScheduleReport", method = RequestMethod.GET)
+	public ModelAndView doGetAddUser(Model model, HttpSession session) {
+		if (!model.containsAttribute("ScheduleReportUpdateAndInsert")) {
+			model.addAttribute("ScheduleReportUpdateAndInsert", new ScheduleReport());
+		}
+		
+		mv.addObject("getAllReport", reportService.getAllReport());
+		mv.setViewName("/user/ScheduleReportFrom");
+		return mv;
+	}
+
+	@RequestMapping(value = "/addScheduleReport", method = RequestMethod.POST)
+	public ModelAndView doPostAddUser(@Valid @ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			mv.setViewName("/user/ScheduleReportFrom");
+		}
+		if (ScheduleReport.getId() > 0) {
+			scheduleReportService.updateScheduleRepot(ScheduleReport);
+			return new ModelAndView("redirect:/ScheduleReport");
+		}else {
+			scheduleReportService.InsertScheduleRepot(ScheduleReport);
+			return new ModelAndView("redirect:/ScheduleReport");
+		}
+		
+
+		
+		
+	}
 
 
 }

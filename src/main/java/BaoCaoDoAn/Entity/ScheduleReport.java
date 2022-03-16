@@ -1,14 +1,35 @@
 package BaoCaoDoAn.Entity;
 
-import java.util.Date;
+import java.sql.Date;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 
 public class ScheduleReport {
 	private int id;
+	 
 	private Date timeReport;
+	private Date dateSubmit;
 	private int account_id;
+	@NotNull(message = "dsa")
 	private int report_id;
 	private Group group;
 	private Report report;
+	
+	
+	public Date getDateSubmit() {
+		return dateSubmit;
+	}
+
+	public void setDateSubmit(Date dateSubmit) {
+		this.dateSubmit = dateSubmit;
+	}
+
 	public int getId() {
 		return id;
 	}

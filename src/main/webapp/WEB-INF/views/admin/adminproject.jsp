@@ -1,5 +1,19 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Project</title>
+<!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
+<!-- Custom styles for this template-->
 </head>
 <body id="page-top">
 
@@ -31,7 +45,10 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
+								<a class="nav-link" style="font-size: 18px;" href='<c:url value="/addProject"/>'> <i
+									class="fa fa-plus-square"></i> <span>Add new project</span>
+								</a></br>
+								<table class="table table-striped" id="dataTable" width="100%"
 									cellspacing="0">
 									<thead>
 										<tr>
@@ -60,18 +77,22 @@
 												<td>${ item.group_name  }</td>
 												<td>${ item.teacherId }-${ item.account_name }</td>
 												<td><a
-													href='<c:url value="/editProject?id=${ item.id }"/>'
-													class="btn btn-success">Edit</a> <a
+													href='<c:url value="/editProject/${ item.id }"/>'
+													class="btn btn-success btn-circle btn-sm"> <i
+														class="fas fa-edit"></i></a> <a
 													href='<c:url value="/deleteProject/${ item.id }"/>'
-													class="btn btn-danger">Delete</a></td>
+													class="btn btn-danger btn-circle btn-sm"> <i
+														class="fas fa-trash"></i>
+												</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 
 
 								</table>
-								<a href='<c:url value="/addProject"/>' class="btn btn-success">Add
-									Project</a>
+								<!-- nút add cũ (màu xanh lá) -->
+								<%-- <a href='<c:url value="/addProject"/>' class="btn btn-success">Add
+									Project</a> --%>
 							</div>
 						</div>
 					</div>
@@ -84,32 +105,6 @@
 			<!-- Footer -->
 			<%@include file="/WEB-INF/views/admin/footer.jsp"%>
 			<!-- End of Footer -->
-		</div>
-	</div>
-
-
-	
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
-			</div>
 		</div>
 	</div>
 

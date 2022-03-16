@@ -13,14 +13,15 @@
 		</div>
 	</a>
 	<hr class="sidebar-divider my-0">
-	<li class="nav-item active"><a class="nav-link" href="/dang-nhap">
+	<li class="nav-item active"><a class="nav-link" href="#">
 			<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 	</a></li>
 	<hr class="sidebar-divider">
 
 	<div class="sidebar-heading">Website-Manager</div>
 	<li class="nav-item">
-	<li class="nav-item active"><a class="nav-link" href="#"> <i
+	<li class="nav-item active"><a class="nav-link" 
+		href='<c:url value="/studentList"></c:url>'> <i
 			class="fas fa-fw fa-table"></i> <span>Student</span></a></li>
 	<li class="nav-item active"><a class="nav-link"
 		href='<c:url value="/getReport"></c:url>'> <i

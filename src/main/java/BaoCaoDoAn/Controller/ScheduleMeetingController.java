@@ -1,6 +1,5 @@
 package BaoCaoDoAn.Controller;
 
-import java.awt.datatransfer.StringSelection;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,12 +57,13 @@ public class ScheduleMeetingController {
 //		List<project_scheduleMeeting> result = scheduleMeetingServiceImpl.GetScheduleMeetingByProjectId(teacher.getId()) ;
 
 		List<Project> project = projectService.getProjectByTeacherId(teacher.getId());
+		System.out.println("alo" + project);
 		System.out.println("project" + project);
 		for (Project project2 : project) {
 			List<ScheduleMeeting> scheduleMeeting = scheduleMeetingServiceImpl
 					.GetScheduleMeetingByProjectId(project2.getId());
 			project2.setScheduleMeeting(scheduleMeeting);
-
+			System.out.println("Kiet oi la KIet" + scheduleMeeting);
 		}
 		mv.addObject("projects", project);
 		mv.setViewName("user/teacher/ScheduleMeeting");
@@ -98,49 +99,55 @@ public class ScheduleMeetingController {
 
 		if (list != null) {
 			mv.setViewName("/user/Meeting");
-			mv.addObject("ScheduleMeeting3", scheduleMeetingServiceImpl.getMeetingByScheduleMeetingID(id));
+			mv.addObject("ScheduleMeeting2", scheduleMeetingServiceImpl.getMeetingByScheduleMeetingID(id));
 		} else {
-			mv.addObject("ScheduleMeeting3", "that bai");
+			mv.addObject("ScheduleMeeting2", "that bai");
 		}
 
 		return mv;
 	}
 
 	@RequestMapping(value = "/addScheduleMeeting", method = RequestMethod.GET)
-	public String doGetAddUser(Model model) {
+	public ModelAndView doGetAddUser(Model model,HttpSession session) {
 		if (!model.containsAttribute("ScheduleMeeting2")) {
 			model.addAttribute("ScheduleMeeting2", new ScheduleMeeting());
 		}
-		return "/user/ScheduleMeetingFrom";
+		mv.addObject("getAllProject", projectService.getAllProject());
+		mv.setViewName("/user/ScheduleMeetingFrom");
+		return mv;
 	}
 
 	@RequestMapping(value = "/addScheduleMeeting", method = RequestMethod.POST)
-	public String doPostAddUser(@ModelAttribute("ScheduleMeeting2") ScheduleMeeting admin, BindingResult result) {
-		System.out.println("SUCCESS");
-		if (result.hasErrors()) {
-			return "/user/ScheduleMeetingFrom";
+	public ModelAndView doPostAddUser(@Valid @ModelAttribute("ScheduleMeeting2") ScheduleMeeting admin, BindingResult bindingResult) {
+		System.out.println(bindingResult);
+		if (bindingResult.hasErrors()) {
+			mv.setViewName("/user/ScheduleMeetingFrom");
+			
+		}else {
+			scheduleMeetingDAO.updateAndSave(admin);
+			return new ModelAndView("redirect:/ScheduleMeeting");
 		}
-		scheduleMeetingDAO.updateAndSave(admin);
-		return "redirect:/ScheduleMeeting";
+				return mv ;
 	}
 
 	@RequestMapping(value = "/editScheduleMeeting", method = RequestMethod.GET)
-	public ModelAndView editAdmin(HttpServletRequest request) {
+	public ModelAndView editAdmin(HttpServletRequest request,HttpSession session) {
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		ScheduleMeeting admin = scheduleMeetingDAO.get(id);
+		ScheduleMeeting ScheduleMeeting = scheduleMeetingDAO.get(id);
 
-		ModelAndView model = new ModelAndView("/user/ScheduleMeetingFrom");
+		ModelAndView mv = new ModelAndView("/user/ScheduleMeetingFrom");
 
-		model.addObject("ScheduleMeeting2", admin);
+		mv.addObject("ScheduleMeeting2", ScheduleMeeting);
+		mv.addObject("getAllProject", projectService.getAllProject());
 
-		return model;
+		return mv;
 	}
 
 	@RequestMapping(value = "/deleteScheduleMeeting", method = RequestMethod.GET)
-	public ModelAndView deleteAdmin(@RequestParam Integer id) {
+	public String deleteAdmin(@RequestParam Integer id) {
 		scheduleMeetingServiceImpl.deleteADMIN(id);
 
-		return new ModelAndView("redirect:/ScheduleMeeting");
+		return "redirect:/ScheduleMeeting";
 	}
 
 	@RequestMapping(value = "/studentMeeting")

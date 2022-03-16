@@ -10,8 +10,13 @@ public class Account {
 	private int phone ;
 	private String role ;
 	private Boolean isLeader ;
+<<<<<<< HEAD
 	private PointDetail pointDetailForReport;
 	private int statusPoint;
+=======
+	private String gender;
+	
+>>>>>>> main
 	public int getId() {
 		return id;
 	}
@@ -60,6 +65,7 @@ public class Account {
 	public void setIsLeader(Boolean isLeader) {
 		this.isLeader = isLeader;
 	}
+<<<<<<< HEAD
 	public PointDetail getPointDetailForReport() {
 		return pointDetailForReport;
 	}
@@ -71,6 +77,13 @@ public class Account {
 	}
 	public void setStatusPoint(int statusPoint) {
 		this.statusPoint = statusPoint;
+=======
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+>>>>>>> main
 	}
 	
 	

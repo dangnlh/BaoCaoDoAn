@@ -38,39 +38,41 @@
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Schedule
-								Report Detail</h6>
+							<h4 class="m-0 font-weight-bold text-primary">Schedule
+								Report Detail</h4>
 						</div>
+						</br> <a class="nav-link" style="font-size: 18px;"
+							href='<c:url value="addScheduleReport"></c:url>'> <i
+							class="fa fa-plus-square"></i> <span>Add new schedule</span>
+						</a>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
+								<table class="table table-striped" id="dataTable" width="100%"
 									cellspacing="0">
 									<thead>
 										<tr>
 											<th>Code</th>
 											<th>Time Created</th>
+											<th>Account Id</th>
 											<th>Code Report</th>
+											<th>Date Submit</th>
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Code</th>
-											<th>Time Created</th>
-											<th>Code Report</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
+
 									<tbody>
 										<c:forEach var="item" items="${ getAllScheduleReport }">
 											<tr>
 												<td>${ item.id }</td>
 												<td>${ item.timeReport }</td>
+												<td>${ item.account_id }</td>
 												<td>${ item.report_id }</td>
-												<td><a href='#'
+												<td>${ item.dateSubmit }</td>
+
+												<td><a
+													href='<c:url value="/editScheduleReport?id=${ item.id }"></c:url>'
 													class="btn btn-success btn-circle btn-sm"> <i
-														class="fas fa-check"></i>
-												</a> <a
+														class="fas fa-edit"></i></a> <a
 													href='<c:url value="/deleteScheduleReport/${ item.id }"/>'
 													class="btn btn-danger btn-circle btn-sm"> <i
 														class="fas fa-trash"></i>
@@ -84,84 +86,17 @@
 					</div>
 
 				</div>
-				<!-- /.container-fluid -->
-
-				<div class="container-fluid">
-					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Report Detail</h6>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<thead>
-										<tr>
-											<th>Code</th>
-											<th>Name</th>
-											<th>Point</th>
-											<th>Comment</th>
-											<th>Time Create</th>
-											<th>Time Submit</th>
-											<th>Code Project</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<th>Code</th>
-											<th>Name</th>
-											<th>Point</th>
-											<th>Comment</th>
-											<th>Time Create</th>
-											<th>Time Submit</th>
-											<th>Code Project</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
-									<tbody>
-										<c:forEach var="item" items="${ getAllReport }">
-											<tr>
-												<td>${ item.id }</td>
-												<td>${ item.name }</td>
-												<td></td>
-												<td></td>
-												<td>${ item.timeCreate }</td>
-												<td>${ item.timeSubmit }</td>
-												<td>${ item.project_id  }</td>
-												<td><a href='<c:url value="/editReport/${ item.id }"></c:url>'
-													class="btn btn-success btn-circle btn-sm"> <i
-														class="fas fa-check"></i>
-												</a> <a
-													href='<c:url value="/deleteReport/${ item.id }"/>'
-													class="btn btn-danger btn-circle btn-sm"> <i
-														class="fas fa-trash"></i>
-												</a></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
 			</div>
-			<!-- End of Main Content -->
-
 			<!-- Footer -->
 			<%@include file="/WEB-INF/views/admin/footer.jsp"%>
 			<!-- End of Footer -->
 		</div>
-	</div>
-	
-	
 
-	<!-- Scripts -->
-	<%@include file="/WEB-INF/views/admin/adminscript.jsp"%>
-	<!-- End of Scripts -->
+
+
+		<!-- Scripts -->
+		<%@include file="/WEB-INF/views/admin/adminscript.jsp"%>
+		<!-- End of Scripts -->
 </body>
 
 </html>

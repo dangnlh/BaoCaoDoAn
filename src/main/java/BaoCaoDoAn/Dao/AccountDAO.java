@@ -76,6 +76,17 @@ public class AccountDAO {
 		return account;
 	}
 
+	
+//	public List<Account> getListAccount() {
+//		List<Account> list = new ArrayList<Account>();
+//		String sql=" SELECT id, name, mail, group_id, phone, role, isLeader, gender"
+//                +   " FROM account "
+//                +   " WHERE name like ? ";
+//		return list;
+//	
+//}																																															
+
+
 	public List<Account> getTeacherAdmin() {
 		List<Account> listTeacher = new ArrayList<Account>();
 		String sql = "SELECT * FROM `account` WHERE role = 'teacher' ";
@@ -91,3 +102,4 @@ public class AccountDAO {
 		return listMember;
 	}
 }
+

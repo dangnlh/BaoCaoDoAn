@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Group Page</title>
+<title>Add Project</title>
 <!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
 <style>
@@ -40,7 +40,7 @@
 
 
 				<div class="container-fluid">
-					<div class="row">
+					<div class="row justify-content-center">
 						<div class="col-sm-8">
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
@@ -58,12 +58,7 @@
 											class="form-control mb-2 mr-sm-2" />
 
 										<form:errors path="name" cssClass="error" />
-
-
-
-
 										<br>
-
 
 										<label for="email2" class="mb-2 mr-sm-2">UrL Porject</label>
 										<br>
@@ -71,14 +66,11 @@
 											class="form-control mb-2 mr-sm-2" />
 										<br>
 
-
-										<label h for="email2" class="mb-2 mr-sm-2">Time Create  : ${ TIMENOW }
-										</label>
+										<label h for="email2" class="mb-2 mr-sm-2">Time Create
+											: ${ TIMENOW } </label>
 										<br>
 										<form:input type="hidden" path="createTime"
 											class="form-control mb-2 mr-sm-2" value="${ TIMENOW }" />
-
-
 										<br>
 
 										<!--<label for="email2" class="mb-2 mr-sm-2">Group</label>
@@ -86,7 +78,6 @@
 										<form:input path="group_id" type="text"
 											class="form-control mb-2 mr-sm-2" />
 											  -->
-
 
 										<label for="cars">Group:</label>
 
@@ -97,8 +88,6 @@
 											</c:forEach>
 										</form:select>
 										<br>
-
-
 										<br>
 
 										<label for="cars">Teacher:</label>
@@ -108,7 +97,6 @@
 												<option value="${ item.id }">${ item.id }</option>
 											</c:forEach>
 										</form:select>
-
 
 										<!-- 		<form:input path="teacherId" type="text"
 											class="form-control mb-2 mr-sm-2" />
@@ -120,62 +108,18 @@
 
 									</form:form>
 									<h1></h1>
-
 								</div>
-
 							</div>
-
-						</div>
-						<div class="col-sm-4">
-							<div class="card shadow mb-4">
-								<div class="card-header py-3">
-									<h4 style="text-align: center;"
-										class="m-0 font-weight-bold text-primary">Group
-										Information</h4>
-								</div>
-
-								<div style="margin: 30px 200px">
-									<h2>haha</h2>
-
-								</div>
-
-							</div>
-
 						</div>
 					</div>
 					<!-- DataTales Example -->
-
 				</div>
-
 			</div>
 			<!-- End of Main Content -->
 
 			<!-- Footer -->
 			<%@include file="/WEB-INF/views/admin/footer.jsp"%>
 			<!-- End of Footer -->
-		</div>
-	</div>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">Ã</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
-			</div>
 		</div>
 	</div>
 

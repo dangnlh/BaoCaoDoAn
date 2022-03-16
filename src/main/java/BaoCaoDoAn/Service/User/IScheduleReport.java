@@ -22,4 +22,8 @@ public interface IScheduleReport {
 	public List<ScheduleReport> getAllScheduleReportByReportId();
 	public List<ScheduleReport> getAllScheduleReportByTeacherId(int accountId);
 	public List<ScheduleReport> getScheduleReportBygroupId(int groupId) ;
+	public ScheduleReport getScheduleReport(int id);
+	public int InsertScheduleRepot(ScheduleReport scheduleReport) ;
+	public int updateScheduleRepot(ScheduleReport scheduleReport);
+	public void updateAndSave(ScheduleReport scheduleReport) ;
 }

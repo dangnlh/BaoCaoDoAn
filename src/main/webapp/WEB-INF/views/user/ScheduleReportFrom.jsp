@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Edit Report</title>
+<title>Add Schedule Report</title>
 <!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
 <style>
@@ -38,36 +38,55 @@
 				<!-- Topbar -->
 				<%@include file="/WEB-INF/views/admin/header.jsp"%>
 
-
 				<div class="container-fluid">
 					<div class="row justify-content-center">
 						<div class="col-sm-8">
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
 									<h4 style="text-align: center;"
-										class="m-0 font-weight-bold text-primary">Edit Report</h4>
+										class="m-0 font-weight-bold text-primary">Add Schedule
+										Report</h4>
 								</div>
 
 								<div style="margin: 30px 200px">
-								<form:form action="${pageContext.request.contextPath}/updateReport" method="POST"
-						modelAttribute="report">
-							<form:hidden path="id"/>
-						<label>Report Name:</label>
-						<form:input path="name" placeholder="abcdxyz" />
-						<form:errors path="name" cssClass="error" />
-						<br>
-						<label>Deadline Of Report</label>
-						<form:input id="datePicker" path="timeSubmit" type="date"/>
-						<span class="error">${dateError}</span>
-						<br>
-						<label>For Project:</label>
-						<form:select path="project_id">
-							<form:options items="${projectList}" itemValue="id"
-								itemLabel="name" />
-						</form:select>
-						<br>
-						<input type="submit" value="Update Report">
-					</form:form>
+									<form:form action="addScheduleReport" method="POST"
+										modelAttribute="ScheduleReportUpdateAndInsert">
+										<form:hidden path="id" />
+
+										<label for="email2" class="mb-2 mr-sm-2">Time Create</label>
+										<br>
+										<form:input path="timeReport" type="date"
+											class="form-control mb-2 mr-sm-2" />
+										<br>
+										<%-- <label for="email2" class="mb-2 mr-sm-2">Account ID:</label>
+										<br>
+										<form:input path="account_id" class="form-control mb-2 mr-sm-2"/>
+										<form:errors path="account_id" cssClass="error"/>
+										<br>
+										 --%>
+										<label for="email2" class="mb-2 mr-sm-2">Report ID:</label>
+										<br>
+
+
+										<form:select path="report_id">
+											<c:forEach var="item" items="${ getAllReport }">
+
+												<option value="${ item.id }">${ item.id }</option>
+											</c:forEach>
+										</form:select>
+										<br>
+										<br>
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">Date Submit</label>
+										<br>
+										<form:input path="dateSubmit" type="date"
+											class="form-control mb-2 mr-sm-2"  />
+										<br>
+
+										<button type="submit" class="btn btn-primary mb-2">Submit</button>
+
+									</form:form>
 									<h1></h1>
 								</div>
 

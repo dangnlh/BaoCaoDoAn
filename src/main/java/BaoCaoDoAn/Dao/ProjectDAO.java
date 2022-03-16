@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,7 @@ import BaoCaoDoAn.Dto.MapperGroup_Account_Project;
 import BaoCaoDoAn.Dto.group_Account_Project;
 import BaoCaoDoAn.Entity.MapperProject;
 import BaoCaoDoAn.Entity.Project;
+import BaoCaoDoAn.Entity.Report;
 
 @Repository
 
@@ -28,10 +30,15 @@ public class ProjectDAO {
 	}
 	
 	public Project getProjectByid(int id) {
-		Project project = new Project();
+		Project result = null;
+		List<Project> list = new ArrayList<Project>();
 		String sql = "Select * from project where id = " + id ;
-		Project result =  jdbcTemplate.queryForObject(sql, new MapperProject()) ;
-		return  result;
+		list  =  jdbcTemplate.query(sql, new MapperProject()) ;
+		if (!list.isEmpty()) {
+			result = list.get(0);
+		}
+		return result;
+		
 
 	}
 	
@@ -52,11 +59,18 @@ public class ProjectDAO {
 	public List<Project> getAllProjectSimple() {
 		List<Project> list = new ArrayList<Project>();
 		String sql = "SELECT * FROM baocaodoan.project;";
+<<<<<<< HEAD
 		list= jdbcTemplate.query(sql ,  new MapperProject()) ;
 	
 		return list;
 	}
 	
+=======
+		list = jdbcTemplate.query(sql, new MapperProject());
+		return list;
+
+	}
+>>>>>>> main
 
 	public int deleteProject(int id) {
 
@@ -74,15 +88,16 @@ public class ProjectDAO {
 		}) ; 		
 		return count;
 	}
+
 	
-	public int editProject(Project project) {
+	public int editProject(int id , Project project) {
 		
 	
 		String sql ="UPDATE project SET project_name = ?, urlProject = ? , createTime = ? , group_Id = ? , teacher_id = ? WHERE id = ?";
 		
 
 		int count = jdbcTemplate.update(sql,  new Object[] {project.getName() , project.getUrlProject() , project.getCreateTime(),
-				project.getGroup_id() , project.getTeacherId(), project.getId() }) ; 		
+				project.getGroup_id() , project.getTeacherId(), id }) ; 		
 		return count;
 	}
 	
@@ -112,10 +127,19 @@ public class ProjectDAO {
 	}
 
 	public Project getProjectByGroupId(int id) {
+		try {
 		Project project;
 		String sql = "SELECT * FROM project where group_id = " + id;
 		project = jdbcTemplate.queryForObject(sql, new MapperProject());
-		return project;
+		if (project != null) {
+			return project;
+		}
+	} catch (EmptyResultDataAccessException e) {
+
+		return null;
+	}
+	return null;
+		
 	}
 
 }

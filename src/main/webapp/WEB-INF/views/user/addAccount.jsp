@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Edit Report</title>
+<title>Add Project</title>
 <!-- Custom fonts for this template-->
 <%@include file="/WEB-INF/views/admin/linkheader.jsp"%>
 <style>
@@ -45,41 +45,75 @@
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
 									<h4 style="text-align: center;"
-										class="m-0 font-weight-bold text-primary">Edit Report</h4>
+										class="m-0 font-weight-bold text-primary">Student Account Details</h4>
 								</div>
 
 								<div style="margin: 30px 200px">
-								<form:form action="${pageContext.request.contextPath}/updateReport" method="POST"
-						modelAttribute="report">
-							<form:hidden path="id"/>
-						<label>Report Name:</label>
-						<form:input path="name" placeholder="abcdxyz" />
-						<form:errors path="name" cssClass="error" />
-						<br>
-						<label>Deadline Of Report</label>
-						<form:input id="datePicker" path="timeSubmit" type="date"/>
-						<span class="error">${dateError}</span>
-						<br>
-						<label>For Project:</label>
-						<form:select path="project_id">
-							<form:options items="${projectList}" itemValue="id"
-								itemLabel="name" />
-						</form:select>
-						<br>
-						<input type="submit" value="Update Report">
-					</form:form>
+									<form:form action="addAccountStudent" method="POST"
+										modelAttribute="studentAcc1">
+										<form:hidden path="id" />
+
+										<label for="email2" class="mb-2 mr-sm-2">Name:</label>
+										<br>
+										<form:input path="name" type="text"
+											class="form-control mb-2 mr-sm-2" />
+										<form:errors path="name" cssClass="error" />
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">Mail:</label>
+										<br>
+										<form:input path="mail" type="text"
+											class="form-control mb-2 mr-sm-2" />
+										<form:errors path="mail" cssClass="error" />
+										<br>
+
+										<label h for="email2" class="mb-2 mr-sm-2">Password:</label>
+										<br>
+										<form:input type="password" path="password"
+											class="form-control mb-2 mr-sm-2" />
+										<form:errors path="password" cssClass="error" />
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">Group ID:</label>
+										<br>
+										<form:input path="group_id" class="form-control mb-2 mr-sm-2" />
+										<form:errors path="group_id" cssClass="error" />
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">Phone:</label>
+										<br>
+										<form:input path="phone" class="form-control mb-2 mr-sm-2" />
+										<form:errors path="phone" cssClass="error" />
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">Role:</label>
+										<br>
+										<form:input path="role" class="form-control mb-2 mr-sm-2" />
+										<form:errors path="role" cssClass="error" />
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">Leader:</label>
+										<br>
+										<form:input path="isLeader" class="form-control mb-2 mr-sm-2" />
+										<form:errors path="isLeader" cssClass="error" />
+										<br>
+
+										<label for="email2" class="mb-2 mr-sm-2">Gender:</label>
+										<br>
+										<form:input path="gender" class="form-control mb-2 mr-sm-2"/>
+										<form:errors path="gender" cssClass="error"/>
+										<br>
+										
+										<button type="submit" class="btn btn-primary mb-2">Submit</button>
+
+									</form:form>
 									<h1></h1>
 								</div>
-
 							</div>
-
 						</div>
-
 					</div>
 					<!-- DataTales Example -->
-
 				</div>
-
 			</div>
 			<!-- End of Main Content -->
 
