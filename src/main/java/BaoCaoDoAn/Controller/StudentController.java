@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +18,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import BaoCaoDoAn.Dto.AccountSearchCondition;
 import BaoCaoDoAn.Entity.Account;
+import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.StudentServiceImpl;
 
 @Controller
 public class StudentController {
 	@Autowired
 	StudentServiceImpl studentService;
-
+	@Autowired
+	GroupServiceImpl groupServiceImpl;
 	private ModelAndView mv = new ModelAndView();
 
 	@RequestMapping(value = "/studentList", method = RequestMethod.GET)
@@ -58,11 +61,11 @@ public class StudentController {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		Account account = studentService.getAccountId(id);
 
-		ModelAndView model = new ModelAndView("/user/addAccount");
+		ModelAndView mv = new ModelAndView("/user/addAccount");
 
-		model.addObject("studentAcc1", account);
-
-		return model;
+		mv.addObject("studentAcc1", account);
+		mv.addObject("groups", groupServiceImpl.getGroupAdmin());
+		return mv;
 	}
 
 	@RequestMapping(value = "/deleteAccount", method = RequestMethod.GET)
@@ -72,41 +75,53 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/addAccountStudent", method = RequestMethod.GET)
-	public String doGetAddUser(Model model) {
+	public ModelAndView doGetAddUser(Model model) {
 		if (!model.containsAttribute("studentAcc1")) {
 			model.addAttribute("studentAcc1", new Account());
 		}
-		return "/user/addAccount";
+		mv.addObject("groups", groupServiceImpl.getGroupAdmin());
+		mv.setViewName("/user/addAccount");
+		return mv;
 	}
 
 	@RequestMapping(value = "/addAccountStudent", method = RequestMethod.POST)
-	public String doPostAddGroup(@ModelAttribute("studentAcc1") Account account, BindingResult result) {
-		if (account.getId() == 0) {
-			studentService.addAccount(account);
-			System.out.println("Insert");
-		} else if (account.getId() > 0) {
-			studentService.updateAccount(account);
+	public ModelAndView doPostAddGroup(@Valid @ModelAttribute("studentAcc1") Account account, BindingResult result) {
+		if (result.hasErrors()) {
+			mv.setViewName("/user/addAccount");
+			System.out.println("kiet");
+		} else {
+			if (account.getId() == 0) {
+				studentService.addAccount(account);
+				System.out.println("Insert");
+				return new ModelAndView("redirect:/studentList");
+				
+			} else if (account.getId() > 0) {
+				studentService.updateAccount(account);
+				return new ModelAndView("redirect:/studentList");
+			}
 		}
 
-		return "redirect:/studentList";
+		return mv;
 
 	}
 
 	@RequestMapping(value = "/searchAcc", method = RequestMethod.POST)
-	public ModelAndView searchByName(@ModelAttribute("accountSearch") Account account) {
+	public ModelAndView searchByName(@Valid @ModelAttribute("accountSearch") Account account , BindingResult result) {
+
 		List<Account> list = new ArrayList<Account>();
 		list = studentService.findAccountByName(account.getName());
-		
+
 		System.out.println(list);
-		if(list.isEmpty()) {
+		if (list.isEmpty() && result.hasErrors()) {
 			mv.setViewName("/admin/studentAccount");
-		}else {
+		} else {
 			mv.setViewName("/admin/resultSearch");
 			mv.addObject("resultSearch", list);
 		}
 		
-//		mv.addObject("searchAcc2", studentService.findAccountByName("name"));
 		
+//		mv.addObject("searchAcc2", studentService.findAccountByName("name"));
+
 		/*
 		 * mv.addObject("newAccount", new Account());
 		 */

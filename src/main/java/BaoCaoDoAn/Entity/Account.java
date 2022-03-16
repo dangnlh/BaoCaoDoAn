@@ -1,14 +1,28 @@
 package BaoCaoDoAn.Entity;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
 public class Account {
 	
 	private int id ;
+	@Pattern(regexp = "[a-zA-Z ]{1,100}" , message = "Name is empty")
+
 	private String name ;
+	
+	@Pattern(regexp = "[a-zA-Z ]{1,100}" , message = "Email is empty")
 	private String mail ;
+	@Pattern(regexp = "[a-zA-Z ]{1,100}" , message = "Password is empty")
+
 	private String password ;
+	
+
 	private int group_id ;
+	
 	private int phone ;
+	@NotEmpty
 	private String role ;
+	
 	private Boolean isLeader ;
 	private PointDetail pointDetailForReport;
 	private int statusPoint;
