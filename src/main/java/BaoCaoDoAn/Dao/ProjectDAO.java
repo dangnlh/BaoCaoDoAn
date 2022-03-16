@@ -59,10 +59,18 @@ public class ProjectDAO {
 	public List<Project> getAllProjectSimple() {
 		List<Project> list = new ArrayList<Project>();
 		String sql = "SELECT * FROM baocaodoan.project;";
+<<<<<<< HEAD
+		list= jdbcTemplate.query(sql ,  new MapperProject()) ;
+	
+		return list;
+	}
+	
+=======
 		list = jdbcTemplate.query(sql, new MapperProject());
 		return list;
 
 	}
+>>>>>>> main
 
 	public int deleteProject(int id) {
 

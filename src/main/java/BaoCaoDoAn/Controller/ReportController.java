@@ -31,12 +31,17 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import BaoCaoDoAn.Dao.ReportDAO;
+<<<<<<< HEAD
+import BaoCaoDoAn.Dao.StudentDAO;
+=======
 import BaoCaoDoAn.Dto.group_Account_Project;
+>>>>>>> main
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
+import BaoCaoDoAn.Entity.PointDetail;
 import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.Report;
-
+import BaoCaoDoAn.Service.User.Impl.AccountServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ProjectServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ReportServiceImpl;
@@ -52,7 +57,8 @@ public class ReportController {
 	private ProjectServiceImpl projectSerivce;
 	@Autowired
 	private ReportDAO reportDAO;
-
+	@Autowired
+	private AccountServiceImpl accountService;
 	private ModelAndView mv = new ModelAndView();
 
 	@RequestMapping(value = { "/editReport/{id}" })
@@ -117,12 +123,45 @@ public class ReportController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/teacher_grade/{reportId}")
-	public ModelAndView getReportToGrade(@PathVariable int reportId, HttpSession session) {
+	@RequestMapping("/grading_table/{reportId}")
+	public ModelAndView getTableMemberForGrading(@PathVariable int reportId, HttpSession session) {
+		Report report = reportService.getReport(reportId);
+		mv.addObject("report", report);
+		Group group = groupServiceImpl.getGroupByProjectId(report.getProject_id());
+		mv.addObject("group", group);
+		List<Account> members = accountService.getAccountByGroupId(group.getId());
+		// get point detail for each member by using report id
+		for (Account a : members) {
+			PointDetail p = reportService.getPointDetaiByReportIdStudentId(reportId, a.getId());
+			if (p!=null) {
+				if(p.getId()!=0) {
+					a.setStatusPoint(1);
+					a.setPointDetailForReport(p);
+				}
+			
+			}
+		}
+
+		mv.addObject("members", members);
+		mv.setViewName("user/teacher/memberGradingPage");
+		return mv;
+	}
+
+	@RequestMapping(value = "/teacher_grade/{reportId}/{studentId}")
+	public ModelAndView getReportToGrade(@PathVariable int reportId, @PathVariable int studentId, HttpSession session) {
 		Account teacher = (Account) session.getAttribute("InforAccount");
+		PointDetail pointDetail;
 		ModelAndView mv = new ModelAndView();
 		if (teacher != null) {
+			Account student = accountService.getAccountById(studentId);
 			Report report = reportService.getReport(reportId);
+			pointDetail = new PointDetail();
+			pointDetail.setReportId(reportId);
+			pointDetail.setStudentId(studentId);
+			pointDetail.setTeacherId(teacher.getId());
+
+			mv.addObject("student", student);
+			mv.addObject("pointDetail", pointDetail);
 			mv.addObject("report", report);
 			mv.setViewName("user/teacher/grade");
 		} else {
@@ -131,16 +170,59 @@ public class ReportController {
 		return mv;
 	}
 
+	@RequestMapping(value = "/teacher_editPoint/{reportId}/{studentId}")
+	public ModelAndView getReportToEdit(@PathVariable int reportId, @PathVariable int studentId, HttpSession session) {
+		Account teacher = (Account) session.getAttribute("InforAccount");
+		PointDetail pointDetail;
+		ModelAndView mv = new ModelAndView();
+		if (teacher != null) {
+			Account student = accountService.getAccountById(studentId);
+			Report report = reportService.getReport(reportId);
+			pointDetail = reportService.getPointDetaiByReportIdStudentId(reportId, studentId);
+			mv.addObject("student", student);
+			mv.addObject("pointDetail", pointDetail);
+			mv.addObject("report", report);
+			mv.addObject("editAction", true);
+			mv.setViewName("user/teacher/grade");
+		} else {
+			// return error page, for later
+		}
+		return mv;
+	}
+
 	@PostMapping(value = "/processGrade")
-	public String processGrade(@Valid @ModelAttribute("report") Report report, BindingResult theBindingResult) {
+	public ModelAndView processGrade(@Valid @ModelAttribute("pointDetail") PointDetail pointDetail,
+			BindingResult theBindingResult) {
+		mv = new ModelAndView("redirect:/grading_table/" + pointDetail.getReportId());
 		if (theBindingResult.hasErrors()) {
 			System.out.println(theBindingResult);
-			return "user/teacher/grade";
+			mv.addObject("student", accountService.getAccountById(pointDetail.getStudentId()));
+			mv.addObject("report", reportService.getReport(pointDetail.getReportId()));
+			mv.setViewName("user/teacher/grade");
 		} else {
 			// do some work here
-			reportService.gradeReport(report.getPoint(), report.getId());
-			return "redirect:/teacher_viewReport";
+//			reportService.gradeReport(report.getPoint(), report.getId());
+			reportService.addPointDetail(pointDetail);
 		}
+		return mv;
+	}
+
+	@PostMapping(value = "/processEditGrade")
+	public ModelAndView processEditGrade(@Valid @ModelAttribute("pointDetail") PointDetail pointDetail,
+			BindingResult theBindingResult) {
+		mv = new ModelAndView("redirect:/grading_table/" + pointDetail.getReportId());
+		if (theBindingResult.hasErrors()) {
+			System.out.println(theBindingResult);
+			mv.addObject("student", accountService.getAccountById(pointDetail.getStudentId()));
+			mv.addObject("report", reportService.getReport(pointDetail.getReportId()));
+			mv.setViewName("user/teacher/grade");
+		} else {
+			// do some work here
+//			reportService.gradeReport(report.getPoint(), report.getId());
+			reportService.editPointDetail(pointDetail);
+			mv.addObject("editAction", true);
+		}
+		return mv;
 	}
 
 	@InitBinder
@@ -235,9 +317,15 @@ public class ReportController {
 	@RequestMapping("/getReport")
 	public ModelAndView getAllReport() {
 		mv.setViewName("/admin/adminReport");
+
 		List<Report> reportList = reportService.getAllReport();
+<<<<<<< HEAD
+		// load project object for each report
+		for (Report rp : reportList) {
+=======
 
 		for(Report rp:reportList) {
+>>>>>>> main
 			Project projet = projectSerivce.getProjectById(rp.getProject_id());
 			rp.setProject(projet);
 			

@@ -57,7 +57,13 @@
 												<td>${ item.timeMeeting }</td>
 
 												<td><a href="${item.link_meeting }">Meet URL</a></td>
+<<<<<<< HEAD
+												<td><a download
+													href='<c:url value="/meeting_stogare//${item.content }"/>'>${item.content }</a>
+												</td>
+=======
 												<td><a href="${item.content }" download>${item.content }</a></td>
+>>>>>>> main
 											</tr>
 										</c:forEach>
 

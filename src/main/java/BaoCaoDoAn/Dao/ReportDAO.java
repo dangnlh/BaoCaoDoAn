@@ -1,6 +1,7 @@
 package BaoCaoDoAn.Dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.MapperReport;
-
+import BaoCaoDoAn.Entity.PointDetail;
+import BaoCaoDoAn.Entity.PointDetailMapper;
 import BaoCaoDoAn.Entity.Report;
 
 @Repository
@@ -40,7 +42,11 @@ public class ReportDAO {
 	
 	public List<Report> getAllReport() {
 		List<Report> list = new ArrayList<Report>();
+<<<<<<< HEAD
+		String sql = "Select * from report " + " ORDER BY project_id;";
+=======
 		String sql = "Select * from report  ORDER BY project_id;";
+>>>>>>> main
 		list = jdbcTemplate.query(sql, new MapperReport());
 		return list;
 
@@ -73,15 +79,18 @@ public class ReportDAO {
 
 	public List<Report> getReportByProjectId(int projectId) {
 		List<Report> list = new ArrayList<Report>();
-		String sql = "SELECT * FROM baocaodoan.report where project_id  =" + projectId;
+		String sql = "SELECT * FROM report where project_id  =" + projectId;
 		list = jdbcTemplate.query(sql, new MapperReport());
 		return list;
 
 	}
 
-	public int gradeReport(Double point, int reportId) {
-		String sql = "UPDATE `baocaodoan`.`report` SET `point` = " + point + " WHERE (`id` = " + reportId + ");";
-		int result = jdbcTemplate.update(sql);
+	public int gradeReport(PointDetail gradeReportModel) {
+		String sql = "INSERT INTO `pointdetail` "
+				+ "(`report_id`, `student_id`, `teacher_id`, `pointing_date`, `point`) " + "VALUES (?, ?, ?, ?,?);";
+		int result = jdbcTemplate.update(sql,
+				new Object[] { gradeReportModel.getReportId(), gradeReportModel.getStudentId(),
+						gradeReportModel.getTeacherId(), new Date(), gradeReportModel.getPoint() });
 		return result;
 	}
 
@@ -92,10 +101,33 @@ public class ReportDAO {
 
 	public List<Report> getTimeSubmitReport(int group_id, int porject_id) {
 		List<Report> list = new ArrayList<Report>();
-		String sql = "SELECT * FROM baocaodoan.project as p," + "baocaodoan.report as r where p.group_id = " + group_id
+		String sql = "UPDATE `pointdetail` SET `student_id` = ?, `teacher_id` = ?, `pointing_date` = ?, `point` = ? WHERE (`id` = ?);"
 				+ " and p.id = " + porject_id + " ";
 		list = jdbcTemplate.query(sql, new MapperReport());
 		return list;
 	}
 
+	public PointDetail getPointDetailByReporIdStudentId(int reportId, int studentId) {
+		String sql = "SELECT * FROM pointdetail where report_id = ? and student_id=?;";
+		List<PointDetail> result = jdbcTemplate.query(sql, new Object[] { reportId, studentId },
+				new PointDetailMapper());
+		if(result.size()!=0) {
+			return result.get(0);
+		}
+		return null;
+	}
+
+	public boolean addPointDetail(PointDetail poinDetail) {
+		String sql = "INSERT INTO `pointdetail` "
+				+ "(`report_id`, `student_id`, `teacher_id`, `pointing_date`, `point`) " + "VALUES (?, ?,?,?,?);";
+		jdbcTemplate.update(sql, new Object[] { poinDetail.getReportId(), poinDetail.getStudentId(),
+				poinDetail.getTeacherId(), new Date(), poinDetail.getPoint() });
+		return true;
+	}
+
+	public boolean editPoint(PointDetail pointDetail) {
+		String sql = "UPDATE `baocaodoan`.`pointdetail` SET `point` = ? WHERE (`id` = ?);";
+		jdbcTemplate.update(sql, new Object[] { pointDetail.getPoint(), pointDetail.getId() });
+		return true;
+	}
 }

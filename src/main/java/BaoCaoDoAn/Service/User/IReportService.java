@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import BaoCaoDoAn.Entity.PointDetail;
 import BaoCaoDoAn.Entity.Report;
 
 @Service
@@ -24,7 +24,13 @@ public interface IReportService {
 	public int editReport(int id,Report report);
 	
 	public List<Report> getAllReportByProjecId(int reportId) ;
+<<<<<<< HEAD
+	public int gradeReport(PointDetail studentGradeReportModel);
+	public boolean addPointDetail(PointDetail studentGradeReportModel);
+	public boolean editPointDetail(PointDetail studentGradeReportModel);
+=======
 	public int gradeReport(Double point, int reportId);
 	
 
+>>>>>>> main
 }
