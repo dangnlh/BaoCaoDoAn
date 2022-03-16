@@ -26,7 +26,6 @@ public class ProjectServiceImpl implements IProjectService {
 		return projectDao.getAllProject();
 	}
 	public List<Project> getAllProjectSimple() {
-
 		return projectDao.getAllProjectSimple();
 	}
 	public int addProject(Project project) {

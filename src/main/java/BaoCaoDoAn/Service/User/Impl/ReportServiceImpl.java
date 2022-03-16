@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import BaoCaoDoAn.Dao.ReportDAO;
 import BaoCaoDoAn.Dao.ScheduleReportDAO;
+import BaoCaoDoAn.Entity.PointDetail;
 import BaoCaoDoAn.Entity.Report;
 import BaoCaoDoAn.Entity.ScheduleMeeting;
 import BaoCaoDoAn.Service.User.IReportService;
@@ -40,20 +41,37 @@ public class ReportServiceImpl implements IReportService {
 
 		return reportDao.getReportByProjectId(reportId);
 	}
-	
-	public int gradeReport(Double point, int reportId) {
+
+	public int gradeReport(PointDetail studentGradeReportModel) {
 		// TODO Auto-generated method stub
-		return reportDao.gradeReport(point, reportId);
+		return reportDao.gradeReport(studentGradeReportModel);
 	}
 
 	public boolean WriteReportFile(Report report) {
 		reportDao.saveFileReportFile(report.getUrlReport(), report.getId());
 		return true;
 	}
+
 	public void deleteReport(Report report) {
-		//Delete Constraints of Report
+		// Delete Constraints of Report
 		sheduleReportDao.DeleteScheduleReportByReportId(report.getId());
-		//Delete Report
+		// Delete Report
 		reportDao.DeleteReport(report.getId());
+	}
+
+	public PointDetail getPointDetaiByReportIdStudentId(int reportId, int studentId) {
+		return reportDao.getPointDetailByReporIdStudentId(reportId, studentId);
+	}
+	public boolean addPointDetail(PointDetail studentGradeReportModel) {
+		// TODO Auto-generated method stub
+		return reportDao.addPointDetail(studentGradeReportModel);
+	}
+	public boolean editPointDetail(PointDetail studentGradeReportModel) {
+		// TODO Auto-generated method stub
+		return reportDao.editPoint(studentGradeReportModel);
+	}
+	public int gradeReport(Double point, int reportId) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

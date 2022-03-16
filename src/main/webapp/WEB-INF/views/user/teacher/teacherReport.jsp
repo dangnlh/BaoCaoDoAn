@@ -44,8 +44,7 @@
 													<th>Report Name</th>
 
 													<th>Time Submit</th>
-													<th>Download</th>
-													<th>Point</th>
+													<th>Download</th>													
 													<th>Group Name</th>
 													<th>Status</th>
 													<th>Action</th>
@@ -60,8 +59,7 @@
 														<td>${report.timeSubmit}</td>
 														<td><a
 															href='<c:url value="/report_stogare/${report.urlReport}"/>'
-															download>${report.urlReport}</a></td>
-														<th>${report.point}</th>
+															download>${report.urlReport}</a></td>														
 														<td>${group.name}</td>
 														<td>${report.convertedStatus}</td>
 														<td>
@@ -69,7 +67,7 @@
 																test="${report.status > 0}">
 
 																<button>
-																	<a href='<c:url value="/teacher_grade/${report.id}"/>'>Grade</a>
+																	<a href='<c:url value="/grading_table/${report.id}"/>'>Grade</a>
 																</button>
 															</c:if> <!--khi chua summit thi doi background khac  --> <c:if
 																test="${report.status < 1}">
