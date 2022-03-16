@@ -13,6 +13,8 @@ import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.MapperAccount;
 import BaoCaoDoAn.Entity.MapperGroup;
+import BaoCaoDoAn.Entity.MapperProject;
+import BaoCaoDoAn.Entity.Project;
 
 @Repository
 public class StudentDAO {
@@ -62,7 +64,7 @@ public class StudentDAO {
 				strCondition += " AND ";
 			}
 			if (condition.getNamne() != null) {
-				strCondition += " name like '" + condition.getNamne() + "%'";
+				strCondition += " account_name like '" + condition.getNamne() + "%'";
 			}
 			sql += strCondition;
 		}
@@ -85,26 +87,26 @@ public class StudentDAO {
 	}
 
 //	public int updateAccount(Account account) {
-//		String sql = "UPDATE `account` SET `name`=?, `group_id`=?, `phone=`?, `isLeader`=?, `gender`=? WHERE id=?";
+//		String sql = "UPDATE `account` SET `account_name`=?, `group_id`=?, `phone=`?, `isLeader`=?, `gender`=? WHERE id=?";
 //		int count = _jdbcTemplate.update(sql, group.getName(), group.getId());
 //		return count;
 //	}
 
-	public List<Account> FindAccountbyName(String name) {
+	public List<Account> FindAccountbyaccount_name(String name) {
 		List<Account> list = new ArrayList<Account>();
-		String sql = "SELECT * FROM `account` WHERE account_name like '%" + name + "%' ";
+		String sql = "SELECT * FROM `account` WHERE role='student' and account_name like '%" + name + "%' ";
 		list = jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
 
 	public List<Account> listAcc(String name) {
-		String SQL = "select * from account where name like ?";
+		String SQL = "select * from account where account_name like ?";
 		List<Account> accounts = jdbcTemplate.query(SQL, new Object[] { "%" + name + "%" }, new MapperAccount());
 		return accounts;
 	}
 
 	public int addAccountStudent(Account account) {
-		String sql = " INSERT INTO `account` (`id`, `name`, `mail`, `password`, `group_id`, `phone`, `role`, `isLeader`, `gender`) VALUES (?,?,?,?,?,?,?,?,?)";
+		String sql = " INSERT INTO `account` (`id`, `account_name`, `mail`, `password`, `group_id`, `phone`, `role`, `isLeader`, `gender`) VALUES (?,?,?,?,?,?,?,?,?)";
 
 		int count = _jdbcTemplate.update(sql,
 				new Object[] { account.getId(), account.getName(), account.getMail(), account.getPassword(),
@@ -114,7 +116,7 @@ public class StudentDAO {
 	}
 
 	public int updateStudentAccount(Account account) {
-		String sql = " UPDATE `account` SET `name` = ? , `mail` = ? , `password` = ? ,`group_id` = ? , `phone` = ? , `role` = ? , `isLeader` = ? , `gender` = ? WHERE id = ?";
+		String sql = " UPDATE `account` SET `account_name` = ? , `mail` = ? , `password` = ? ,`group_id` = ? , `phone` = ? , `role` = ? , `isLeader` = ? , `gender` = ? WHERE id = ?";
 		int count = _jdbcTemplate.update(sql, account.getName(), account.getMail(), account.getPassword(),
 				account.getGroup_id(), account.getPhone(), account.getRole(), account.getIsLeader(),
 				account.getGender(), account.getId());
@@ -127,9 +129,25 @@ public class StudentDAO {
 		return result;
 	}
 
-	public Group FindAccountName(String name) {
-		String sql = "SELECT * FROM `account` WHERE name LIKE \"?%\" " + name;
+	public Group FindAccountaccount_name(String name) {
+		String sql = "SELECT * FROM `account` WHERE account_name LIKE \"?%\" " + name;
 		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
 		return result;
+	}
+	
+	public Account getAccountByGroupId(int id) {
+		try {
+		Account account;
+		String sql = "SELECT * FROM account where group_id = " + id;
+		account = jdbcTemplate.queryForObject(sql, new MapperAccount());
+		if (account != null) {
+			return account;
+		}
+	} catch (EmptyResultDataAccessException e) {
+
+		return null;
+	}
+	return null;
+		
 	}
 }

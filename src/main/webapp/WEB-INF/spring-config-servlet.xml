@@ -27,8 +27,8 @@
 			value="com.mysql.jdbc.Driver"></property>
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/baocaodoan?zeroDateTimeBehavior=convertToNull"></property>
-		<property name="username" value="hbstudent"></property>
-		<property name="password" value="hbstudent"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
 	</bean>
 
 	<bean id="jdbcTemplate"

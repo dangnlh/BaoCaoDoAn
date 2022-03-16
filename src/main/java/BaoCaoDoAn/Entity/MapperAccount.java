@@ -13,7 +13,7 @@ public class MapperAccount implements RowMapper<Account> {
 		acc.setName(rs.getString("account_name"));
 		acc.setPassword(rs.getString("password"));
 		acc.setMail(rs.getString("mail"));
-		acc.setPhone(rs.getInt("phone"));
+		acc.setPhone(rs.getString("phone"));
 		acc.setRole(rs.getString("role"));
 		acc.setGroup_id(rs.getInt("group_id"));
 		acc.setIsLeader(rs.getBoolean("isLeader"));
