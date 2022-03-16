@@ -31,11 +31,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import BaoCaoDoAn.Dao.ReportDAO;
-<<<<<<< HEAD
 import BaoCaoDoAn.Dao.StudentDAO;
-=======
 import BaoCaoDoAn.Dto.group_Account_Project;
->>>>>>> main
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.PointDetail;
@@ -319,13 +316,8 @@ public class ReportController {
 		mv.setViewName("/admin/adminReport");
 
 		List<Report> reportList = reportService.getAllReport();
-<<<<<<< HEAD
 		// load project object for each report
 		for (Report rp : reportList) {
-=======
-
-		for(Report rp:reportList) {
->>>>>>> main
 			Project projet = projectSerivce.getProjectById(rp.getProject_id());
 			rp.setProject(projet);
 			

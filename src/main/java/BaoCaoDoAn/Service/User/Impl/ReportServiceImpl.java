@@ -70,4 +70,8 @@ public class ReportServiceImpl implements IReportService {
 		// TODO Auto-generated method stub
 		return reportDao.editPoint(studentGradeReportModel);
 	}
+	public int gradeReport(Double point, int reportId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
