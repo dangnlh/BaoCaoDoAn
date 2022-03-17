@@ -54,7 +54,7 @@ public class AccountDAO {
 
 	public int AddAccount(Account account) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO account (name, mail,password,phone,role,isLeader) " + "VALUES ('" + account.getName()
+		sql.append("INSERT INTO account (account_name, mail,password,phone,role,isLeader) " + "VALUES ('" + account.getName()
 				+ "', '" + account.getMail() + "'" + ",'" + account.getPassword() + "', '" + account.getPhone() + "'"
 				+ " ,'" + account.getRole() + "'," + account.getIsLeader() + ");");
 		int insert = jdbcTemplate.update(sql.toString());

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -80,7 +81,7 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/addAccountStudent", method = RequestMethod.POST)
-	public String doPostAddGroup(@ModelAttribute("studentAcc1") Account account, BindingResult result) {
+	public String doPostAddGroup(@Valid @ModelAttribute("studentAcc1") Account account, BindingResult result) {
 		if (account.getId() == 0) {
 			studentService.addAccount(account);
 			System.out.println("Insert");

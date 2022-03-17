@@ -15,9 +15,10 @@ import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
 public class Project {
 	private int id;	
 	
-	@Pattern(regexp = "[a-zA-Z ]{1,100}" , message = "Name is empty")
-	
+	@Pattern(regexp = "[a-zA-Z ]{1,100}" , message = " Project name is empty")
 	private String name;
+	
+	@Pattern(regexp = "[a-zA-Z ]{1,100}" , message = " Url name is empty")
 	private String urlProject;
 
 	private Date createTime;

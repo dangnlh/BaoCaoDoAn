@@ -1,9 +1,14 @@
 package BaoCaoDoAn.Entity;
 
 import java.sql.Date;
+
+import javax.validation.constraints.Future;
+
 public class ScheduleReport {
 	private int id;
+	@Future(message = " /Time report invalid")
 	private Date timeReport;
+	@Future(message = " /Date submit invalid")
 	private Date dateSubmit;
 	private int account_id;
 	private int report_id;

@@ -62,7 +62,7 @@ public class StudentDAO {
 				strCondition += " AND ";
 			}
 			if (condition.getNamne() != null) {
-				strCondition += " name like '" + condition.getNamne() + "%'";
+				strCondition += " account_name like '" + condition.getNamne() + "%'";
 			}
 			sql += strCondition;
 		}
@@ -98,13 +98,13 @@ public class StudentDAO {
 	}
 
 	public List<Account> listAcc(String name) {
-		String SQL = "select * from account where name like ?";
+		String SQL = "select * from account where account_name like ?";
 		List<Account> accounts = jdbcTemplate.query(SQL, new Object[] { "%" + name + "%" }, new MapperAccount());
 		return accounts;
 	}
 
 	public int addAccountStudent(Account account) {
-		String sql = " INSERT INTO `account` (`id`, `name`, `mail`, `password`, `group_id`, `phone`, `role`, `isLeader`, `gender`) VALUES (?,?,?,?,?,?,?,?,?)";
+		String sql = " INSERT INTO `account` (`id`, `account_name`, `mail`, `password`, `group_id`, `phone`, `role`, `isLeader`, `gender`) VALUES (?,?,?,?,?,?,?,?,?)";
 
 		int count = _jdbcTemplate.update(sql,
 				new Object[] { account.getId(), account.getName(), account.getMail(), account.getPassword(),
@@ -114,7 +114,7 @@ public class StudentDAO {
 	}
 
 	public int updateStudentAccount(Account account) {
-		String sql = " UPDATE `account` SET `name` = ? , `mail` = ? , `password` = ? ,`group_id` = ? , `phone` = ? , `role` = ? , `isLeader` = ? , `gender` = ? WHERE id = ?";
+		String sql = " UPDATE `account` SET `account_name` = ? , `mail` = ? , `password` = ? ,`group_id` = ? , `phone` = ? , `role` = ? , `isLeader` = ? , `gender` = ? WHERE id = ?";
 		int count = _jdbcTemplate.update(sql, account.getName(), account.getMail(), account.getPassword(),
 				account.getGroup_id(), account.getPhone(), account.getRole(), account.getIsLeader(),
 				account.getGender(), account.getId());
@@ -128,7 +128,7 @@ public class StudentDAO {
 	}
 
 	public Group FindAccountName(String name) {
-		String sql = "SELECT * FROM `account` WHERE name LIKE \"?%\" " + name;
+		String sql = "SELECT * FROM `account` WHERE account_name LIKE \"?%\" " + name;
 		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
 		return result;
 	}

@@ -53,14 +53,13 @@
 										<form:form action="AddGroup" method="POST"  modelAttribute="group4">
 										<form:hidden path="id"/> 
 
-										<label for="email2" class="mb-2 mr-sm-2">Name</label>
+										<label for="name" class="mb-2 mr-sm-2">Name</label>
 										<br>
 										
 										<form:input path="name" type="text"
-											class="form-control mb-2 mr-sm-2" />
-
-										<form:errors path="name" cssClass="error"/>
-
+											class="form-control mb-2 mr-sm-2" name='txtName'/>
+										
+										<form:errors path="name" cssClass="error" />
 										<br>
 										<button type="submit" class="btn btn-primary mb-2">Submit</button>
 

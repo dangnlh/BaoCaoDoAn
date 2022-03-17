@@ -4,12 +4,15 @@ import java.sql.Date;
 import java.time.LocalTime;
 import java.util.Optional;
 
+import javax.validation.constraints.Pattern;
+
 public class ScheduleMeeting {
 	private int id;
 	private String name;
 	private Date timeMeeting;
 	private int project_id;
 	private int account_id;
+	@Pattern(regexp = "[a-zA-Z ]{1,100}" , message = " Link meeting is empty")
 	private String link_meeting;
 	private String content;
 	private String time;

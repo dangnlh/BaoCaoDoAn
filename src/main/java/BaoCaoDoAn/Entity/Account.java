@@ -2,10 +2,13 @@ package BaoCaoDoAn.Entity;
 
 import java.util.List;
 
+import javax.validation.constraints.Pattern;
+
 public class Account {
 	
 	private int id ;
 	private String name ;
+	@Pattern(regexp = "^[A-Za-z0-9._%+-]+@fpt.edu.vn$" , message = "Email must be @fpt.edu.vn")
 	private String mail ;
 	private String password ;
 	private int group_id ;

@@ -80,7 +80,7 @@ public class ProjectController {
 	@RequestMapping(value = "/addProject", method = RequestMethod.POST)
 	public ModelAndView add(@Valid @ModelAttribute("ProjectUpdateAndInsert") Project project,
 			BindingResult bindingResult) {
-		System.out.println(bindingResult);
+//		System.out.println(bindingResult);
 		if (bindingResult.hasErrors()) {
 			mv.setViewName("/admin/addProject");
 

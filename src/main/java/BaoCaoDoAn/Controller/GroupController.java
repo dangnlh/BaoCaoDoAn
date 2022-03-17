@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -200,15 +201,17 @@ public class GroupController {
 		return "/user/AddGroup";
 	}
 	@RequestMapping(value = "/AddGroup", method = RequestMethod.POST)
-	public String doPostAddGroup(@ModelAttribute("group4") Group group, BindingResult result) {
+	public String doPostAddGroup(@Valid @ModelAttribute("group4") Group group, BindingResult result) {
 		
 		if (result.hasErrors()) {
 			return "/user/AddGroup";
 		}
-		if(group.getId()== 0) {
+		else if(group.getId()== 0) {
 			groupServiceImpl.addGroup(group);
 		}else if(group.getId()>0){
 			groupServiceImpl.updateGroup(group);
+		}else {
+			groupServiceImpl.addGroup(group);
 		}
 		
 		return "redirect:/ListGroup";

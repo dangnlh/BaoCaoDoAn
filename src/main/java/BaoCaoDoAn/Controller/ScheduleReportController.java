@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -132,7 +133,7 @@ public class ScheduleReportController {
 	}
 
 	@RequestMapping(value = "/addScheduleReport", method = RequestMethod.POST)
-	public String doPostAddUser(@ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport, BindingResult result) {
+	public String doPostAddUser(@Valid @ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport, BindingResult result) {
 		
 		if (ScheduleReport.getId() > 0) {
 			scheduleReportService.updateScheduleRepot(ScheduleReport);

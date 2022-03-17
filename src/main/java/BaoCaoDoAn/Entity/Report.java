@@ -1,7 +1,6 @@
 package BaoCaoDoAn.Entity;
 
 import java.sql.Date;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
