@@ -96,7 +96,7 @@
 							<label for="email2" class="mb-2 mr-sm-2">Time Create</label>
 							<br>
 							<form:input path="timeReport" type="date"
-								class="form-control mb-2 mr-sm-2" value="2022-06-01" />
+								class="form-control mb-2 mr-sm-2"/>
 							<br>
 							<br>
 
