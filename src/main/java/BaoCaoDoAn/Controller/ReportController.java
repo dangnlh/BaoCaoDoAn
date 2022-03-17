@@ -67,7 +67,7 @@ public class ReportController {
 	}
 
 	@RequestMapping(value = "/addreport", method = RequestMethod.POST)
-	public String addReport(@ModelAttribute("report") Report report) {
+	public String addReport(@Valid @ModelAttribute("report") Report report) {
 		mv.addObject("addReport", reportService.addReport(report));
 		return "redirect:/ScheduleReport";
 

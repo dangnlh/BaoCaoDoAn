@@ -54,20 +54,25 @@
 										method="POST" modelAttribute="report">
 										<form:hidden path="id" />
 										<label for="email2" class="mb-2 mr-sm-2">Report Name:</label>
-										<form:input path="name" placeholder="abcdxyz" class="form-control mb-2 mr-sm-2"/>
+										<form:input path="name" placeholder="abcdxyz"
+											class="form-control mb-2 mr-sm-2" />
 										<form:errors path="name" cssClass="error" />
 										<br>
-										<label for="email2" class="mb-2 mr-sm-2">Deadline Of Report</label>
-										<form:input id="datePicker" path="timeSubmit" type="date" class="form-control mb-2 mr-sm-2" />
+										<label for="email2" class="mb-2 mr-sm-2">Deadline Of
+											Report</label>
+										<form:input id="datePicker" path="timeSubmit" type="date"
+											class="form-control mb-2 mr-sm-2" />
 										<span class="error">${dateError}</span>
 										<br>
 										<label for="email2" class="mb-2 mr-sm-2">For Project:</label>
-										<form:select path="project_id" class="form-control mb-2 mr-sm-2">
+										<form:select path="project_id"
+											class="form-control mb-2 mr-sm-2">
 											<form:options items="${projectList}" itemValue="id"
 												itemLabel="name" />
 										</form:select>
 										<br>
-										<input type="submit" class="btn btn-primary mb-2" value="Update Report">
+										<input type="submit" class="btn btn-primary mb-2"
+											value="Update Report">
 									</form:form>
 									<h1></h1>
 								</div>
@@ -89,7 +94,26 @@
 			<!-- End of Footer -->
 		</div>
 	</div>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+	<script>
+		$(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
+			var dateToday = new Date();
+			var month = dateToday.getMonth() + 1;
+			var day = dateToday.getDate();
+			var year = dateToday.getFullYear();
+
+			if (month < 10)
+				month = '0' + month.toString();
+			if (day < 10)
+				day = '0' + day.toString();
+
+			var maxDate = year + '-' + month + '-' + day;
+
+			$('#datePicker').attr('min', maxDate);
+		});
+	</script>
 	<!-- Bootstrap core JavaScript-->
 	<script src="/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
