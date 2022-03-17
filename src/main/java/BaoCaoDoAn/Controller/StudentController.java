@@ -95,14 +95,10 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/addAccountStudent", method = RequestMethod.POST)
-<<<<<<< HEAD
-	public String doPostAddGroup(@Valid @ModelAttribute("studentAcc1") Account account, BindingResult result) {
-=======
 	public String doPostAddGroup(@ModelAttribute("studentAcc1") @Valid Account account, BindingResult result) {
 		if (result.hasErrors()) {
 			return "/user/addAccount";
 		}
->>>>>>> faf8051231df4f913553ec5ddee306066d4c22d0
 		if (account.getId() == 0) {
 			studentService.addAccount(account);
 			System.out.println("Insert");
