@@ -20,6 +20,7 @@ public class Account {
 	
 	@NotEmpty(message = "This is not empty")
 	@NotBlank(message = "Gmail is not blank")
+	@Pattern(regexp = "^[A-Za-z0-9._%+-]+@fpt.edu.vn$", message = "Email must contain @fpt.edu.vn")
 	private String mail ;
 	
 	@NotEmpty(message = "The password is not null")
