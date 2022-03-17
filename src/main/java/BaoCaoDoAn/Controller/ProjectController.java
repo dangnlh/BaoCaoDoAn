@@ -81,14 +81,21 @@ public class ProjectController {
 	public ModelAndView add(@Valid @ModelAttribute("ProjectUpdateAndInsert") Project project,
 			BindingResult bindingResult) {
 //		System.out.println(bindingResult);
+
+		int groupId = project.getGroup_id();
+		int countGroupId = projectService.getCountGroupId(groupId);
+
+		int teacherId = project.getTeacherId();
+		int countTeacherId = projectService.getCountTeacherId(teacherId);
+
 		if (bindingResult.hasErrors()) {
 			mv.setViewName("/admin/addProject");
-
+		} else if (countGroupId >= 4) {
+			mv.setViewName("/admin/addProject");
+		} else if (countTeacherId >= 4) {
+			mv.setViewName("/admin/addProject");
 		} else {
-		
-		System.out.println(project.getGroup_id()); 
-	
-			System.out.println(project.getGroup_id()); 
+			System.out.println(project.getGroup_id());
 			projectService.addProject(project);
 			return new ModelAndView("redirect:/AdminProject");
 		}
@@ -109,11 +116,19 @@ public class ProjectController {
 
 	@PostMapping(value = "/editProject")
 	public ModelAndView edit(@Valid @ModelAttribute("project") Project project, BindingResult bindingResult) {
-		System.out.println("project id = " + project.getId());
-		System.out.println("project  = " + project);
+		int groupId = project.getGroup_id();
+		int countGroupId = projectService.getCountGroupId(groupId);
+
+		int teacherId = project.getTeacherId();
+		int countTeacherId = projectService.getCountTeacherId(teacherId);
+
 		if (bindingResult.hasErrors()) {
 			mv.setViewName("/admin/editProject");
 
+		} else if (countGroupId >= 4) {
+			mv.setViewName("/admin/editProject");
+		} else if (countTeacherId >= 4) {
+			mv.setViewName("/admin/editProject");
 		} else {
 			projectService.editProject(project.getId(), project);
 			return new ModelAndView("redirect:/AdminProject");

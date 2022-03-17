@@ -84,9 +84,7 @@ public class ProjectDAO {
 	
 	public int editProject(int id , Project project) {
 		
-	
-		String sql ="UPDATE project SET project_name = ?, urlProject = ? , createTime = ? , group_Id = ? , teacher_id = ? WHERE id = ?";
-		
+		String sql ="UPDATE project SET project_name = ?, urlProject = ? , createTime = ? , group_Id = ? , teacher_id = ? WHERE id = ?";	
 
 		int count = jdbcTemplate.update(sql,  new Object[] {project.getName() , project.getUrlProject() , project.getCreateTime(),
 				project.getGroup_id() , project.getTeacherId(), id }) ; 		
@@ -132,6 +130,20 @@ public class ProjectDAO {
 	}
 	return null;
 		
+	}
+	
+	public int getCountGroupId(int groupId) {
+		int result =-1;
+		String sql = "SELECT COUNT(group_id) FROM `project` WHERE group_id = " + groupId ;	
+		result = jdbcTemplate.queryForObject(sql, Integer.class);
+		return result;
+	}
+	
+	public int getCountTeacherId(int teacherId) {
+		int result =-1;
+		String sql = "SELECT COUNT(teacher_id) FROM `project` WHERE teacher_id = " + teacherId ;	
+		result = jdbcTemplate.queryForObject(sql, Integer.class);
+		return result;
 	}
 
 }

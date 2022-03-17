@@ -78,7 +78,7 @@
 										<form:select path="group_id">
 											<c:forEach var="item" items="${ groups }">
 
-												<option value="${ getProjectbyId.group_id}">${ item.id }</option>
+												<option value="${ item.id}">${ item.id }</option>
 											</c:forEach>
 										</form:select>
 
@@ -92,7 +92,7 @@
 										<br>
 										<form:select path="teacherId">
 											<c:forEach var="item" items="${ teacher }">
-												<option value="${ getProjectbyId.teacherId}">${ item.id }</option>
+												<option value="${ item.id}">${ item.id }</option>
 											</c:forEach>
 										</form:select>
 										<br>
