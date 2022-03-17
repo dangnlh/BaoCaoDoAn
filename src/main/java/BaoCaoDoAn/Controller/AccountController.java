@@ -1,4 +1,4 @@
-  package BaoCaoDoAn.Controller;
+package BaoCaoDoAn.Controller;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -20,106 +20,109 @@ import BaoCaoDoAn.Service.User.Impl.AccountServiceImpl;
 @Controller
 public class AccountController {
 	@Autowired
-	AccountServiceImpl accountService ;
+	AccountServiceImpl accountService;
 	@Autowired
-	AccountDAO accountDao  ;
-	@Autowired 
-	private ScheduleReportDAO scheduleReportDAO ;
+	AccountDAO accountDao;
+	@Autowired
+	private ScheduleReportDAO scheduleReportDAO;
 	@Autowired
 	private IProjectService projectService;
-	
-	private ModelAndView mv = new ModelAndView() ;
-	
-	@RequestMapping(value = {"/", "/login"})
+
+	private ModelAndView mv = new ModelAndView();
+
+	@RequestMapping(value = { "/", "/login" })
 	public ModelAndView Login() {
 		mv.setViewName("/loginpage");
-		mv.addObject("account" , new Account());
-		mv.addObject("schduleReport" ,  new ScheduleReport()) ;
-		mv.addObject("scheduleReportDAO" , scheduleReportDAO.getAllScheduleReport());
-		return mv ;
+		mv.addObject("account", new Account());
+		mv.addObject("schduleReport", new ScheduleReport());
+		mv.addObject("scheduleReportDAO", scheduleReportDAO.getAllScheduleReport());
+		return mv;
 	}
-	@RequestMapping(value =  "/trang-chu")
-	public ModelAndView HomeTeacher(@ModelAttribute("account") Account account ,  HttpSession session) {
-		mv.setViewName("/user/teacher");	
-		return mv;		
-		
+
+	@RequestMapping(value = "/trang-chu")
+	public ModelAndView HomeTeacher(@ModelAttribute("account") Account account, HttpSession session) {
+		mv.setViewName("/user/teacher");
+		return mv;
+
 	}
+
 	@SuppressWarnings("unused")
-	@RequestMapping(value =  "/dang-nhap", method = RequestMethod.POST)
-	public ModelAndView Login(@ModelAttribute("account") Account account ,  HttpSession session) {		
-		Account acc = accountService.CheckAccount(account) ;
-		if(acc != null && acc.getRole().equals("student")) {	
+	@RequestMapping(value = "/dang-nhap", method = RequestMethod.POST)
+	public ModelAndView Login(@ModelAttribute("account") Account account, HttpSession session) {
+		Account acc = accountService.CheckAccount(account);
+		if (acc != null && acc.getRole().equals("student")) {
 			session.setAttribute("InforAccount", accountDao.GetUserByAccount(account));
-			mv.addObject("InforAccount" ,accountDao.GetUserByAccount(account) );
-		    mv.setViewName("/user/student");
-//			mv.addObject("statusLogin" , "login thanh cong");
-		    mv.addObject("statusLogin" , "");
-		
-		}if(acc != null && acc.getRole().equals("teacher")) {			
-			mv.setViewName("/user/teacher");	
-			session.setAttribute("InforAccount", accountDao.GetUserByAccount(account));
-			mv.addObject("InforAccount" ,accountDao.GetUserByAccount(account) );
-//			mv.addObject("statusLogin" , "login thanh cong");
-		    mv.addObject("statusLogin" , "");
-		}if(acc != null && acc.getRole().equals("admin")) {			
-			mv.setViewName("/admin/admin");					
-//			mv.addObject("statusLogin" , "login thanh cong");
-		    mv.addObject("statusLogin" , "");
+			mv.addObject("InforAccount", accountDao.GetUserByAccount(account));
+			mv.setViewName("/user/student");
+			mv.addObject("statusLogin", "login thanh cong");
 
 		}
-		
-		else if(acc == null){
-			mv.setViewName("/loginpage");
-			mv.addObject("statusLogin" , "login failed");
-		}	
-			return mv ;
-	}
-	
-	@RequestMapping(value =  "/dang-ky", method = RequestMethod.GET)
-		public ModelAndView DangKy() {
-			mv.setViewName("/registrationpage");
-			mv.addObject("account" , new Account()) ;
-			return mv ;
+		if (acc != null && acc.getRole().equals("teacher")) {
+			mv.setViewName("/user/teacher");
+			session.setAttribute("InforAccount", accountDao.GetUserByAccount(account));
+			mv.addObject("InforAccount", accountDao.GetUserByAccount(account));
+			mv.addObject("statusLogin", "login thanh cong");
+
 		}
-	@RequestMapping(value =  "/dang-ky", method = RequestMethod.POST)
-	public ModelAndView DangKy(@Valid @ModelAttribute("account") Account account) {
-		System.out.println(account);
-		int count = accountService.AddAccount(account) ;
+		if (acc != null && acc.getRole().equals("admin")) {
+			mv.setViewName("/admin/admin");
+			mv.addObject("statusLogin", "login thanh cong");
+
+		}
+
+		else if (acc == null) {
+			mv.setViewName("/loginpage");
+			mv.addObject("statusLogin", "login failed");
+		}
+		return mv;
+	}
+
+	@RequestMapping(value = "/dang-ky", method = RequestMethod.GET)
+	public ModelAndView DangKy() {
+		mv.setViewName("/registrationpage");
+		mv.addObject("account", new Account());
+		return mv;
+	}
+
+	@RequestMapping(value = "/dang-ky", method = RequestMethod.POST)
+	public ModelAndView DangKy(@ModelAttribute("account") Account account) {
+
+		int count = accountService.AddAccount(account);
 		System.out.println(count);
-		
-		if(count == 1   ) {
-			mv.addObject("statusRegister" , "Đăng ký thành công") ;
-		}else if(count == 2 ) {
-			mv.addObject("statusRegister" , "Đăng ký thất bại") ;
+
+		if (count == 1) {
+			mv.addObject("statusRegister", "Ä�Äƒng KÃ­ thÃ nh CÃ´ng");
+		} else if (count == 2) {
+			mv.addObject("statusRegister", "Ä�Äƒng KÃ­ tháº¥t báº¡i");
 		}
 		System.out.println("thanhcong");
 		mv.setViewName("/registrationpage");
 		return mv;
-		
+
 	}
+
 	@RequestMapping(value = "/logout")
 	public ModelAndView LogOut() {
 		mv.setViewName("/loginpage");
-		mv.addObject("statusLogin"," ");
+		mv.addObject("statusLogin", " ");
 		return mv;
 	}
+
 	@RequestMapping(value = "/studenthome")
 	public ModelAndView StudentHome() {
 		mv.setViewName("/user/student");
-		
+
 		return mv;
 	}
 
 	@RequestMapping(value = "/searchAccount")
 	public ModelAndView searchAccount() {
 		mv.setViewName("/loginpage");
-		mv.addObject("account" , new Account());
-		mv.addObject("schduleReport" ,  new ScheduleReport()) ;
-		mv.addObject("scheduleReportDAO" , scheduleReportDAO.getAllScheduleReport());
-		return mv ;
+		mv.addObject("account", new Account());
+		mv.addObject("schduleReport", new ScheduleReport());
+		mv.addObject("scheduleReportDAO", scheduleReportDAO.getAllScheduleReport());
+		return mv;
 	}
-	
-	
 
 //	@Autowired
 //	private ScheduleReportServiceImpl  scheduleReportService ;
@@ -142,5 +145,5 @@ public class AccountController {
 //		return "/user/student" ;
 //	
 //	}
-	
+
 }

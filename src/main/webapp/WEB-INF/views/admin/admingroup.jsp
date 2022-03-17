@@ -44,7 +44,10 @@
 				<!-- Begin Page Content -->
 				<!-- /.container-fluid -->
 
+				
 				<div class="container-fluid">
+				<h4>${ statusGroupOfStudent }</h4>
+				
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
@@ -68,7 +71,7 @@
 											<th>Action</th>
 										</tr>
 									</thead>
-									
+
 									<tbody>
 										<c:forEach var="items" items="${ group4 }" varStatus="counter">
 											<c:if test="${not empty items }" />

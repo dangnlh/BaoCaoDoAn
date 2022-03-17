@@ -1,9 +1,11 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
 <%@include file="/WEB-INF/views/user/teacher/linkHeader.jsp"%>
+</head>
 
 <body style="overflow: visible;">
 
@@ -55,7 +57,10 @@
 												<td>${ item.timeMeeting }</td>
 
 												<td><a href="${item.link_meeting }">Meet URL</a></td>
-												<td><a href="${item.content }" download>${item.content }</a></td>
+
+												<td><a download
+													href='<c:url value="/meeting_stogare//${item.content }"/>'>${item.content }</a>
+												</td>
 											</tr>
 										</c:forEach>
 

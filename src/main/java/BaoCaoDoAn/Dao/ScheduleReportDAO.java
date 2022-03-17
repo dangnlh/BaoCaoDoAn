@@ -95,13 +95,13 @@ public class ScheduleReportDAO {
 
 	public int InsertScheduleRepot(ScheduleReport scheduleReport) {
 		String sql = "INSERT INTO schedulereport (id, `timeReport`,account_id,report_id,date_submit) VALUES (?,?,?,?,?)";
-		int count = jdbcTemplate.update(sql, new Object[] { scheduleReport.getId(), scheduleReport.getTimeReport(),scheduleReport.getAccount_id(),scheduleReport.getReport_id(),scheduleReport.getDateSubmit() });
+		int count = jdbcTemplate.update(sql, new Object[] { scheduleReport.getId(), scheduleReport.getTimeReport(),1,scheduleReport.getReport_id(),scheduleReport.getDateSubmit() });
 		return count;
 	}
 
 	public int updateScheduleRepot(ScheduleReport scheduleReport) {
 		String sql = "UPDATE schedulereport SET timeReport=? , account_id=? , report_id=? , date_submit=? WHERE id=?";
-		int count = jdbcTemplate.update(sql, scheduleReport.getTimeReport(),scheduleReport.getAccount_id(),scheduleReport.getReport_id(),scheduleReport.getDateSubmit(),scheduleReport.getId());
+		int count = jdbcTemplate.update(sql, scheduleReport.getTimeReport(),1,scheduleReport.getReport_id(),scheduleReport.getDateSubmit(),scheduleReport.getId());
 		return count;
 	}
 	public ScheduleReport getScheduleReport(int id) {

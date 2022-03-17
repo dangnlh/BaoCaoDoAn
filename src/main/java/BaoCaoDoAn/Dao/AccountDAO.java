@@ -71,7 +71,7 @@ public class AccountDAO {
 	}
 
 	public Account getAccountByAccountId(int accId) {
-		String sql = "SELECT * FROM baocaodoan.account where id =" + accId;
+		String sql = "SELECT * FROM account where id =" + accId;
 		Account account = jdbcTemplate.queryForObject(sql, new MapperAccount());
 		return account;
 	}
@@ -93,6 +93,13 @@ public class AccountDAO {
 
 		listTeacher = jdbcTemplate.query(sql, new MapperAccount());
 		return listTeacher;
+	}
+
+	public List<Account> getStudentByGroupId(int groupId) {
+		List<Account> listMember = new ArrayList<Account>();
+		String sql = "SELECT * FROM `account` WHERE role='student' and group_id =" + groupId;
+		listMember = jdbcTemplate.query(sql, new MapperAccount());
+		return listMember;
 	}
 }
 

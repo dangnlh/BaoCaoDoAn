@@ -1,20 +1,50 @@
 package BaoCaoDoAn.Entity;
 
-import java.util.List;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
+
+import BaoCaoDoAn.validator.phone;
 
 import javax.validation.constraints.Pattern;
 
 public class Account {
 	
 	private int id ;
+	
+	@NotEmpty(message = "This is not empty")
+	@Length(min = 5, max = 50, message = "Only Letter is min 5 max 50")
 	private String name ;
-	@Pattern(regexp = "^[A-Za-z0-9._%+-]+@fpt.edu.vn$" , message = "Email must be @fpt.edu.vn")
+	
+	@NotEmpty(message = "This is not empty")
+	@NotBlank(message = "Gmail is not blank")
 	private String mail ;
+	
+	@NotEmpty(message = "The password is not null")
+	@NotBlank(message = "The password is not blank")
 	private String password ;
+	
+	
 	private int group_id ;
-	private int phone ;
+	
+	@phone(message = "The phone number is wrong format")
+	private String phone ;
+	
+	
 	private String role ;
+	
+	
 	private Boolean isLeader ;
+	
+	
+	private PointDetail pointDetailForReport;
+	
+	
+	private int statusPoint;
+	
+	
 	private String gender;
 	
 	public int getId() {
@@ -47,10 +77,10 @@ public class Account {
 	public void setGroup_id(int group_id) {
 		this.group_id = group_id;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getRole() {
@@ -65,6 +95,18 @@ public class Account {
 	public void setIsLeader(Boolean isLeader) {
 		this.isLeader = isLeader;
 	}
+	public PointDetail getPointDetailForReport() {
+		return pointDetailForReport;
+	}
+	public void setPointDetailForReport(PointDetail pointDetailForReport) {
+		this.pointDetailForReport = pointDetailForReport;
+	}
+	public int getStatusPoint() {
+		return statusPoint;
+	}
+	public void setStatusPoint(int statusPoint) {
+		this.statusPoint = statusPoint;
+	}
 	public String getGender() {
 		return gender;
 	}
@@ -73,6 +115,5 @@ public class Account {
 	}
 	
 	
-
 	
 }

@@ -22,6 +22,7 @@ public class FutureBasedDateValidator implements ConstraintValidator<FutureBased
 //	}
 	public boolean isValid(Report value, ConstraintValidatorContext context) {
 		boolean result = false;
+		// Creating
 		if(value.getId()==0) {
 			Date now = new Date(new java.util.Date().getTime());
 			System.out.println("NOW AND DEAD:"+now.after(value.getTimeSubmit()));
@@ -29,6 +30,7 @@ public class FutureBasedDateValidator implements ConstraintValidator<FutureBased
 				result = true;
 			}
 		}else {
+			// Updating
 			Report fullReport = reportService.getReport(value.getId());
 			Date createTime = fullReport.getTimeCreate();
 			System.out.println("DATE CRE:"+createTime);

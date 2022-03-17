@@ -1,9 +1,11 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
 <%@include file="/WEB-INF/views/user/teacher/linkHeader.jsp"%>
+</head>
 
 <body style="overflow: visible;">
 
@@ -18,28 +20,17 @@
 			<!-- partial -->
 			<div class="main-panel">
 				<div class="content-wrapper">
-
-
-
-
 					<div class="row">
-
-
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-
-
 									<div class="table table-striped project-orders-table">
 								<h4 style="text-transform: uppercase;padding:16px;">Your Group  </h4>
-
-
 										<c:forEach var="group" items="${teacherGroup}">
 											<c:set var="account" value="${group.account}" />
 											<h5 style="text-align: center; text-transform: uppercase;margin:16px;">${group.name}</h5>
 											<table class="table">
 												<thead>
-
 													<tr>
 														
 														<th>ID</th>

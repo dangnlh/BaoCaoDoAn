@@ -13,6 +13,8 @@ import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
 import BaoCaoDoAn.Entity.MapperAccount;
 import BaoCaoDoAn.Entity.MapperGroup;
+import BaoCaoDoAn.Entity.MapperProject;
+import BaoCaoDoAn.Entity.Project;
 
 @Repository
 public class StudentDAO {
@@ -85,14 +87,14 @@ public class StudentDAO {
 	}
 
 //	public int updateAccount(Account account) {
-//		String sql = "UPDATE `account` SET `name`=?, `group_id`=?, `phone=`?, `isLeader`=?, `gender`=? WHERE id=?";
+//		String sql = "UPDATE `account` SET `account_name`=?, `group_id`=?, `phone=`?, `isLeader`=?, `gender`=? WHERE id=?";
 //		int count = _jdbcTemplate.update(sql, group.getName(), group.getId());
 //		return count;
 //	}
 
-	public List<Account> FindAccountbyName(String name) {
+	public List<Account> FindAccountbyaccount_name(String name) {
 		List<Account> list = new ArrayList<Account>();
-		String sql = "SELECT * FROM `account` WHERE account_name like '%" + name + "%' ";
+		String sql = "SELECT * FROM `account` WHERE role='student' and account_name like '%" + name + "%' ";
 		list = jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
@@ -127,9 +129,25 @@ public class StudentDAO {
 		return result;
 	}
 
-	public Group FindAccountName(String name) {
+	public Group FindAccountaccount_name(String name) {
 		String sql = "SELECT * FROM `account` WHERE account_name LIKE \"?%\" " + name;
 		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
 		return result;
+	}
+	
+	public Account getAccountByGroupId(int id) {
+		try {
+		Account account;
+		String sql = "SELECT * FROM account where group_id = " + id;
+		account = jdbcTemplate.queryForObject(sql, new MapperAccount());
+		if (account != null) {
+			return account;
+		}
+	} catch (EmptyResultDataAccessException e) {
+
+		return null;
+	}
+	return null;
+		
 	}
 }

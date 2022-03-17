@@ -21,7 +21,7 @@
 	<div class="main-panel">
 		<div class="content-wrapper">
 			<div class="row">
-				<div class="col-lg-6 grid-margin stretch-card">
+				<div class="col-lg-10 grid-margin stretch-card">
 					<div class="card profile-card bg-gradient-primary">
 						<div class="card-body">
 							<div class="row align-items-center h-100">

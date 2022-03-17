@@ -1,6 +1,5 @@
 package BaoCaoDoAn.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import BaoCaoDoAn.Dao.ScheduleReportDAO;
 import BaoCaoDoAn.Entity.Account;
 import BaoCaoDoAn.Entity.Group;
-import BaoCaoDoAn.Entity.Project;
 import BaoCaoDoAn.Entity.Report;
 import BaoCaoDoAn.Entity.ScheduleReport;
 import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
@@ -115,33 +113,45 @@ public class ScheduleReportController {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		ScheduleReport scheduleReport = scheduleReportService.getScheduleReport(id) ;
 
-		ModelAndView model = new ModelAndView("/user/ScheduleReportFrom");
+		ModelAndView mv = new ModelAndView("/user/ScheduleReportFrom");
 
-		model.addObject("ScheduleReportUpdateAndInsert", scheduleReport);
+		mv.addObject("ScheduleReportUpdateAndInsert", scheduleReport);
+		mv.addObject("getAllReport", reportService.getAllReport());
 
-		return model;
+		return mv;
 	}
 
 
 
 	@RequestMapping(value = "/addScheduleReport", method = RequestMethod.GET)
-	public String doGetAddUser(Model model) {
+	public ModelAndView doGetAddUser(Model model, HttpSession session) {
 		if (!model.containsAttribute("ScheduleReportUpdateAndInsert")) {
 			model.addAttribute("ScheduleReportUpdateAndInsert", new ScheduleReport());
 		}
-		return "/user/ScheduleReportFrom";
+		
+		mv.addObject("getAllReport", reportService.getAllReport());
+		mv.setViewName("/user/ScheduleReportFrom");
+		return mv;
 	}
 
 	@RequestMapping(value = "/addScheduleReport", method = RequestMethod.POST)
-	public String doPostAddUser(@Valid @ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport, BindingResult result) {
+	public ModelAndView doPostAddUser(@Valid @ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport, BindingResult result) {
 		
-		if (ScheduleReport.getId() > 0) {
-			scheduleReportService.updateScheduleRepot(ScheduleReport);
-		}else{
-			scheduleReportService.InsertScheduleRepot(ScheduleReport);
+		if(result.hasErrors()) {
+			return new ModelAndView("/user/ScheduleReportFrom");
+		}else {
+			if (ScheduleReport.getId() > 0) {
+				scheduleReportService.updateScheduleRepot(ScheduleReport);
+				return new ModelAndView("redirect:/ScheduleReport");
+			}else {
+				scheduleReportService.InsertScheduleRepot(ScheduleReport);
+				return new ModelAndView("redirect:/ScheduleReport");
+			}
 		}
+		
+		
 
-		return "redirect:/ScheduleReport";
+		
 		
 	}
 

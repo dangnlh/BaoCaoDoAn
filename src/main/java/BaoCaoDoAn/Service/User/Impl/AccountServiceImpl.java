@@ -1,5 +1,8 @@
 package BaoCaoDoAn.Service.User.Impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +47,14 @@ public class AccountServiceImpl implements IAccountService {
 		System.out.println("ACC-ID:"+accId);
 		System.out.println(accountDao);
 		return accountDao.getAccountByAccountId(accId);
+	}
+
+	public List<Account> getAccountByGroupId(int groupId) {
+		List<Account> member = null;
+		member = accountDao.getStudentByGroupId(groupId);
+		if(member==null) {
+			member= new ArrayList();
+		}
+		return member;
 	}
 }

@@ -379,7 +379,7 @@ height: 50px;
 
 .search-container {
 	float: right;
-	margin-top: 43px;
+	margin-top: 0px;
 	margin-right: 50px;
 }
 
@@ -446,6 +446,7 @@ height: 50px;
 	background-color: gray;
 	color: white;
 	font-size: 18px;
+	padding-left: 300px;
 }
 
 .top a:hover {
@@ -513,6 +514,7 @@ height: 50px;
 .t1 th, .t1 td {
 	padding-right: 30px;
 	padding-right: 70px;
+	width: 200px;
 }
 
 .t2 {
