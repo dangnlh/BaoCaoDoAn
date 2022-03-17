@@ -56,7 +56,7 @@
 										<label for="email2" class="mb-2 mr-sm-2">timeMeeting</label>
 										<br>
 										<form:input path="timeMeeting" type="date"
-											class="form-control mb-2 mr-sm-2" value="2022-06-01" />
+											class="form-control mb-2 mr-sm-2" value="<%=java.time.LocalDate.now()%>" />
 										<br>
 
 										<label for="email2" class="mb-2 mr-sm-2">Project_ID:</label>
@@ -98,7 +98,7 @@
 										<label for="email2" class="mb-2 mr-sm-2">Date Submit</label>
 										<br>
 										<form:input path="submitDate" type="date"
-											class="form-control mb-2 mr-sm-2" value="2022-06-01" />
+											class="form-control mb-2 mr-sm-2" value="<%=java.time.LocalDate.now().plusDays(2)%>" />
 										<br>
 
 										<button type="submit" class="btn btn-primary mb-2">Submit</button>
