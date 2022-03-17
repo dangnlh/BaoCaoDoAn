@@ -7,6 +7,8 @@ import java.util.Optional;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
+import BaoCaoDoAn.validator.FutureBasedDateSchedule;
+@FutureBasedDateSchedule(message = "Deadline must be greater than create time!")
 public class ScheduleMeeting {
 	private int id;
 	
