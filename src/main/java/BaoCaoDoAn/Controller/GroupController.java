@@ -1,13 +1,11 @@
 package BaoCaoDoAn.Controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -205,23 +203,11 @@ public class GroupController {
 	public String doPostAddGroup(@ModelAttribute("group4") Group group, BindingResult result) {
 		
 		if (result.hasErrors()) {
-			
 			return "/user/AddGroup";
 		}
 		if(group.getId()== 0) {
-			
-			/**
-			 * check group on list
-			 * if contain -> error
-			 */
-			
-			System.out.print("*********************************" + group);
-			for(int i = 0; i < )
 			groupServiceImpl.addGroup(group);
 		}else if(group.getId()>0){
-			
-			
-			
 			groupServiceImpl.updateGroup(group);
 		}
 		
