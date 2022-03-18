@@ -90,9 +90,10 @@ public class StudentController {
 		mv.addObject("teacher", accountDao.getTeacherAdmin());
 		mv.addObject("groups", groupServiceImpl.getGroupAdmin());
 		mv.addObject("getAllStudent", studentService.getAccountList());
+		mv.addObject("emailExist", "");
 		return mv;
 	}
-
+	
 	@RequestMapping(value = "/addAccountStudent", method = RequestMethod.POST)
 	public ModelAndView doPostAddGroup(@Valid @ModelAttribute("studentAcc1") Account account, BindingResult result) {
 		int isEmailExist = studentService.isEmailExist(account.getMail());
@@ -100,13 +101,15 @@ public class StudentController {
 		mv.addObject("emailExist", "");
 		if (result.hasErrors()) {
 			mv.setViewName("/user/addAccount");
-		} else if (isEmailExist >= 1) {
-			mv.setViewName("/user/addAccount");
-			mv.addObject("emailExist", "Your email has been already exists!");
 		} else if (account.getId() == 0) {
-			studentService.addAccount(account);
-			System.out.println("Insert");
-			return new ModelAndView("redirect:/studentList");
+			if (isEmailExist >= 1) {
+				mv.setViewName("/user/addAccount");
+				mv.addObject("emailExist", "Your email has been already exists!");
+			} else {
+				studentService.addAccount(account);
+				System.out.println("Insert");
+				return new ModelAndView("redirect:/studentList");
+			}
 		} else if (account.getId() > 0) {
 			studentService.updateAccount(account);
 			return new ModelAndView("redirect:/studentList");
