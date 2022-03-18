@@ -63,8 +63,16 @@
 
 										<label for="email2" class="mb-2 mr-sm-2">Mail:</label>
 										<br>
+
 										<form:input path="mail" type="text"
 											class="form-control mb-2 mr-sm-2" />
+										<!-- 2 column grid layout for inline styling -->
+
+										<div class="">
+											<!-- Simple link -->
+											<span style="color: red">${ emailExist }</span>
+										</div>
+
 										<form:errors path="mail" cssClass="error" />
 										<br>
 

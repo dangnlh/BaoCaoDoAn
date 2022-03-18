@@ -150,4 +150,11 @@ public class StudentDAO {
 	return null;
 		
 	}
+	
+	public int isEmailExist(String email) {
+		int result =-1;
+		String sql = "SELECT COUNT(mail) FROM `account` WHERE mail = '" + email + "'";	
+		result = jdbcTemplate.queryForObject(sql, Integer.class);
+		return result;
+	}
 }
