@@ -41,7 +41,7 @@ public class Account {
 	private int statusPoint;
 
 	private String gender;
-
+	private String group_name;
 	public int getId() {
 		return id;
 	}
@@ -128,6 +128,14 @@ public class Account {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public String getGroup_name() {
+		return group_name;
+	}
+
+	public void setGroup_name(String group_name) {
+		this.group_name = group_name;
 	}
 
 }
