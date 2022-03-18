@@ -37,7 +37,6 @@ import BaoCaoDoAn.Service.User.Impl.GroupServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ProjectServiceImpl;
 import BaoCaoDoAn.Service.User.Impl.ScheduleMeetingServiceImpl;
 
-
 @Controller
 public class ScheduleMeetingController {
 	@Autowired
@@ -108,30 +107,41 @@ public class ScheduleMeetingController {
 	}
 
 	@RequestMapping(value = "/addScheduleMeeting", method = RequestMethod.GET)
-	public ModelAndView doGetAddUser(Model model,HttpSession session) {
+	public ModelAndView doGetAddUser(Model model, HttpSession session) {
 		if (!model.containsAttribute("ScheduleMeeting2")) {
 			model.addAttribute("ScheduleMeeting2", new ScheduleMeeting());
 		}
 		mv.addObject("getAllProject", projectService.getAllProject());
 		mv.setViewName("/user/ScheduleMeetingFrom");
+		mv.addObject("dateError", "");
+		mv.addObject("isDateSubmit", "");
 		return mv;
 	}
 
 	@RequestMapping(value = "/addScheduleMeeting", method = RequestMethod.POST)
-	public ModelAndView doPostAddUser(@Valid @ModelAttribute("ScheduleMeeting2") ScheduleMeeting admin, BindingResult bindingResult) {
+	public ModelAndView doPostAddUser(@Valid @ModelAttribute("ScheduleMeeting2") ScheduleMeeting admin,
+			BindingResult bindingResult) {
 		System.out.println(bindingResult);
+		mv.addObject("getAllProject", projectService.getAllProject());
+	
+		mv.addObject("dateError", "");
+		mv.addObject("isDateSubmit", "");
 		if (bindingResult.hasErrors()) {
 			mv.setViewName("/user/ScheduleMeetingFrom");
-			
-		}else {
+			mv.addObject("dateError", "Date have to greater than now!");
+		} else if (admin.getTimeMeeting().after(admin.getSubmitDate())) {
+			mv.setViewName("/user/ScheduleMeetingFrom");
+			mv.addObject("isDateSubmit", "Date submit have to greater than time create!");
+		} else {
 			scheduleMeetingDAO.updateAndSave(admin);
 			return new ModelAndView("redirect:/ScheduleMeeting");
 		}
-				return mv ;
+		
+		return mv;
 	}
 
 	@RequestMapping(value = "/editScheduleMeeting", method = RequestMethod.GET)
-	public ModelAndView editAdmin(HttpServletRequest request,HttpSession session) {
+	public ModelAndView editAdmin(HttpServletRequest request, HttpSession session) {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		ScheduleMeeting ScheduleMeeting = scheduleMeetingDAO.get(id);
 
@@ -292,8 +302,8 @@ public class ScheduleMeetingController {
 					}
 				}
 
-			}else {
-				
+			} else {
+
 				mv.addObject("filename", "");
 			}
 		}
