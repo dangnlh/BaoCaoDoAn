@@ -72,7 +72,7 @@
 										<br>
 
 
-										<form:select path="report_id">
+										<form:select path="report_id" class="btn btn-primary dropdown-toggle">
 											<c:forEach var="item" items="${ getAllReport }">
 
 												<option value="${ item.id }">${ item.id }</option>

@@ -89,7 +89,7 @@
 
 										<label for="cars">Group:</label>
 
-										<form:select path="group_id">
+										<form:select path="group_id" class="btn btn-primary dropdown-toggle">
 
 											<c:forEach var="item" items="${ groups }">
 
@@ -105,7 +105,7 @@
 
 										<label for="cars">Teacher:</label>
 
-										<form:select path="teacherId">
+										<form:select path="teacherId" class="btn btn-primary dropdown-toggle">
 											<c:forEach var="item" items="${ teacher }">
 												<option value="${ item.id }">${ item.id }-${ item.name }</option>
 											</c:forEach>
