@@ -8,25 +8,21 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 import BaoCaoDoAn.validator.FutureBasedDateSchedule;
+
 @FutureBasedDateSchedule(message = "Deadline must be greater than create time!")
 public class ScheduleMeeting {
 	private int id;
-	
 
-	
-
-	@Pattern(regexp = "[a-zA-Z0-9]{1,100}" , message = "Name is empty")
-
-	
+	@Pattern(regexp = "[a-zA-Z0-9 ]{1,100}", message = "Name is empty")
 	private String name;
 	private Date timeMeeting;
 	private int project_id;
 	private int account_id;
-	
+
 	/* @Pattern(regexp = "[a-zA-Z ]{1,1000}" , message = "Link is empty") */
 	@NotEmpty(message = "link is empty")
 	private String link_meeting;
-	
+
 	private String content;
 	private String time;
 	private Date submitDate;

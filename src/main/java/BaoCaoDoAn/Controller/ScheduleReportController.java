@@ -143,6 +143,7 @@ public class ScheduleReportController {
 			@Valid @ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport,
 			BindingResult result) {
 		mv.addObject("dateError", "");
+		mv.addObject("isDateSubmit", "");
 		if (result.hasErrors()) {
 			mv.setViewName("/user/ScheduleReportFrom");
 			mv.addObject("dateError", "Date have to greater than now!");
