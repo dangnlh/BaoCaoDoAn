@@ -1,9 +1,11 @@
 package BaoCaoDoAn.Controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,20 +55,21 @@ public class AccountController {
 			session.setAttribute("InforAccount", accountDao.GetUserByAccount(account));
 			mv.addObject("InforAccount", accountDao.GetUserByAccount(account));
 			mv.setViewName("/user/student");
-			mv.addObject("statusLogin", "login thanh cong");
+//			mv.addObject("statusLogin", "login thanh cong");
+			mv.addObject("statusLogin", "");
 
 		}
 		if (acc != null && acc.getRole().equals("teacher")) {
 			mv.setViewName("/user/teacher");
 			session.setAttribute("InforAccount", accountDao.GetUserByAccount(account));
 			mv.addObject("InforAccount", accountDao.GetUserByAccount(account));
-			mv.addObject("statusLogin", "login thanh cong");
-
+//			mv.addObject("statusLogin", "login thanh cong");
+			mv.addObject("statusLogin", "");
 		}
 		if (acc != null && acc.getRole().equals("admin")) {
 			mv.setViewName("/admin/admin");
-			mv.addObject("statusLogin", "login thanh cong");
-
+//			mv.addObject("statusLogin", "login thanh cong");
+			mv.addObject("statusLogin", "");
 		}
 
 		else if (acc == null) {
@@ -82,19 +85,20 @@ public class AccountController {
 		mv.addObject("account", new Account());
 		return mv;
 	}
-
+	
 	@RequestMapping(value = "/dang-ky", method = RequestMethod.POST)
 	public ModelAndView DangKy(@ModelAttribute("account") Account account) {
 
 		int count = accountService.AddAccount(account);
-		System.out.println(count);
+
+		
 
 		if (count == 1) {
-			mv.addObject("statusRegister", "Ä�Äƒng KÃ­ thÃ nh CÃ´ng");
+			mv.addObject("statusRegister", "Đăng ký thành công");
 		} else if (count == 2) {
-			mv.addObject("statusRegister", "Ä�Äƒng KÃ­ tháº¥t báº¡i");
+			mv.addObject("statusRegister", "Đăng ký thất bại");
 		}
-		System.out.println("thanhcong");
+		
 		mv.setViewName("/registrationpage");
 		return mv;
 

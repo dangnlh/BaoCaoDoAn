@@ -22,6 +22,13 @@
 </style>
 </head>
 
+<!-- 
+										Form add project
+										http://localhost:8080/BaoCaoDoAn/addProject
+										
+										
+									 -->
+
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -60,12 +67,13 @@
 										<form:errors path="name" cssClass="error" />
 										<br>
 
-										<label for="email2" class="mb-2 mr-sm-2">UrL Porject</label>
+										<label for="email2" class="mb-2 mr-sm-2">UrL Project</label>
 										<br>
 										<form:input path="urlProject" type="text"
 											class="form-control mb-2 mr-sm-2" />
-										<br>
 
+										<form:errors path="urlProject" cssClass="error" />
+										<br>
 										<label h for="email2" class="mb-2 mr-sm-2">Time Create
 											: ${ TIMENOW } </label>
 										<br>
@@ -82,11 +90,13 @@
 										<label for="cars">Group:</label>
 
 										<form:select path="group_id">
-											<c:forEach var="item" items="${ groups }">
 
-												<option value="${ item.id }">${ item.id }</option>
+											<c:forEach var="item" items="${ groups }">
+												<option value="${ item.id }">${ item.name }</option>
+												<%-- 	<option value="${ item.id }">${ item.id }-${ item.name }</option> --%>
 											</c:forEach>
 										</form:select>
+										<p style="color: red">${ ValidationProject_Group }</p>
 										<br>
 										<br>
 
@@ -94,9 +104,11 @@
 
 										<form:select path="teacherId">
 											<c:forEach var="item" items="${ teacher }">
-												<option value="${ item.id }">${ item.id }</option>
+												<option value="${ item.id }">${ item.name }</option>
+												<%-- <option value="${ item.id }">${ item.id }-${ item.name }</option> --%>
 											</c:forEach>
 										</form:select>
+										<p style="color: red">${ ValidationProject_Teacher }</p>
 
 										<!-- 		<form:input path="teacherId" type="text"
 											class="form-control mb-2 mr-sm-2" />

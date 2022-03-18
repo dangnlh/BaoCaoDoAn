@@ -27,14 +27,13 @@ import BaoCaoDoAn.Service.User.Impl.StudentServiceImpl;
 public class StudentController {
 	@Autowired
 	StudentServiceImpl studentService;
-	
+
 	@Autowired
 	GroupServiceImpl groupServiceImpl;
-	
+
 	@Autowired
 	AccountDAO accountDao;
-	
-	
+
 	private ModelAndView mv = new ModelAndView();
 
 	@RequestMapping(value = "/studentList", method = RequestMethod.GET)
@@ -72,7 +71,7 @@ public class StudentController {
 		ModelAndView model = new ModelAndView("/user/addAccount");
 
 		model.addObject("studentAcc1", account);
-
+		model.addObject("groups", groupServiceImpl.getGroupAdmin());
 		return model;
 	}
 
@@ -91,23 +90,32 @@ public class StudentController {
 		mv.addObject("teacher", accountDao.getTeacherAdmin());
 		mv.addObject("groups", groupServiceImpl.getGroupAdmin());
 		mv.addObject("getAllStudent", studentService.getAccountList());
+		mv.addObject("emailExist", "");
 		return mv;
 	}
-
+	
 	@RequestMapping(value = "/addAccountStudent", method = RequestMethod.POST)
-	public String doPostAddGroup(@ModelAttribute("studentAcc1") @Valid Account account, BindingResult result) {
+	public ModelAndView doPostAddGroup(@Valid @ModelAttribute("studentAcc1") Account account, BindingResult result) {
+		int isEmailExist = studentService.isEmailExist(account.getMail());
+		mv.addObject("groups", groupServiceImpl.getGroupAdmin());
+		mv.addObject("emailExist", "");
 		if (result.hasErrors()) {
-			return "/user/addAccount";
-		}
-		if (account.getId() == 0) {
-			studentService.addAccount(account);
-			System.out.println("Insert");
+			mv.setViewName("/user/addAccount");
+		} else if (account.getId() == 0) {
+			if (isEmailExist >= 1) {
+				mv.setViewName("/user/addAccount");
+				mv.addObject("emailExist", "Your email has been already exists!");
+			} else {
+				studentService.addAccount(account);
+				System.out.println("Insert");
+				return new ModelAndView("redirect:/studentList");
+			}
 		} else if (account.getId() > 0) {
 			studentService.updateAccount(account);
+			return new ModelAndView("redirect:/studentList");
 		}
 
-		return "redirect:/studentList";
-
+		return mv;
 	}
 
 	@RequestMapping(value = "/searchAcc", method = RequestMethod.POST)
@@ -123,7 +131,7 @@ public class StudentController {
 
 			mv.setViewName("/admin/resultSearch");
 			mv.addObject("resultSearch", list);
-		} 
+		}
 		return mv;
 	}
 

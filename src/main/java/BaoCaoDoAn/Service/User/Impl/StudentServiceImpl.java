@@ -61,4 +61,9 @@ public class StudentServiceImpl implements IStudentService {
 	public Account getGroupIdByAccount(int id) {
 		return studentDao.getAccountByGroupId(id);
 	}
+	
+	public int isEmailExist(String email) {
+		return studentDao.isEmailExist(email);
+	}
+	
 }

@@ -25,21 +25,22 @@ public class FutureBasedDateValidator implements ConstraintValidator<FutureBased
 		// Creating
 		if(value.getId()==0) {
 			Date now = new Date(new java.util.Date().getTime());
-			System.out.println("NOW AND DEAD:"+now.after(value.getTimeSubmit()));
-			if(!now.after(value.getTimeSubmit())) {
-				result = true;
-			}
+			if(value.getTimeSubmit()!=null) {
+				if(!now.after(value.getTimeSubmit())) {
+					result = true;
+				}
+			}			
 		}else {
 			// Updating
 			Report fullReport = reportService.getReport(value.getId());
 			Date createTime = fullReport.getTimeCreate();
 			System.out.println("DATE CRE:"+createTime);
 			Date deadline = value.getTimeSubmit();
-			System.out.println("DATE DEAD:"+deadline);
-			System.out.println(!createTime.after(deadline));
-			if (!createTime.after(deadline)) {
-				result = true;
-			}
+			if(deadline!=null) {
+				if (!createTime.after(deadline)) {
+					result = true;
+				}	
+			}			
 		}
 		
 		return result;

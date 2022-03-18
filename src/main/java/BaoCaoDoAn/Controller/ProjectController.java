@@ -57,6 +57,7 @@ public class ProjectController {
 	public ModelAndView getAllProject(Project project) {
 		mv.setViewName("admin/adminproject");
 		mv.addObject("getAllProject", projectService.getAllProject());
+		mv.addObject("group4", groupServiceImpl.getGroupAdmin());
 		mv.addObject("project", new Project());
 		return mv;
 	}
@@ -80,16 +81,31 @@ public class ProjectController {
 	@RequestMapping(value = "/addProject", method = RequestMethod.POST)
 	public ModelAndView add(@Valid @ModelAttribute("ProjectUpdateAndInsert") Project project,
 			BindingResult bindingResult) {
-		System.out.println(bindingResult);
+
+		int groupId = project.getGroup_id();
+		int countGroupId = projectService.getCountGroupId(groupId);
+
+		int teacherId = project.getTeacherId();
+		int countTeacherId = projectService.getCountTeacherId(teacherId);
+
 		if (bindingResult.hasErrors()) {
 			mv.setViewName("/admin/addProject");
 
+		} else if (countGroupId >= 1) {
+
+			mv.addObject("ValidationProject_Group", "The group currently has a project");
+
+			mv.setViewName("/admin/addProject");
+		} else if (countTeacherId > 4) {
+
+			mv.addObject("ValidationProject_Teacher", "Teachers have enough guidance groups. (biggest 4)");
+			mv.setViewName("/admin/addProject");
+
 		} else {
-		
-		System.out.println(project.getGroup_id()); 
-	
-			System.out.println(project.getGroup_id()); 
+
 			projectService.addProject(project);
+			mv.addObject("ValidationProject_Group", "");
+			mv.addObject("ValidationProject_Teacher", "");
 			return new ModelAndView("redirect:/AdminProject");
 		}
 
@@ -99,9 +115,9 @@ public class ProjectController {
 
 	@GetMapping(value = "/editProject/{id}")
 	public ModelAndView getEditProject(@PathVariable("id") int id) {
-		mv.addObject("getProjectbyId", projectService.getProjectById(id));
+		mv.addObject("project", projectService.getProjectById(id));
 		mv.setViewName("/admin/editProject");
-		mv.addObject("teacher", accountDao.getTeacherAdmin());
+		mv.addObject("teachers", accountDao.getTeacherAdmin());
 		mv.addObject("groups", groupServiceImpl.getGroupAdmin());
 		return mv;
 
@@ -109,14 +125,19 @@ public class ProjectController {
 
 	@PostMapping(value = "/editProject")
 	public ModelAndView edit(@Valid @ModelAttribute("project") Project project, BindingResult bindingResult) {
-		System.out.println("project id = " + project.getId());
-		System.out.println("project  = " + project);
-		if (bindingResult.hasErrors()) {
-			mv.setViewName("/admin/editProject");
+		int groupId = project.getGroup_id();
+		int countGroupId = projectService.getCountGroupId(groupId);
 
+		int teacherId = project.getTeacherId();
+		int countTeacherId = projectService.getCountTeacherId(teacherId);
+
+		if (bindingResult.hasErrors()) {
+			
+			mv.setViewName("/admin/editProject");
 		} else {
 			projectService.editProject(project.getId(), project);
 			return new ModelAndView("redirect:/AdminProject");
+
 		}
 
 		return mv;

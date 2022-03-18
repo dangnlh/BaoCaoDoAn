@@ -16,6 +16,14 @@
 <!-- Custom styles for this template-->
 </head>
 
+					<!-- 
+					
+						admin page group
+						
+						http://localhost:8080/BaoCaoDoAn/ListGroup
+					
+					 -->
+
 <body id="page-top">
 
 	<!-- Page Wrapper -->

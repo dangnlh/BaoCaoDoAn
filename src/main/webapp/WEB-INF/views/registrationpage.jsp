@@ -80,7 +80,7 @@
                                 <!-- MSSV input -->
                                 <div class="form-outline mb-4">
                                 
-                                  <input type="email" class="form-control" /> <!-- chưa có path  -->
+                                  <input type="text" class="form-control" /> <!-- chưa có path  -->
                                    
                                     <label class="form-label" for="form1Example1">Mã số sinh viên</label>
                                 </div>

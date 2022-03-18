@@ -45,7 +45,8 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<a class="nav-link" style="font-size: 18px;" href='<c:url value="/addProject"/>'> <i
+								<a class="nav-link" style="font-size: 18px;"
+									href='<c:url value="/addProject"/>'> <i
 									class="fa fa-plus-square"></i> <span>Add new project</span>
 								</a></br>
 								<table class="table table-striped" id="dataTable" width="100%"
@@ -56,9 +57,9 @@
 											<th>Name</th>
 											<th>URL</th>
 											<th>Time Create</th>
-											<th>Group</th>
 											<th>Group Name</th>
-											<th>Teacher</th>
+											<th>Teacher Name</th>
+											<th>Action</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -73,8 +74,9 @@
 												<td>${ item.project_name }</td>
 												<td><a href="${ item.urlProject }">URL</a></td>
 												<td>${ item.createTime }</td>
-												<td>${ item.group_id }</td>
-												<td>${ item.group_name  }</td>
+												<%-- <td>${ item.group_name  }</td>
+												<td>${ item.account_name }</td> --%>
+												<td>${ item.group_id }-${ item.group_name  }</td>
 												<td>${ item.teacherId }-${ item.account_name }</td>
 												<td><a
 													href='<c:url value="/editProject/${ item.id }"/>'

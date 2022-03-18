@@ -224,6 +224,8 @@ public class GroupController {
 			groupServiceImpl.addGroup(group);
 		} else if (group.getId() > 0) {
 			groupServiceImpl.updateGroup(group);
+		}else {
+			groupServiceImpl.addGroup(group);
 		}
 
 		return "redirect:/ListGroup";

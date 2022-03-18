@@ -76,7 +76,8 @@ public class StudentDAO {
 	// student list by account
 	public List<Account> getStudentList() {
 		List<Account> list = new ArrayList<Account>();
-		String sql = "SELECT * FROM account WHERE role= 'student'";
+//		String sql = "SELECT * FROM account WHERE role= 'student'";
+		String sql = "SELECT * FROM account INNER JOIN group_student ON account.group_id = group_student.id";
 		list = jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
@@ -124,9 +125,12 @@ public class StudentDAO {
 	}
 
 	public Account get(int id) {
+
 		String sql = "SELECT * FROM account WHERE id=" + id;
 		Account result = _jdbcTemplate.queryForObject(sql, new MapperAccount());
+
 		return result;
+
 	}
 
 	public Group FindAccountaccount_name(String name) {
@@ -134,20 +138,27 @@ public class StudentDAO {
 		Group result = _jdbcTemplate.queryForObject(sql, new MapperGroup());
 		return result;
 	}
-	
+
 	public Account getAccountByGroupId(int id) {
 		try {
-		Account account;
-		String sql = "SELECT * FROM account where group_id = " + id;
-		account = jdbcTemplate.queryForObject(sql, new MapperAccount());
-		if (account != null) {
-			return account;
-		}
-	} catch (EmptyResultDataAccessException e) {
+			Account account;
+			String sql = "SELECT * FROM account where group_id = " + id;
+			account = jdbcTemplate.queryForObject(sql, new MapperAccount());
+			if (account != null) {
+				return account;
+			}
+		} catch (EmptyResultDataAccessException e) {
 
+			return null;
+		}
 		return null;
+
 	}
-	return null;
-		
+
+	public int isEmailExist(String email) {
+		int result = -1;
+		String sql = "SELECT COUNT(mail) FROM `account` WHERE mail = '" + email + "'";
+		result = jdbcTemplate.queryForObject(sql, Integer.class);
+		return result;
 	}
 }

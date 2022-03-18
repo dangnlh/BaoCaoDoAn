@@ -63,21 +63,30 @@
 
 										<label for="email2" class="mb-2 mr-sm-2">Mail:</label>
 										<br>
+
 										<form:input path="mail" type="text"
 											class="form-control mb-2 mr-sm-2" />
+										<!-- 2 column grid layout for inline styling -->
+
+										<div class="">
+											<!-- Simple link -->
+											<span style="color: red">${ emailExist }</span>
+										</div>
+
 										<form:errors path="mail" cssClass="error" />
 										<br>
 
-										<label h for="email2" class="mb-2 mr-sm-2">Password:</label>
+										<label for="email2" class="mb-2 mr-sm-2">Password:</label>
 										<br>
 										<form:input type="password" path="password"
 											class="form-control mb-2 mr-sm-2" />
 										<form:errors path="password" cssClass="error" />
 										<br>
 
-										<label for="cars">Group:</label>
+										<label for="cars">Group project:</label>
 
-										<form:select path="group_id">
+										<form:select path="group_id"
+											class="btn btn-primary dropdown-toggle">
 											<c:forEach var="item" items="${ groups }">
 
 												<option value="${ item.id }">${ item.id }</option>
@@ -90,21 +99,43 @@
 										<form:input path="phone" class="form-control mb-2 mr-sm-2" />
 										<form:errors path="phone" cssClass="error" />
 										<br>
+										<label for="role" class="mb-2 mr-sm-2">Role:</label>
 
-										<form:select path="role">
-											<option value="${ item.role }">Student</option>
+										<form:select path="role"
+											class="btn btn-primary dropdown-toggle">
+											<option items="${ item.role }" value="Student">Student</option>
+											<option items="${ item.role }" value="Lecturer">
+												Lecturer</option>
 										</form:select>
+										<br>
 										<br>
 
 										<label for="email2" class="mb-2 mr-sm-2">Leader:</label>
 										<br>
+										<form:select path="isLeader"
+											class="btn btn-primary dropdown-toggle">
+											<option items="${ item.isLeader }" value="True">True</option>
+											<option items="${ item.isLeader }" value="False">False</option>
+										</form:select>
+
+										<br>
+										<!-- 
 										<form:input path="isLeader" class="form-control mb-2 mr-sm-2" />
 										<form:errors path="isLeader" cssClass="error" />
+										 -->
 										<br>
-
 										<label for="email2" class="mb-2 mr-sm-2">Gender:</label>
 										<br>
+										<form:select path="gender"
+											class="btn btn-primary dropdown-toggle">
+											<option items="${ item.gender } " value="Male">Male</option>
+											<option items="${ item.gender }" value="Female">Female</option>
+										</form:select>
+										<br>
+										<!-- 
 										<form:input path="gender" class="form-control mb-2 mr-sm-2" />
+										 -->
+
 										<form:errors path="gender" cssClass="error" />
 										<br>
 
@@ -143,7 +174,12 @@
 	<!-- Page level custom scripts -->
 	<script src="/assets/js/demo/chart-area-demo.js"></script>
 	<script src="/assets/js/demo/chart-pie-demo.js"></script>
-</body>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
 
+</body>
+<script src="./status.ajax"></script>
 </html>
 

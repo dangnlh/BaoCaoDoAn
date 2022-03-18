@@ -1,10 +1,10 @@
 package BaoCaoDoAn.Entity;
-
 import java.sql.Date;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -13,8 +13,13 @@ import BaoCaoDoAn.validator.FutureBasedDate;
 @FutureBasedDate(message = "Deadline must be greater than create time!")
 public class Report {
 	private int id;
+	
 	@NotNull
 	@Length(min = 5, max = 20, message = "Length of report name must be between 5 and 20")
+
+
+	@Pattern(regexp = "[a-zA-Z0-9]{1,100}" , message = " Report name is empty")
+
 	private String name;
 
 	@NotNull(message = "Not character, just number")

@@ -53,10 +53,15 @@
 										modelAttribute="ScheduleMeeting2">
 										<form:hidden path="id" />
 
-										<label for="email2" class="mb-2 mr-sm-2">timeMeeting</label>
+										<label for="email2" class="mb-2 mr-sm-2">Time Meeting</label>
 										<br>
 										<form:input path="timeMeeting" type="date"
-											class="form-control mb-2 mr-sm-2" value="2022-06-01" />
+											class="form-control mb-2 mr-sm-2"
+											value="<%=java.time.LocalDate.now()%>" />
+										<div class="">
+											<!-- Simple link -->
+											<span style="color: red">${ dateError }</span>
+										</div>
 										<br>
 
 										<label for="email2" class="mb-2 mr-sm-2">Project_ID:</label>
@@ -76,7 +81,7 @@
 										<form:errors path="account_id" cssClass="error" />
 										<br> --%>
 
-										<label for="email2" class="mb-2 mr-sm-2">Name
+										<label for="email2" class="form-control mb-2 mr-sm-2">Name
 											SheduleMeeting</label>
 										<br>
 										<form:input path="name" class="mb-2 mr-sm-2" />
@@ -98,7 +103,16 @@
 										<label for="email2" class="mb-2 mr-sm-2">Date Submit</label>
 										<br>
 										<form:input path="submitDate" type="date"
-											class="form-control mb-2 mr-sm-2" value="2022-06-01" />
+											class="form-control mb-2 mr-sm-2"
+											value="<%=java.time.LocalDate.now().plusDays(2)%>" />
+										<div class="">
+											<!-- Simple link -->
+											<span style="color: red">${ dateError }</span>
+										</div>
+										<div class="">
+											<!-- Simple link -->
+											<span style="color: red">${ isDateSubmit }</span>
+										</div>
 										<br>
 
 										<button type="submit" class="btn btn-primary mb-2">Submit</button>
@@ -124,6 +138,31 @@
 			<!-- End of Footer -->
 		</div>
 	</div>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+		
+	</script>
+	<script>
+		$(document).ready(function() { //DISABLED PAST DATES IN APPOINTMENT DATE
+			var dateToday = new Date();
+			var month = dateToday.getMonth() + 1;
+			var day = dateToday.getDate();
+			var year = dateToday.getFullYear();
+
+			if (month < 10)
+				month = '0' + month.toString();
+			if (day < 10)
+				day = '0' + day.toString();
+
+			var maxDate = year + '-' + month + '-' + day;
+
+			$('#timeMeeting').attr('min', maxDate);
+			$('#submitDate').attr('min', maxDate);
+			document.getElementById('timeMeeting').value = maxDate;
+			document.getElementById('submitDate').value = maxDate;
+		});
+	</script>
+
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/assets/vendor/jquery/jquery.min.js"></script>

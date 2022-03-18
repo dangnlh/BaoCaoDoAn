@@ -55,4 +55,12 @@ public class ProjectServiceImpl implements IProjectService {
 		
 		return projectDao.getProjectByGroupId(groupId);
 	}
+	
+	public int getCountGroupId(int groupId) {
+		return projectDao.getCountGroupId(groupId);
+	}
+	
+	public int getCountTeacherId(int teacherId) {
+		return projectDao.getCountTeacherId(teacherId);
+	}
 }
