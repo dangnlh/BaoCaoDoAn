@@ -96,7 +96,7 @@ public class StudentController {
 	@RequestMapping(value = "/addAccountStudent", method = RequestMethod.POST)
 	public ModelAndView doPostAddGroup(@Valid @ModelAttribute("studentAcc1") Account account, BindingResult result) {
 		int isEmailExist = studentService.isEmailExist(account.getMail());
-
+		mv.addObject("emailExist", "");
 		if (result.hasErrors()) {
 			mv.setViewName("/user/addAccount");
 		} else if (isEmailExist >= 1) {

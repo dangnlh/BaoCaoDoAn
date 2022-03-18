@@ -77,41 +77,45 @@ public class ScheduleReportController {
 	@RequestMapping(value = "/teacher_viewReportSchedule")
 	public ModelAndView viewReportSchedule(HttpSession session) {
 		System.out.println("In View Report");
-		Account teacher =(Account) session.getAttribute("InforAccount");				
+		Account teacher = (Account) session.getAttribute("InforAccount");
 		ModelAndView mv = new ModelAndView();
-		List<ScheduleReport> scheduleReportList = scheduleReportService.getAllScheduleReportByTeacherId(teacher.getId());
-		for(ScheduleReport sch:scheduleReportList) {
-			
+		List<ScheduleReport> scheduleReportList = scheduleReportService
+				.getAllScheduleReportByTeacherId(teacher.getId());
+		for (ScheduleReport sch : scheduleReportList) {
+
 			// get group based on report schedule
 			Group groupOfReport = groupService.getGroupByAccountId(sch.getAccount_id());
 			sch.setGroup(groupOfReport);
-			//get report name based report schedule
+			// get report name based report schedule
 			Report reportOfSchedule = reportService.getReport(sch.getReport_id());
 			sch.setReport(reportOfSchedule);
 		}
-		mv.addObject("scheduleReports",scheduleReportList);
+		mv.addObject("scheduleReports", scheduleReportList);
 		mv.setViewName("user/teacher/teacherScheduleReport");
 		return mv;
 	}
+
 	@RequestMapping(value = "/student_ViewScheduleReport")
 	public ModelAndView StudentviewReportSchedule(HttpSession session) {
 
-		Account student =(Account) session.getAttribute("InforAccount");				
+		Account student = (Account) session.getAttribute("InforAccount");
 		ModelAndView mv = new ModelAndView();
-		List<ScheduleReport> scheduleReportList = scheduleReportService.getScheduleReportBygroupId(student.getGroup_id());
-		for(ScheduleReport sch:scheduleReportList) {
+		List<ScheduleReport> scheduleReportList = scheduleReportService
+				.getScheduleReportBygroupId(student.getGroup_id());
+		for (ScheduleReport sch : scheduleReportList) {
 			Report reportOfSchedule = reportService.getReport(sch.getReport_id());
-		
+
 			sch.setReport(reportOfSchedule);
 		}
-		mv.addObject("StudentScheduleReports",scheduleReportList);
+		mv.addObject("StudentScheduleReports", scheduleReportList);
 		mv.setViewName("user/student/studentScheduleReport");
 		return mv;
 	}
+
 	@RequestMapping(value = "/editScheduleReport", method = RequestMethod.GET)
 	public ModelAndView editAdmin(HttpServletRequest request) {
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		ScheduleReport scheduleReport = scheduleReportService.getScheduleReport(id) ;
+		ScheduleReport scheduleReport = scheduleReportService.getScheduleReport(id);
 
 		ModelAndView mv = new ModelAndView("/user/ScheduleReportFrom");
 
@@ -121,39 +125,41 @@ public class ScheduleReportController {
 		return mv;
 	}
 
-
-
 	@RequestMapping(value = "/addScheduleReport", method = RequestMethod.GET)
 	public ModelAndView doGetAddUser(Model model, HttpSession session) {
 		if (!model.containsAttribute("ScheduleReportUpdateAndInsert")) {
 			model.addAttribute("ScheduleReportUpdateAndInsert", new ScheduleReport());
 		}
-		
+
 		mv.addObject("getAllReport", reportService.getAllReport());
 		mv.setViewName("/user/ScheduleReportFrom");
+		mv.addObject("dateError", "");
+		mv.addObject("isDateSubmit", "");
 		return mv;
 	}
 
 	@RequestMapping(value = "/addScheduleReport", method = RequestMethod.POST)
-	public ModelAndView doPostAddUser(@Valid @ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport, BindingResult result) {
-		
-		if(result.hasErrors()) {
-			return new ModelAndView("/user/ScheduleReportFrom");
-		}else {
+	public ModelAndView doPostAddUser(
+			@Valid @ModelAttribute("ScheduleReportUpdateAndInsert") ScheduleReport ScheduleReport,
+			BindingResult result) {
+		mv.addObject("dateError", "");
+		if (result.hasErrors()) {
+			mv.setViewName("/user/ScheduleReportFrom");
+			mv.addObject("dateError", "Date have to greater than now!");
+		} else if (ScheduleReport.getTimeReport().after(ScheduleReport.getDateSubmit())) {
+			mv.setViewName("/user/ScheduleReportFrom");
+			mv.addObject("isDateSubmit", "Date submit have to greater than time create!");
+		} else {
 			if (ScheduleReport.getId() > 0) {
 				scheduleReportService.updateScheduleRepot(ScheduleReport);
 				return new ModelAndView("redirect:/ScheduleReport");
-			}else {
+			} else {
 				scheduleReportService.InsertScheduleRepot(ScheduleReport);
 				return new ModelAndView("redirect:/ScheduleReport");
 			}
+
 		}
-		
-		
-
-		
-		
+		return mv;
 	}
-
 
 }
