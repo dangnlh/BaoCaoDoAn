@@ -64,7 +64,7 @@
 										<tr>
 											<th>ID</th>
 											<th>Name</th>
-											<th>Mail</th>
+											<th>Email</th>
 											<th>Group Name</th>
 											<th>Phone</th>
 											<th>Role</th>
@@ -83,7 +83,7 @@
 												<td>${ items.id }</td>
 												<td>${ items.name }</td>
 												<td>${ items.mail }</td>
-												<td>${ items.groupName }</td>
+												<td>${ items.group_name }</td>
 												<td>${ items.phone }</td>
 												<td>${ items.role }</td>
 												<td>${ items.isLeader }</td>
