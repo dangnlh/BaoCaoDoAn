@@ -14,7 +14,7 @@ import BaoCaoDoAn.validator.FutureBasedDate;
 public class Report {
 	private int id;
 	@Length(min = 5, max = 20, message = "Length of report name must be between 5 and 20")
-	@Pattern(regexp = "[a-zA-Z ]{1,100}" , message = " Report name is empty")
+	@Pattern(regexp = "[a-zA-Z0-9]{1,100}" , message = " Report name is empty")
 	private String name;
 
 	@NotNull(message = "Not character, just number")

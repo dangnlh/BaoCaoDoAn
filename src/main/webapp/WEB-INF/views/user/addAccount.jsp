@@ -90,25 +90,46 @@
 										<form:input path="phone" class="form-control mb-2 mr-sm-2" />
 										<form:errors path="phone" cssClass="error" />
 										<br>
-
-										<form:select path="role">
+										<label for="role" class="mb-2 mr-sm-2">Role:</label>
+				
+										<form:select path="role"
+											class="btn btn-primary dropdown-toggle">
 											<option value="${ item.role }">Student</option>
+											<option value="${ item.role}">Lecturer</option>
 										</form:select>
+										<br>
 										<br>
 
 										<label for="email2" class="mb-2 mr-sm-2">Leader:</label>
 										<br>
+										<form:select path="role"
+											class="btn btn-primary dropdown-toggle">
+											<option value="${ item.isLeader }">True</option>
+											<option value="${ item.isLeader }">False</option>
+										</form:select>
+										
+										<br>
+										<!-- 
 										<form:input path="isLeader" class="form-control mb-2 mr-sm-2" />
 										<form:errors path="isLeader" cssClass="error" />
+										 -->
 										<br>
-
 										<label for="email2" class="mb-2 mr-sm-2">Gender:</label>
 										<br>
+										<form:select path="role"
+											class="btn btn-primary dropdown-toggle">
+											<option value="${ item.gender }">Male</option>
+											<option value="${ item.gender }">Female</option>
+										</form:select>
+										<br>
+										<!-- 
 										<form:input path="gender" class="form-control mb-2 mr-sm-2" />
+										 -->
+										
 										<form:errors path="gender" cssClass="error" />
 										<br>
 
-										<button type="submit" class="btn btn-primary mb-2">Submit</button>
+										<button type="submit" class="btn btn-primary mb-2" >Submit</button>
 
 									</form:form>
 									<h1></h1>
@@ -143,7 +164,12 @@
 	<!-- Page level custom scripts -->
 	<script src="/assets/js/demo/chart-area-demo.js"></script>
 	<script src="/assets/js/demo/chart-pie-demo.js"></script>
-</body>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
 
+</body>
+<script src="./status.ajax"></script>
 </html>
 
