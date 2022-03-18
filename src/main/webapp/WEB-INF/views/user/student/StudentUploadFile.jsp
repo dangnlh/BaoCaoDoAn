@@ -33,14 +33,14 @@
 
 	<div class="main-panel">
 		<div class="content-wrapper">
-			<div class="row">
+			<div class="row" style="display: flex; align-items: center;justify-content: center;">
 			<c:if test="${ not empty InforReport }">
 							<h1>Deadline to submit : ${ InforReport }</h1>
 						</c:if>
 				<div class="col-lg-12 grid-margin stretch-card">
 
 
-					<div class="col-lg-12 grid-margin stretch-card">
+					<div class="col-lg-12 grid-margin stretch-card" style="display: flex; align-items: center;justify-content: center;">
 						<!-- 	<h1>status upload  : ${statusupload}</h1>  
 				
 					<h1>compare Time : ${compareTime}</h1> 
