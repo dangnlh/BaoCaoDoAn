@@ -53,10 +53,15 @@
 										modelAttribute="ScheduleMeeting2">
 										<form:hidden path="id" />
 
-										<label for="email2" class="mb-2 mr-sm-2">timeMeeting</label>
+										<label for="email2" class="mb-2 mr-sm-2">Time Meeting</label>
 										<br>
 										<form:input path="timeMeeting" type="date"
-											class="form-control mb-2 mr-sm-2" value="<%=java.time.LocalDate.now()%>" />
+											class="form-control mb-2 mr-sm-2"
+											value="<%=java.time.LocalDate.now()%>" />
+										<div class="">
+											<!-- Simple link -->
+											<span style="color: red">${ dateError }</span>
+										</div>
 										<br>
 
 										<label for="email2" class="mb-2 mr-sm-2">Project_ID:</label>
@@ -76,7 +81,7 @@
 										<form:errors path="account_id" cssClass="error" />
 										<br> --%>
 
-										<label for="email2" class="mb-2 mr-sm-2">Name
+										<label for="email2" class="form-control mb-2 mr-sm-2">Name
 											SheduleMeeting</label>
 										<br>
 										<form:input path="name" class="mb-2 mr-sm-2" />
@@ -98,7 +103,16 @@
 										<label for="email2" class="mb-2 mr-sm-2">Date Submit</label>
 										<br>
 										<form:input path="submitDate" type="date"
-											class="form-control mb-2 mr-sm-2" value="<%=java.time.LocalDate.now().plusDays(2)%>" />
+											class="form-control mb-2 mr-sm-2"
+											value="<%=java.time.LocalDate.now().plusDays(2)%>" />
+										<div class="">
+											<!-- Simple link -->
+											<span style="color: red">${ dateError }</span>
+										</div>
+										<div class="">
+											<!-- Simple link -->
+											<span style="color: red">${ isDateSubmit }</span>
+										</div>
 										<br>
 
 										<button type="submit" class="btn btn-primary mb-2">Submit</button>

@@ -19,20 +19,24 @@ public class FutureBasedDateScheduleValidator implements ConstraintValidator<Fut
 
 	public boolean isValid(ScheduleMeeting value, ConstraintValidatorContext context) {
 		boolean result = false;
-		// Creating
-		if(value.getId()==0) {
-			Date now = new Date(new java.util.Date().getTime());
-			if(!now.after(value.getTimeMeeting())) {
-				result = true;
+		try {
+			// Creating
+			if (value.getId() == 0) {
+				Date now = new Date(new java.util.Date().getTime());
+				if (!now.after(value.getTimeMeeting())) {
+					result = true;
+				}
+			} else {
+				// Updating
+				ScheduleMeeting fullReport = scheduleService.getScheduleMeetingByID(value.getId());
+				Date createTime = fullReport.getSubmitDate();
+				Date deadline = value.getTimeMeeting();
+				if (!createTime.after(deadline)) {
+					result = true;
+				}
 			}
-		}else {
-			// Updating
-			ScheduleMeeting fullReport = scheduleService.getScheduleMeetingByID(value.getId());
-			Date createTime = fullReport.getSubmitDate();
-			Date deadline = value.getTimeMeeting();
-			if (!createTime.after(deadline)) {
-				result = true;
-			}
+		} catch (Exception e) {
+		
 		}
 
 		return result;

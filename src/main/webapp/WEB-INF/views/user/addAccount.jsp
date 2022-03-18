@@ -103,8 +103,9 @@
 
 										<form:select path="role"
 											class="btn btn-primary dropdown-toggle">
-											<option value="${ item.role }">Student</option>
-											<option value="${ item.role }">Lecturer</option>
+											<option items="${ item.role }" value="Student">Student</option>
+											<option items="${ item.role }" value="Lecturer">
+												Lecturer</option>
 										</form:select>
 										<br>
 										<br>
@@ -113,8 +114,8 @@
 										<br>
 										<form:select path="isLeader"
 											class="btn btn-primary dropdown-toggle">
-											<option value="${ item.isLeader }">True</option>
-											<option value="${ item.isLeader }">False</option>
+											<option items="${ item.isLeader }" value="True">True</option>
+											<option items="${ item.isLeader }" value="False">False</option>
 										</form:select>
 
 										<br>
@@ -127,8 +128,8 @@
 										<br>
 										<form:select path="gender"
 											class="btn btn-primary dropdown-toggle">
-											<option value="${ item.gender }">Male</option>
-											<option value="${ item.gender }">Female</option>
+											<option items="${ item.gender } " value="Male">Male</option>
+											<option items="${ item.gender }" value="Female">Female</option>
 										</form:select>
 										<br>
 										<!-- 

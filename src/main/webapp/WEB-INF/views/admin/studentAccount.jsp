@@ -42,7 +42,7 @@
 								<br>
 								<form:input path="name" type="text"
 									class="form-control mb-2 mr-sm-2" />
-								<button type="submit">Submit</button>
+								<button type="submit" class="btn btn-primary">Submit</button>
 							</form:form>
 						</div>
 					<!-- DataTales Example -->
