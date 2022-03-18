@@ -57,6 +57,7 @@ public class ProjectController {
 	public ModelAndView getAllProject(Project project) {
 		mv.setViewName("admin/adminproject");
 		mv.addObject("getAllProject", projectService.getAllProject());
+		mv.addObject("group4", groupServiceImpl.getGroupAdmin());
 		mv.addObject("project", new Project());
 		return mv;
 	}
@@ -80,7 +81,6 @@ public class ProjectController {
 	@RequestMapping(value = "/addProject", method = RequestMethod.POST)
 	public ModelAndView add(@Valid @ModelAttribute("ProjectUpdateAndInsert") Project project,
 			BindingResult bindingResult) {
-//		System.out.println(bindingResult);
 
 		int groupId = project.getGroup_id();
 		int countGroupId = projectService.getCountGroupId(groupId);
@@ -90,13 +90,22 @@ public class ProjectController {
 
 		if (bindingResult.hasErrors()) {
 			mv.setViewName("/admin/addProject");
-		} else if (countGroupId >= 4) {
+
+		} else if (countGroupId >= 1) {
+
+			mv.addObject("ValidationProject_Group", "The group currently has a project");
+
 			mv.setViewName("/admin/addProject");
-		} else if (countTeacherId >= 4) {
+		} else if (countTeacherId > 4) {
+
+			mv.addObject("ValidationProject_Teacher", "Teachers have enough guidance groups. (biggest 4)");
 			mv.setViewName("/admin/addProject");
+
 		} else {
-			System.out.println(project.getGroup_id());
+
 			projectService.addProject(project);
+			mv.addObject("ValidationProject_Group", "");
+			mv.addObject("ValidationProject_Teacher", "");
 			return new ModelAndView("redirect:/AdminProject");
 		}
 
@@ -123,15 +132,17 @@ public class ProjectController {
 		int countTeacherId = projectService.getCountTeacherId(teacherId);
 
 		if (bindingResult.hasErrors()) {
-			mv.setViewName("/admin/editProject");
-
-		} else if (countGroupId >= 4) {
-			mv.setViewName("/admin/editProject");
-		} else if (countTeacherId >= 4) {
+			System.out.println("***************************");
+			System.out.println(project.getName());
+			System.out.println(project.getUrlProject());
+			System.out.println(project.getCreateTime());
+			System.out.println(project.getGroup_id());
+			System.out.println(project.getTeacherId());
 			mv.setViewName("/admin/editProject");
 		} else {
 			projectService.editProject(project.getId(), project);
 			return new ModelAndView("redirect:/AdminProject");
+
 		}
 
 		return mv;

@@ -9,7 +9,7 @@ public class Group {
 	private int id;
 	
 
-	@Pattern(regexp = "[a-zA-Z ]{1,100}" , message = "Group name is empty")
+	@Pattern(regexp = "[A-Za-z0-9 ]{1,100}" , message = "Group name is empty")
 	private String name;
 	
 	private List<Account> account;

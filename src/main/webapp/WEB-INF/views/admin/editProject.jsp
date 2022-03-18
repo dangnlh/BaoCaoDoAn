@@ -71,30 +71,32 @@
 											class="form-control mb-2 mr-sm-2"
 											value="${ getProjectbyId.createTime}" />
 										<br>
-
+										<%-- 
 										<label for="email2" class="mb-2 mr-sm-2">Group</label>
 										<br>
 
 										<form:select path="group_id">
+
 											<c:forEach var="item" items="${ groups }">
 
-												<option value="${ item.id}">${ item.id }</option>
+
+
+												<option value="${ item.id }">${ item.id }-${ item.name }</option>
+
 											</c:forEach>
 										</form:select>
-
+										<p style="color: red">${ ValidationProject_Group }</p>
 										<br>
 										<br>
 
+										<label for="cars">Teacher:</label>
 
-
-
-										<label for="email2" class="mb-2 mr-sm-2">Teacher</label>
-										<br>
 										<form:select path="teacherId">
 											<c:forEach var="item" items="${ teacher }">
-												<option value="${ item.id}">${ item.id }</option>
+												<option value="${ item.id }">${ item.id }-${ item.name }</option>
 											</c:forEach>
 										</form:select>
+										<p style="color: red">${ ValidationProject_Teacher }</p> --%>
 										<br>
 										<br>
 										<button type="submit" class="btn btn-primary mb-2">Submit</button>
@@ -108,21 +110,21 @@
 						</div>
 
 
-						</div>
-
-
 					</div>
-					<!-- DataTales Example -->
+
 
 				</div>
+				<!-- DataTales Example -->
 
 			</div>
-			<!-- End of Main Content -->
 
-			<!-- Footer -->
-			<%@include file="/WEB-INF/views/admin/footer.jsp"%>
-			<!-- End of Footer -->
 		</div>
+		<!-- End of Main Content -->
+
+		<!-- Footer -->
+		<%@include file="/WEB-INF/views/admin/footer.jsp"%>
+		<!-- End of Footer -->
+	</div>
 	</div>
 
 	<!-- Logout Modal-->

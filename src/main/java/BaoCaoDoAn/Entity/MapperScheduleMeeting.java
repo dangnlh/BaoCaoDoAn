@@ -18,7 +18,7 @@ public class MapperScheduleMeeting implements RowMapper<ScheduleMeeting> {
 		Date date = rs.getDate("timeMeeting");
 		admin.setTimeMeeting(date);
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(rs.getTime("timeMeeting").getTime());
+	//	calendar.setTimeInMillis(rs.getTime("timeMeeting").getTime());
 		admin.setTime(new SimpleDateFormat("HH:mm").format(calendar.getTime()));
 
 		Date dateSubmit = rs.getDate("date_submit");

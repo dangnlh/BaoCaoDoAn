@@ -90,14 +90,15 @@ public class AccountController {
 	public ModelAndView DangKy(@ModelAttribute("account") Account account) {
 
 		int count = accountService.AddAccount(account);
-		System.out.println(count);
+
+		
 
 		if (count == 1) {
 			mv.addObject("statusRegister", "Đăng ký thành công");
 		} else if (count == 2) {
 			mv.addObject("statusRegister", "Đăng ký thất bại");
 		}
-		System.out.println("thanhcong");
+		
 		mv.setViewName("/registrationpage");
 		return mv;
 

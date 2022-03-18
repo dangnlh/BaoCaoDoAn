@@ -22,7 +22,7 @@
 </style>
 </head>
 
-									<!-- 
+<!-- 
 										Form add project
 										http://localhost:8080/BaoCaoDoAn/addProject
 										
@@ -71,7 +71,7 @@
 										<br>
 										<form:input path="urlProject" type="text"
 											class="form-control mb-2 mr-sm-2" />
-										
+
 										<form:errors path="urlProject" cssClass="error" />
 										<br>
 										<label h for="email2" class="mb-2 mr-sm-2">Time Create
@@ -90,10 +90,16 @@
 										<label for="cars">Group:</label>
 
 										<form:select path="group_id">
+
 											<c:forEach var="item" items="${ groups }">
-												<option value="${ item.id }">${ item.id }</option>
+
+
+
+												<option value="${ item.id }">${ item.id }-${ item.name }</option>
+
 											</c:forEach>
 										</form:select>
+										<p style="color: red">${ ValidationProject_Group }</p>
 										<br>
 										<br>
 
@@ -101,9 +107,10 @@
 
 										<form:select path="teacherId">
 											<c:forEach var="item" items="${ teacher }">
-												<option value="${ item.id }">${ item.id }</option>
+												<option value="${ item.id }">${ item.id }-${ item.name }</option>
 											</c:forEach>
 										</form:select>
+										<p style="color: red">${ ValidationProject_Teacher }</p>
 
 										<!-- 		<form:input path="teacherId" type="text"
 											class="form-control mb-2 mr-sm-2" />
