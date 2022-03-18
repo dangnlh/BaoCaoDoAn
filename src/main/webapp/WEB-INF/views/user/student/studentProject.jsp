@@ -26,14 +26,14 @@
 	<c:set var="teacher" value="${teacher}" />
 	<div class="main-panel">
 		<div class="content-wrapper">
-			<div class="row">
+			<div class="row" style="display: flex; align-items: center;justify-content: center;">
 				<ul class="list-group">
 					<li class="list-group-item active"><h4>Your project</h4></li>
-					<li class="list-group-item"><h6>Project
-							Name:  ${project.name}</h6></li>
-					<li class="list-group-item"><h6>Creating
-							Time:  ${project.createTime}</h6></li>
-					<li class="list-group-item"><h6>Teacher:  ${teacher.name}</h6></li>
+					<li class="list-group-item"><h6>Project Name:
+							${project.name}</h6></li>
+					<li class="list-group-item"><h6>Creating Time:
+							${project.createTime}</h6></li>
+					<li class="list-group-item"><h6>Teacher: ${teacher.name}</h6></li>
 				</ul>
 			</div>
 		</div>
@@ -43,7 +43,7 @@
 	<!-- -----------------FOOTER-------------------- -->
 	<%@include file="/WEB-INF/views/user/student/footer.jsp"%>
 	<!-- -----------------END OF FOOTER-------------------- -->
-	
+
 	<!-- Script-->
 	<%@include file="/WEB-INF/views/user/student/studentscript.jsp"%>
 </body>

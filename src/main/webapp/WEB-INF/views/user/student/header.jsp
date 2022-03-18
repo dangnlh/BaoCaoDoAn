@@ -5,7 +5,7 @@
 
 <div class="top-header"></div>
 <div class="middle-header">
-	<a href="/" target="_top"><img
+	<a href="#" target="_top"><img
 		src="https://daihoc.fpt.edu.vn/media/2021/12/Logo-FU-01-200.png"
 		alt="FPT"
 		style="max-width: 160px; margin-top: -10px; margin-left: 50px; margin-top: 20px; margin-bottom: 20px;"></a>

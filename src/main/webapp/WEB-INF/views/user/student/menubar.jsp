@@ -14,22 +14,21 @@
 	<div class="dropdown">
 		<button class="dropbtn">Report</button>
 		<div class="dropdown-content">
-			<a href="<c:url value="/student_ViewReport"/>">View report</a>
+			<a href="<c:url value="/student_ViewReport"/>">View Reports</a>
 		</div>
 	</div>
 
 	<div class="dropdown">
-		<button class="dropbtn">Nhóm</button>
+		<button class="dropbtn">Group</button>
 		<div class="dropdown-content">
-			<a href="<c:url value="/studentGroupByteacher_id"/>">Thông
-				tin nhóm</a>
+			<a href="<c:url value="/studentGroupByteacher_id"/>">Group Information</a>
 		</div>
 	</div>
 
 	<div class="dropdown">
 		<button class="dropbtn">Schedule Report</button>
 		<div class="dropdown-content">
-			<a href="<c:url value="/student_ViewScheduleReport"/>">Xem lịch</a>
+			<a href="<c:url value="/student_ViewScheduleReport"/>">View Schedule</a>
 		</div>
 	</div>
 
@@ -37,26 +36,16 @@
 		<button class="dropbtn">Meeting</button>
 		<div class="dropdown-content">
 			<a
-				href="<c:url value="/studentMeeting"/>">Xem lịch</a>
+				href="<c:url value="/studentMeeting"/>">View Meeting Schedule</a>
 		</div>
 	</div>
 
 	<div class="dropdown">
-		<button class="dropbtn">Đồ án</button>
+		<button class="dropbtn">Project</button>
 		<div class="dropdown-content">
-			<a href="<c:url value="/studentProject"/>">Thông tin đồ án</a>
+			<a href="<c:url value="/studentProject"/>">Project Detail</a>
 		</div>
 	</div>
-
-
-	<div class="dropdown">
-		<button class="dropbtn">
-			<i class="fa fa-bars"></i>
-		</button>
-		<div class="dropdown-content">
-			<a href="#" th:href="@{'/detail/' + '18'}">Link 1</a> <a href="#"
-				th:href="@{'/detail/' + '41'}">Link 2</a>
-		</div>
-	</div>
+	
 </div>
 <!-- end of MENU BAR -->

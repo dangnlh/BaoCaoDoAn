@@ -30,7 +30,7 @@
 							<div class="row align-items-center h-100">
 								<div class="col-md-4">
 									<figure class="avatar mx-auto mb-4 mb-md-0">
-										<img src="images/faces/face20.jpg">
+										<img src='<c:url value="/assets/img/undraw_profile.svg" /> '>
 									</figure>
 								</div>
 								<div class="col-md-6">

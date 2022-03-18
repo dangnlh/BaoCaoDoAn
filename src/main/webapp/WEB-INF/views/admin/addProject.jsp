@@ -92,11 +92,8 @@
 										<form:select path="group_id" class="btn btn-primary dropdown-toggle">
 
 											<c:forEach var="item" items="${ groups }">
-
-
-
-												<option value="${ item.id }">${ item.id }-${ item.name }</option>
-
+												<option value="${ item.id }">${ item.name }</option>
+												<%-- 	<option value="${ item.id }">${ item.id }-${ item.name }</option> --%>
 											</c:forEach>
 										</form:select>
 										<p style="color: red">${ ValidationProject_Group }</p>
@@ -107,7 +104,8 @@
 
 										<form:select path="teacherId" class="btn btn-primary dropdown-toggle">
 											<c:forEach var="item" items="${ teacher }">
-												<option value="${ item.id }">${ item.id }-${ item.name }</option>
+												<option value="${ item.id }">${ item.name }</option>
+												<%-- <option value="${ item.id }">${ item.id }-${ item.name }</option> --%>
 											</c:forEach>
 										</form:select>
 										<p style="color: red">${ ValidationProject_Teacher }</p>
