@@ -34,14 +34,7 @@
 				<div class="col-lg-12 grid-margin stretch-card">
 					<div class="card">
 						<div class="card-body">
-
-
-
-
-
-
-
-
+						
 							<c:forEach var="project" items="${ listReport }">
 								<c:set var="Report" value="${ project.report }" />
 

@@ -83,7 +83,7 @@
 									
 
 									<label class="form-label" for="form1Example1">Email
-										address</label>
+										</label>
 								</div>
 
 								<!-- Password input -->
@@ -92,7 +92,7 @@
 								
 						
 
-									<label class="form-label" for="form1Example2">Password</label>
+									<label class="form-label" for="form1Example2">Mật khẩu</label>
 								</div>
 
 								<!-- 2 column grid layout for inline styling -->
