@@ -12,7 +12,11 @@ import BaoCaoDoAn.validator.FutureBasedDateSchedule;
 public class ScheduleMeeting {
 	private int id;
 	
-	@Pattern(regexp = "[a-zA-Z0-9 ]{1,100}" , message = "Name is empty")
+
+	
+
+	@Pattern(regexp = "[a-zA-Z0-9]{1,100}" , message = "Name is empty")
+
 	
 	private String name;
 	private Date timeMeeting;

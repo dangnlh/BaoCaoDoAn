@@ -57,6 +57,10 @@
 										<br>
 										<form:input path="timeReport" type="date"
 											class="form-control mb-2 mr-sm-2" />
+										<div class="">
+											<!-- Simple link -->
+											<span style="color: red">${ dateError }</span>
+										</div>
 										<br>
 										<%-- <label for="email2" class="mb-2 mr-sm-2">Account ID:</label>
 										<br>
@@ -82,8 +86,15 @@
 										<br>
 										<form:input path="dateSubmit" type="date"
 											class="form-control mb-2 mr-sm-2" />
+										<div class="">
+											<!-- Simple link -->
+											<span style="color: red">${ dateError }</span>
+										</div>
+										<div class="">
+											<!-- Simple link -->
+											<span style="color: red">${ isDateSubmit }</span>
+										</div>
 										<br>
-
 										<button type="submit" class="btn btn-primary mb-2">Submit</button>
 
 									</form:form>

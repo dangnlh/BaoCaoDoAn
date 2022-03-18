@@ -76,7 +76,8 @@ public class StudentDAO {
 	// student list by account
 	public List<Account> getStudentList() {
 		List<Account> list = new ArrayList<Account>();
-		String sql = "SELECT * FROM account WHERE role= 'student'";
+//		String sql = "SELECT * FROM account WHERE role= 'student'";
+		String sql = "SELECT * FROM account INNER JOIN group_student ON account.group_id = group_student.id";
 		list = jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
@@ -149,5 +150,12 @@ public class StudentDAO {
 	}
 	return null;
 		
+	}
+	
+	public int isEmailExist(String email) {
+		int result =-1;
+		String sql = "SELECT COUNT(mail) FROM `account` WHERE mail = '" + email + "'";	
+		result = jdbcTemplate.queryForObject(sql, Integer.class);
+		return result;
 	}
 }

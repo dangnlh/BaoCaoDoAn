@@ -126,4 +126,10 @@ public class ScheduleReportDAO {
 		return result;
 
 	}
+	
+	public ScheduleReport GetScheduleReportByID(int reportId) {
+		String sql = "SELECT * FROM schedulereport where id = " + reportId;
+		ScheduleReport result = jdbcTemplate.queryForObject(sql, new MapperScheduleReport());
+		return result;
+	}
 }
