@@ -4,24 +4,18 @@ import java.sql.Date;
 
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
+import BaoCaoDoAn.validator.FutureBasedDateScheduleReport;
 
 
+@FutureBasedDateScheduleReport(message = "Deadline must be greater than create time!")
 public class ScheduleReport {
 	private int id;
-	
-	@Past(message="date of birth must be less than today")  
-	@DateTimeFormat( pattern="dd-MM-yyyy")
 	private Date timeReport;
-	
-	@Past(message="date of birth must be less than today")  
-	@DateTimeFormat( pattern="dd-MM-yyyy")	
 	private Date dateSubmit;
+	@NotNull(message = "Account id can't be empty!")
 	private int account_id;
-	@NotNull(message = "dsa")
+	@NotNull(message = "Report id can't be empty!")
 	private int report_id;
 	private Group group;
 	private Report report;
