@@ -24,8 +24,8 @@ public class MapperAccount implements RowMapper<Account> {
 			if (rs.getString("group_name") != null) {
 				acc.setGroup_name(rs.getString("group_name"));
 			}
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

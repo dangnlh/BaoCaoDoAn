@@ -47,7 +47,7 @@
 								<form:input path="name" type="text"
 									class="form-control mb-2 mr-sm-2" />
 								
-								<button type="submit">Submit</button></br>
+								<button type="submit" class="btn btn-primary">Submit</button></br>
 
 							<!-- Add Group Button -->
 					<a href="addAccountStudent" style="font-size: 30px;">Add

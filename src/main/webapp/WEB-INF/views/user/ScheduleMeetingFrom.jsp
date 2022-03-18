@@ -53,7 +53,7 @@
 										modelAttribute="ScheduleMeeting2">
 										<form:hidden path="id" />
 
-										<label for="email2" class="mb-2 mr-sm-2">timeMeeting</label>
+										<label for="email2" class="mb-2 mr-sm-2">Time Meeting</label>
 										<br>
 										<form:input path="timeMeeting" type="date"
 											class="form-control mb-2 mr-sm-2" value="<%=java.time.LocalDate.now()%>" />
@@ -76,7 +76,7 @@
 										<form:errors path="account_id" cssClass="error" />
 										<br> --%>
 
-										<label for="email2" class="mb-2 mr-sm-2">Name
+										<label for="email2" class="form-control mb-2 mr-sm-2">Name
 											SheduleMeeting</label>
 										<br>
 										<form:input path="name" class="mb-2 mr-sm-2" />

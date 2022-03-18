@@ -71,7 +71,7 @@ public class StudentController {
 		ModelAndView model = new ModelAndView("/user/addAccount");
 
 		model.addObject("studentAcc1", account);
-
+		model.addObject("groups", groupServiceImpl.getGroupAdmin());
 		return model;
 	}
 
@@ -96,6 +96,7 @@ public class StudentController {
 	@RequestMapping(value = "/addAccountStudent", method = RequestMethod.POST)
 	public ModelAndView doPostAddGroup(@Valid @ModelAttribute("studentAcc1") Account account, BindingResult result) {
 		int isEmailExist = studentService.isEmailExist(account.getMail());
+		mv.addObject("groups", groupServiceImpl.getGroupAdmin());
 		mv.addObject("emailExist", "");
 		if (result.hasErrors()) {
 			mv.setViewName("/user/addAccount");
