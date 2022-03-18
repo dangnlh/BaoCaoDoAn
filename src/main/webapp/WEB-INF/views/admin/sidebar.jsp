@@ -6,7 +6,7 @@
 	id="accordionSidebar">
 	<a
 		class="sidebar-brand d-flex align-items-center justify-content-center"
-		href="/">
+		href="#">
 		<div class="sidebar-brand-icon">
 			<img src='<c:url value="/assets/img/FPT-logo.jpg" />'
 				style="max-width: 140px;">
