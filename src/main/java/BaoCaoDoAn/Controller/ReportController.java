@@ -249,7 +249,7 @@ public class ReportController {
 				mv.setViewName("/user/student/StudentUploadFile");
 			} else {
 
-				mv.setViewName("/user/student/studentreport");
+				mv.setViewName("/user/student/studentreportoverdue");
 
 			}
 
