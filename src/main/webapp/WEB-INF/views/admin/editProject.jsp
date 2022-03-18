@@ -45,13 +45,12 @@
 								<div style="margin: 30px 200px">
 									<form:form method="POST" action="/BaoCaoDoAn/editProject"
 										modelAttribute="project">
-										<form:hidden path="id" value="${ getProjectbyId.id}" />
+										<form:hidden path="id" value="${ project.id}" />
 										<label for="email2" class="mb-2 mr-sm-2">Name Project</label>
 										<br>
 
 
 										<form:input path="name" placeholder="abcdxyz" type="text"
-											value="${ getProjectbyId.name}"
 											class="form-control mb-2 mr-sm-2" />
 										<form:errors path="name" cssClass="error" />
 										<br>
@@ -60,43 +59,52 @@
 										<label for="email2" class="mb-2 mr-sm-2">UrL Porject</label>
 										<br>
 										<form:input path="urlProject" type="text"
-											class="form-control mb-2 mr-sm-2"
-											value="${ getProjectbyId.urlProject}" />
+											class="form-control mb-2 mr-sm-2" />
 										<br>
 
 
 										<label for="email2" class="mb-2 mr-sm-2">Time Create </label>
 										<br>
 										<form:input path="createTime" type="date"
-											class="form-control mb-2 mr-sm-2"
-											value="${ getProjectbyId.createTime}" />
-										<br>
-										<%-- 
-										<label for="email2" class="mb-2 mr-sm-2">Group</label>
+											class="form-control mb-2 mr-sm-2" />
 										<br>
 
-										<form:select path="group_id">
 
-											<c:forEach var="item" items="${ groups }">
+										<label for="email2" class="mb-2 mr-sm-2">Group : ${ project.group_id }
+										</label>
+										<br>
 
-
-
-												<option value="${ item.id }">${ item.id }-${ item.name }</option>
-
-											</c:forEach>
+										<form:select path="group_id" class="form-control mb-2 mr-sm-2">
+											<form:options items="${groups}" itemValue="id"
+												itemLabel="name" />
 										</form:select>
+
+
+
 										<p style="color: red">${ ValidationProject_Group }</p>
-										<br>
-										<br>
 
-										<label for="cars">Teacher:</label>
+										<label for="cars">Teacher: ${ project.teacherId }</label>
 
-										<form:select path="teacherId">
-											<c:forEach var="item" items="${ teacher }">
-												<option value="${ item.id }">${ item.id }-${ item.name }</option>
-											</c:forEach>
+										<br>
+										<form:select path="teacherId"
+											class="form-control mb-2 mr-sm-2">
+											<form:options items="${teachers}" itemValue="id"
+												itemLabel="name" />
 										</form:select>
-										<p style="color: red">${ ValidationProject_Teacher }</p> --%>
+
+
+
+
+										<%-- <form:select path="teacherId">
+											<c:forEach var="item" items="${ teacher }">
+
+												<option value="${ item.id }">${ item.id }-${ item.name }</option>
+
+											</c:forEach>
+
+										</form:select>
+ --%>
+										<p style="color: red">${ ValidationProject_Teacher }</p>
 										<br>
 										<br>
 										<button type="submit" class="btn btn-primary mb-2">Submit</button>

@@ -115,9 +115,9 @@ public class ProjectController {
 
 	@GetMapping(value = "/editProject/{id}")
 	public ModelAndView getEditProject(@PathVariable("id") int id) {
-		mv.addObject("getProjectbyId", projectService.getProjectById(id));
+		mv.addObject("project", projectService.getProjectById(id));
 		mv.setViewName("/admin/editProject");
-		mv.addObject("teacher", accountDao.getTeacherAdmin());
+		mv.addObject("teachers", accountDao.getTeacherAdmin());
 		mv.addObject("groups", groupServiceImpl.getGroupAdmin());
 		return mv;
 
@@ -132,12 +132,7 @@ public class ProjectController {
 		int countTeacherId = projectService.getCountTeacherId(teacherId);
 
 		if (bindingResult.hasErrors()) {
-			System.out.println("***************************");
-			System.out.println(project.getName());
-			System.out.println(project.getUrlProject());
-			System.out.println(project.getCreateTime());
-			System.out.println(project.getGroup_id());
-			System.out.println(project.getTeacherId());
+			
 			mv.setViewName("/admin/editProject");
 		} else {
 			projectService.editProject(project.getId(), project);
