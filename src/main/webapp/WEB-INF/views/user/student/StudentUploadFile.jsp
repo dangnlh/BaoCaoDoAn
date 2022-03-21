@@ -26,21 +26,21 @@
 		<!-- -----------------END OF MENU BAR-------------------- -->
 	</div>
 
-
 	<!-- ---------------------CONTENT--------------------- -->
-
 
 
 	<div class="main-panel">
 		<div class="content-wrapper">
-			<div class="row">
-			<c:if test="${ not empty InforReport }">
-							<h1>Deadline to submit : ${ InforReport }</h1>
-						</c:if>
+			<div class="row"
+				style="display: flex; align-items: center; justify-content: center;">
+				<c:if test="${ not empty InforReport }">
+					<h1>Deadline to submit : ${ InforReport }</h1>
+				</c:if>
 				<div class="col-lg-12 grid-margin stretch-card">
 
 
-					<div class="col-lg-12 grid-margin stretch-card">
+					<div class="col-lg-12 grid-margin stretch-card"
+						style="display: flex; align-items: center; justify-content: center;">
 						<!-- 	<h1>status upload  : ${statusupload}</h1>  
 				
 					<h1>compare Time : ${compareTime}</h1> 
@@ -48,13 +48,11 @@
 						<h1>Time now : ${TIMENOW}</h1>
 						-->
 
-						
 						<br />
 						<form action="${pageContext.request.contextPath}/saveReportFile"
 							method="post" style="text-align: center;"
 							enctype="multipart/form-data">
-							<input type="hidden" name="ReportId" value="${ReportId}" /> 
-							<input
+							<input type="hidden" name="ReportId" value="${ReportId}" /> <input
 								style="line-height: 1 !important" class="form-control"
 								type="file" name="file" id="formFile">
 							<button style="margin-top: 3em;" type="submit"
@@ -71,7 +69,7 @@
 	<!-- -----------------FOOTER-------------------- -->
 	<%@include file="/WEB-INF/views/user/student/footer.jsp"%>
 	<!-- -----------------END OF FOOTER-------------------- -->
-	
+
 	<!-- Script-->
 	<%@include file="/WEB-INF/views/user/student/studentscript.jsp"%>
 

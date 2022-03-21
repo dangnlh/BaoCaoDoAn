@@ -33,8 +33,8 @@
 
 	<div class="main-panel">
 		<div class="content-wrapper">
-			<div class="row">
-				<div class="col-lg-12 grid-margin stretch-card">
+			<div class="row" >
+				<div class="col-lg-12 grid-margin stretch-card" style="display: flex; align-items: center;justify-content: center;" >
 					<form action="${pageContext.request.contextPath}/savefile"
 						method="post" style="text-align: center;"
 						enctype="multipart/form-data">

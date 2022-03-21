@@ -25,19 +25,14 @@
                         <!-- -----------------END OF MENU BAR-------------------- -->
             </div>
 
-
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
 
-
-
-
                     <div class="row">
 
-
                         <div class="col-lg-12 grid-margin stretch-card">
-                            <div class="card">
+                            <div class="card" style="display: flex; align-items: center;justify-content: center;">
                                 <div class="card-body">
                                     <h1 style="text-align: center;">GRADE FOR REPORT</h1>
                                     <c:set value="${report}" var="report" />
